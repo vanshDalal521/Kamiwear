@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demon Slayer Collection | KamiWear</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="/assets/kw.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <!-- Background and Navbar -->
+    <div class="demon-slayer-bg">
+        <div class="flame-animation"></div>
+        <div class="flame-animation delay-1"></div>
+        <div class="flame-animation delay-2"></div>
+    </div>
+
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>Kami<span>Wear</span></h1>
+                <p>Anime Fashion Universe</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#shop">Shop</a></li>
+                    <li><a href="demon-slayer.html">Collections</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icons">
+                <div class="search-container">
+                    <!-- <i class="fas fa-search search-icon"></i> -->
+                    <input type="text" class="search-input" placeholder="Search products...">
+                    <div class="search-results"></div>
+                </div>
+                <a href="wishlist.html" class="nav-icon wishlist-icon">
+                    <i class="fas fa-heart"></i>
+                    <span class="wishlist-count">0</span>
+                </a>
+                <!-- <a href="#" class="nav-icon user-icon" id="user-icon">
+                    <i class="fas fa-user"></i>
+                </a> -->
+                <a href="cart.html" class="nav-icon cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+     <!-- Login/Signup Modal
+     <div class="auth-modal">
+        <div class="auth-container">
+            <div class="auth-close">&times;</div>
+
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Login</button>
+                <button class="auth-tab" data-tab="signup">Sign Up</button>
+            </div>
+
+            <form class="auth-form active" id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <div class="auth-footer">
+                    <p>Don't have an account? <a href="#" class="switch-to-signup">Sign up</a></p>
+                </div>
+            </form>
+
+            <form class="auth-form" id="signup-form">
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email</label>
+                    <input type="email" id="signup-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm">Confirm Password</label>
+                    <input type="password" id="signup-confirm" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+                <div class="auth-footer">
+                    <p>Already have an account? <a href="#" class="switch-to-login">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div> -->
+
+    <!-- Collection Hero -->
+    <section class="collection-hero">
+        <div class="container">
+            <h1>Demon Slayer Collection</h1>
+            <p>Breath of the warrior</p>
+        </div>
+    </section>
+
+    <!-- Collection Products -->
+    <section class="collection-products">
+        <div class="container">
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card" data-category="demon-slayer">
+                    <div class="product-img">
+                        <a href="product.html?id=1">
+                            <img src="/assets/t-shirts/Hinokami Kagura main.png" alt="Demon Slayer T-Shirt">
+                        </a>
+                        <div class="product-badge">New</div>
+                        <div class="product-actions">
+                            <button class="quick-view" onclick="window.location.href='product.html?id=1'"><i class="fas fa-eye"></i></button>
+                            <button class="add-wishlist"><i class="fas fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3><a href="product.html?id=1">Demon Slayer: Hinokami Kagura</a></h3>
+                        <div class="product-price">
+                            <span class="price">$29.99</span>
+                            <span class="old-price">$39.99</span>
+                        </div>
+                        <div class="product-buttons">
+                            <button class="add-to-cart" data-id="1">Add to Cart</button>
+                            <button class="buy-now-btn" data-id="1">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card" data-category="demon-slayer">
+                    <div class="product-img">
+                        <a href="product.html?id=2">
+                            <img src="/assets/hoodies/Water Breathing Hoodie main.jpeg" alt="Demon Slayer: Water Breathing">
+                        </a>
+                        <div class="product-actions">
+                            <button class="quick-view" onclick="window.location.href='product.html?id=5'"><i class="fas fa-eye"></i></button>
+                            <button class="add-wishlist"><i class="fas fa-heart"></i></button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3><a href="product.html?id=2">Demon Slayer: Water Breathing</a></h3>
+                        <div class="product-price">
+                            <span class="price">$28.99</span>
+                        </div>
+                        <div class="product-buttons">
+                            <button class="add-to-cart" data-id="5">Add to Cart</button>
+                            <button class="buy-now-btn" data-id="5">Buy Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>KamiWear</h3>
+                    <p>Your ultimate destination for anime fashion and merchandise.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/vansh.dalal1/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://discord.com/channels/975807883038052422/1356139180488659025" target="_blank"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Shop</h3>
+                    <ul>
+                        <li><a href="tshirts.html">T-Shirts</a></li>
+                        <li><a href="hoodies.html">Hoodies</a></li>
+                        <li><a href="accessories.html">Accessories</a></li>
+                        <li><a href="figures.html">Figures</a></li>
+                        <li><a href="new-arrivals.html">New Arrivals</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="faqs.html">FAQs</a></li>
+                        <li><a href="shipping.html">Shipping Policy</a></li>
+                        <li><a href="returns.html">Returns & Exchanges</a></li>
+                        <li><a href="size-guide.html">Size Guide</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> India</li>
+                        <li><i class="fas fa-phone"></i> +91 9253395564</li>
+                        <li><i class="fas fa-envelope"></i> support@kamiwear.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 KamiWear. All rights reserved.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-cc-amex"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart">&times;</button>
+        </div>
+        <div class="cart-items">
+            <!-- Cart items will be added here dynamically -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-price">$0.00</span>
+            </div>
+            <a href="cart.html" class="btn btn-primary">View Cart</a>
+            <a href="checkout.html" class="btn btn-accent" style="margin-top: 10px;">Checkout</a>
+        </div>
+    </div>
+    <div class="cart-overlay"></div>
+
+    <!-- Cart Notification -->
+    <div class="cart-notification">
+        <span class="cart-notification-text">Item added to cart!</span>
+        <a href="/structure/cart.html" class="btn btn-outline view-cart-btn">View Cart</a>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/products.js"></script>
+    <script>
+        // Initialize cart manager
+        const cartManager = new CartManager();
+        cartManager.updateCartUI();
+
+        // Initialize filter buttons
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.dataset.filter;
+                
+                // Update active button
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Filter products
+                const productCards = document.querySelectorAll('.product-card');
+                productCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Initialize wishlist buttons
+        document.querySelectorAll('.add-wishlist').forEach(button => {
+            button.addEventListener('click', () => {
+                const productId = button.dataset.id;
+                const product = products[productId];
+                
+                if (product) {
+                    const added = cartManager.addToWishlist(product);
+                    if (added) {
+                        const heartIcon = button.querySelector('i');
+                        if (heartIcon) {
+                            heartIcon.className = 'fas fa-heart';
+                            heartIcon.style.color = 'var(--primary-color)';
+                        }
+                    }
+                }
+            });
+        });
+
+        // Initialize add to cart buttons
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', () => {
+                const productId = button.dataset.id;
+                const product = products[productId];
+                
+                if (product) {
+                    cartManager.addItem(product);
+                }
+            });
+        });
+
+        // Initialize buy now buttons
+        document.querySelectorAll('.buy-now-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const productId = button.dataset.id;
+                const product = products[productId];
+                
+                if (product) {
+                    cartManager.buyNow(product);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

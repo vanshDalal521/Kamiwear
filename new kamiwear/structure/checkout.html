@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout | KamiWear</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="shortcut icon" href="/assets/android-chrome-192x192.png" type="image/x-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+<body>
+  <div class="demon-slayer-bg">
+    <div class="flame-animation"></div>
+    <div class="flame-animation delay-1"></div>
+    <div class="flame-animation delay-2"></div>
+  </div>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container">
+      <div class="logo">
+        <h1>Kami<span>Wear</span></h1>
+        <p>Anime Fashion Universe</p>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#shop">Shop</a></li>
+          <li><a href="demon-slayer.html">Collections</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+  </header>
+
+  <section class="featured" style="margin-top: 100px;">
+    <div class="container">
+      <h2 class="section-title">Checkout <span>Now</span></h2>
+      <form id="checkout-form" class="checkout-form">
+        <div class="form-group">
+          <label for="fullname">Full Name</label>
+          <input type="text" id="fullname" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" required />
+        </div>
+        <div class="form-group">
+          <label for="address">Shipping Address</label>
+          <textarea id="address" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+          <label for="payment">Payment Method</label>
+          <select id="payment" required>
+            <option value="cod">Cash on Delivery</option>
+            <option value="card">Credit/Debit Card</option>
+            <option value="upi">UPI</option>
+          </select>
+        </div>
+        <div class="cart-total" style="margin-top: 20px;">
+          <h3>Total: <span class="total-price">$0.00</span></h3>
+        </div>
+        <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Place Order</button>
+      </form>
+    </div>
+  </section>
+
+  <script src="/js/script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const cartManager = new CartManager();
+        cartManager.updateCartUI();
+
+        const total = cartManager.cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        document.querySelector(".total-price").textContent = `$${total.toFixed(2)}`;
+
+        document.getElementById("checkout-form").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const order = {
+                name: document.getElementById("fullname").value,
+                email: document.getElementById("email").value,
+                address: document.getElementById("address").value,
+                payment: document.getElementById("payment").value,
+                items: cartManager.cart,
+                total: total,
+                id: "KAMI" + Date.now().toString().slice(-6)
+            };
+
+            localStorage.setItem("latestOrder", JSON.stringify(order));
+            localStorage.removeItem("cart");
+            window.location.href = "confirmation.html";
+        });
+    });
+</script>
+</body>
+</html>

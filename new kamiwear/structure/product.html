@@ -1,0 +1,1703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>Product Page | KamiWear</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="/assets/kw.png" type="image/x-icon">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .product-gallery {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 500px;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: opacity 0.3s ease;
+            background-color: #f5f5f5;
+        }
+
+        .thumbnail-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            background-color: #f5f5f5;
+        }
+
+        .thumbnail:hover {
+            border-color: #1a1a2e;
+        }
+
+        .thumbnail.active {
+            border-color: #ff0000;
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 500px;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .image-placeholder i {
+            font-size: 3rem;
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+
+        /* Hide all product sections by default */
+        .product-section {
+            display: none;
+        }
+
+        /* Show the product based on URL fragment */
+        .product-section:target {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background and Navbar -->
+    <div class="demon-slayer-bg">
+        <div class="flame-animation"></div>
+        <div class="flame-animation delay-1"></div>
+        <div class="flame-animation delay-2"></div>
+    </div>
+
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>Kami<span>Wear</span></h1>
+                <p>Anime Fashion Universe</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#shop">Shop</a></li>
+                    <li><a href="demon-slayer.html">Collections</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icons">
+                <div class="search-container">
+                    <!-- <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Search products..."> -->
+                    <div class="search-results">
+                        <!-- Search results will appear here -->
+                        <div class="search-result-item">
+                            <img src="/assets/t-shirts/Hinokami Kagura main.png" alt="Demon Slayer T-Shirt">
+                            <div>
+                                <h4>Demon Slayer T-Shirt</h4>
+                                <div class="price">₹2,499</div>
+                            </div>
+                        </div>
+                        <div class="search-result-item">
+                            <img src="/assets/hoodies/ds-hoodie-1.jpg" alt="Demon Slayer Hoodie">
+                            <div>
+                                <h4>Demon Slayer Hoodie</h4>
+                                <div class="price">₹4,979</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="wishlist.html" class="nav-icon wishlist-icon">
+                    <i class="fas fa-heart"></i>
+                    <span class="wishlist-count">0</span>
+                </a>
+                <!-- <a href="#" class="nav-icon user-icon">
+                    <i class="fas fa-user"></i>
+                </a> -->
+                <a href="cart.html" class="nav-icon cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Product Sections - One for each product -->
+    
+    <!-- Product 1 - Demon Slayer T-Shirt -->
+    <section id="product-1" class="product-hero product-section">
+        <div class="container">
+            <div class="product-container">
+                <div class="product-gallery">
+                    <br>
+                    <div id="main-image-container">
+                        <img src="/assets/t-shirts/Hinokami Kagura main.png" alt="Demon Slayer: Hinokami Kagura T-Shirt - Front View" class="main-image">
+                    </div>
+                    <div class="thumbnail-container">
+                        <img src="/assets/t-shirts/Hinokami Kagura main.png" alt="Front View" class="thumbnail active" onclick="changeImage(this, '/assets/t-shirts/Hinokami Kagura main.png', 'Front View')">
+                        <img src="/assets/t-shirts/Hinokami Kagura back.png" alt="Back View" class="thumbnail" onclick="changeImage(this, '/assets/t-shirts/Hinokami Kagura back.png', 'Back View')">
+                    </div>
+                </div>
+                <div class="product-details">
+                    <h1 class="product-title">Demon Slayer: Hinokami Kagura T-Shirt</h1>
+                    <div class="product-price">
+                        <span class="price">₹2,499</span>
+                        <span class="old-price">₹3,319</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <span class="review-count">(1 reviews)</span>
+                    </div>
+                    <p class="product-description">
+                        Show your love for Demon Slayer with this premium quality t-shirt featuring the Hinokami Kagura dance. Made from 100% soft cotton for maximum comfort. Officially licensed merchandise.
+                    </p>
+                    <div class="color-options">
+                        <h3>Color:</h3>
+                        <div class="color-option active" style="background-color: #ff0000;" title="Red" onclick="selectOption(this, 'color')"></div>
+                        <div class="color-option" style="background-color: #000000;" title="Black" onclick="selectOption(this, 'color')"></div>
+                        <div class="color-option" style="background-color: #ffffff;" title="White" onclick="selectOption(this, 'color')"></div>
+                        <div class="color-option" style="background-color: #1a1a2e;" title="Navy Blue" onclick="selectOption(this, 'color')"></div>
+                    </div>
+                    <div class="size-options">
+                        <h3>Size:</h3>
+                        <div class="size-option active" onclick="selectOption(this, 'size')">S</div>
+                        <div class="size-option" onclick="selectOption(this, 'size')">M</div>
+                        <div class="size-option" onclick="selectOption(this, 'size')">L</div>
+                        <div class="size-option" onclick="selectOption(this, 'size')">XL</div>
+                        <div class="size-option" onclick="selectOption(this, 'size')">XXL</div>
+                    </div>
+                    <div class="quantity-selector">
+                        <h3>Quantity:</h3>
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <input type="number" class="quantity-input" value="1" min="1">
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                    <div class="product-buttons">
+                        <button class="btn btn-primary add-to-cart-btn" onclick="addToCart(1)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                        <button class="btn btn-accent buy-now-btn" onclick="buyNow(1)">
+                            <i class="fas fa-bolt"></i> Buy Now
+                        </button>
+                    </div>
+                    <br>
+                    <div class="product-meta">
+                        <p><strong>Material:</strong> <span>100% Cotton</span></p>
+                        <p><strong>Fit:</strong> <span>Regular Fit</span></p>
+                        <p><strong>Shipping:</strong> 3-5 business days</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reviews-section">
+                <h2 class="section-title">Customer <span>Reviews</span></h2>
+                <div class="reviews-container">
+                    <div class="review">
+                        <div class="review-header">
+                            <h4>TanjiroFan</h4>
+                            <div class="review-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="review-text">The design is amazing and the fabric is so comfortable!</p>
+                    </div>
+                </div>
+            </div>
+            <div class="related-products">
+                <h2 class="section-title">You Might Also <span>Like</span></h2>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="/assets/hoodies/Water Breathing Hoodie main.jpeg" alt="Demon Slayer: Water Breathing Hoodie">
+                            <div class="product-actions">
+                                <button class="quick-view" onclick="window.location.href='product.html?id=11'">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="add-wishlist" onclick="addToWishlist(11)">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3><a href="product.html#product-6">Demon Slayer: Water Breathing Hoodie</a></h3>
+                            <div class="product-price">
+                                <span class="price">$59.99</span>
+                                <span class="old-price">$69.99</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="product-card">
+                        <div class="product-img">
+                            <img src="/assets/accessories/ds-keychain-1.jpg" alt="Demon Slayer: Nichirin Sword Keychain">
+                            <div class="product-actions">
+                                <button class="quick-view" onclick="window.location.href='product.html#product-21'">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="add-wishlist" onclick="addToWishlist(21)">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3><a href="product.html#product-21">Demon Slayer: Nichirin Sword Keychain</a></h3>
+                            <div class="product-price">
+                                <span class="price">$14.99</span>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product 2 - Naruto T-Shirt -->
+    <section id="product-2" class="product-hero product-section">
+        <div class="container">
+            <div class="product-container">
+                <div class="product-gallery">
+                    <br>
+                    <div id="main-image-container">
+                        <img src="/assets/t-shirts/Nine-Tails Unleashed main.png" alt="Naruto: Nine-Tails Unleashed T-Shirt - Front View" class="main-image">
+                    </div>
+                    <div class="thumbnail-container">
+                        <img src="/assets/t-shirts/Nine-Tails Unleashed main.png" alt="Front View" class="thumbnail active" onclick="changeImage(this, '/assets/t-shirts/Nine-Tails Unleashed main.png', 'Front View')">
+                        <img src="/assets/t-shirts/Nine-Tails Unleashed sec.jpeg" alt="Back View" class="thumbnail" onclick="changeImage(this, '/assets/t-shirts/Nine-Tails Unleashed sec.jpeg', 'Back View')">
+                    </div>
+                </div>
+                <div class="product-details">
+                    <h1 class="product-title">Naruto: Nine-Tails Unleashed T-Shirt</h1>
+                    <div class="product-price">
+                        <span class="price">₹2,323</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span class="review-count">(0 reviews)</span>
+                    </div>
+                    <p class="product-description">
+                        Show your love for Naruto with this premium quality t-shirt featuring the Nine-Tails Fox in all its glory. Made from 100% soft cotton for maximum comfort. Officially licensed merchandise.
+                    </p>
+                    <div class="color-options">
+                        <h3>Color:</h3>
+                        <div class="color-option active" style="background-color: #020202;" title="Red" onclick="selectOption(this, 'color')"></div>
+                        <div class="color-option" style="background-color: #ff0000;" title="Black" onclick="selectOption(this, 'color')"></div>
+                        <div class="color-option" style="background-color: #ffffff;" title="White" onclick="selectOption(this, 'color')"></div>
+                        <div class="color-option" style="background-color: #1a1a2e;" title="Navy Blue" onclick="selectOption(this, 'color')"></div>
+                    </div>
+                    <div class="size-options">
+                        <h3>Size:</h3>
+                        <div class="size-option active" onclick="selectOption(this, 'size')">S</div>
+                        <div class="size-option" onclick="selectOption(this, 'size')">M</div>
+                        <div class="size-option" onclick="selectOption(this, 'size')">L</div>
+                        <div class="size-option" onclick="selectOption(this, 'size')">XL</div>
+                        <div class="size-option" onclick="selectOption(this, 'size')">XXL</div>
+                    </div>
+                    <div class="quantity-selector">
+                        <h3>Quantity:</h3>
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <input type="number" class="quantity-input" value="1" min="1">
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                    <div class="product-buttons">
+                        <button class="btn btn-primary add-to-cart-btn" onclick="addToCart(2)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                        <button class="btn btn-accent buy-now-btn" onclick="buyNow(2)">
+                            <i class="fas fa-bolt"></i> Buy Now
+                        </button>
+                    </div>
+                    <br>
+                    <div class="product-meta">
+                        <p><strong>Material:</strong> <span>100% Cotton</span></p>
+                        <p><strong>Fit:</strong> <span>Regular Fit</span></p>
+                        <p><strong>Shipping:</strong> 3-5 business days</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reviews-section">
+                <h2 class="section-title">Customer <span>Reviews</span></h2>
+                <div class="reviews-container">
+                    <p>No reviews yet for this product.</p>
+                </div>
+            </div>
+            <div class="related-products">
+                <h2 class="section-title">You Might Also <span>Like</span></h2>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="/assets/hoodies/Akatsuki Cloud Hoodie main.jpeg" alt="Naruto: Akatsuki Cloud Hoodie">
+                            <div class="product-actions">
+                                <button class="quick-view" onclick="window.location.href='product.html#product-12'">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="add-wishlist" onclick="addToWishlist(12)">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3><a href="product.html#product-7">Naruto: Akatsuki Cloud Hoodie</a></h3>
+                            <div class="product-price">
+                                <span class="price">$54.99</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="/assets/Accessories/Headband Replica.jpeg" alt="Naruto: Headband Replica">
+                            <div class="product-actions">
+                                <button class="quick-view" onclick="window.location.href='product.html#product-22'">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="add-wishlist" onclick="addToWishlist(22)">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3><a href="product.html#product-22">Naruto: Headband Replica</a></h3>
+                            <div class="product-price">
+                                <span class="price">$24.99</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product 3 - Attack on Titan T-Shirt -->
+    <section id="product-3" class="product-hero product-section">
+        <div class="container">
+            <div class="product-container">
+                <div class="product-gallery">
+                    <br>
+                    <div id="main-image-container">
+                        <img src="/assets/t-shirts/Wings of Freedom.png" alt="Attack on Titan: Wings of Freedom T-Shirt - Front View" class="main-image">
+                    </div>
+                    <div class="thumbnail-container">
+                        <img src="/assets/t-shirts/Wings of Freedom.png" alt="Front View" class="thumbnail active" onclick="changeImage(this, '/assets/t-shirts/Wings of Freedom.png', 'Front View')">
+                        <img src="/assets/t-shirts/Wings of Freedom back.png" alt="Back View" class="thumbnail" onclick="changeImage(this, '/assets/t-shirts/Wings of Freedom back.png', 'Back View')">
+                    </div>
+                </div>
+                <div class="product-details">
+                    <h1 class="product-title">Attack on Titan: Wings of Freedom T-Shirt</h1>
+                    <div class="product-price">
+                        <span class="price">$25.99</span>
+                        <span class="old-price">$34.99</span>
+                    </div>
+                    <div class="product-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                        <span class="review-count">(0 reviews)</span>
+                    </div>
+                    <p class="product-description">
+                        Show your love for Attack on Titan with this premium quality t-shirt featuring the iconic Wings of Freedom emblem. Made from 100% soft cotton for maximum comfort. Officially licensed merchandise.
+                    </p>
+                    <div class="color-options">
+                        <h3>Color:</h3>
+                        <div class="color-option active" style="background-color: #000000;" title="Black" onclick="selectOption(this, 'color')"></div>
+                        <div class="color-option" style="background-color: #ffffff;" title="White" onclick="selectOption(this, 'color')"></div>
+                        <div class="color-option" style="background-color: #1a1a2e;" title="Navy Blue" onclick="selectOption(this, 'color')"></div>
+                    </div>
+                    <div class="size-options">
+                        <h3>Size:</h3>
+                        <div class="size-option active" onclick="selectOption(this, 'size')">S</div>
+                        <div class="size-option" onclick="selectOption(this, 'size')">M</div>
+                        <div class="size-option" onclick="selectOption(this, 'size')">L</div>
+                        <div class="size-option" onclick="selectOption(this, 'size')">XL</div>
+                        <div class="size-option" onclick="selectOption(this, 'size')">XXL</div>
+                    </div>
+                    <div class="quantity-selector">
+                        <h3>Quantity:</h3>
+                        <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                        <input type="number" class="quantity-input" value="1" min="1">
+                        <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                    </div>
+                    <div class="product-buttons">
+                        <button class="btn btn-primary add-to-cart-btn" onclick="addToCart(3)">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                        <button class="btn btn-accent buy-now-btn" onclick="buyNow(3)">
+                            <i class="fas fa-bolt"></i> Buy Now
+                        </button>
+                    </div>
+                    <br>
+                    <div class="product-meta">
+                        <p><strong>Material:</strong> <span>100% Cotton</span></p>
+                        <p><strong>Fit:</strong> <span>Regular Fit</span></p>
+                        <p><strong>Shipping:</strong> 3-5 business days</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reviews-section">
+                <h2 class="section-title">Customer <span>Reviews</span></h2>
+                <div class="reviews-container">
+                    <p>No reviews yet for this product.</p>
+                </div>
+            </div>
+            <div class="related-products">
+                <h2 class="section-title">You Might Also <span>Like</span></h2>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-img">
+                            <img src="/assets/hoodies/Survey Corps Hoodie main.jpeg" alt="Attack on Titan: Survey Corps Hoodie">
+                            <div class="product-actions">
+                                <button class="quick-view" onclick="window.location.href='product.html#product-13'">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="add-wishlist" onclick="addToWishlist(13)">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3><a href="product.html#product-13">Attack on Titan: Survey Corps Hoodie</a></h3>
+                            <div class="product-price">
+                                <span class="price">$57.99</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <!-- Product 4 - My Hero Academia: Plus Ultra T-Shirt -->
+  <section id="product-4" class="product-hero product-section">
+    <div class="container">
+        <div class="product-container">
+            <div class="product-gallery">
+                <br>
+                <div id="main-image-container">
+                    <img src="/assets/t-shirts/My Hero Academia main.jpeg" alt="My Hero Academia: Plus Ultra T-Shirt - Front View" class="main-image">
+                </div>
+                <div class="thumbnail-container">
+                    <img src="#" alt="Front View" class="thumbnail active" onclick="changeImage(this, '#', 'Front View')">
+                    <img src="#" alt="Back View" class="thumbnail" onclick="changeImage(this, '#', 'Back View')">
+                </div>
+            </div>
+            <div class="product-details">
+                <h1 class="product-title">My Hero Academia: Plus Ultra T-Shirt</h1>
+                <div class="product-price">
+                    <span class="price">$28.99</span>
+                </div>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <span class="review-count">(1 reviews)</span>
+                </div>
+                <p class="product-description">
+                    Show your love for My Hero Academia with this premium quality t-shirt featuring the iconic All Might and his signature "Plus Ultra" motto. Made from 100% soft cotton for all-day comfort. Officially licensed merchandise.
+                </p>
+                <div class="color-options">
+                    <h3>Color:</h3>
+                    <div class="color-option active" style="background-color: #000000;" title="Black" onclick="selectOption(this, 'color')"></div>
+                    <div class="color-option" style="background-color: #ffffff;" title="White" onclick="selectOption(this, 'color')"></div>
+                    <div class="color-option" style="background-color: #1a1a2e;" title="Navy Blue" onclick="selectOption(this, 'color')"></div>
+                </div>
+                <div class="size-options">
+                    <h3>Size:</h3>
+                    <div class="size-option active" onclick="selectOption(this, 'size')">S</div>
+                    <div class="size-option" onclick="selectOption(this, 'size')">M</div>
+                    <div class="size-option" onclick="selectOption(this, 'size')">L</div>
+                    <div class="size-option" onclick="selectOption(this, 'size')">XL</div>
+                    <div class="size-option" onclick="selectOption(this, 'size')">XXL</div>
+                </div>
+                <div class="quantity-selector">
+                    <h3>Quantity:</h3>
+                    <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                    <input type="number" class="quantity-input" value="1" min="1">
+                    <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                </div>
+                <div class="product-buttons">
+                    <button class="btn btn-primary add-to-cart-btn" onclick="addToCart(3)">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                    <button class="btn btn-accent buy-now-btn" onclick="buyNow(3)">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+                <br>
+                <div class="product-meta">
+                    <p><strong>Material:</strong> <span>100% Cotton</span></p>
+                    <p><strong>Fit:</strong> <span>Regular Fit</span></p>
+                    <p><strong>Shipping:</strong> 3-5 business days</p>
+                </div>
+            </div>
+        </div>
+        <div class="reviews-section">
+            <h2 class="section-title">Customer <span>Reviews</span></h2>
+            <div class="reviews-container">
+                <div class="review">
+                    <div class="review-header">
+                        <h4>Riya S. – Verified Buyer</h4>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">"Absolutely love it! The colors are super vibrant and the print of All Might is amazing. Got so many compliments at college!"</p>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="related-products">
+            <h2 class="section-title">You Might Also <span>Like</span></h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="/assets/hoodies/Survey Corps Hoodie main.jpeg" alt="Attack on Titan: Survey Corps Hoodie">
+                        <div class="product-actions">
+                            <button class="quick-view" onclick="window.location.href='product.html#product-13'">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="add-wishlist" onclick="addToWishlist(13)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3><a href="product.html#product-13">Attack on Titan: Survey Corps Hoodie</a></h3>
+                        <div class="product-price">
+                            <span class="price">$57.99</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </div>
+</section>
+
+  <!-- Product 5 - Jujutsu Kaisen: Sukuna Cursed Energy T-Shirt -->
+  <section id="product-5" class="product-hero product-section">
+    <div class="container">
+        <div class="product-container">
+            <div class="product-gallery">
+                <br>
+                <div id="main-image-container">
+                    <img src="/assets/t-shirts/ Sukuna Cursed Energy main .jpeg" alt="Sukuna Cursed Energy" class="main-image">
+                </div>
+                <div class="thumbnail-container">
+                    <img src="#" alt="Front View" class="thumbnail active" onclick="changeImage(this, '#', 'Front View')">
+                    <img src="#" alt="Back View" class="thumbnail" onclick="changeImage(this, '#', 'Back View')">
+                </div>
+            </div>
+            <div class="product-details">
+                <h1 class="product-title">Jujutsu Kaisen: Sukuna Cursed Energy T-Shirt</h1>
+                <div class="product-price">
+                    <span class="price">$30.99</span>
+                    <!-- <span class="old-price">$39.99</span> -->
+                </div>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span class="review-count">(1 reviews)</span>
+                </div>
+                <p class="product-description">
+                    Unleash the King of Curses with this premium quality t-shirt featuring Sukuna surrounded by his menacing cursed energy. Made from 100% soft cotton for maximum comfort. Officially licensed merchandise.
+                </p>
+                <div class="color-options">
+                    <h3>Color:</h3>
+                    <div class="color-option active" style="background-color: #000000;" title="Red" onclick="selectOption(this, 'color')"></div>
+                    <div class="color-option" style="background-color: #ff0000;" title="Black" onclick="selectOption(this, 'color')"></div>
+                    <div class="color-option" style="background-color: #ffffff;" title="White" onclick="selectOption(this, 'color')"></div>
+                    <div class="color-option" style="background-color: #1a1a2e;" title="Navy Blue" onclick="selectOption(this, 'color')"></div>
+                </div>
+                <div class="size-options">
+                    <h3>Size:</h3>
+                    <div class="size-option active" onclick="selectOption(this, 'size')">S</div>
+                    <div class="size-option" onclick="selectOption(this, 'size')">M</div>
+                    <div class="size-option" onclick="selectOption(this, 'size')">L</div>
+                    <div class="size-option" onclick="selectOption(this, 'size')">XL</div>
+                    <div class="size-option" onclick="selectOption(this, 'size')">XXL</div>
+                </div>
+                <div class="quantity-selector">
+                    <h3>Quantity:</h3>
+                    <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                    <input type="number" class="quantity-input" value="1" min="1">
+                    <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                </div>
+                <div class="product-buttons">
+                    <button class="btn btn-primary add-to-cart-btn" onclick="addToCart(1)">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                    <button class="btn btn-accent buy-now-btn" onclick="buyNow(1)">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+                <br>
+                <div class="product-meta">
+                    <p><strong>Material:</strong> <span>100% Cotton</span></p>
+                    <p><strong>Fit:</strong> <span>Regular Fit</span></p>
+                    <p><strong>Shipping:</strong> 3-5 business days</p>
+                </div>
+            </div>
+        </div>
+        <div class="reviews-section">
+            <h2 class="section-title">Customer <span>Reviews</span></h2>
+            <div class="reviews-container">
+                <div class="review">
+                    <div class="review-header">
+                        <h4>Arnav V.</h4>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">"The Sukuna print is insane! Dark, bold, and intense — exactly what I wanted. Feels super comfortable too!"</p>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="related-products">
+            <h2 class="section-title">You Might Also <span>Like</span></h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="/assets/hoodies/Water Breathing Hoodie main.jpeg" alt="Demon Slayer: Water Breathing Hoodie">
+                        <div class="product-actions">
+                            <button class="quick-view" onclick="window.location.href='product.html?id=11'">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="add-wishlist" onclick="addToWishlist(11)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3><a href="product.html#product-6">Demon Slayer: Water Breathing Hoodie</a></h3>
+                        <div class="product-price">
+                            <span class="price">$59.99</span>
+                            <span class="old-price">$69.99</span>
+                        </div>
+                    </div>
+                </div> -->
+                
+                <!-- <div class="product-card">
+                    <div class="product-img">
+                        <img src="/assets/accessories/ds-keychain-1.jpg" alt="Demon Slayer: Nichirin Sword Keychain">
+                        <div class="product-actions">
+                            <button class="quick-view" onclick="window.location.href='product.html#product-21'">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="add-wishlist" onclick="addToWishlist(21)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3><a href="product.html#product-21">Demon Slayer: Nichirin Sword Keychain</a></h3>
+                        <div class="product-price">
+                            <span class="price">$14.99</span>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</section>  
+
+
+ <!-- Product 6 - Demon Slayer: Water Breathing Hoodie -->
+ <section id="product-6" class="product-hero product-section">
+    <div class="container">
+        <div class="product-container">
+            <div class="product-gallery">
+                <br>
+                <div id="main-image-container">
+                    <img src="/assets/hoodies/Water Breathing Hoodie main.jpeg" alt="Water Breathing Hoodie" class="main-image">
+                </div>
+                <div class="thumbnail-container">
+                    <img src="#" alt="Front View" class="thumbnail active" onclick="changeImage(this, '#', 'Front View')">
+                    <img src="#" alt="Back View" class="thumbnail" onclick="changeImage(this, '#', 'Back View')">
+                </div>
+            </div>
+            <div class="product-details">
+                <h1 class="product-title">Demon Slayer: Water Breathing Hoodie</h1>
+                <div class="product-price">
+                    <span class="price">$59.99</span>
+                    <!-- <span class="old-price">$39.99</span> -->
+                </div>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span class="review-count">(2 reviews)</span>
+                </div>
+                <p class="product-description">
+                    Unleash the King of Curses with this premium quality t-shirt featuring Sukuna surrounded by his menacing cursed energy. Made from 100% soft cotton for maximum comfort. Officially licensed merchandise.
+                </p>
+                <div class="color-options">
+                    <h3>Color:</h3>
+                    <div class="color-option active" style="background-color: #000000;" title="Red" onclick="selectOption(this, 'color')"></div>
+                    <div class="color-option" style="background-color: #ff0000;" title="Black" onclick="selectOption(this, 'color')"></div>
+                    <div class="color-option" style="background-color: #ffffff;" title="White" onclick="selectOption(this, 'color')"></div>
+                    <div class="color-option" style="background-color: #1a1a2e;" title="Navy Blue" onclick="selectOption(this, 'color')"></div>
+                </div>
+                <div class="size-options">
+                    <h3>Size:</h3>
+                    <div class="size-option active" onclick="selectOption(this, 'size')">S</div>
+                    <div class="size-option" onclick="selectOption(this, 'size')">M</div>
+                    <div class="size-option" onclick="selectOption(this, 'size')">L</div>
+                    <div class="size-option" onclick="selectOption(this, 'size')">XL</div>
+                    <div class="size-option" onclick="selectOption(this, 'size')">XXL</div>
+                </div>
+                <div class="quantity-selector">
+                    <h3>Quantity:</h3>
+                    <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                    <input type="number" class="quantity-input" value="1" min="1">
+                    <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                </div>
+                <div class="product-buttons">
+                    <button class="btn btn-primary add-to-cart-btn" onclick="addToCart(1)">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                    <button class="btn btn-accent buy-now-btn" onclick="buyNow(1)">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+                <br>
+                <div class="product-meta">
+                    <p><strong>Material:</strong> <span>100% Cotton</span></p>
+                    <p><strong>Fit:</strong> <span>Regular Fit</span></p>
+                    <p><strong>Shipping:</strong> 3-5 business days</p>
+                </div>
+            </div>
+        </div>
+        <div class="reviews-section">
+            <h2 class="section-title">Customer <span>Reviews</span></h2>
+            <div class="reviews-container">
+                <div class="review">
+                    <div class="review-header">
+                        <h4>Neha</h4>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <!-- <i class="fas fa-star"></i> -->
+                        </div>
+                    </div>
+                    <p class="review-text">"This hoodie is pure comfort and style! The wave design looks beautiful and subtle, just like Tanjiro's Water Breathing. Super cozy!"
+
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="reviews-section">
+        
+            <div class="reviews-container">
+                <div class="review">
+                    <div class="review-header">
+                        <h4>Ayaan M. – Anime Fanatic</h4>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <!-- <i class="fas fa-star"></i> -->
+                        </div>
+                    </div>
+                    <p class="review-text">"Got this as a gift and I'm obsessed. It's warm, the design is clean, and I love the Demon Slayer vibe. Feels premium too!"
+
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="related-products">
+            <h2 class="section-title">You Might Also <span>Like</span></h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="/assets/hoodies/Water Breathing Hoodie main.jpeg" alt="Demon Slayer: Water Breathing Hoodie">
+                        <div class="product-actions">
+                            <button class="quick-view" onclick="window.location.href='product.html?id=11'">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="add-wishlist" onclick="addToWishlist(11)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3><a href="product.html#product-6">Demon Slayer: Water Breathing Hoodie</a></h3>
+                        <div class="product-price">
+                            <span class="price">$59.99</span>
+                            <span class="old-price">$69.99</span>
+                        </div>
+                    </div>
+                </div> -->
+                
+                <!-- <div class="product-card">
+                    <div class="product-img">
+                        <img src="/assets/accessories/ds-keychain-1.jpg" alt="Demon Slayer: Nichirin Sword Keychain">
+                        <div class="product-actions">
+                            <button class="quick-view" onclick="window.location.href='product.html#product-21'">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="add-wishlist" onclick="addToWishlist(21)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3><a href="product.html#product-21">Demon Slayer: Nichirin Sword Keychain</a></h3>
+                        <div class="product-price">
+                            <span class="price">$14.99</span>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Product 7 - Naruto: Akatsuki Cloud Hoodie -->
+<section id="product-7" class="product-hero product-section">
+    <div class="container">
+        <div class="product-container">
+            <div class="product-gallery">
+                <br>
+                <div id="main-image-container">
+                    <img src="/assets/hoodies/Akatsuki Cloud Hoodie main.jpeg" alt="Naruto: Akatsuki Cloud Hoodie" class="main-image">
+                </div>
+                <div class="thumbnail-container">
+                    <img src="#" alt="Front View" class="thumbnail active" onclick="changeImage(this, '#', 'Front View')">
+                    <img src="#" alt="Back View" class="thumbnail" onclick="changeImage(this, '#', 'Back View')">
+                </div>
+            </div>
+            <div class="product-details">
+                <h1 class="product-title">Naruto: Akatsuki Cloud Hoodie</h1>
+                <div class="product-price">
+                    <span class="price">$54.99</span>
+                    <!-- <span class="old-price">$39.99</span> -->
+                </div>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span class="review-count">(4 reviews)</span>
+                </div>
+                <p class="product-description">
+                    Step into the shadows like a true shinobi with this Naruto: Akatsuki Cloud Hoodie! Inspired by the infamous Akatsuki organization from Naruto Shippuden, this stylish and comfortable hoodie features the iconic black and red cloud pattern that strikes fear (and envy) into the hearts of enemies.
+
+Features:
+<p>✔ Premium Quality Fabric – Soft, breathable, and durable material for all-day comfort.</p>
+<p>✔ Iconic Akatsuki Design – Bold red clouds on a black background, just like the cloaks worn by Itachi, Pain, and Kisame.</p>
+<p>✔ Adjustable Drawstring Hood – Perfect for keeping warm while looking menacing.</p>
+<p>✔ Kangaroo Pocket – Convenient for storing small items or keeping your hands cozy.</p>
+<p>✔ Unisex Fit – Designed to suit both men and women, available in multiple sizes (S-XXL).</p>
+<p>✔ Machine Washable – Easy to clean without losing color or design quality.</p>
+<br>
+<p>Whether you're heading to a convention, hanging out with friends, or just embracing your inner rogue ninja, this Akatsuki hoodie is a must-have for any Naruto fan!</p>
+
+
+                </p>
+                <div class="color-options">
+                    <h3>Color:</h3>
+                    <div class="color-option active" style="background-color: #000000;" title="Red" onclick="selectOption(this, 'color')"></div>
+                    <div class="color-option" style="background-color: #ff0000;" title="Black" onclick="selectOption(this, 'color')"></div>
+                    <div class="color-option" style="background-color: #ffffff;" title="White" onclick="selectOption(this, 'color')"></div>
+                    <div class="color-option" style="background-color: #1a1a2e;" title="Navy Blue" onclick="selectOption(this, 'color')"></div>
+                </div>
+                <div class="size-options">
+                    <h3>Size:</h3>
+                    <div class="size-option active" onclick="selectOption(this, 'size')">S</div>
+                    <div class="size-option" onclick="selectOption(this, 'size')">M</div>
+                    <div class="size-option" onclick="selectOption(this, 'size')">L</div>
+                    <div class="size-option" onclick="selectOption(this, 'size')">XL</div>
+                    <div class="size-option" onclick="selectOption(this, 'size')">XXL</div>
+                </div>
+                <div class="quantity-selector">
+                    <h3>Quantity:</h3>
+                    <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                    <input type="number" class="quantity-input" value="1" min="1">
+                    <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                </div>
+                <div class="product-buttons">
+                    <button class="btn btn-primary add-to-cart-btn" onclick="addToCart(1)">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                    <button class="btn btn-accent buy-now-btn" onclick="buyNow(1)">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+                <br>
+                <!-- <div class="product-meta">
+                    <p><strong>Material:</strong> <span>100% Cotton</span></p>
+                    <p><strong>Fit:</strong> <span>Regular Fit</span></p>
+                    <p><strong>Shipping:</strong> 3-5 business days</p>
+                </div> -->
+            </div>
+        </div>
+        <div class="reviews-section">
+            <h2 class="section-title">Customer <span>Reviews</span></h2>
+            <div class="reviews-container">
+                <div class="review">
+                    <div class="review-header">
+                        <h4>Ryu</h4>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">The material is super soft, and the print is high quality. I've washed it a few times, and the design hasn't faded at all. Fits true to size, and the hood is nice and roomy. 10/10!
+
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="reviews-section">
+        
+            <div class="reviews-container">
+                <div class="review">
+                    <div class="review-header">
+                        <h4>Sakura</h4>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <!-- <i class="fas fa-star"></i> -->
+                        </div>
+                    </div>
+                    <p class="review-text">This hoodie is amazing! The colors are vibrant, and it's super comfy. I paired it with some black pants and sandals for a full Akatsuki cosplay, and it looked legit. Definitely buying another one!
+
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="reviews-section">
+
+            <div class="reviews-container">
+                <div class="review">
+                    <div class="review-header">
+                        <h4>Deidara F.</h4>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">Art is an explosion… and so is this hoodie! The stitching is solid, and the fabric feels premium. Worth every ryō!
+
+                    </p>
+                </div>
+            </div>
+
+
+            <div class="reviews-section">
+
+                <div class="reviews-container">
+                    <div class="review">
+                        <div class="review-header">
+                            <h4>Konan T.</h4>
+                            <div class="review-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="review-text">Looks fantastic, but it's a bit thin for winter. Still, it's perfect for fall or spring. Would buy again!
+    
+                        </p>
+                    </div>
+                </div>
+        </div>
+        <!-- <div class="related-products">
+            <h2 class="section-title">You Might Also <span>Like</span></h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="/assets/hoodies/Water Breathing Hoodie main.jpeg" alt="Demon Slayer: Water Breathing Hoodie">
+                        <div class="product-actions">
+                            <button class="quick-view" onclick="window.location.href='product.html?id=11'">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="add-wishlist" onclick="addToWishlist(11)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3><a href="product.html#product-6">Demon Slayer: Water Breathing Hoodie</a></h3>
+                        <div class="product-price">
+                            <span class="price">$59.99</span>
+                            <span class="old-price">$69.99</span>
+                        </div>
+                    </div>
+                </div> -->
+                
+                <!-- <div class="product-card">
+                    <div class="product-img">
+                        <img src="/assets/accessories/ds-keychain-1.jpg" alt="Demon Slayer: Nichirin Sword Keychain">
+                        <div class="product-actions">
+                            <button class="quick-view" onclick="window.location.href='product.html#product-21'">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="add-wishlist" onclick="addToWishlist(21)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3><a href="product.html#product-21">Demon Slayer: Nichirin Sword Keychain</a></h3>
+                        <div class="product-price">
+                            <span class="price">$14.99</span>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Product 8 - Attack on Titan: Survey Corps Hoodie -->
+<section id="product-8" class="product-hero product-section">
+    <div class="container">
+        <div class="product-container">
+            <div class="product-gallery">
+                <br>
+                <div id="main-image-container">
+                    <img src="/assets/hoodies/Survey Corps Hoodie main.jpeg" alt="Attack on Titan: Survey Corps Hoodie" class="main-image">
+                </div>
+                <div class="thumbnail-container">
+                    <img src="#" alt="Front View" class="thumbnail active" onclick="changeImage(this, '#', 'Front View')">
+                    <img src="#" alt="Back View" class="thumbnail" onclick="changeImage(this, '#', 'Back View')">
+                </div>
+            </div>
+            <div class="product-details">
+                <h1 class="product-title">Attack on Titan: Survey Corps Hoodie</h1>
+                <div class="product-price">
+                    <span class="price">$57.99</span>
+                    <!-- <span class="old-price">$39.99</span> -->
+                </div>
+                <div class="product-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                    <span class="review-count">(1 reviews)</span>
+                </div>
+                <p class="product-description">
+                    Join the fight for humanity's survival with this Attack on Titan: Survey Corps Hoodie! Inspired by the brave soldiers of the Scouting Legion, this sleek and stylish hoodie features the iconic Wings of Freedom emblem, symbolizing courage and defiance against the Titans.
+
+Features:
+<p>✔ Premium Comfort – Made from high-quality, soft, and breathable fabric for all-day wear.</p>
+<p>✔ Authentic Design – Bold Survey Corps logo (Wings of Freedom) on the back, with subtle aesthetic details for true AOT fans.</p>
+<p>✔ Classic Green & Black Color Scheme – Just like the uniforms worn by Eren, Levi, and Mikasa.</p>
+<p>✔ Adjustable Hood & Kangaroo Pocket – Keeps you warm and functional for any mission (or casual day out).</p>
+<p>✔ Durable Stitching – Built to last through intense training (or Netflix marathons).</p>
+<p>✔ Unisex Fit – Available in sizes S-XXL, designed for both men and women.</p>
+<p>✔ Easy Care – Machine washable without fading or damage.</p>
+
+<p>Whether you're gearing up for a convention, hitting the gym, or just repping your favorite anime, this hoodie is a must-have for any Attack on Titan enthusiast!</p>
+
+
+
+                </p>
+                <div class="color-options">
+                    <h3>Color:</h3>
+                    <div class="color-option active" style="background-color: #000000;" title="Red" onclick="selectOption(this, 'color')"></div>
+                    <div class="color-option" style="background-color: #ff0000;" title="Black" onclick="selectOption(this, 'color')"></div>
+                    <div class="color-option" style="background-color: #ffffff;" title="White" onclick="selectOption(this, 'color')"></div>
+                    <div class="color-option" style="background-color: #1a1a2e;" title="Navy Blue" onclick="selectOption(this, 'color')"></div>
+                </div>
+                <div class="size-options">
+                    <h3>Size:</h3>
+                    <div class="size-option active" onclick="selectOption(this, 'size')">S</div>
+                    <div class="size-option" onclick="selectOption(this, 'size')">M</div>
+                    <div class="size-option" onclick="selectOption(this, 'size')">L</div>
+                    <div class="size-option" onclick="selectOption(this, 'size')">XL</div>
+                    <div class="size-option" onclick="selectOption(this, 'size')">XXL</div>
+                </div>
+                <div class="quantity-selector">
+                    <h3>Quantity:</h3>
+                    <button class="quantity-btn" onclick="changeQuantity(this, -1)">-</button>
+                    <input type="number" class="quantity-input" value="1" min="1">
+                    <button class="quantity-btn" onclick="changeQuantity(this, 1)">+</button>
+                </div>
+                <div class="product-buttons">
+                    <button class="btn btn-primary add-to-cart-btn" onclick="addToCart(1)">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                    <button class="btn btn-accent buy-now-btn" onclick="buyNow(1)">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+                <br>
+                <!-- <div class="product-meta">
+                    <p><strong>Material:</strong> <span>100% Cotton</span></p>
+                    <p><strong>Fit:</strong> <span>Regular Fit</span></p>
+                    <p><strong>Shipping:</strong> 3-5 business days</p>
+                </div> -->
+            </div>
+        </div>
+        <div class="reviews-section">
+            <h2 class="section-title">Customer <span>Reviews</span></h2>
+            <div class="reviews-container">
+                <div class="review">
+                    <div class="review-header">
+                        <h4>Hange</h4>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">Clean stitching, perfect fit, and the green is the exact shade from the anime. The hood is nice and roomy—great for dramatic Titan-slaying poses.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="reviews-section">
+        
+            <!-- <div class="reviews-container">
+                <div class="review">
+                    <div class="review-header">
+                        <h4>Sakura</h4>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">This hoodie is amazing! The colors are vibrant, and it's super comfy. I paired it with some black pants and sandals for a full Akatsuki cosplay, and it looked legit. Definitely buying another one!
+
+                    </p>
+                </div>
+            </div> -->
+
+
+            <!-- <div class="reviews-section">
+
+            <div class="reviews-container">
+                <div class="review">
+                    <div class="review-header">
+                        <h4>Deidara F.</h4>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <p class="review-text">Art is an explosion… and so is this hoodie! The stitching is solid, and the fabric feels premium. Worth every ryō!
+
+                    </p>
+                </div>
+            </div> -->
+
+
+            <!-- <div class="reviews-section">
+
+                <div class="reviews-container">
+                    <div class="review">
+                        <div class="review-header">
+                            <h4>Konan T.</h4>
+                            <div class="review-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                        <p class="review-text">Looks fantastic, but it's a bit thin for winter. Still, it's perfect for fall or spring. Would buy again!
+    
+                        </p>
+                    </div>
+                </div> -->
+        </div>
+        <!-- <div class="related-products">
+            <h2 class="section-title">You Might Also <span>Like</span></h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-img">
+                        <img src="/assets/hoodies/Water Breathing Hoodie main.jpeg" alt="Demon Slayer: Water Breathing Hoodie">
+                        <div class="product-actions">
+                            <button class="quick-view" onclick="window.location.href='product.html?id=11'">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="add-wishlist" onclick="addToWishlist(11)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3><a href="product.html#product-6">Demon Slayer: Water Breathing Hoodie</a></h3>
+                        <div class="product-price">
+                            <span class="price">$59.99</span>
+                            <span class="old-price">$69.99</span>
+                        </div>
+                    </div>
+                </div> -->
+                
+                <!-- <div class="product-card">
+                    <div class="product-img">
+                        <img src="/assets/accessories/ds-keychain-1.jpg" alt="Demon Slayer: Nichirin Sword Keychain">
+                        <div class="product-actions">
+                            <button class="quick-view" onclick="window.location.href='product.html#product-21'">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="add-wishlist" onclick="addToWishlist(21)">
+                                <i class="far fa-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3><a href="product.html#product-21">Demon Slayer: Nichirin Sword Keychain</a></h3>
+                        <div class="product-price">
+                            <span class="price">$14.99</span>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>KamiWear</h3>
+                    <p>Your ultimate destination for anime fashion and merchandise.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/vansh.dalal1/" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://discord.com/channels/975807883038052422/1356139180488659025" target="_blank"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Shop</h3>
+                    <ul>
+                        <li><a href="tshirts.html">T-Shirts</a></li>
+                        <li><a href="hoodies.html">Hoodies</a></li>
+                        <li><a href="accessories.html">Accessories</a></li>
+                        <li><a href="figures.html">Figures</a></li>
+                        <li><a href="new-arrivals.html">New Arrivals</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="structure/contact.html">Contact Us</a></li>
+                        <li><a href="structure/faqs.html">FAQs</a></li>
+                        <li><a href="structure/shipping.html">Shipping Policy</a></li>
+                        <li><a href="structure/returns.html">Returns & Exchanges</a></li>
+                        <li><a href="structure/size-guide.html">Size Guide</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> India</li>
+                        <li><i class="fas fa-phone"></i> +91 9253395564</li>
+                        <li><i class="fas fa-envelope"></i> support@kamiwear.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 KamiWear. All rights reserved.</p>
+                <div class="payment-methods">
+                    <i class="fab fa-cc-visa"></i>
+                    <i class="fab fa-cc-mastercard"></i>
+                    <i class="fab fa-cc-paypal"></i>
+                    <i class="fab fa-cc-amex"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart">&times;</button>
+        </div>
+        <div class="cart-items">
+            <!-- Cart items will be added here dynamically -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-price">$0.00</span>
+            </div>
+            <a href="cart.html" class="btn btn-primary">View Cart</a>
+            <a href="checkout.html" class="btn btn-accent" style="margin-top: 10px;">Checkout</a>
+        </div>
+    </div>
+    <div class="cart-overlay"></div>
+
+    <!-- Cart Notification -->
+    <div class="cart-notification">
+        <span class="cart-notification-text">Item added to cart!</span>
+        <a href="cart.html" class="btn btn-outline view-cart-btn">View Cart</a>
+    </div>
+
+    <script>
+        // Product data - this should match your actual products
+        const products = {
+            1: {
+                id: 1,
+                name: "Demon Slayer: Hinokami Kagura T-Shirt",
+                price: 29.99,
+                images: {
+                    front: "/assets/t-shirts/Hinokami Kagura main.png",
+                    back: "/assets/t-shirts/Hinokami Kagura back.png"
+                },
+                selectedImage: "/assets/t-shirts/Hinokami Kagura main.png"
+            },
+            2: {
+                id: 2,
+                name: "Naruto: Nine-Tails Unleashed T-Shirt",
+                price: 27.99,
+                images: {
+                    front: "/assets/t-shirts/Nine-Tails Unleashed main.png",
+                    back: "/assets/t-shirts/Nine-Tails Unleashed sec.jpeg"
+                },
+                selectedImage: "/assets/t-shirts/Nine-Tails Unleashed main.png"
+            },
+            3: {
+                id: 3,
+                name: "Attack on Titan: Wings of Freedom T-Shirt",
+                price: 25.99,
+                images: {
+                    front: "/assets/t-shirts/Wings of Freedom.png",
+                    back: "/assets/t-shirts/Wings of Freedom back.png"
+                },
+                selectedImage: "/assets/t-shirts/Wings of Freedom.png"
+            },
+            4: {
+                id: 4,
+                name: "My Hero Academia: Plus Ultra T-Shirt",
+                price: 28.99,
+                images: {
+                    front: "/assets/t-shirts/My Hero Academia main.jpeg"
+                },
+                selectedImage: "/assets/t-shirts/My Hero Academia main.jpeg"
+            },
+            5: {
+                id: 5,
+                name: "Jujutsu Kaisen: Sukuna Cursed Energy T-Shirt",
+                price: 30.99,
+                images: {
+                    front: "/assets/t-shirts/ Sukuna Cursed Energy main .jpeg"
+                },
+                selectedImage: "/assets/t-shirts/ Sukuna Cursed Energy main .jpeg"
+            },
+            6: {
+                id: 6,
+                name: "Demon Slayer: Water Breathing Hoodie",
+                price: 59.99,
+                images: {
+                    front: "/assets/hoodies/Water Breathing Hoodie main.jpeg"
+                },
+                selectedImage: "/assets/hoodies/Water Breathing Hoodie main.jpeg"
+            },
+            7: {
+                id: 7,
+                name: "Naruto: Akatsuki Cloud Hoodie",
+                price: 54.99,
+                images: {
+                    front: "/assets/hoodies/Akatsuki Cloud Hoodie main.jpeg"
+                },
+                selectedImage: "/assets/hoodies/Akatsuki Cloud Hoodie main.jpeg"
+            },
+            8: {
+                id: 8,
+                name: "Attack on Titan: Survey Corps Hoodie",
+                price: 57.99,
+                images: {
+                    front: "/assets/hoodies/Survey Corps Hoodie main.jpeg"
+                },
+                selectedImage: "/assets/hoodies/Survey Corps Hoodie main.jpeg"
+            }
+        };
+    
+        // Cart and Wishlist Management
+        class CartManager {
+            constructor() {
+                this.cart = JSON.parse(localStorage.getItem('cart')) || [];
+                this.wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+            }
+    
+            addItem(item) {
+                const existingItem = this.cart.find(cartItem => 
+                    cartItem.id === item.id && 
+                    cartItem.color === item.color && 
+                    cartItem.size === item.size
+                );
+                
+                if (existingItem) {
+                    existingItem.quantity += item.quantity;
+                } else {
+                    this.cart.push(item);
+                }
+                
+                this.saveCart();
+                this.showNotification();
+                this.updateCartUI();
+            }
+    
+            addToWishlist(item) {
+                const existingItem = this.wishlist.find(wishlistItem => wishlistItem.id === item.id);
+                
+                if (!existingItem) {
+                    this.wishlist.push(item);
+                    this.saveWishlist();
+                    this.updateWishlistUI();
+                    return true;
+                }
+                return false;
+            }
+    
+            saveCart() {
+                localStorage.setItem('cart', JSON.stringify(this.cart));
+            }
+    
+            saveWishlist() {
+                localStorage.setItem('wishlist', JSON.stringify(this.wishlist));
+            }
+    
+            updateCartUI() {
+                const cartCount = this.cart.reduce((total, item) => total + item.quantity, 0);
+                document.querySelectorAll('.cart-count').forEach(el => {
+                    el.textContent = cartCount;
+                });
+            }
+    
+            updateWishlistUI() {
+                document.querySelectorAll('.wishlist-count').forEach(el => {
+                    el.textContent = this.wishlist.length;
+                });
+            }
+    
+            showNotification() {
+                const notification = document.querySelector('.cart-notification');
+                notification.classList.add('show');
+                setTimeout(() => notification.classList.remove('show'), 3000);
+            }
+    
+            buyNow(item) {
+                // Clear cart and add only this product
+                this.cart = [item];
+                this.saveCart();
+                window.location.href = 'checkout.html';
+            }
+        }
+    
+        // Initialize cart manager
+        const cartManager = new CartManager();
+        cartManager.updateCartUI();
+        cartManager.updateWishlistUI();
+    
+        // Product page functions
+        function changeImage(element, src, alt) {
+            const mainImage = element.closest('.product-section').querySelector('.main-image');
+            mainImage.src = src;
+            mainImage.alt = alt;
+            
+            const thumbnails = element.closest('.thumbnail-container').querySelectorAll('.thumbnail');
+            thumbnails.forEach(t => t.classList.remove('active'));
+            element.classList.add('active');
+
+            // Store the selected image in the product object
+            const productId = element.closest('.product-section').id.split('-')[1];
+            if (products[productId]) {
+                products[productId].selectedImage = src;
+            }
+        }
+        
+        function selectOption(element, type) {
+            const options = element.closest('.product-section').querySelectorAll(`.${type}-option`);
+            options.forEach(opt => opt.classList.remove('active'));
+            element.classList.add('active');
+        }
+        
+        function changeQuantity(button, change) {
+            const container = button.closest('.quantity-selector');
+            const input = container.querySelector('.quantity-input');
+            let value = parseInt(input.value) + change;
+            
+            if (value < 1) value = 1;
+            input.value = value;
+        }
+        
+        function addToCart(productId) {
+            const product = products[productId];
+            if (!product) return;
+            
+            const quantity = parseInt(document.querySelector(`#product-${productId} .quantity-input`).value) || 1;
+            const color = document.querySelector(`#product-${productId} .color-option.active`)?.getAttribute('title') || 'Default';
+            const size = document.querySelector(`#product-${productId} .size-option.active`)?.textContent || 'M';
+            
+            cartManager.addItem({
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.selectedImage || product.images.front,
+                quantity: quantity,
+                color: color,
+                size: size
+            });
+        }
+        
+        function buyNow(productId) {
+            const product = products[productId];
+            if (!product) return;
+            
+            const quantity = parseInt(document.querySelector(`#product-${productId} .quantity-input`).value) || 1;
+            const color = document.querySelector(`#product-${productId} .color-option.active`)?.getAttribute('title') || 'Default';
+            const size = document.querySelector(`#product-${productId} .size-option.active`)?.textContent || 'M';
+            
+            cartManager.buyNow({
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.selectedImage || product.images.front,
+                quantity: quantity,
+                color: color,
+                size: size
+            });
+        }
+        
+        function addToWishlist(productId) {
+            const product = products[productId];
+            if (!product) return;
+            
+            const added = cartManager.addToWishlist({
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.selectedImage || product.images.front
+            });
+            
+            if (added) {
+                const button = document.querySelector(`.add-wishlist[onclick="addToWishlist(${productId})"]`);
+                if (button) {
+                    const heartIcon = button.querySelector('i');
+                    if (heartIcon) {
+                        heartIcon.className = 'fas fa-heart';
+                        heartIcon.style.color = 'var(--primary-color)';
+                    }
+                }
+            }
+        }
+
+        // Update all product buttons to use the correct product IDs
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update Add to Cart buttons
+            document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+                const productId = button.closest('.product-section').id.split('-')[1];
+                button.onclick = () => addToCart(productId);
+            });
+
+            // Update Buy Now buttons
+            document.querySelectorAll('.buy-now-btn').forEach(button => {
+                const productId = button.closest('.product-section').id.split('-')[1];
+                button.onclick = () => buyNow(productId);
+            });
+
+            // Update Wishlist buttons
+            document.querySelectorAll('.add-wishlist').forEach(button => {
+                const productId = button.closest('.product-section').id.split('-')[1];
+                button.onclick = () => addToWishlist(productId);
+            });
+        });
+    
+        // Show the product based on URL fragment
+        document.addEventListener('DOMContentLoaded', function() {
+            const hash = window.location.hash;
+            if (hash) {
+                const productSection = document.querySelector(hash);
+                if (productSection) {
+                    productSection.style.display = 'block';
+                }
+            } else {
+                // Default to first product if no hash
+                document.querySelector('.product-section').style.display = 'block';
+            }
+            
+            // Update cart and wishlist counts
+            cartManager.updateCartUI();
+            cartManager.updateWishlistUI();
+        });
+    </script>
+</body>
+</html>

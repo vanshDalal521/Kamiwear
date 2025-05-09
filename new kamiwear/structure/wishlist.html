@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Wishlist | KamiWear</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="shortcut icon" href="/assets/kw.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .wishlist-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #333;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        .wishlist-notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .wishlist-item {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .wishlist-item-img {
+            width: 120px;
+            height: 120px;
+            margin-right: 20px;
+            position: relative;
+        }
+
+        .wishlist-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .wishlist-item-info {
+            flex: 1;
+        }
+
+        .wishlist-item-info h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.2em;
+        }
+
+        .wishlist-item-info h3 a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .wishlist-item-info h3 a:hover {
+            color: var(--primary-color);
+        }
+
+        .wishlist-item-price {
+            font-size: 1.1em;
+            color: var(--primary-color);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .wishlist-item-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .wishlist-item-actions button {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .move-to-cart {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .move-to-cart:hover {
+            background-color: var(--primary-color-dark);
+        }
+
+        .buy-now-btn {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .buy-now-btn:hover {
+            background-color: var(--accent-color-dark);
+        }
+
+        .remove-wishlist-item {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #ff4444;
+            cursor: pointer;
+            font-size: 1.2em;
+            padding: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .remove-wishlist-item:hover {
+            transform: scale(1.1);
+        }
+
+        .empty-wishlist {
+            text-align: center;
+            padding: 50px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 10px;
+        }
+
+        .empty-wishlist i {
+            font-size: 3em;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .empty-wishlist h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.5em;
+        }
+
+        .empty-wishlist p {
+            margin: 0 0 20px 0;
+            color: var(--text-color-light);
+        }
+
+        .wishlist-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .wishlist-stats {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .wishlist-count-badge {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .clear-wishlist-btn {
+            background: none;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .clear-wishlist-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Background -->
+    <div class="demon-slayer-bg">
+        <div class="flame-animation"></div>
+        <div class="flame-animation delay-1"></div>
+        <div class="flame-animation delay-2"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>Kami<span>Wear</span></h1>
+                <p>Anime Fashion Universe</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#shop">Shop</a></li>
+                    <li><a href="demon-slayer.html">Collections</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icons">
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Search products...">
+                    <div class="search-results"></div>
+                </div>
+                <a href="wishlist.html" class="wishlist-icon"><i class="fas fa-heart"></i><span class="wishlist-count">0</span></a>
+                <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Wishlist Section -->
+    <section class="wishlist-section">
+        <div class="container">
+            <div class="wishlist-header">
+                <h2 class="section-title">My <span>Wishlist</span></h2>
+                <div class="wishlist-stats">
+                    <span class="wishlist-count-badge"><i class="fas fa-heart"></i> <span id="total-wishlist-items">0</span> Items</span>
+                    <button class="clear-wishlist-btn" onclick="clearWishlist()">Clear All</button>
+                </div>
+            </div>
+            
+            <div class="wishlist-container" id="wishlist-container">
+                <!-- Wishlist items will be loaded here -->
+                <div class="empty-wishlist">
+                    <i class="fas fa-heart-broken"></i>
+                    <h3>Your wishlist is empty</h3>
+                    <p>Start adding your favorite anime fashion items!</p>
+                    <a href="index.html#shop" class="btn btn-primary">Browse Products</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Sidebar -->
+    <div class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart">&times;</button>
+        </div>
+        <div class="cart-items">
+            <!-- Cart items will be added here dynamically -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-price">$0.00</span>
+            </div>
+            <a href="cart.html" class="btn btn-primary">View Cart</a>
+            <a href="checkout.html" class="btn btn-accent" style="margin-top: 10px;">Checkout</a>
+        </div>
+    </div>
+    <div class="cart-overlay"></div>
+
+    <!-- Cart Notification -->
+    <div class="cart-notification">
+        <span class="cart-notification-text">Item added to cart!</span>
+        <a href="cart.html" class="btn btn-outline view-cart-btn">View Cart</a>
+    </div>
+
+    <script src="/js/products.js"></script>
+    <script src="/js/script.js"></script>
+    <!-- In wishlist.html, update the script section -->
+<script>
+    // Ensure products are loaded before executing wishlist code
+    document.addEventListener("DOMContentLoaded", () => {
+        // Initialize cart manager
+        const cartManager = new CartManager();
+        cartManager.updateCartCount();
+        cartManager.updateWishlistCount();
+        
+        // Get wishlist from localStorage
+        const wishlistContainer = document.getElementById("wishlist-container");
+        let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+        const totalItemsElement = document.getElementById("total-wishlist-items");
+
+        // Function to update wishlist UI
+        const updateWishlistUI = () => {
+            wishlistContainer.innerHTML = '';
+            totalItemsElement.textContent = wishlist.length;
+
+            if (wishlist.length === 0) {
+                wishlistContainer.innerHTML = `
+                    <div class="empty-wishlist">
+                        <i class="fas fa-heart-broken"></i>
+                        <h3>Your wishlist is empty</h3>
+                        <p>Start adding your favorite anime fashion items!</p>
+                        <a href="index.html#shop" class="btn btn-primary">Browse Products</a>
+                    </div>
+                `;
+                return;
+            }
+
+            wishlist.forEach((item, index) => {
+                const productCard = document.createElement("div");
+                productCard.className = "wishlist-item";
+                productCard.innerHTML = `
+                    <div class="wishlist-item-img">
+                        <img src="${item.image}" alt="${item.name}" loading="lazy">
+                    </div>
+                    <div class="wishlist-item-info">
+                        <h3><a href="product.html?id=${item.id}">${item.name}</a></h3>
+                        <div class="wishlist-item-price">$${item.price.toFixed(2)}</div>
+                        <div class="wishlist-item-actions">
+                            <button class="move-to-cart" data-id="${item.id}">
+                                <i class="fas fa-shopping-cart"></i> Move to Cart
+                            </button>
+                            <button class="buy-now-btn" data-id="${item.id}">
+                                <i class="fas fa-bolt"></i> Buy Now
+                            </button>
+                        </div>
+                    </div>
+                    <button class="remove-wishlist-item" data-index="${index}">
+                        <i class="fas fa-times"></i>
+                    </button>
+                `;
+                wishlistContainer.appendChild(productCard);
+            });
+
+            // Add event listeners to the newly created buttons
+            document.querySelectorAll('.move-to-cart').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = button.dataset.id;
+                    addToCartFromWishlist(productId);
+                });
+            });
+
+            document.querySelectorAll('.buy-now-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = button.dataset.id;
+                    buyNowFromWishlist(productId);
+                });
+            });
+
+            document.querySelectorAll('.remove-wishlist-item').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const index = button.dataset.index;
+                    removeFromWishlist(index);
+                });
+            });
+        };
+
+        // Global functions for wishlist operations
+        window.addToCartFromWishlist = (productId) => {
+            const product = wishlist.find(item => item.id == productId);
+            if (product) {
+                // Add default color and size if not present
+                const cartItem = {
+                    ...product,
+                    color: product.color || 'Default',
+                    size: product.size || 'M',
+                    quantity: 1
+                };
+                cartManager.addItem(cartItem);
+                showNotification("Item moved to cart!");
+            }
+        };
+
+        window.buyNowFromWishlist = (productId) => {
+            const product = wishlist.find(item => item.id == productId);
+            if (product) {
+                // Add default color and size if not present
+                const cartItem = {
+                    ...product,
+                    color: product.color || 'Default',
+                    size: product.size || 'M',
+                    quantity: 1
+                };
+                cartManager.buyNow(cartItem);
+            }
+        };
+
+        window.removeFromWishlist = (index) => {
+            if (index >= 0 && index < wishlist.length) {
+                wishlist.splice(index, 1);
+                localStorage.setItem("wishlist", JSON.stringify(wishlist));
+                updateWishlistUI();
+                cartManager.updateWishlistCount();
+                showNotification("Item removed from wishlist");
+            }
+        };
+
+        window.clearWishlist = () => {
+            if (wishlist.length === 0) return;
+            
+            if (confirm("Are you sure you want to clear your entire wishlist?")) {
+                wishlist = [];
+                localStorage.setItem("wishlist", JSON.stringify(wishlist));
+                updateWishlistUI();
+                cartManager.updateWishlistCount();
+                showNotification("Wishlist cleared");
+            }
+        };
+
+        window.showNotification = (message) => {
+            const notification = document.createElement("div");
+            notification.className = "wishlist-notification";
+            notification.innerHTML = `<span>${message}</span>`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add("show");
+                setTimeout(() => {
+                    notification.classList.remove("show");
+                    setTimeout(() => notification.remove(), 300);
+                }, 2000);
+            }, 10);
+        };
+
+        // Initial UI update
+        updateWishlistUI();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products | KamiWear</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="shortcut icon" href="/assets/kw.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="/js/cart.js"></script>
+    <style>
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .shop-header {
+            text-align: center;
+            padding: 60px 0;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            margin-bottom: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .shop-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--light-text);
+        }
+
+        .shop-header p {
+            font-size: 1.1rem;
+            color: var(--light-text);
+            opacity: 0.8;
+        }
+
+        .shop-filters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .filter-select {
+            padding: 10px 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light-text);
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .filter-select:hover {
+            border-color: var(--primary-color);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 0.2);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+            padding: 20px 0;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-img {
+            position: relative;
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            opacity: 0;
+        }
+
+        .product-img img.loaded {
+            opacity: 1;
+        }
+
+        .image-loading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .image-loading i {
+            color: var(--primary-color);
+            font-size: 2rem;
+            animation: spin 1s linear infinite;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--primary-color);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .product-badge.new-badge {
+            background: var(--accent-color);
+        }
+
+        .product-actions {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            display: flex;
+            gap: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 2;
+        }
+
+        .product-card:hover .product-actions {
+            opacity: 1;
+        }
+
+        .product-actions button {
+            background: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-actions button:hover {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 25px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-info h3 {
+            margin: 0 0 15px;
+            font-size: 1.2rem;
+            line-height: 1.4;
+        }
+
+        .product-info h3 a {
+            color: var(--text-color);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .product-info h3 a:hover {
+            color: var(--primary-color);
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .old-price {
+            color: #999;
+            text-decoration: line-through;
+            font-size: 1rem;
+        }
+
+        .product-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: auto;
+        }
+
+        .add-to-cart, .buy-now-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .buy-now-btn {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .add-to-cart:hover, .buy-now-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 50px;
+        }
+
+        .pagination button {
+            padding: 10px 20px;
+            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light-text);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .pagination button:hover, .pagination button.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .loading-spinner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+        }
+
+        .loading-spinner i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .shop-filters {
+                flex-direction: column;
+                align-items: stretch;
+                padding: 15px;
+            }
+
+            .filter-group {
+                flex-wrap: wrap;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+
+            .product-img {
+                height: 300px;
+            }
+
+            .product-info {
+                padding: 20px;
+            }
+
+            .product-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demon-slayer-bg">
+        <div class="flame-animation"></div>
+        <div class="flame-animation delay-1"></div>
+        <div class="flame-animation delay-2"></div>
+    </div>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>Kami<span>Wear</span></h1>
+                <p>Anime Fashion Universe</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="shop.html" class="active">Shop</a></li>
+                    <li><a href="demon-slayer.html">Collections</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icons">
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Search products...">
+                    <div class="search-results"></div>
+                </div>
+                <a href="wishlist.html" class="wishlist-icon"><i class="fas fa-heart"></i><span class="wishlist-count">0</span></a>
+                <a href="cart.html" class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <section class="shop-header">
+        <div class="container">
+            <h2>All <span>Products</span></h2>
+            <p>Discover our complete collection of anime merchandise</p>
+        </div>
+    </section>
+
+    <section class="featured">
+        <div class="container">
+            <div class="shop-filters">
+                <div class="filter-group">
+                    <select class="filter-select" id="category-filter">
+                        <option value="all">All Categories</option>
+                        <option value="demon-slayer">Demon Slayer</option>
+                        <option value="naruto">Naruto</option>
+                        <option value="attack-on-titan">Attack on Titan</option>
+                        <option value="my-hero-academia">My Hero Academia</option>
+                        <option value="jujutsu-kaisen">Jujutsu Kaisen</option>
+                    </select>
+                    <select class="filter-select" id="type-filter">
+                        <option value="all">All Types</option>
+                        <option value="tshirts">T-Shirts</option>
+                        <option value="hoodies">Hoodies</option>
+                        <option value="accessories">Accessories</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <select class="filter-select" id="sort-filter">
+                        <option value="featured">Featured</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="newest">Newest First</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="products-grid" id="products-grid">
+                <!-- Products will be loaded here dynamically -->
+            </div>
+
+            <div class="pagination">
+                <button class="active">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Enhanced product data with proper image paths and correct product IDs
+        const products = [
+            {
+                id: 1,
+                name: "Demon Slayer: Hinokami Kagura T-Shirt",
+                category: "demon-slayer",
+                type: "tshirts",
+                price: 29.99,
+                oldPrice: 39.99,
+                image: "assets/t-shirts/hinokami-kagura-main.png",
+                description: "Premium Demon Slayer t-shirt featuring the iconic Hinokami Kagura design.",
+                badge: "sale",
+                productId: "product-1"
+            },
+            {
+                id: 2,
+                name: "Naruto: Nine-Tails Unleashed T-Shirt",
+                category: "naruto",
+                type: "tshirts",
+                price: 27.99,
+                image: "assets/t-shirts/nine-tails-unleashed-sec.jpg",
+                description: "Stylish Naruto t-shirt showcasing the powerful Nine-Tails transformation.",
+                productId: "product-2"
+            },
+            {
+                id: 3,
+                name: "Attack on Titan: Wings of Freedom T-Shirt",
+                category: "attack-on-titan",
+                type: "tshirts",
+                price: 25.99,
+                oldPrice: 34.99,
+                image: "assets/t-shirts/wings-of-freedom.png",
+                description: "Striking Attack on Titan t-shirt featuring the iconic Wings of Freedom emblem.",
+                badge: "sale",
+                productId: "product-3"
+            },
+            {
+                id: 4,
+                name: "My Hero Academia T-Shirt",
+                category: "my-hero-academia",
+                type: "tshirts",
+                price: 26.99,
+                image: "assets/t-shirts/my-hero-academia-main.jpg",
+                description: "Dynamic My Hero Academia t-shirt showcasing the series' vibrant characters.",
+                productId: "product-4"
+            },
+            {
+                id: 5,
+                name: "Jujutsu Kaisen: Sukuna Cursed Energy T-Shirt",
+                category: "jujutsu-kaisen",
+                type: "tshirts",
+                price: 30.99,
+                image: "assets/t-shirts/sukuna-cursed-energy-main.jpg",
+                description: "Powerful Jujutsu Kaisen t-shirt featuring Sukuna's cursed energy.",
+                productId: "product-5"
+            },
+            {
+                id: 6,
+                name: "Demon Slayer: Water Breathing Hoodie",
+                category: "demon-slayer",
+                type: "hoodies",
+                price: 59.99,
+                oldPrice: 69.99,
+                image: "assets/hoodies/water-breathing-hoodie-main.jpg",
+                description: "Comfortable Demon Slayer hoodie featuring the Water Breathing technique.",
+                badge: "sale",
+                productId: "product-6"
+            },
+            {
+                id: 7,
+                name: "Naruto: Akatsuki Cloud Hoodie",
+                category: "naruto",
+                type: "hoodies",
+                price: 54.99,
+                image: "assets/hoodies/akatsuki-cloud-hoodie-main.jpg",
+                description: "Stylish Naruto hoodie featuring the iconic Akatsuki cloud design.",
+                productId: "product-7"
+            },
+            {
+                id: 8,
+                name: "Attack on Titan: Survey Corps Hoodie",
+                category: "attack-on-titan",
+                type: "hoodies",
+                price: 57.99,
+                image: "assets/hoodies/survey-corps-hoodie-main.jpg",
+                description: "Warm Attack on Titan hoodie featuring the Survey Corps emblem.",
+                badge: "new",
+                productId: "product-8"
+            }
+        ];
+
+        // Initialize filters and cart
+        document.addEventListener('DOMContentLoaded', function() {
+            const categoryFilter = document.getElementById('category-filter');
+            const typeFilter = document.getElementById('type-filter');
+            const sortFilter = document.getElementById('sort-filter');
+            const productsGrid = document.getElementById('products-grid');
+
+            // Initialize cart manager
+            const cartManager = new CartManager();
+
+            // Load all products initially
+            displayProducts(products);
+
+            function filterAndSortProducts() {
+                const category = categoryFilter.value;
+                const type = typeFilter.value;
+                const sort = sortFilter.value;
+
+                let filteredProducts = products.filter(product => {
+                    const categoryMatch = category === 'all' || product.category === category;
+                    const typeMatch = type === 'all' || product.type === type;
+                    return categoryMatch && typeMatch;
+                });
+
+                // Sort products
+                switch(sort) {
+                    case 'price-low':
+                        filteredProducts.sort((a, b) => a.price - b.price);
+                        break;
+                    case 'price-high':
+                        filteredProducts.sort((a, b) => b.price - a.price);
+                        break;
+                    case 'newest':
+                        filteredProducts.sort((a, b) => b.id - a.id);
+                        break;
+                    default:
+                        // Default sorting (featured)
+                        filteredProducts.sort((a, b) => {
+                            if (a.badge === 'new') return -1;
+                            if (b.badge === 'new') return 1;
+                            return 0;
+                        });
+                }
+
+                displayProducts(filteredProducts);
+            }
+
+            function displayProducts(productsToDisplay) {
+                if (productsToDisplay.length === 0) {
+                    productsGrid.innerHTML = `
+                        <div class="no-products" style="grid-column: 1/-1; text-align: center; padding: 50px;">
+                            <i class="fas fa-search" style="font-size: 3rem; color: var(--primary-color); margin-bottom: 20px;"></i>
+                            <h3>No products found</h3>
+                            <p>Try adjusting your filters to find what you're looking for</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                productsGrid.innerHTML = productsToDisplay.map(product => `
+                    <div class="product-card" data-category="${product.category}" data-type="${product.type}">
+                        <div class="product-img">
+                            <div class="image-loading">
+                                <i class="fas fa-spinner fa-spin"></i>
+                            </div>
+                            <img 
+                                src="${product.image}" 
+                                alt="${product.name}" 
+                                loading="lazy"
+                                onerror="this.onerror=null; this.src='assets/placeholder.jpg';"
+                                onload="this.classList.add('loaded'); this.parentElement.querySelector('.image-loading').style.display='none';"
+                            >
+                            ${product.badge === 'sale' ? '<div class="product-badge">Sale</div>' : ''}
+                            ${product.badge === 'new' ? '<div class="product-badge new-badge">New</div>' : ''}
+                            <div class="product-actions">
+                                <button class="quick-view" onclick="window.location.href='product.html#${product.productId}'">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="add-wishlist" data-id="${product.id}">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3><a href="product.html#${product.productId}">${product.name}</a></h3>
+                            <div class="product-price">
+                                <span class="price">$${product.price.toFixed(2)}</span>
+                                ${product.oldPrice ? `<span class="old-price">$${product.oldPrice.toFixed(2)}</span>` : ''}
+                            </div>
+                            <div class="product-buttons">
+                                <button class="add-to-cart" data-id="${product.id}">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                                <button class="buy-now-btn" data-id="${product.id}">
+                                    <i class="fas fa-bolt"></i> Buy Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+
+                // Add event listeners for cart and wishlist buttons
+                document.querySelectorAll('.add-to-cart').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const productId = parseInt(button.dataset.id);
+                        const product = products.find(p => p.id === productId);
+                        if (product) {
+                            cartManager.addItem(product);
+                            showCartNotification();
+                        }
+                    });
+                });
+
+                document.querySelectorAll('.add-wishlist').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const productId = parseInt(button.dataset.id);
+                        const product = products.find(p => p.id === productId);
+                        if (product) {
+                            const added = cartManager.addToWishlist(product);
+                            if (added) {
+                                const heartIcon = button.querySelector('i');
+                                if (heartIcon) {
+                                    heartIcon.className = 'fas fa-heart';
+                                    heartIcon.style.color = 'var(--primary-color)';
+                                }
+                                showWishlistNotification();
+                            }
+                        }
+                    });
+                });
+
+                document.querySelectorAll('.buy-now-btn').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const productId = parseInt(button.dataset.id);
+                        const product = products.find(p => p.id === productId);
+                        if (product) {
+                            cartManager.buyNow(product);
+                        }
+                    });
+                });
+            }
+
+            function showCartNotification() {
+                const notification = document.createElement('div');
+                notification.className = 'cart-notification show';
+                notification.innerHTML = `
+                    <span class="cart-notification-text">Item added to cart!</span>
+                    <a href="cart.html" class="btn btn-outline view-cart-btn">View Cart</a>
+                `;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+            }
+
+            function showWishlistNotification() {
+                const notification = document.createElement('div');
+                notification.className = 'wishlist-notification show';
+                notification.innerHTML = `
+                    <i class="fas fa-heart" style="color: var(--primary-color);"></i>
+                    <span>Item added to wishlist!</span>
+                `;
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    setTimeout(() => notification.remove(), 300);
+                }, 3000);
+            }
+
+            // Add event listeners for filters
+            categoryFilter.addEventListener('change', filterAndSortProducts);
+            typeFilter.addEventListener('change', filterAndSortProducts);
+            sortFilter.addEventListener('change', filterAndSortProducts);
+
+            // Initialize mobile menu toggle
+            const hamburger = document.querySelector('.hamburger');
+            const nav = document.querySelector('nav');
+            
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                nav.classList.toggle('active');
+            });
+
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('nav ul li a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    nav.classList.remove('active');
+                });
+            });
+
+            // Initialize search functionality
+            const searchIcon = document.querySelector('.search-icon');
+            const searchInput = document.querySelector('.search-input');
+            
+            searchIcon.addEventListener('click', () => {
+                searchInput.classList.toggle('active');
+                if (searchInput.classList.contains('active')) {
+                    searchInput.focus();
+                }
+            });
+
+            searchInput.addEventListener('input', () => {
+                const searchTerm = searchInput.value.toLowerCase();
+                if (searchTerm.length > 2) {
+                    const filtered = products.filter(product => 
+                        product.name.toLowerCase().includes(searchTerm) || 
+                        product.description.toLowerCase().includes(searchTerm)
+                    );
+                    displayProducts(filtered);
+                } else if (searchTerm.length === 0) {
+                    filterAndSortProducts();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

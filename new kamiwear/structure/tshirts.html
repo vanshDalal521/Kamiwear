@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>T-Shirts | KamiWear</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="shortcut icon" href="/assets/android-chrome-192x192.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="demon-slayer-bg">
+        <div class="flame-animation"></div>
+        <div class="flame-animation delay-1"></div>
+        <div class="flame-animation delay-2"></div>
+    </div>
+
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>Kami<span>Wear</span></h1>
+                <p>Anime Fashion Universe</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#shop">Shop</a></li>
+                    <li><a href="demon-slayer.html">Collections</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-icons">
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-input" placeholder="Search products...">
+                    <div class="search-results"></div>
+                </div>
+                <a href="wishlist.html" class="nav-icon wishlist-icon">
+                    <i class="fas fa-heart"></i>
+                    <span class="wishlist-count">0</span>
+                </a>
+                <a href="#" class="nav-icon user-icon" id="user-icon">
+                    <i class="fas fa-user"></i>
+                </a>
+                <a href="cart.html" class="nav-icon cart-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>Anime <span>T-Shirts</span></h1>
+            <p>Premium quality anime t-shirts featuring your favorite characters</p>
+        </div>
+    </section>
+
+    <section class="featured">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="demon-slayer">Demon Slayer</button>
+                <button class="filter-btn" data-filter="naruto">Naruto</button>
+                <button class="filter-btn" data-filter="attack-on-titan">Attack on Titan</button>
+                <button class="filter-btn" data-filter="my-hero-academia">My Hero Academia</button>
+                <button class="filter-btn" data-filter="jujutsu-kaisen">Jujutsu Kaisen</button>
+                <button class="filter-btn" data-filter="one-piece">One Piece</button>
+            </div>
+            <div class="products-grid">
+                <!-- Products will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <script src="/js/products.js"></script>
+    <script src="/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const productsGrid = document.querySelector('.products-grid');
+            const cartManager = new CartManager();
+
+            if (productsGrid) {
+                productsGrid.innerHTML = '';
+
+                // Filter products to only show t-shirts
+                const tshirtProducts = Object.values(products).filter(
+                    product => product.type === "t-shirts"
+                );
+
+                tshirtProducts.forEach(product => {
+                    const productCard = document.createElement('div');
+                    productCard.className = 'product-card';
+                    productCard.setAttribute('data-category', product.category);
+                    productCard.innerHTML = `
+                        <div class="product-img">
+                            <a href="product.html?id=${product.id}">
+                                <img src="${product.images.front}" alt="${product.title}">
+                            </a>
+                            ${product.oldPrice ? `<div class="product-badge">Sale</div>` : ''}
+                            ${product.isNew ? `<div class="product-badge new-badge">New</div>` : ''}
+                            <div class="product-actions">
+                                <button class="quick-view" onclick="window.location.href='product.html?id=${product.id}'">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="add-wishlist" data-id="${product.id}">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3><a href="product.html?id=${product.id}">${product.title}</a></h3>
+                            <div class="product-price">
+                                <span class="price">$${product.price.toFixed(2)}</span>
+                                ${product.oldPrice ? `<span class="old-price">$${product.oldPrice.toFixed(2)}</span>` : ''}
+                            </div>
+                            <div class="product-buttons">
+                                <button class="add-to-cart" data-id="${product.id}">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                                <button class="buy-now-btn" data-id="${product.id}">
+                                    <i class="fas fa-bolt"></i> Buy Now
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    productsGrid.appendChild(productCard);
+                });
+
+                // Initialize filter buttons
+                const filterButtons = document.querySelectorAll('.filter-btn');
+                filterButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const filter = button.dataset.filter;
+                        
+                        // Update active button
+                        filterButtons.forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                        
+                        // Filter products
+                        const productCards = document.querySelectorAll('.product-card');
+                        productCards.forEach(card => {
+                            if (filter === 'all' || card.dataset.category === filter) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        });
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
