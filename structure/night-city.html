@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Kamiwear | Night City Collection</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Orbitron:wght@400;700&amp;family=Syne:wght@800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2df0d",
+                        "cyber-blue": "#00f0ff",
+                        "cyber-pink": "#ff00ff",
+                        "background-dark": "#0A0812",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "orbitron": ["Orbitron", "sans-serif"],
+                        "syne": ["Syne", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .liquid-glass {
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(255, 0, 255, 0.05));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .cyber-gradient {
+            background: linear-gradient(to right, #00f0ff, #ff00ff, #0A0812);
+        }
+    </style>
+</head>
+
+<body class="bg-background-dark font-display text-slate-100 antialiased selection:bg-primary selection:text-black">
+    <nav class="fixed top-0 w-full z-50 glass border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-12">
+                <a href="index_v2.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                    <span class="material-symbols-outlined text-primary text-3xl">token</span>
+                    <h1 class="font-orbitron font-bold text-2xl tracking-tighter text-white uppercase">KAMIWEAR</h1>
+                </a>
+                <div
+                    class="hidden md:flex items-center gap-8 text-sm font-medium uppercase tracking-widest text-slate-400">
+                    <a class="hover:text-primary transition-colors" href="index_v2.html#collections">Collections</a>
+                    <a class="hover:text-primary transition-colors" href="shop.html">Shop All</a>
+                    <a class="text-white border-b-2 border-primary pb-1" href="night-city.html">Night City</a>
+                    <a class="hover:text-primary transition-colors" href="#">About</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <button class="text-white hover:text-primary transition-colors"><span
+                        class="material-symbols-outlined">search</span></button>
+                <button onclick="toggleCart(true)" class="text-white hover:text-cyber-blue transition-colors relative">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span id="cart-count-badge"
+                        class="absolute -top-1 -right-1 bg-cyber-blue text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                </button>
+                <button class="text-white hover:text-primary transition-colors"><span
+                        class="material-symbols-outlined">person</span></button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-20">
+        <section class="relative w-full min-h-[80vh] flex items-center overflow-hidden">
+            <div class="absolute inset-0 cyber-gradient opacity-20"></div>
+            <div
+                class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 relative z-10 w-full text-center lg:text-left">
+                <div class="flex flex-col justify-center space-y-6">
+                    <div
+                        class="inline-flex items-center px-4 py-1 rounded-full border border-cyber-blue bg-cyber-blue/10 text-cyber-blue font-orbitron text-xs font-bold tracking-widest uppercase mx-auto lg:mx-0 w-fit">
+                        Chrome Link Established</div>
+                    <h1 class="font-syne text-7xl md:text-8xl leading-none text-white uppercase tracking-tighter">
+                        Night<br /><span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-blue to-cyber-pink">City</span>
+                    </h1>
+                    <p class="text-slate-400 text-xl font-medium">Cyberpunk 2077 x KAMIWEAR. High-latency streetwear for
+                        the chrome-obsessed.</p>
+                    <button
+                        class="bg-cyber-blue text-black font-bold px-8 py-4 rounded-full hover:bg-cyber-pink hover:text-white transition-all flex items-center gap-2 mx-auto lg:mx-0 w-fit">JACK
+                        IN <span class="material-symbols-outlined">dataset</span></button>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-6 pb-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 py-12">
+            <!-- Product Card 1 -->
+            <div
+                class="group relative liquid-glass rounded-2xl p-4 flex flex-col transition-all duration-300 hover:border-cyber-blue" data-price="11600">
+                <div class="aspect-[4/5] rounded-xl bg-cover bg-center mb-6"
+                    style="background-image: url('../night_city_cover_perfect_v2_1773032380473.png')">
+                </div>
+                <h3 class="text-white font-bold text-lg">Edgerunner Jacket</h3>
+                <p class="text-cyber-blue font-bold text-xl">₹11,600</p>
+                <button
+                    class="mt-4 w-full bg-cyber-blue text-black font-bold py-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">ADD
+                    TO CART <span class="material-symbols-outlined text-sm">add_shopping_cart</span></button>
+            </div>
+            <!-- Product Card 2 -->
+            <div
+                class="group relative liquid-glass rounded-2xl p-4 flex flex-col transition-all duration-300 hover:border-cyber-blue" data-price="7600">
+                <div class="aspect-[4/5] rounded-xl bg-cover bg-center mb-6"
+                    style="background-image: url('/night_city_cyber_joggers_1773032534008.png');">
+                </div>
+                <h3 class="text-white font-bold text-lg">Cyber-Link Joggers</h3>
+                <p class="text-cyber-blue font-bold text-xl">₹7,600</p>
+                <button
+                    class="mt-4 w-full bg-cyber-blue text-black font-bold py-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">ADD
+                    TO CART <span class="material-symbols-outlined text-sm">add_shopping_cart</span></button>
+            </div>
+            <!-- Product Card 3 -->
+            <div
+                class="group relative liquid-glass rounded-2xl p-4 flex flex-col transition-all duration-300 hover:border-cyber-blue" data-price="14400">
+                <div class="aspect-[4/5] rounded-xl bg-cover bg-center mb-6"
+                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDJdf9yLLBmQBV9xBqYySFEp2sbGdnXEpvQci0jkOOrNn8R85VpCq_jT_p0RuBOPDAPjV-mERMEiXy-uAsqrEfEO_MdRQ1w80IgPzrtpq_p5_1-itCDoentrULSU7zdF_0DYguvEcSGWaufxw_NqGAaVOOe-sNPO7NBYkfHdXui0LwY5Ckaalh2xQZRk9WdB8GizMBbNaYfzCRbYm7iFzKn1SNpS4O8hueWC6lY3qIGd-JXM8vLOe6mSkGN8nBbDFglseu3b3Z3Tl4B')">
+                </div>
+                <h3 class="text-white font-bold text-lg">Maelstrom Tactical</h3>
+                <p class="text-cyber-blue font-bold text-xl">₹14,400</p>
+                <button
+                    class="mt-4 w-full bg-cyber-blue text-black font-bold py-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">ADD
+                    TO CART <span class="material-symbols-outlined text-sm">add_shopping_cart</span></button>
+            </div>
+            <!-- Product Card 4 -->
+            <div
+                class="group relative liquid-glass rounded-2xl p-4 flex flex-col transition-all duration-300 hover:border-cyber-blue" data-price="4800">
+                <div class="aspect-[4/5] rounded-xl bg-cover bg-center mb-6"
+                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCYq5pEkeny653zkYYaHG4FoC0Vtyr5aKoOTMQFYcCJwy_Q2MZgDpj0jK4vpQsq2d-f6gonViBFTZ5rNIgUlvxoUk2a62JxDruPBqEg-3zUgW4yf1UEIb0CD43F5Uid3FmRjLXgvewtjC4yHmdllfT0IMHeE8IbKoB9yJUP-et3_qbMoG_uBHa8aM3_SoCyQtMtkhXplN8qY5LR-u7KBrDpcCr-UfcjB3qdK8ondKwkyeP2Wt1XrhtUypTAjdV0Lfocz9jCwqy67vd9');">
+                </div>
+                <h3 class="text-white font-bold text-lg">Arasaka Executive</h3>
+                <p class="text-cyber-blue font-bold text-xl">₹4,800</p>
+                <button
+                    class="mt-4 w-full bg-cyber-blue text-black font-bold py-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">ADD
+                    TO CART <span class="material-symbols-outlined text-sm">add_shopping_cart</span></button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-background-dark border-t border-white/5 py-16">
+        <div
+            class="max-w-7xl mx-auto px-6 text-center text-slate-600 text-[10px] font-orbitron tracking-widest uppercase">
+            © 2024 KAMIWEAR STUDIO. NIGHT CITY TERMINAL.
+        </div>
+    </footer>
+
+    <script src="../js/store/core.js"></script>
+    <script src="../js/components/badge-manager.js"></script>
+    <script src="../js/components/cart-drawer.js"></script>
+    <script src="../js/components/profile-modal.js"></script>
+    <script src="../js/components/search-overlay.js"></script>
+    <script src="../js/core/app.js"></script>
+</body>
+
+</html>

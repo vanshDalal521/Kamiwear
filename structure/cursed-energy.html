@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Kamiwear | Cursed Energy Collection</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Orbitron:wght@400;700&amp;family=Syne:wght@800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2df0d",
+                        "curse-deep": "#1a1a2e",
+                        "curse-glow": "#7c3aed",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#0A0812",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "orbitron": ["Orbitron", "sans-serif"],
+                        "syne": ["Syne", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .liquid-glass {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(255, 255, 255, 0.02));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .curse-gradient {
+            background: linear-gradient(to right, #1a1a2e, #7c3aed, #0A0812);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased selection:bg-primary selection:text-black">
+    <nav class="fixed top-0 w-full z-50 glass border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-12">
+                <a href="index_v2.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                    <span class="material-symbols-outlined text-primary text-3xl">token</span>
+                    <h1 class="font-orbitron font-bold text-2xl tracking-tighter text-white uppercase">KAMIWEAR</h1>
+                </a>
+                <div
+                    class="hidden md:flex items-center gap-8 text-sm font-medium uppercase tracking-widest text-slate-400">
+                    <a class="hover:text-primary transition-colors" href="index_v2.html#collections">Collections</a>
+                    <a class="hover:text-primary transition-colors" href="shop.html">Shop All</a>
+                    <a class="text-white border-b-2 border-primary pb-1" href="cursed-energy.html">Cursed Energy</a>
+                    <a class="hover:text-primary transition-colors" href="#">About</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <button class="text-white hover:text-primary transition-colors"><span
+                        class="material-symbols-outlined">search</span></button>
+                <button onclick="toggleCart(true)" class="text-white hover:text-primary transition-colors relative">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span id="cart-count-badge"
+                        class="absolute -top-1 -right-1 bg-primary text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                </button>
+                <button class="text-white hover:text-primary transition-colors"><span
+                        class="material-symbols-outlined">person</span></button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-20">
+        <section class="relative w-full min-h-[80vh] flex items-center overflow-hidden">
+            <div class="absolute inset-0 curse-gradient opacity-40"></div>
+            <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 relative z-10 w-full">
+                <div class="flex flex-col justify-center space-y-6">
+                    <div
+                        class="inline-flex items-center px-4 py-1 rounded-full border border-curse-glow bg-curse-glow/20 text-curse-glow font-orbitron text-xs font-bold tracking-widest uppercase">
+                        Special Grade Release</div>
+                    <h1 class="font-syne text-7xl md:text-8xl leading-none text-white uppercase tracking-tighter">
+                        Cursed<br /><span
+                            class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-curse-glow">Energy</span>
+                    </h1>
+                    <p class="text-slate-300 text-xl font-medium">Domain Expansion: Shibuya Arc. Apparel infused with
+                        the intensity of high-grade sorcery.</p>
+                    <button
+                        class="bg-primary text-black font-bold px-8 py-4 rounded-full hover:scale-105 transition-transform flex items-center gap-2 w-fit">UNLEASH
+                        VOID <span class="material-symbols-outlined">bolt</span></button>
+                </div>
+                <div class="hidden lg:grid grid-cols-2 gap-6 items-center transform -rotate-2">
+                    <div class="liquid-glass rounded-xl p-4 mt-12 space-y-3">
+                        <div class="aspect-square rounded-lg bg-cover bg-center"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCYq5pEkeny653zkYYaHG4FoC0Vtyr5aKoOTMQFYcCJwy_Q2MZgDpj0jK4vpQsq2d-f6gonViBFTZ5rNIgUlvxoUk2a62JxDruPBqEg-3zUgW4yf1UEIb0CD43F5Uid3FmRjLXgvewtjC4yHmdllfT0IMHeE8IbKoB9yJUP-et3_qbMoG_uBHa8aM3_SoCyQtMtkhXplN8qY5LR-u7KBrDpcCr-UfcjB3qdK8ondKwkyeP2Wt1XrhtUypTAjdV0Lfocz9jCwqy67vd9')">
+                        </div>
+                        <div class="font-orbitron text-[10px] text-curse-glow font-bold">DOMAIN V2</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-6 pb-24 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 py-12">
+            <!-- Product Card 1 -->
+            <div
+                class="group relative liquid-glass rounded-2xl p-4 flex flex-col transition-all duration-300 hover:border-primary/30" data-price="4400">
+                <div class="aspect-[4/5] rounded-xl bg-cover bg-center mb-6"
+                    style="background-image: url('../assets/generated/gojo_infinite_tee_1774247527626.png')">
+                </div>
+                <h3 class="text-white font-bold text-lg">Gojo Infinite Tee</h3>
+                <p class="text-primary font-bold text-xl">₹4,400</p>
+                <button
+                    class="mt-4 w-full bg-primary text-black font-bold py-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">ADD
+                    TO CART <span class="material-symbols-outlined text-sm">add_shopping_cart</span></button>
+            </div>
+            <!-- Product Card 2 -->
+            <div
+                class="group relative liquid-glass rounded-2xl p-4 flex flex-col transition-all duration-300 hover:border-curse-glow/50" data-price="9200">
+                <div class="aspect-[4/5] rounded-xl bg-cover bg-center mb-6"
+                    style="background-image: url('/cursed_energy_product_sukuna_1773032399164.png');">
+                </div>
+                <h3 class="text-white font-bold text-lg">Sukuna Cursed Royale</h3>
+                <p class="text-primary font-bold text-xl">₹9,200</p>
+                <button
+                    class="mt-4 w-full bg-primary text-black font-bold py-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">ADD
+                    TO CART <span class="material-symbols-outlined text-sm">add_shopping_cart</span></button>
+            </div>
+            <!-- Product Card 3 -->
+            <div
+                class="group relative liquid-glass rounded-2xl p-4 flex flex-col transition-all duration-300 hover:border-curse-glow/50" data-price="3600">
+                <div class="aspect-[4/5] rounded-xl bg-cover bg-center mb-6"
+                    style="background-image: url('../assets/generated/megumi_shadow_wolf_hoodie_1774247632786.png');">
+                </div>
+                <h3 class="text-white font-bold text-lg">Megumi Shadow Wolf</h3>
+                <p class="text-primary font-bold text-xl">₹3,600</p>
+                <button
+                    class="mt-4 w-full bg-primary text-black font-bold py-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">ADD
+                    TO CART <span class="material-symbols-outlined text-sm">add_shopping_cart</span></button>
+            </div>
+            <!-- Product Card 4 -->
+            <div
+                class="group relative liquid-glass rounded-2xl p-4 flex flex-col transition-all duration-300 hover:border-curse-glow/50" data-price="2800">
+                <div class="aspect-[4/5] rounded-xl bg-cover bg-center mb-6"
+                    style="background-image: url('../assets/generated/nobara_resonance_jacket_1774247650512.png');">
+                </div>
+                <h3 class="text-white font-bold text-lg">Nobara Resonance</h3>
+                <p class="text-primary font-bold text-xl">₹2,800</p>
+                <button
+                    class="mt-4 w-full bg-primary text-black font-bold py-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">ADD
+                    TO CART <span class="material-symbols-outlined text-sm">add_shopping_cart</span></button>
+            </div>
+            <!-- Product Card 5 -->
+            <div
+                class="group relative liquid-glass rounded-2xl p-4 flex flex-col transition-all duration-300 hover:border-curse-glow/50" data-price="12000">
+                <div class="aspect-[4/5] rounded-xl bg-cover bg-center mb-6"
+                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB_B7ruhS61dnIExcuorzA-dIU69bcZL-cwvhmSWjtw0eyZanmq2uvPJayNb6m8dyjmBpzEh3RdVRIfqUlccU9D3O3p5Qak61jiH58vVON__KSGwBMVpqlWN9G5ZU91b1vnw0eZgGmtGX9AKNkTcSQe4NMN4UTVEJWxLYnqmlyW5wEX8pzNrrXhoo_-bTqHsBatRvY2nrM7VuMF9Xt7I36gPJdGEB6PaXtzuQ68zv8VtgWDRd5lep9Lti4Ci7xGbkCEFmRE3HH-oFLF');">
+                </div>
+                <h3 class="text-white font-bold text-lg">Shibuya Incident</h3>
+                <p class="text-primary font-bold text-xl">₹12,000</p>
+                <button
+                    class="mt-4 w-full bg-primary text-black font-bold py-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">ADD
+                    TO CART <span class="material-symbols-outlined text-sm">add_shopping_cart</span></button>
+            </div>
+            <!-- More products can be added here -->
+        </section>
+    </main>
+
+    <footer class="bg-background-dark border-t border-white/5 py-16">
+        <!-- Reusing standard footer -->
+        <div
+            class="max-w-7xl mx-auto px-6 text-center text-slate-500 text-[10px] font-orbitron tracking-widest uppercase">
+            © 2024 KAMIWEAR STUDIO. CURSED ENERGY BRANCH.
+        </div>
+    </footer>
+
+    <script src="../js/store/core.js"></script>
+    <script src="../js/components/badge-manager.js"></script>
+    <script src="../js/components/cart-drawer.js"></script>
+    <script src="../js/components/profile-modal.js"></script>
+    <script src="../js/components/search-overlay.js"></script>
+    <script src="../js/core/app.js"></script>
+</body>
+
+</html>

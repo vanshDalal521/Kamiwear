@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kamiwear Secure Checkout Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Syne:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f9f906", // Electric Yellow
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#0A0812", // Ultra-minimal dark mode
+                        "accent-purple": "#7c3aed",
+                        "glass-border": "rgba(255, 255, 255, 0.1)",
+                        "glass-bg": "rgba(255, 255, 255, 0.03)"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "syne": ["Syne", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .liquid-glass {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .purple-glow-selected {
+            border: 2px solid #7c3aed;
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.3);
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen selection:bg-primary selection:text-black">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<!-- Minimal Top Bar -->
+<header class="w-full border-b border-glass-border py-6 px-8 md:px-16 flex items-center justify-between sticky top-0 bg-background-dark/80 backdrop-blur-md z-50">
+<div class="flex items-center gap-2 group cursor-pointer">
+<div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-black">
+<span class="material-symbols-outlined font-bold">bolt</span>
+</div>
+<h1 class="font-syne text-2xl tracking-tighter uppercase font-extrabold text-slate-100">KAMIWEAR</h1>
+</div>
+<div class="flex items-center gap-2 text-slate-400 text-sm font-medium">
+<span class="material-symbols-outlined text-primary text-lg">lock</span>
+<span>SECURE CHECKOUT</span>
+</div>
+</header>
+<main class="flex-1 w-full max-w-7xl mx-auto px-6 py-10">
+<!-- Progress Indicator -->
+<div class="flex items-center justify-center gap-3 mb-12">
+<div class="flex h-10 items-center justify-center gap-x-2 rounded-full bg-glass-bg border border-glass-border px-5 text-slate-400">
+<span class="material-symbols-outlined text-lg">shopping_cart</span>
+<p class="text-xs font-bold uppercase tracking-widest">1 CART</p>
+</div>
+<div class="w-8 h-px bg-glass-border"></div>
+<div class="flex h-10 items-center justify-center gap-x-2 rounded-full bg-primary border border-primary px-5 text-black">
+<span class="material-symbols-outlined text-lg">local_shipping</span>
+<p class="text-xs font-bold uppercase tracking-widest">2 SHIPPING ●</p>
+</div>
+<div class="w-8 h-px bg-glass-border"></div>
+<div class="flex h-10 items-center justify-center gap-x-2 rounded-full bg-glass-bg border border-glass-border px-5 text-slate-400">
+<span class="material-symbols-outlined text-lg">payments</span>
+<p class="text-xs font-bold uppercase tracking-widest">3 PAYMENT</p>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+<!-- Left Column: Shipping Form -->
+<div class="lg:col-span-7 space-y-8">
+<section class="liquid-glass rounded-2xl p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+<span class="text-primary material-symbols-outlined">person</span>
+                            Contact Information
+                        </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-wider">Email Address</label>
+<input class="w-full bg-glass-bg border-glass-border rounded-xl px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary transition-all text-slate-100 placeholder:text-slate-600" placeholder="cyberpunk@kami.io" type="email"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-wider">Phone Number</label>
+<div class="flex gap-2">
+<div class="flex items-center gap-2 bg-glass-bg border border-glass-border rounded-xl px-3 text-slate-100">
+<span class="text-sm">🇮🇳</span>
+<span class="text-sm">+91</span>
+</div>
+<input class="flex-1 bg-glass-bg border-glass-border rounded-xl px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary transition-all text-slate-100 placeholder:text-slate-600" placeholder="98765 43210" type="tel"/>
+</div>
+</div>
+</div>
+</section>
+<section class="liquid-glass rounded-2xl p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+<span class="text-primary material-symbols-outlined">location_on</span>
+                            Shipping Address
+                        </h2>
+<div class="space-y-6">
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-wider">Full Name</label>
+<input class="w-full bg-glass-bg border-glass-border rounded-xl px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary transition-all text-slate-100 placeholder:text-slate-600" placeholder="Arata Kaneko" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-wider">Street Address</label>
+<input class="w-full bg-glass-bg border-glass-border rounded-xl px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary transition-all text-slate-100 placeholder:text-slate-600" placeholder="Apt 404, Shibuya Skyscraper" type="text"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-wider">City</label>
+<input class="w-full bg-glass-bg border-glass-border rounded-xl px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary transition-all text-slate-100 placeholder:text-slate-600" placeholder="Mumbai" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-wider">State</label>
+<input class="w-full bg-glass-bg border-glass-border rounded-xl px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary transition-all text-slate-100 placeholder:text-slate-600" placeholder="Maharashtra" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-400 uppercase tracking-wider">PIN Code</label>
+<input class="w-full bg-glass-bg border-glass-border rounded-xl px-4 py-3 focus:border-primary focus:ring-1 focus:ring-primary transition-all text-slate-100 placeholder:text-slate-600" placeholder="400001" type="text"/>
+</div>
+</div>
+</div>
+</section>
+<section class="liquid-glass rounded-2xl p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center gap-3">
+<span class="text-primary material-symbols-outlined">pace</span>
+                            Delivery Method
+                        </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="liquid-glass rounded-xl p-5 purple-glow-selected relative cursor-pointer group">
+<div class="flex justify-between items-start mb-2">
+<span class="text-sm font-bold text-slate-100">Standard Delivery</span>
+<span class="material-symbols-outlined text-accent-purple">check_circle</span>
+</div>
+<p class="text-xs text-slate-400 mb-4">3-5 Business Days</p>
+<p class="text-primary font-bold">FREE</p>
+</div>
+<div class="liquid-glass rounded-xl p-5 opacity-60 hover:opacity-100 transition-all cursor-pointer border-glass-border">
+<div class="flex justify-between items-start mb-2">
+<span class="text-sm font-bold text-slate-100">Express Cyber</span>
+<div class="w-5 h-5 rounded-full border border-glass-border"></div>
+</div>
+<p class="text-xs text-slate-400 mb-4">Next Day Delivery</p>
+<p class="text-slate-100 font-bold">₹249</p>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Order Summary -->
+<div class="lg:col-span-5">
+<div class="sticky top-32 space-y-6">
+<section class="liquid-glass rounded-2xl p-8">
+<h3 class="text-xl font-bold mb-6">Order Summary</h3>
+<!-- Product Rows -->
+<div class="space-y-6 mb-8 max-h-[400px] overflow-y-auto no-scrollbar">
+<div class="flex gap-4">
+<div class="w-20 h-24 bg-slate-800 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Cyberpunk black hoodie with neon yellow accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqHyl3wmWh0ouKKsES62wTDBiwPkL7t0YNQMMCFue5Y7zD0K3-FffGNa_BR2quK3I1POUwXuCNNyTqe0gsP29Dny8T1G58z6PVto-5W2DNUu4dCuee9S47ococ5u8E1PUWEyZTlntblSkJeTM0-VLu40HOOfbKdw-gz2edyNqw9UxYCC4lAIWOqhCkRSLlF0Kaug3GSq9imvTAtGtX25RjXIFwdr5BVyIYIGC7UaQBCpGUzbCzPjYH3kNT9A6DOwFhCa6rlokQrmtO"/>
+</div>
+<div class="flex-1 flex flex-col justify-between py-1">
+<div>
+<h4 class="font-bold text-slate-100 text-sm">NEO-TOKYO OVERSIZED HOODIE</h4>
+<p class="text-xs text-slate-500 mt-1">Size: XL • Qty: 1</p>
+</div>
+<p class="text-sm font-bold text-slate-100">₹2,499</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-20 h-24 bg-slate-800 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Anime graphic t-shirt with purple visuals" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZVbNQhTZIPF4ztvcknJTUnl_TPaTzLV_Vsyt2v9wO_bPiZlT-mLxNuVTeMFI-w36thmcgvPP8eF59PbLkV-anumuCsejuwY1S9m_Idxpw47FAFHUZ50x4RDyWeolj69LoYQSqKlBVGsSVNpaGUriuHyOUrV_pP6MeM30DEqzjbsj5fv1fC_lORxJz6usq_SdagJlEfGwJQyoYKOIx-X9m50xE0rlgJ_VcrDZa9pKtCC9RYOoZvyM3MTiN-HIgGD3mO_xmNDBj7d0t"/>
+</div>
+<div class="flex-1 flex flex-col justify-between py-1">
+<div>
+<h4 class="font-bold text-slate-100 text-sm">GHOST SHELL GRAPHIC TEE</h4>
+<p class="text-xs text-slate-500 mt-1">Size: L • Qty: 1</p>
+</div>
+<p class="text-sm font-bold text-slate-100">₹1,249</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-20 h-24 bg-slate-800 rounded-lg overflow-hidden flex-shrink-0">
+<img class="w-full h-full object-cover" data-alt="Techwear mask in matte black finish" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSAjgLDsiKfnG64iMCoohpPY89ucFzWo32Dg4BaJjiNY1JUEl4ULp8YMIae3sBzd4-aA-25aOELcCUmTmpMeZYbIwDCIij6zFTct2VJwkGi01zehb23TXLT63ANd9noqLRAU44ff8BpP7R9xB5N10NJCVwdgobkbxFCNMOOoCwQlXOu_3yf5SjDcgrYeu-4Hp_2ryOMNrIAmNt5SljoEYb8lt5RpCPnhGMDmWBa-F7nXQNk5BY17bWhxPiXmFVj9UeFou5wxIGBTay"/>
+</div>
+<div class="flex-1 flex flex-col justify-between py-1">
+<div>
+<h4 class="font-bold text-slate-100 text-sm">CYBERPUNK BREATHABLE MASK</h4>
+<p class="text-xs text-slate-500 mt-1">Color: Obsidian • Qty: 1</p>
+</div>
+<p class="text-sm font-bold text-slate-100">₹398</p>
+</div>
+</div>
+</div>
+<!-- Calculations -->
+<div class="space-y-4 border-t border-glass-border pt-6 mb-6">
+<div class="flex justify-between text-sm text-slate-400">
+<span>Subtotal</span>
+<span>₹4,146</span>
+</div>
+<div class="flex justify-between text-sm text-slate-400">
+<span>Shipping</span>
+<span class="text-primary">FREE</span>
+</div>
+<div class="flex justify-between text-sm text-green-400">
+<span>KAMIFIRST Discount</span>
+<span>-₹829</span>
+</div>
+</div>
+<!-- Total -->
+<div class="pt-6 border-t border-glass-border space-y-4">
+<div class="flex justify-between items-end">
+<div>
+<p class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-1">Total Amount</p>
+<p class="text-4xl font-syne font-extrabold text-primary">₹3,317</p>
+</div>
+<div class="bg-accent-purple/20 border border-accent-purple/30 px-3 py-1.5 rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-accent-purple">stars</span>
+<span class="text-[10px] font-bold text-accent-purple tracking-tight">+3,317 KamiKoins</span>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-white text-black font-syne font-extrabold text-lg py-5 rounded-full transition-all flex items-center justify-center gap-3 group">
+                                    CONTINUE TO PAYMENT
+                                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<div class="text-center pt-4">
+<a class="text-slate-500 hover:text-slate-300 text-sm font-medium transition-colors flex items-center justify-center gap-2" href="#">
+<span class="material-symbols-outlined text-base">keyboard_backspace</span>
+                                        Return to Cart
+                                    </a>
+</div>
+</div>
+</section>
+<!-- Trust Badges -->
+<div class="flex justify-center gap-8 opacity-40">
+<span class="material-symbols-outlined text-3xl">verified_user</span>
+<span class="material-symbols-outlined text-3xl">shield_moon</span>
+<span class="material-symbols-outlined text-3xl">local_shipping</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Aesthetic Glows -->
+<div class="fixed top-[-10%] right-[-10%] w-[40%] h-[40%] bg-accent-purple/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+<div class="fixed bottom-[-10%] left-[-10%] w-[40%] h-[40%] bg-primary/5 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+</div>
+</body></html>

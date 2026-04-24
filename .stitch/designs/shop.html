@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kamiwear Anime Streetwear Shop Catalog</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Syne:wght@700;800&amp;family=Orbitron:wght@500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f9f906",
+                        "accent-purple": "#6366f1",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#0A0812",
+                        "glass": "rgba(255, 255, 255, 0.03)",
+                        "glass-border": "rgba(255, 255, 255, 0.1)",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "syne": ["Syne", "sans-serif"],
+                        "orbitron": ["Orbitron", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(249, 249, 6, 0.2);
+            border-radius: 10px;
+        }
+        .product-card:hover .quick-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display min-h-screen">
+<!-- Sticky Glass Navbar -->
+<nav class="sticky top-0 z-50 glass-panel border-b border-glass-border px-8 py-4 flex items-center justify-between">
+<div class="flex items-center gap-12">
+<h1 class="font-syne text-2xl font-extrabold tracking-tighter text-primary">KAMIWEAR</h1>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">SHOP</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">COLLECTIONS</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">NEW ARRIVALS</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">LOOKBOOK</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="p-2 hover:bg-white/10 rounded-full transition-all">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="p-2 hover:bg-white/10 rounded-full transition-all">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<button class="p-2 hover:bg-white/10 rounded-full transition-all relative">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute top-1 right-1 bg-primary text-background-dark text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center">3</span>
+</button>
+</div>
+</nav>
+<main class="max-w-[1440px] mx-auto px-8 py-8">
+<!-- Breadcrumbs & Header -->
+<div class="mb-10">
+<nav class="flex items-center gap-2 text-xs uppercase tracking-widest text-slate-500 dark:text-slate-400 mb-4">
+<a class="hover:text-primary" href="#">Home</a>
+<span class="material-symbols-outlined text-[12px]">chevron_right</span>
+<span class="text-slate-300">Shop</span>
+</nav>
+<div class="flex items-end justify-between">
+<div>
+<h2 class="font-syne text-6xl font-extrabold tracking-tight mb-2">ALL PRODUCTS</h2>
+<p class="text-slate-400 text-sm">Showing 24 of 86 products in premium catalog</p>
+</div>
+</div>
+</div>
+<div class="flex gap-8">
+<!-- Sidebar Filters -->
+<aside class="w-64 flex-shrink-0 space-y-8">
+<div class="glass-panel p-6 rounded-2xl">
+<h3 class="text-xs font-bold uppercase tracking-widest text-primary mb-6">Anime Series</h3>
+<div class="space-y-4 max-h-60 overflow-y-auto custom-scrollbar pr-2">
+<label class="flex items-center gap-3 cursor-pointer group">
+<input checked="" class="rounded border-slate-700 bg-transparent text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="text-sm group-hover:text-primary transition-colors">Neon Genesis</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-slate-700 bg-transparent text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="text-sm group-hover:text-primary transition-colors">Jujutsu Kaisen</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-slate-700 bg-transparent text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="text-sm group-hover:text-primary transition-colors">Akira</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-slate-700 bg-transparent text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="text-sm group-hover:text-primary transition-colors">Cyberpunk 2077</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<input class="rounded border-slate-700 bg-transparent text-primary focus:ring-primary h-4 w-4" type="checkbox"/>
+<span class="text-sm group-hover:text-primary transition-colors">Ghost in the Shell</span>
+</label>
+</div>
+<div class="mt-8">
+<h3 class="text-xs font-bold uppercase tracking-widest text-primary mb-6">Categories</h3>
+<div class="flex flex-wrap gap-2">
+<button class="px-3 py-1.5 rounded-full text-[10px] font-bold bg-primary text-background-dark">OUTERWEAR</button>
+<button class="px-3 py-1.5 rounded-full text-[10px] font-bold bg-white/10 hover:bg-white/20">TEES</button>
+<button class="px-3 py-1.5 rounded-full text-[10px] font-bold bg-white/10 hover:bg-white/20">BOTTOMS</button>
+<button class="px-3 py-1.5 rounded-full text-[10px] font-bold bg-white/10 hover:bg-white/20">ACCESSORIES</button>
+</div>
+</div>
+<div class="mt-8">
+<h3 class="text-xs font-bold uppercase tracking-widest text-primary mb-6">Color</h3>
+<div class="flex gap-3">
+<button class="w-6 h-6 rounded-full bg-black border border-white/20"></button>
+<button class="w-6 h-6 rounded-full bg-white border border-white/20"></button>
+<button class="w-6 h-6 rounded-full bg-primary border border-white/20"></button>
+<button class="w-6 h-6 rounded-full bg-accent-purple border border-white/20"></button>
+<button class="w-6 h-6 rounded-full bg-slate-500 border border-white/20"></button>
+</div>
+</div>
+<div class="mt-8">
+<h3 class="text-xs font-bold uppercase tracking-widest text-primary mb-6">Size</h3>
+<div class="grid grid-cols-3 gap-2">
+<button class="py-2 text-[10px] border border-white/10 rounded-lg hover:border-primary">S</button>
+<button class="py-2 text-[10px] border border-primary bg-primary/10 rounded-lg">M</button>
+<button class="py-2 text-[10px] border border-white/10 rounded-lg hover:border-primary">L</button>
+<button class="py-2 text-[10px] border border-white/10 rounded-lg hover:border-primary">XL</button>
+<button class="py-2 text-[10px] border border-white/10 rounded-lg hover:border-primary">2XL</button>
+</div>
+</div>
+</div>
+</aside>
+<!-- Product Display Area -->
+<div class="flex-1">
+<!-- Sort Bar -->
+<div class="glass-panel rounded-2xl p-4 flex items-center justify-between mb-8">
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="text-xs font-medium text-slate-400">Sort by:</span>
+<select class="bg-transparent border-none text-xs font-bold text-white focus:ring-0 cursor-pointer">
+<option>Newest First</option>
+<option>Price: Low to High</option>
+<option>Price: High to Low</option>
+<option>Best Selling</option>
+</select>
+</div>
+<div class="h-4 w-[1px] bg-white/10 mx-2"></div>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-primary text-background-dark rounded-full text-[10px] font-bold flex items-center gap-1">
+                                NEON GENESIS <span class="material-symbols-outlined text-[12px]">close</span>
+</span>
+<span class="px-3 py-1 bg-primary text-background-dark rounded-full text-[10px] font-bold flex items-center gap-1">
+                                OUTERWEAR <span class="material-symbols-outlined text-[12px]">close</span>
+</span>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<button class="p-2 bg-white/10 rounded-lg text-primary">
+<span class="material-symbols-outlined text-sm">grid_view</span>
+</button>
+<button class="p-2 hover:bg-white/5 rounded-lg text-slate-500">
+<span class="material-symbols-outlined text-sm">view_list</span>
+</button>
+</div>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Product 1 -->
+<div class="product-card group relative">
+<div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Cyberpunk style black oversized hoodie with yellow tech graphics" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDStb7l2QdzHdO_HVzW_4SEURFzPytyYp10AKAyiMFO4SnlDAcygNhlSEwOg8HC6nugnznX12IQFPdeNFFgLckRz77fRSUA3R_i8nbdnGihgmVrF1qB5GQmf1DIjs-Ue-mnLy_R5XH0pg_n-sEZ1TpIsv-_Odsm1VBHjKeCNuSBP7QZ1EIt4RUuxWco9TNXfacD4_3zcDbYyt6fiHVPSdbuuheal8mddFUXs7sUx6cP4A6qZgim5W7VLGsMBWLuxT7AJUa5VmgKCSDY"/>
+<div class="absolute top-4 left-4 flex flex-col gap-2">
+<span class="font-orbitron text-[10px] bg-primary text-background-dark px-2 py-1 font-bold">LIMITED</span>
+</div>
+<button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+<div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300">
+<button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+</div>
+</div>
+<div class="space-y-1 px-2">
+<p class="text-[10px] font-bold text-accent-purple tracking-widest uppercase">Neon Genesis</p>
+<h3 class="text-sm font-semibold text-white/90">EVA-01 TECH HOODIE</h3>
+<div class="flex items-center justify-between mt-2">
+<p class="text-sm font-bold text-primary">$180.00</p>
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs">star</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="product-card group relative">
+<div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Minimalist street fashion t-shirt with anime eye graphic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDP0BzcWue6UEGQW0Aztw4AGvha4TSE0jq96y6O-XZdQaLNmHOA4NHQ0olxBz8veqEZnjUNWQw5YrE5ClR9NlYbAZKIG2eUqxoZihlLWzk3Ja0_xWX5ZqiEjgB3SlLbQ2xOgo_F0Aj4Vxpad-GZXBkamgsCqoaUZfqeR3yS-qKvo-9BuRkPoQqC2bGteoNWwj4fdnKuGRVdGVuhLpVXC12_0JgyarnQTLUGEWMFVH5ems_anm5BpT6E5VtF8kkSkl5tOhUS6YFQXBtx"/>
+<div class="absolute top-4 left-4 flex flex-col gap-2">
+<span class="font-orbitron text-[10px] bg-red-600 text-white px-2 py-1 font-bold">SALE</span>
+</div>
+<button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+<div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300">
+<button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+</div>
+</div>
+<div class="space-y-1 px-2">
+<p class="text-[10px] font-bold text-accent-purple tracking-widest uppercase">Akira</p>
+<h3 class="text-sm font-semibold text-white/90">NEO-TOKYO OVERSIZED TEE</h3>
+<div class="flex items-center justify-between mt-2">
+<div class="flex items-center gap-2">
+<p class="text-sm font-bold text-primary">$45.00</p>
+<p class="text-[10px] line-through text-slate-500">$65.00</p>
+</div>
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="product-card group relative">
+<div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Dark aesthetic denim jacket with cyberpunk back patch" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAh6IfunswEAJvXINU8_mcWWpSXf8Nu2aYS9kgMLCelA2eA9jvS6-iYp3KVfgq5Zz8x_wFwgXxQqie8orAhfYNWEafKc0Qc1wjrpPHd-g-0a3I0l3YqR0BlEHhWf7BcaxXoLgaRTfANTV2O4ePidaKOVbxBZYmZSpzAvHGWD6Ez8QwqV8JwjWsa1PuLSM3MQgEkozTKWDXnqp0_jBPpZ7lqGuc0xnosmLIsbPp_Apa1QzcBpUNr0tS4PwGCrcLvPAEexkS4H_X5Chhi"/>
+<button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+<div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300">
+<button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+</div>
+</div>
+<div class="space-y-1 px-2">
+<p class="text-[10px] font-bold text-accent-purple tracking-widest uppercase">Cyberpunk</p>
+<h3 class="text-sm font-semibold text-white/90">EDGERUNNERS CARGO JACKET</h3>
+<div class="flex items-center justify-between mt-2">
+<p class="text-sm font-bold text-primary">$210.00</p>
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs">star</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 4 -->
+<div class="product-card group relative">
+<div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="White premium knit sweater with minimal anime line art" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6OFEVSwLuQdNeiVMzZiV5iHozUyQdE7liywl938PkT5Y4E1dmkXsq0TLhOavHQclXOQvxwttaMRfzKABTZHTcI5J-AO-vnyR8syTBBJ_YMb7G6YxkjN9DXhKZ2sllaxjOyfmcoJyyhZooGg9V09JhlpgJ-Wq7_-nTWHaMXs6KvUXMlEi3C-pQhIZ0fGrp3QrUz9DHsdnmK5hKKWO_EKAUsQp2oEFIeaAgYVlzI3QlAlkbJLqPjmS6wzC_qb_xnBrsCoDAxtAV6iVu"/>
+<button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+<div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300">
+<button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+</div>
+</div>
+<div class="space-y-1 px-2">
+<p class="text-[10px] font-bold text-accent-purple tracking-widest uppercase">Jujutsu Kaisen</p>
+<h3 class="text-sm font-semibold text-white/90">DOMAIN EXPANSION KNIT</h3>
+<div class="flex items-center justify-between mt-2">
+<p class="text-sm font-bold text-primary">$120.00</p>
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Repeat for 8 total products (Mocking the grid) -->
+<!-- Product 5 -->
+<div class="product-card group relative">
+<div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Black joggers with techwear straps and yellow embroidery" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCei_DV5467-GRI5mPppMJrAIcEyFC2lWqV-Xh4AFQRgJ4rlYpjroymiNaAbqu4SUaabKMYwisJvtRydN3rmkfCLtBamXknasHfXcctxxj-eT1TIcqiXptiinPPi3rygiHaBEoB4GjunwdKLAczwx3r_2runov0nvuGvRsozb30fPY4ZLodhBPuD5q3xo8pVE3OzTBO4LDjjl7HErRemzjH2IIfV0FIRLoXJN6TCfo2OoKOE_NYOhwccwIqp-yfs0s8QGl62KjhrBmi"/>
+<button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+<div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300">
+<button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+</div>
+</div>
+<div class="space-y-1 px-2">
+<p class="text-[10px] font-bold text-accent-purple tracking-widest uppercase">Ghost in the Shell</p>
+<h3 class="text-sm font-semibold text-white/90">SECTION 9 CARGO RUNNERS</h3>
+<div class="flex items-center justify-between mt-2">
+<p class="text-sm font-bold text-primary">$155.00</p>
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs">star</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 6 -->
+<div class="product-card group relative">
+<div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Cyberpunk high top sneakers black and primary yellow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCk5frz7lYd7uEbsWblGIB6I0o1-SrvylkDh57DUAeHD5f_0YsUmFmM2pxUOJtNWLE16n63YLDoky-vh40j6v8RgVthPu5W207-XJ0taorPy99C1BDK4y-ck3-drEnW5Atn4AkRMaFTH3TAm8bmYlpFqT2bboAOFzXNnN0EaGWXELJxD4p-mtQLcGoBEpIfUB7E9LTcfs41XngYu6_tqfRxdejLKMqGUaGKQJtEq3RZ711iKAXQXvTcEsXdeIrd_3YYlOBwQyCDBDLw"/>
+<div class="absolute top-4 left-4 flex flex-col gap-2">
+<span class="font-orbitron text-[10px] bg-primary text-background-dark px-2 py-1 font-bold">LIMITED</span>
+</div>
+<button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+<div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300">
+<button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+</div>
+</div>
+<div class="space-y-1 px-2">
+<p class="text-[10px] font-bold text-accent-purple tracking-widest uppercase">Neon Genesis</p>
+<h3 class="text-sm font-semibold text-white/90">PILOT-01 TECH SNEAKERS</h3>
+<div class="flex items-center justify-between mt-2">
+<p class="text-sm font-bold text-primary">$295.00</p>
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 7 -->
+<div class="product-card group relative">
+<div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Oversized white t-shirt with subtle purple anime embroidery" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDF0V-KneZj3vLUy8IMyFxJd76n5B7_hQVyNHcABpW2na5A5WvVgzIl0MDN_0K4hQJZa_0e-StRfZYM__7GDpRsQbdasoiIIoZ3eS3HDhdlK-28kJ7HDLqzrucgp-ifRp7ByieIu_nNrs2qj0QJ5h8zzsRx0qXCVIuDrZP_J5D71RqxRrukH7IadxOpipLs95o3c2C006EFAUgP40kPA7akEQQDkHk2MYulLiBUBPKHWXGrEIp3p0MIHCxHNqoI79t3Nz-SKeiosVuA"/>
+<button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+<div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300">
+<button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+</div>
+</div>
+<div class="space-y-1 px-2">
+<p class="text-[10px] font-bold text-accent-purple tracking-widest uppercase">Jujutsu Kaisen</p>
+<h3 class="text-sm font-semibold text-white/90">SUKUNA CURSED SEAL TEE</h3>
+<div class="flex items-center justify-between mt-2">
+<p class="text-sm font-bold text-primary">$55.00</p>
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs">star</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Product 8 -->
+<div class="product-card group relative">
+<div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Industrial techwear belt with electric yellow accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWhshIuLdDtBW5RHxuOYHn_2573UM6VMHYKhLS26hySRMuyWnqLoBc0uFabPcTuI8Yl-OozgZDTxL4n9L4MHvMpDHnLOamuHZPROvVjIeNqaGKXz2H5tUBMx8FMtaDugXAMCQLjwy_kuWR600HCGDLn6JCMPkEXXkuEJF4-oYXS7mwQPnajk7fe6PxcAKmUAPPRWsZ9u8objfx0uS8n8nqDZdJR1XUFYcxKle2E87dw4S6m8u9aILfY9nXpaTrdFtf1l24hkVlnmVw"/>
+<div class="absolute top-4 left-4 flex flex-col gap-2">
+<span class="font-orbitron text-[10px] bg-red-600 text-white px-2 py-1 font-bold">SALE</span>
+</div>
+<button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
+<span class="material-symbols-outlined text-xl">favorite</span>
+</button>
+<div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300">
+<button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+</div>
+</div>
+<div class="space-y-1 px-2">
+<p class="text-[10px] font-bold text-accent-purple tracking-widest uppercase">Accessories</p>
+<h3 class="text-sm font-semibold text-white/90">TACTICAL SHINOBI BELT</h3>
+<div class="flex items-center justify-between mt-2">
+<div class="flex items-center gap-2">
+<p class="text-sm font-bold text-primary">$35.00</p>
+<p class="text-[10px] line-through text-slate-500">$50.00</p>
+</div>
+<div class="flex text-primary">
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs fill-1">star</span>
+<span class="material-symbols-outlined text-xs">star</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Load More -->
+<div class="mt-16 flex justify-center">
+<button class="px-12 py-4 border border-white/20 rounded-xl font-bold text-xs tracking-[0.2em] hover:bg-primary hover:text-background-dark hover:border-primary transition-all duration-300 uppercase">Load More Products</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Minimal Dark Footer -->
+<footer class="bg-background-dark border-t border-glass-border pt-20 pb-12 mt-20">
+<div class="max-w-[1440px] mx-auto px-8 grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+<div class="space-y-6">
+<h1 class="font-syne text-2xl font-extrabold tracking-tighter text-primary">KAMIWEAR</h1>
+<p class="text-slate-400 text-sm leading-relaxed max-w-[240px]">Blending Silicon Valley minimalism with high-octane anime culture. Premium streetwear for the digital vanguard.</p>
+<div class="flex gap-4">
+<a class="h-8 w-8 rounded-full glass-panel flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all" href="#">
+<span class="material-symbols-outlined text-lg">public</span>
+</a>
+<a class="h-8 w-8 rounded-full glass-panel flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all" href="#">
+<span class="material-symbols-outlined text-lg">share</span>
+</a>
+<a class="h-8 w-8 rounded-full glass-panel flex items-center justify-center hover:bg-primary hover:text-background-dark transition-all" href="#">
+<span class="material-symbols-outlined text-lg">camera</span>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-xs font-bold uppercase tracking-[0.2em] text-white mb-6">Explore</h4>
+<ul class="space-y-4 text-sm text-slate-400">
+<li><a class="hover:text-primary transition-colors" href="#">Catalog</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Limited Drops</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Sizing Guide</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Archive</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-xs font-bold uppercase tracking-[0.2em] text-white mb-6">Support</h4>
+<ul class="space-y-4 text-sm text-slate-400">
+<li><a class="hover:text-primary transition-colors" href="#">Shipping &amp; Returns</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Contact Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">FAQ</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Track Order</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-xs font-bold uppercase tracking-[0.2em] text-white mb-6">Newsletter</h4>
+<p class="text-sm text-slate-400 mb-4 leading-relaxed">Join the syndicate for early drop access.</p>
+<div class="flex gap-2">
+<input class="bg-glass border-glass-border rounded-lg text-xs p-3 flex-1 focus:ring-primary focus:border-primary" placeholder="EMAIL ADDRESS" type="email"/>
+<button class="bg-primary text-background-dark p-3 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+<div class="max-w-[1440px] mx-auto px-8 pt-8 border-t border-glass-border flex justify-between items-center text-[10px] text-slate-600 font-bold tracking-widest uppercase">
+<p>© 2024 KAMIWEAR LABS INC. ALL RIGHTS RESERVED.</p>
+<div class="flex gap-8">
+<a class="hover:text-slate-300" href="#">Privacy Policy</a>
+<a class="hover:text-slate-300" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+</body></html>

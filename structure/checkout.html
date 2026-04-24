@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Kamiwear | Secure Checkout</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Orbitron:wght@400;700&amp;family=Syne:wght@800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2df0d",
+                        "background-dark": "#0A0812",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "orbitron": ["Orbitron", "sans-serif"],
+                        "syne": ["Syne", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .liquid-glass {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+
+<body class="bg-background-dark font-display text-slate-100 antialiased selection:bg-primary selection:text-black">
+    <nav class="fixed top-0 w-full z-50 glass-panel border-b border-white/10 h-20 flex items-center">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <a href="index_v2.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <span class="material-symbols-outlined text-primary text-2xl">token</span>
+                <h1 class="font-orbitron font-bold text-xl tracking-tighter text-white">KAMIWEAR</h1>
+            </a>
+            <div class="flex items-center gap-4 text-xs font-orbitron tracking-widest text-slate-500">
+                <span class="text-primary">01 BAG</span>
+                <span class="material-symbols-outlined text-[10px]">chevron_right</span>
+                <span>02 SHIPPING</span>
+                <span class="material-symbols-outlined text-[10px]">chevron_right</span>
+                <span>03 PAYMENT</span>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-24 max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <!-- Left: Form -->
+            <div class="space-y-12">
+                <section>
+                    <h2 class="font-syne text-3xl uppercase italic font-bold mb-8">Contact Information</h2>
+                    <div class="space-y-4">
+                        <input type="email" placeholder="Email Address"
+                            class="w-full bg-white/5 border-white/10 rounded-xl px-6 py-4 focus:ring-primary focus:border-primary">
+                        <div class="flex items-center gap-2 text-sm text-slate-500">
+                            <input type="checkbox"
+                                class="rounded border-white/10 bg-white/5 text-primary focus:ring-primary">
+                            <span>Keep me updated on exclusive drops and Hashira announcements</span>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="font-syne text-3xl uppercase italic font-bold mb-8">Shipping Terminal</h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="text" placeholder="First Name"
+                            class="bg-white/5 border-white/10 rounded-xl px-6 py-4 focus:ring-primary focus:border-primary">
+                        <input type="text" placeholder="Last Name"
+                            class="bg-white/5 border-white/10 rounded-xl px-6 py-4 focus:ring-primary focus:border-primary">
+                        <input type="text" placeholder="Address"
+                            class="col-span-2 bg-white/5 border-white/10 rounded-xl px-6 py-4 focus:ring-primary focus:border-primary">
+                        <input type="text" placeholder="Apartment, suite, etc. (optional)"
+                            class="col-span-2 bg-white/5 border-white/10 rounded-xl px-6 py-4 focus:ring-primary focus:border-primary">
+                        <input type="text" placeholder="City"
+                            class="bg-white/5 border-white/10 rounded-xl px-6 py-4 focus:ring-primary focus:border-primary">
+                        <select
+                            class="bg-white/5 border-white/10 rounded-xl px-6 py-4 focus:ring-primary focus:border-primary text-slate-400">
+                            <option>Country / Region</option>
+                            <option>Japan</option>
+                            <option>USA</option>
+                            <option>Germany</option>
+                        </select>
+                    </div>
+                </section>
+
+                <section>
+                    <h2 class="font-syne text-3xl uppercase italic font-bold mb-8">Payment Terminal</h2>
+                    <div class="liquid-glass rounded-2xl p-8 border border-primary/20 relative overflow-hidden">
+                        <div class="absolute -right-20 -top-20 size-64 bg-primary/10 blur-3xl rounded-full"></div>
+                        <div class="flex flex-col md:flex-row items-center gap-8 relative z-10">
+                            <!-- QR Code Scanner -->
+                            <div class="shrink-0 w-48 h-48 bg-white/5 border border-primary/30 p-2 rounded-xl">
+                                <img src="../assets/qr_code.png" class="w-full h-full object-cover rounded-lg" alt="UPI QR Scanner">
+                            </div>
+                            
+                            <!-- Payment Details -->
+                            <div class="space-y-6 flex-grow text-center md:text-left w-full">
+                                <div>
+                                    <h3 class="font-syne text-xl uppercase font-bold text-primary mb-2">Scan to Transmit</h3>
+                                    <p class="text-sm text-slate-400">Use any UPI app to complete the transaction.</p>
+                                </div>
+                                
+                                <div class="space-y-3">
+                                    <div class="bg-black/40 border border-white/10 rounded-lg p-3 flex justify-between items-center group">
+                                        <span class="font-orbitron text-xs text-slate-300">kamiwear@upi</span>
+                                        <button type="button" class="text-primary hover:text-white transition-colors" onclick="navigator.clipboard.writeText('kamiwear@upi'); alert('UPI ID Copied!')">
+                                            <span class="material-symbols-outlined text-sm">content_copy</span>
+                                        </button>
+                                    </div>
+                                    <div class="bg-black/40 border border-white/10 rounded-lg p-3 flex justify-between items-center group">
+                                        <span class="font-orbitron text-xs text-slate-300">9876543210@paytm</span>
+                                        <button type="button" class="text-primary hover:text-white transition-colors" onclick="navigator.clipboard.writeText('9876543210@paytm'); alert('UPI ID Copied!')">
+                                            <span class="material-symbols-outlined text-sm">content_copy</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <button id="complete-order"
+                    class="w-full bg-primary text-black font-bold py-5 rounded-full hover:scale-[1.02] transition-transform text-lg shadow-[0_0_30px_rgba(242,223,13,0.2)]">
+                    COMPLETE MISSION
+                </button>
+            </div>
+
+            <!-- Right: Summary -->
+            <div class="lg:sticky lg:top-32 h-fit">
+                <div class="liquid-glass rounded-3xl p-8 space-y-8">
+                    <h3 class="font-syne text-xl uppercase font-bold tracking-tight">Order Summary</h3>
+                    <div id="checkout-items" class="space-y-6 max-h-[400px] overflow-y-auto pr-2">
+                        <!-- Items injected here -->
+                    </div>
+                    <div class="pt-8 border-t border-white/10 space-y-4">
+                        <div class="flex justify-between text-sm text-slate-400">
+                            <span>Subtotal</span>
+                            <span id="summary-subtotal">₹0.00</span>
+                        </div>
+                        <div class="flex justify-between text-sm text-slate-400">
+                            <span>Shipping</span>
+                            <span class="text-primary font-bold">FREE (VIP)</span>
+                        </div>
+                        <div class="flex justify-between text-xl font-bold pt-4 border-t border-white/5">
+                            <span class="font-syne italic uppercase">Total</span>
+                            <span id="summary-total" class="text-primary">₹0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/store/core.js"></script>
+    <script src="../js/components/badge-manager.js"></script>
+    <script src="../js/components/cart-drawer.js"></script>
+    <script src="../js/components/profile-modal.js"></script>
+    <script src="../js/components/search-overlay.js"></script>
+    <script src="../js/core/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = window.Store.getCart();
+            const itemsContainer = document.getElementById('checkout-items');
+            const subtotalEl = document.getElementById('summary-subtotal');
+            const totalEl = document.getElementById('summary-total');
+
+            if (cart.length === 0) {
+                window.location.href = 'index_v2.html';
+                return;
+            }
+
+            let subtotal = 0;
+            itemsContainer.innerHTML = cart.map(item => {
+                subtotal += item.price * item.quantity;
+                return `
+                    <div class="flex gap-4 items-center">
+                        <div class="relative">
+                            <div class="w-16 h-16 rounded-xl overflow-hidden bg-white/5 border border-white/10">
+                                <img src="${item.image}" class="w-full h-full object-cover">
+                            </div>
+                            <span class="absolute -top-2 -right-2 bg-primary text-black text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-background-dark">${item.quantity}</span>
+                        </div>
+                        <div class="flex-grow">
+                            <div class="flex justify-between">
+                                <h4 class="text-sm font-bold uppercase">${item.name}</h4>
+                                <span class="text-sm font-medium">₹${(item.price * item.quantity).toLocaleString()}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            subtotalEl.textContent = `₹${subtotal.toLocaleString()}`;
+            totalEl.textContent = `₹${subtotal.toLocaleString()}`;
+
+            document.getElementById('complete-order').addEventListener('click', async () => {
+                const btn = document.getElementById('complete-order');
+                btn.textContent = 'TRANSMITTING...';
+                btn.disabled = true;
+
+                const user = window.Store.getUser();
+                if (!user) {
+                    alert('Terminal restricted. Please establish connection (Log In) to complete mission.');
+                    btn.textContent = 'COMPLETE MISSION';
+                    btn.disabled = false;
+                    return;
+                }
+
+                try {
+                    const res = await window.Store.placeOrder({ method: 'CREDIT_CARD' });
+                    if (res.success || res.order) {
+                        // Store recent order temporarily for confirmation page
+                        localStorage.setItem('kw_recent_order', JSON.stringify(res.order || { id: 'FLBK_' + Date.now(), earnedPoints: Math.floor(subtotal / 10), totalAmount: subtotal }));
+                        alert('Mission Accomplished! Welcome to the Corps.');
+                        // Store.placeOrder already clears the cart
+                        window.location.href = 'confirmation.html';
+                    } else {
+                        alert('Transmission Error: ' + (res.message || 'Payment failed'));
+                        btn.textContent = 'COMPLETE MISSION';
+                        btn.disabled = false;
+                    }
+                } catch (e) {
+                    console.error(e);
+                    alert('Connection Lost. Cannot process order right now.');
+                    btn.textContent = 'COMPLETE MISSION';
+                    btn.disabled = false;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Order Success | KAMIWEAR</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Orbitron:wght@400;700&amp;family=Syne:wght@400;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1dd75e",
+                        "electric-yellow": "#F0FF42",
+                        "accent-purple": "#8B5CF6",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#0A0812",
+                        "glass": "rgba(255, 255, 255, 0.03)",
+                        "glass-border": "rgba(255, 255, 255, 0.1)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "syne": ["Syne", "sans-serif"],
+                        "orbitron": ["Orbitron", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .text-gradient-green {
+            background: linear-gradient(to right, #1dd75e, #F0FF42);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+    <!-- Top Navigation Bar -->
+    <header class="fixed top-0 w-full z-50 border-b border-white/10 bg-background-dark/80 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index_v2.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <span class="material-symbols-outlined text-primary text-3xl">deployed_code</span>
+                <h1 class="font-syne font-800 text-2xl tracking-tighter">KAMIWEAR</h1>
+            </a>
+            <nav class="hidden md:flex gap-10">
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="shop.html">SHOP</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors"
+                    href="index_v2.html#collections">COLLECTIONS</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="#">COMMUNITY</a>
+            </nav>
+            <div class="flex items-center gap-4">
+                <button class="p-2 hover:bg-white/5 rounded-full transition-colors">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                </button>
+                <button class="p-2 hover:bg-white/5 rounded-full transition-colors">
+                    <span class="material-symbols-outlined">person</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <main class="pt-32 pb-20 px-6 max-w-5xl mx-auto">
+        <!-- Success Hero -->
+        <section class="text-center mb-16">
+            <div class="inline-flex items-center justify-center size-24 bg-primary/20 rounded-full mb-8 relative">
+                <div class="absolute inset-0 bg-primary/10 animate-ping rounded-full"></div>
+                <span class="material-symbols-outlined text-primary text-5xl font-bold">check_circle</span>
+            </div>
+            <h1 class="font-syne font-800 text-6xl md:text-7xl mb-6 tracking-tight">ORDER CONFIRMED!</h1>
+            <p class="text-xl text-slate-400 mb-8">Your anime is on its way. 🔥</p>
+            <div class="inline-block glass-panel px-6 py-3 rounded-xl border-primary/30">
+                <span class="font-orbitron text-primary tracking-widest text-sm">ORDER #KW-290347</span>
+            </div>
+        </section>
+        <!-- KamiKoin Banner -->
+        <section class="glass-panel rounded-xl p-8 mb-12 relative overflow-hidden group">
+            <div class="absolute -right-20 -top-20 size-64 bg-primary/10 blur-3xl rounded-full"></div>
+            <div class="relative flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="flex items-center gap-6">
+                    <div class="size-16 bg-electric-yellow/20 rounded-full flex items-center justify-center">
+                        <span
+                            class="material-symbols-outlined text-electric-yellow text-4xl fill-1">monetization_on</span>
+                    </div>
+                    <div>
+                        <h2 class="font-syne font-800 text-2xl text-electric-yellow">YOU EARNED 12,480 KAMIKOIN!</h2>
+                        <p class="text-slate-400">Total Balance: 5,642 XP</p>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/3">
+                    <div class="flex justify-between items-end mb-2">
+                        <span class="text-sm font-bold text-accent-purple uppercase tracking-widest">Rank: Chunin</span>
+                        <span class="text-xs text-slate-500 uppercase">Next Rank: Jonin</span>
+                    </div>
+                    <div class="h-3 w-full bg-white/5 rounded-full overflow-hidden">
+                        <div class="h-full bg-accent-purple rounded-full shadow-[0_0_15px_rgba(139,92,246,0.5)]"
+                            style="width: 65%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Shipping Tracker -->
+        <section class="glass-panel rounded-xl p-8 mb-12">
+            <h3 class="font-syne font-bold text-lg mb-8 uppercase tracking-wider">Shipping Status</h3>
+            <div class="grid grid-cols-4 relative">
+                <div class="absolute top-4 left-0 w-full h-0.5 bg-white/10 z-0"></div>
+                <div class="flex flex-col items-center gap-4 relative z-10 text-primary">
+                    <span class="material-symbols-outlined bg-background-dark p-1">radio_button_checked</span>
+                    <span class="text-[10px] font-bold tracking-tighter uppercase">Order Placed</span>
+                </div>
+                <div class="flex flex-col items-center gap-4 relative z-10 text-slate-600">
+                    <span class="material-symbols-outlined bg-background-dark p-1">circle</span>
+                    <span class="text-[10px] font-bold tracking-tighter uppercase">Processing</span>
+                </div>
+                <div class="flex flex-col items-center gap-4 relative z-10 text-slate-600">
+                    <span class="material-symbols-outlined bg-background-dark p-1">circle</span>
+                    <span class="text-[10px] font-bold tracking-tighter uppercase">On the Way</span>
+                </div>
+                <div class="flex flex-col items-center gap-4 relative z-10 text-slate-600">
+                    <span class="material-symbols-outlined bg-background-dark p-1">circle</span>
+                    <span class="text-[10px] font-bold tracking-tighter uppercase">Delivered</span>
+                </div>
+            </div>
+        </section>
+        <!-- Grid: Order Details & Actions -->
+        <div class="grid md:grid-cols-3 gap-8 mb-16">
+            <div class="md:col-span-2 space-y-8">
+                <!-- Items -->
+                <div class="glass-panel rounded-xl p-8">
+                    <h3 class="font-syne font-bold text-lg mb-6 uppercase tracking-wider">Your Items</h3>
+                    <div class="space-y-6" id="order-items-list">
+                        <div class="flex gap-6 items-center">
+                            <div class="size-20 rounded-lg overflow-hidden bg-white/5">
+                                <img class="w-full h-full object-cover"
+                                    data-alt="Black oversized hoodie with minimalist anime graphic"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1MwFP0Izg0dmoVPK8ftvVlX7TzgQeSwnFpmSyC2G6BzVVJ-vmmJUkRQoD-WAiVSEifF4fXHQZ4Bv14jVutjYA8vtQBx3qkLztD7axCKICt6jX22isudSp5kqg7YEdXoiiY-Z5WjtXzE-uXRSHDyuK1U0S8IPH_sdtl43QVM-tdtBKHf0y0_NuDPbCwLjikRt8BdCzMy_G9ILUz5RP1Xr0IbEevIzJMOsn3pxKl8-4MZmnUMSbrd2KXmNgLhdQcPzpfc5ke8Ww2Fay" />
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold">Tanjiro 'Breath of Water' Hoodie</h4>
+                                <p class="text-sm text-slate-500">Size: XL | Color: Midnight Black</p>
+                            </div>
+                            <div class="font-orbitron text-sm">₹6,800</div>
+                        </div>
+                        <div class="flex gap-6 items-center">
+                            <div class="size-20 rounded-lg overflow-hidden bg-white/5">
+                                <img class="w-full h-full object-cover"
+                                    data-alt="Minimalist white anime graphic t-shirt"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMNDx3w8kHBub_m6TAF-bKGWZpzWg19tLJw3APCvUc7MwYEs2QC0Pec1hsVLnUSC1JjDCzhknyIs6ZmyP_U_a-moYnqeithtTEGINSyVBeQF8vgBS7znECV3QKWF65bQn6jQkUqR4t2cxuEezSdWgmWBiobQl6SZJeMkRSchDj22VtdjFSwLhzp1NdTjjGFSVP4-SxU5a5M_vmL5gC-AVo238VKq67piJChog9RJm1CEUKKJOMRIbp0A4aqKoE8dv7XUteRHOKn1JS" />
+                            </div>
+                            <div class="flex-1">
+                                <h4 class="font-bold">Nezuko 'Pink Blossom' Tee</h4>
+                                <p class="text-sm text-slate-500">Size: L | Color: Bone White</p>
+                            </div>
+                            <div class="font-orbitron text-sm">₹3,600</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <aside class="space-y-6">
+                <div class="glass-panel rounded-xl p-6">
+                    <h3 class="font-syne font-bold text-sm mb-4 uppercase text-slate-500">Delivery Address</h3>
+                    <p class="text-sm leading-relaxed">
+                        Akshay Kumar<br />
+                        202, Marine Drive Terrace<br />
+                        Mumbai, Maharashtra 400020<br />
+                        India
+                    </p>
+                </div>
+                <div class="glass-panel rounded-xl p-6">
+                    <h3 class="font-syne font-bold text-sm mb-4 uppercase text-slate-500">Estimated Delivery</h3>
+                    <p class="font-orbitron text-primary">MARCH 10 - 12, 2024</p>
+                </div>
+                <div class="glass-panel rounded-xl p-6">
+                    <h3 class="font-syne font-bold text-sm mb-4 uppercase text-slate-500">Payment Method</h3>
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-slate-400">credit_card</span>
+                        <span class="text-sm font-medium">•••• 8829</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+        <!-- Recommendations -->
+        <section class="mb-16">
+            <h3 class="font-syne font-bold text-2xl mb-8 uppercase tracking-tighter">While You Wait</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="glass-panel p-3 rounded-xl group cursor-pointer hover:border-primary/50 transition-all" data-price="16800">
+                    <div class="aspect-square rounded-lg overflow-hidden mb-3">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            data-alt="Japanese style denim jacket with patches"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUpNqjrNUz9pbPkkEwL6bCAGjtEMEODcvpaOzkUQg5lyh1OlJYKWHvN0n9oEDPqC0H1Tm_ORXEL37IGshBJMVg1sCPO41DJ30h6zEKUS_yf8ZMKwut2MQ-Qu2rIdZVXiw7065Bc6MaVCyhm8CqBCQI2STayoX8e-eXVG53XIzngdhr96PxcF8jM-ITo-jiigQlyi_cAtnNTq_fZUWExOSeP64xNjiuMDOeBeIBog2XKLCwbHO_hV_L7drMhJDKmCE_JbRAe7bTDYM3" />
+                    </div>
+                    <h4 class="text-xs font-bold uppercase truncate">Ronin Denim Jacket</h4>
+                    <p class="text-[10px] text-slate-500 font-orbitron mt-1">₹16,800</p>
+                </div>
+                <div class="glass-panel p-3 rounded-xl group cursor-pointer hover:border-primary/50 transition-all" data-price="14400">
+                    <div class="aspect-square rounded-lg overflow-hidden mb-3">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            data-alt="Cyberpunk style techwear bomber jacket"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1tm5-Uxnt68-rKdumg6FTRYr_4TAPW7p_Z9qNmtSmq3pzaL_9pmpiVRNTzZfqm5q2EY4M_bnEwpNAzne1Ase-u8_sY-yzMEsSJMDtM0hOQJPjV9C4b-D5J2P15qoQWhR9Zrzl9ZXVP7dILWFTf7ePqGWOSB6KDQ2lg3oownmbOSuXb9DAbKed9TMU6hjs9aPqMzVlbkt3ShibWCJGgno-4xwIm8lNJvOILqGWRB4uFRFCOCbVkmtgVXGulZS-uh84wNjuhZVWN7Uh" />
+                    </div>
+                    <h4 class="text-xs font-bold uppercase truncate">Neo-Tokyo Bomber</h4>
+                    <p class="text-[10px] text-slate-500 font-orbitron mt-1">₹14,400</p>
+                </div>
+                <div class="glass-panel p-3 rounded-xl group cursor-pointer hover:border-primary/50 transition-all" data-price="9600">
+                    <div class="aspect-square rounded-lg overflow-hidden mb-3">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            data-alt="Classic white hoodie with red accent"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7bFAqtYSFoj1LzXUfcvFMvHzb5UTiLq_A8AV099iAoPQIQ0NSffN6TOpmd4hyExOAVaRIGbahmAAZ5U5_jBwMDd1_d_h1byAsbtsBK-wF6DHN-RpX1nHwtl_gaaiR3xpNYSFNHHrcKOuKifqzzmPmddta5p7VECHGk4NZJhFSAlk67UIpLy5497Ou5I8kXzHKWB9gLB14DfCYR__Atv_ZYzbn-LLMNjtvObuoOIwNMdMzaPBqoCKBuG_8ngdkDxk2E11-tx0tIoqS" />
+                    </div>
+                    <h4 class="text-xs font-bold uppercase truncate">Zen Spirit Hoodie</h4>
+                    <p class="text-[10px] text-slate-500 font-orbitron mt-1">₹9,600</p>
+                </div>
+                <div class="glass-panel p-3 rounded-xl group cursor-pointer hover:border-primary/50 transition-all" data-price="4400">
+                    <div class="aspect-square rounded-lg overflow-hidden mb-3">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            data-alt="Streetwear graphic t-shirt with kanji"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAeo8wlL5QAT3IZlrB2ymQSZYRVyKeIvNqqs7p-NARgyLFUQTJFmf253dPrub42dltCdCCbFguv7vsrMJVsDg1SekImTxDGVQPdR4ACRB5sNLT7ybf01dUag8aQ08aapEob3GdYruMxP4vCrMNQpgukKVUehqokomlln8LOkpV2BYmjQnRV09hF-_ssveKQCSQfLX4_99W_QqwSh4DVJp3eZgkrDkNuoLT0wcwWNoXvH-kxqnKiUONT1uz8jqFlA-tIXPURIIGl2Opp" />
+                    </div>
+                    <h4 class="text-xs font-bold uppercase truncate">Akira Legacy Tee</h4>
+                    <p class="text-[10px] text-slate-500 font-orbitron mt-1">₹4,400</p>
+                </div>
+            </div>
+        </section>
+        <!-- CTAs -->
+        <div class="flex flex-col md:flex-row gap-4 justify-center items-center mt-12">
+            <button
+                class="w-full md:w-auto px-12 py-5 bg-electric-yellow text-background-dark font-syne font-800 rounded-full hover:scale-105 active:scale-95 transition-all shadow-[0_0_30px_rgba(240,255,66,0.2)]">
+                CONTINUE SHOPPING
+            </button>
+            <button
+                class="w-full md:w-auto px-12 py-5 glass-panel font-syne font-800 rounded-full hover:bg-white/10 transition-all">
+                TRACK YOUR ORDER
+            </button>
+        </div>
+    </main>
+    <footer class="border-t border-white/5 py-12 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <a href="index_v2.html" class="flex items-center gap-2 opacity-50 hover:opacity-80 transition-opacity">
+                <span class="material-symbols-outlined text-sm">deployed_code</span>
+                <span class="font-syne font-bold text-sm tracking-tighter">KAMIWEAR</span>
+            </a>
+            <p class="text-slate-500 text-xs font-medium uppercase tracking-[0.2em]">© 2024 KAMIWEAR LABS. ALL RIGHTS
+                RESERVED.</p>
+            <div class="flex gap-6">
+                <a class="text-slate-500 hover:text-white transition-colors" href="#"><span
+                        class="material-symbols-outlined text-xl">language</span></a>
+                <a class="text-slate-500 hover:text-white transition-colors" href="#"><span
+                        class="material-symbols-outlined text-xl">alternate_email</span></a>
+            </div>
+        </div>
+    </footer>
+    <script src="../js/store/core.js"></script>
+    <script src="../js/components/badge-manager.js"></script>
+    <script src="../js/components/cart-drawer.js"></script>
+    <script src="../js/components/profile-modal.js"></script>
+    <script src="../js/components/search-overlay.js"></script>
+    <script src="../js/core/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const recentOrderStr = localStorage.getItem('kw_recent_order');
+            const user = window.Store.getUser();
+
+            if (recentOrderStr) {
+                const order = JSON.parse(recentOrderStr);
+                
+                // Update Order ID
+                const orderIdEl = document.querySelector('.font-orbitron.text-primary.tracking-widest.text-sm');
+                if (orderIdEl) {
+                    const shortId = order._id ? order._id.slice(-6).toUpperCase() : (order.id ? order.id.slice(-6).toUpperCase() : 'UNKNOWN');
+                    orderIdEl.textContent = `ORDER #KW-${shortId}`;
+                }
+
+                // Update Points Earned
+                const earnedEl = document.querySelector('h2.font-syne.font-800.text-2xl.text-electric-yellow');
+                if (earnedEl) {
+                    earnedEl.textContent = `YOU EARNED ${order.earnedPoints || 0} KAMIKOIN!`;
+                }
+                
+                // Update total items display dynamically if items exist in order
+                if (order.items && order.items.length > 0) {
+                    const itemsContainer = document.getElementById('order-items-list');
+                    if(itemsContainer) {
+                        itemsContainer.innerHTML = order.items.map(item => `
+                            <div class="flex gap-6 items-center">
+                                <div class="size-20 rounded-lg overflow-hidden bg-white/5 relative">
+                                    <img class="w-full h-full object-cover" src="${item.image}" />
+                                    <span class="absolute -top-1 -right-1 bg-primary text-black text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-background-dark">${item.quantity}</span>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-bold uppercase">${item.name}</h4>
+                                    <p class="text-sm text-slate-500">Category: ${item.category || 'Apparel'}</p>
+                                </div>
+                                <div class="font-orbitron text-sm">₹${(item.price * item.quantity).toLocaleString()}</div>
+                            </div>
+                        `).join('');
+                    }
+                }
+            }
+
+            if (user) {
+                // Fetch latest user data from server to get accurate points
+                const freshUser = await window.Store.verifySession() || user;
+                
+                // Update User Balance
+                const balanceEl = document.querySelector('p.text-slate-400:contains("Total Balance")') || Array.from(document.querySelectorAll('p.text-slate-400')).find(p => p.textContent.includes('Total Balance'));
+                if (balanceEl) {
+                    balanceEl.textContent = `Total Balance: ${(freshUser.kamiKoins || 0).toLocaleString()} XP`;
+                }
+
+                // Update Rank logic
+                const rankEl = document.querySelector('span.text-sm.font-bold.text-accent-purple.uppercase.tracking-widest');
+                const nextRankEl = document.querySelector('span.text-xs.text-slate-500.uppercase');
+                const progressBar = document.querySelector('.h-full.bg-accent-purple.rounded-full');
+
+                if (rankEl && nextRankEl && progressBar) {
+                    rankEl.textContent = `Rank: ${freshUser.tier || 'Genin'}`;
+                    
+                    const pts = freshUser.kamiKoins || 0;
+                    let nextTier = 200;
+                    let nextTierName = 'Chunin';
+                    if (pts >= 1000) { nextTier = 2500; nextTierName = 'Kage Level'; }
+                    else if (pts >= 500) { nextTier = 1000; nextTierName = 'Kage'; }
+                    else if (pts >= 200) { nextTier = 500; nextTierName = 'Jonin'; }
+
+                    nextRankEl.textContent = `Next Rank: ${nextTierName}`;
+                    const progress = Math.min((pts / nextTier) * 100, 100);
+                    progressBar.style.width = `${progress}%`;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "1774417410606",
+    "email": "test@test.com",
+    "password": "$2b$10$QKhx2xhM451VRSXwdP3r1eQFHJTW0XXT2leWqPoEbuP9DKiWwuMhO",
+    "name": "Test",
+    "kamiKoins": 0,
+    "tier": "Genin",
+    "createdAt": "2026-03-25T05:43:30.606Z"
+  },
+  {
+    "_id": "1775803984825chytz",
+    "email": "vanshd994@gmail.com",
+    "password": "$2b$10$RgdHm/NAoppyzJ3LsBwow.hT8/9ieohjPyZ3BcTDpwnsoyHsmJO7i",
+    "name": "vansh",
+    "kamiKoins": 0,
+    "tier": "Genin",
+    "createdAt": "2026-04-10T06:53:04.825Z"
+  },
+  {
+    "_id": "1776313945082eqkml",
+    "email": "light.kira689@gmail.com",
+    "password": "$2b$10$XSJow6T6xdzAHy0SWa0n2OtWoWGu9FtDvwJYYBn0DbD1R1kY29G/O",
+    "name": "vansh",
+    "kamiKoins": 0,
+    "tier": "Genin",
+    "createdAt": "2026-04-16T04:32:25.082Z"
+  }
+]

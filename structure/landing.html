@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kamiwear Summoning V4</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Syne:wght@800&amp;family=Orbitron:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#fff647",
+                        "neon-purple": "#9D00FF",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#000000",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "syne": ["Syne", "sans-serif"],
+                        "orbitron": ["Orbitron", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-mask {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.05);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .energy-ring {
+            background: radial-gradient(circle, transparent 60%, #9D00FF 85%, #fff647 100%);
+            box-shadow: 0 0 100px 20px rgba(157, 0, 255, 0.3), inset 0 0 100px 20px rgba(255, 246, 71, 0.2);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(157, 0, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-background-dark font-display text-slate-100 overflow-hidden h-screen w-screen flex flex-col justify-between p-10 select-none">
+<!-- Top Navigation / Data Readouts -->
+<header class="flex justify-between items-start w-full z-20">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-3 text-primary">
+<span class="material-symbols-outlined text-2xl">grid_view</span>
+<span class="font-orbitron text-sm tracking-widest uppercase">Kamiwear Protocol</span>
+</div>
+<div class="h-px w-32 bg-gradient-to-r from-primary to-transparent"></div>
+</div>
+<div class="flex gap-12 font-orbitron text-[10px] tracking-[0.2em] text-[#F2EDFF]/60">
+<div class="flex flex-col items-end">
+<span class="text-primary/50">LATENCY</span>
+<span class="text-[#F2EDFF]">2ms</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-primary/50">SYSTEM</span>
+<span class="text-[#F2EDFF]">ONLINE</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-primary/50">CORE</span>
+<span class="text-[#F2EDFF]">STABLE</span>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 relative flex items-center justify-center">
+<!-- Energy Ring Background -->
+<div class="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none">
+<div class="energy-ring w-[800px] h-[800px] rounded-full opacity-40 animate-pulse"></div>
+<div class="absolute w-[600px] h-[600px] border border-primary/20 rounded-full animate-reverse-spin"></div>
+<div class="absolute w-[1000px] h-[1000px] border border-neon-purple/10 rounded-full"></div>
+</div>
+<!-- Central Title -->
+<div class="relative z-10 text-center">
+<h1 class="text-[150pt] font-syne font-extrabold tracking-tighter leading-none mix-blend-overlay opacity-90 filter drop-shadow-[0_0_30px_rgba(255,246,71,0.3)]">
+                KAMIWEAR
+            </h1>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<span class="text-[150pt] font-syne font-extrabold tracking-tighter leading-none text-transparent bg-clip-text bg-gradient-to-b from-white/80 via-white/20 to-transparent">
+                    KAMIWEAR
+                 </span>
+</div>
+<p class="font-orbitron text-primary text-xl tracking-[1em] mt-4 opacity-80 uppercase">Summoning V4</p>
+</div>
+</main>
+<!-- CTA & Footer -->
+<footer class="flex flex-col items-center gap-12 z-20">
+<div class="relative group">
+<div class="absolute -inset-1 bg-gradient-to-r from-neon-purple to-primary rounded-full blur opacity-40 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+<a href="index_v2.html" style="text-decoration: none;" class="relative flex min-w-[320px] items-center justify-center overflow-hidden rounded-full h-20 px-12 bg-black/40 backdrop-blur-xl border border-white/20 text-primary text-2xl font-orbitron font-bold tracking-widest hover:scale-105 transition-all active:scale-95">
+<span class="truncate">ENTER THE UNIVERSE</span>
+</a>
+</div>
+<div class="flex justify-between items-end w-full max-w-screen-2xl">
+<div class="flex items-center gap-6 font-orbitron text-[10px] tracking-widest text-[#F2EDFF]/40 uppercase">
+<span>Phase: Deployment</span>
+<span class="w-1 h-1 bg-primary rounded-full"></span>
+<span>Node: 0x4f2a...91</span>
+</div>
+<div class="flex gap-4">
+<div class="size-12 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-primary">terminal</span>
+</div>
+<div class="size-12 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-primary">security</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- Background Decoration -->
+<div class="fixed top-0 left-0 w-full h-full pointer-events-none opacity-20 z-0">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full" style="background-image: radial-gradient(circle at 50% 50%, rgba(157, 0, 255, 0.1) 0%, transparent 70%);"></div>
+<div class="absolute inset-0" data-alt="Abstract futuristic technical grid pattern" style="background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 50px 50px;"></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script><script>
+        // Launch Animation
+        const tl = gsap.timeline({ defaults: { ease: "expo.out" } });
+        tl.from("main", { opacity: 0, duration: 2 })
+          .from("h1", { scale: 1.5, opacity: 0, filter: "blur(20px)", duration: 2 }, "-=1.5")
+          .from(".font-orbitron", { y: 20, opacity: 0, stagger: 0.1, duration: 1 }, "-=1")
+          .from("a", { y: 50, opacity: 0, duration: 1 }, "-=0.5");
+
+        // Pulsing Portal
+        gsap.to(".rounded-full", {
+            scale: 1.05,
+            boxShadow: "0 0 60px rgba(157, 0, 255, 0.4)",
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+    </script></body></html>

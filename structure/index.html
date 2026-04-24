@@ -1,0 +1,519 @@
+<html class="dark">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Syne:wght@800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2df0d",
+                        "accent-purple": "#3c1a5b",
+                        "accent-purple-light": "#7c3aed",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#121212",
+                        "glass-bg": "rgba(255, 255, 255, 0.05)",
+                        "glass-border": "rgba(255, 255, 255, 0.1)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "syne": ["Syne", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style type="text/tailwindcss">
+        .glass-panel {
+            @apply bg-white/[0.03] backdrop-blur-[12px] border border-white/[0.1];
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 70% 30%, rgba(60, 26, 91, 0.2) 0%, transparent 60%),
+                        radial-gradient(circle at 20% 80%, rgba(242, 223, 13, 0.05) 0%, transparent 50%);
+        }
+        .marquee {
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }.collection-img {
+            @apply grayscale brightness-[0.6] transition-all duration-500;
+        }
+        .group:hover .collection-img {
+            @apply grayscale-0 brightness-100;
+        }
+        .collection-overlay {
+            @apply absolute inset-0 bg-black/20 transition-opacity duration-500;
+        }
+        .group:hover .collection-overlay {
+            @apply opacity-0;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 selection:bg-primary selection:text-black">
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-panel border-b border-glass-border">
+        <div class="max-w-[1440px] mx-auto px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-12">
+                <a href="index_v2.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                    <span class="material-symbols-outlined text-primary text-3xl">token</span>
+                    <h1 class="font-syne text-2xl tracking-tighter uppercase font-extrabold italic">Kamiwear</h1>
+                </a>
+                <div class="hidden lg:flex items-center gap-8">
+                    <a class="text-sm font-medium hover:text-primary transition-colors"
+                        href="#collections">COLLECTIONS</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="shop.html">DROPS</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="#rank">KAMIKOIN</a>
+                    <a class="text-sm font-medium hover:text-primary transition-colors" href="#community">ABOUT</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <div class="relative flex items-center bg-white/5 rounded-full px-4 py-2 border border-white/10">
+                    <span class="material-symbols-outlined text-slate-400 text-xl">search</span>
+                    <input class="bg-transparent border-none focus:ring-0 text-sm placeholder:text-slate-500 w-48"
+                        placeholder="Search archives..." type="text" />
+                </div>
+                <button onclick="toggleCart(true)" class="text-white hover:text-primary transition-colors relative">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span id="cart-count-badge"
+                        class="absolute -top-1 -right-1 bg-primary text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                </button>
+                <button id="profile-btn-trigger" onclick="typeof toggleProfile === 'function' ? toggleProfile(true) : console.log('not loaded')" class="p-2 hover:bg-white/5 rounded-full transition-colors relative z-[100]">
+                    <span class="material-symbols-outlined">person</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <div class="pt-20 bg-primary/90 text-black py-2 overflow-hidden border-b border-black/10">
+        <div class="marquee flex gap-8 font-bold text-sm tracking-widest uppercase">
+            <span>NEO-TOKYO CAPSULE LIVE NOW</span>
+            <span>•</span>
+            <span>FREE WORLDWIDE SHIPPING ON ALL ORDERS OVER ₹12,000</span>
+            <span>•</span>
+            <span>NEW RANK UNLOCKED: JOIN THE KAGE COUNCIL</span>
+            <span>•</span>
+            <span>NEO-TOKYO CAPSULE LIVE NOW</span>
+            <span>•</span>
+            <span>FREE WORLDWIDE SHIPPING ON ALL ORDERS OVER ₹12,000</span>
+            <span>•</span>
+            <span>NEW RANK UNLOCKED: JOIN THE KAGE COUNCIL</span>
+        </div>
+    </div>
+    <section class="relative min-h-[85vh] flex items-center overflow-hidden hero-gradient">
+        <div class="absolute inset-0 z-0 opacity-40 bg-cover bg-center"
+            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA01cbUeNraY4lPp-tOBrlYLZgXNWbrJDsgfvs6G52QeI5goO2aVIj2EI5M5tvIn0n1E3YIEfyYo2qXwAcNLGSUyRWIYabCY75BcjWTTuxyDetDUkzKcURkJYLMlFRnQqfJJMSOSiKIP61dqIhEz9-_in4H2W-Uj8ko0JSax-5ieC0AzQiBDnVKH_DOhKw9o5mHjKwxFwU5OvSqnqP7zHvUL68dOcfT0py2UsCQesEUPWJsiOkE-pxylETejrDT5Lsm9c13PBYJqWfn');">
+        </div>
+        <div class="absolute top-20 right-40 w-64 h-64 rounded-full bg-red-600/20 blur-3xl"></div>
+        <div class="max-w-[1440px] mx-auto px-8 w-full grid lg:grid-cols-2 gap-12 relative z-10">
+            <div class="flex flex-col justify-center space-y-2">
+                <div class="relative">
+                    <h2 class="font-syne text-[100px] leading-[0.85] tracking-tighter uppercase italic -skew-x-12">
+                        WEAR. <br />
+                        <span class="text-transparent border-t-2 border-b-2 border-white/20 px-2">THE.</span> <br />
+                        <span class="text-primary">ANIME.</span>
+                    </h2>
+                    <div class="absolute -left-10 top-1/2 w-20 h-1 bg-primary/30 -skew-x-12"></div>
+                    <div class="absolute -left-16 top-[60%] w-32 h-1 bg-accent-purple-light/30 -skew-x-12"></div>
+                </div>
+                <div class="glass-panel p-8 rounded-xl mt-12 max-w-lg border-l-4 border-l-primary">
+                    <p class="text-lg text-slate-300 mb-8 leading-relaxed">
+                        Experience <span class="text-white font-bold underline decoration-primary">380GSM Armor</span>.
+                        High-energy Shōnen aesthetics meet Silicon Valley glassmorphism.
+                    </p>
+                    <div class="flex gap-4">
+                        <button
+                            class="bg-primary hover:bg-primary/80 text-black font-bold px-8 py-4 rounded-full transition-all flex items-center gap-2 group">
+                            SUMMON COLLECTION
+                            <span
+                                class="material-symbols-outlined group-hover:translate-x-1 transition-transform">bolt</span>
+                        </button>
+                        <button
+                            class="glass-panel hover:bg-white/10 text-white font-bold px-8 py-4 rounded-full transition-all flex items-center gap-2">
+                            WATCH ANTHEM
+                            <span class="material-symbols-outlined">play_circle</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="relative hidden lg:flex items-center justify-center">
+                <div class="relative z-20 transform hover:scale-105 transition-transform duration-500">
+                    <img alt="Techwear Hoodie"
+                        class="w-full max-w-lg rounded-xl drop-shadow-[0_0_50px_rgba(124,58,237,0.3)]"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDa4C3vb7dSvJQ891ZkrWog7ztaOJyv0Xivc-UqKJ3bxocK0FLgxif0JxaF7vdCGKct_lP-CM3o8MS7tSeH4hyS7n9j_c5q2QLhw-OZ9mr_kNtQ7qNm8MNqAWpnT-H_BPseiJN8WB17Z5uc8o4H-CEooA3PsI5p6TpbE8QuK4v8_Vf1Ix54CArhutCr2gy9dHP0l-g-X1LORIwP2IGOrFXPpj9wvlgnWhxQLVObu84p_ScmS5_jiwSrEEtaPm5TQYLo0GH3muuSdeI" />
+                    <div
+                        class="absolute -top-10 -right-10 glass-panel p-4 rounded-lg border-t-2 border-t-primary animate-bounce">
+                        <div class="text-[10px] text-primary font-bold uppercase tracking-widest mb-1">Material Spec
+                        </div>
+                        <div class="text-sm font-bold">380GSM ARMOR COTTON</div>
+                    </div>
+                    <div
+                        class="absolute bottom-20 -left-20 glass-panel p-4 rounded-lg border-b-2 border-b-accent-purple-light">
+                        <div class="text-[10px] text-accent-purple-light font-bold uppercase tracking-widest mb-1">
+                            Durability</div>
+                        <div class="text-sm font-bold">REINFORCED KEVLAR STITCH</div>
+                    </div>
+                    <div class="absolute inset-0 pointer-events-none">
+                        <div
+                            class="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent-purple-light to-transparent rotate-45 scale-x-150 blur-sm">
+                        </div>
+                        <div
+                            class="absolute top-2/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary to-transparent -rotate-[30deg] scale-x-150 blur-sm">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="max-w-[1440px] mx-auto px-8 py-24">
+        <div class="flex items-end justify-between mb-12">
+            <div>
+                <h3 class="text-primary font-bold tracking-[0.2em] text-sm mb-2 uppercase">Core Archive</h3>
+                <h2 class="font-syne text-4xl uppercase font-extrabold italic">Featured Collections</h2>
+            </div>
+            <a class="text-sm font-medium border-b border-primary pb-1 hover:text-primary transition-colors"
+                href="#">VIEW ALL ARCHIVES</a>
+        </div>
+        <div id="collections" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div onclick="window.location.href='demon-slayer.html'"
+                class="group relative overflow-hidden rounded-xl aspect-[3/4] cursor-pointer">
+                <div class="collection-img absolute inset-0 bg-cover bg-center group-hover:scale-110"
+                    style="background-image: url('../slayer_corps_cover_perfect_1773032305388.png');">
+                </div>
+                <div class="collection-overlay"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                <div class="absolute bottom-0 p-8 w-full z-10">
+                    <h4 class="font-syne text-2xl uppercase italic font-bold mb-2">Slayer Corps</h4>
+                    <p class="text-sm text-slate-300">Phase 01: Water Breathing</p>
+                    <div class="mt-4 h-1 w-0 group-hover:w-full bg-primary transition-all duration-500"></div>
+                </div>
+            </div>
+            <div onclick="window.location.href='cursed-energy.html'"
+                class="group relative overflow-hidden rounded-xl aspect-[3/4] cursor-pointer">
+                <div class="collection-img absolute inset-0 bg-cover bg-center group-hover:scale-110"
+                    style="background-image: url('../cursed_energy_product_sukuna_1773032399164.png');">
+                </div>
+                <div class="collection-overlay"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                <div class="absolute bottom-0 p-8 w-full z-10">
+                    <h4 class="font-syne text-2xl uppercase italic font-bold mb-2">Cursed Energy</h4>
+                    <p class="text-sm text-slate-300">Phase 02: Expansion</p>
+                    <div class="mt-4 h-1 w-0 group-hover:w-full bg-primary transition-all duration-500"></div>
+                </div>
+            </div>
+            <div onclick="window.location.href='night-city.html'"
+                class="group relative overflow-hidden rounded-xl aspect-[3/4] cursor-pointer">
+                <div class="collection-img absolute inset-0 bg-cover bg-center group-hover:scale-110"
+                    style="background-image: url('../night_city_cover_perfect_v2_1773032380473.png');">
+                </div>
+                <div class="collection-overlay"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                <div class="absolute bottom-0 p-8 w-full z-10">
+                    <h4 class="font-syne text-2xl uppercase italic font-bold mb-2">Night City</h4>
+                    <p class="text-sm text-slate-300">Phase 03: Chrome</p>
+                    <div class="mt-4 h-1 w-0 group-hover:w-full bg-primary transition-all duration-500"></div>
+                </div>
+            </div>
+            <div onclick="window.location.href='neo-tokyo.html'"
+                class="group relative overflow-hidden rounded-xl aspect-[3/4] cursor-pointer">
+                <div class="collection-img absolute inset-0 bg-cover bg-center group-hover:scale-110"
+                    style="background-image: url('../neo_tokyo_product_akira_vest_1773032421281.png');">
+                </div>
+                <div class="collection-overlay"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
+                <div class="absolute bottom-0 p-8 w-full z-10">
+                    <h4 class="font-syne text-2xl uppercase italic font-bold mb-2">Neo-Tokyo</h4>
+                    <p class="text-sm text-slate-300">Phase 04: Awakening</p>
+                    <div class="mt-4 h-1 w-0 group-hover:w-full bg-primary transition-all duration-500"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="bg-white/5 py-24">
+        <div class="max-w-[1440px] mx-auto px-8">
+            <h2 class="font-syne text-4xl uppercase font-extrabold italic mb-12 flex items-center gap-4">
+                Trending Now
+                <span class="h-px flex-grow bg-white/10"></span>
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="group relative glass-panel rounded-xl overflow-hidden p-4" data-price="10000">
+                    <div class="relative aspect-square mb-4 rounded-lg overflow-hidden bg-black/40">
+                        <img alt="Tech Hoodie"
+                            class="w-full h-full object-cover transition-transform group-hover:scale-105"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCe-BrR_OKT11lQb1DfTy5xiJSe5GtwKmtjtttRIXQFLcprAT-rVn7bvImd_gYpgvf9cug0NCl9YFi62YxcO9RfuKBQKOy2vRHoY2TLeUNSQ4cI59K4ghjEWOR9ipEBe7_wH2xQjZByoV1Yh8SgyhJkeGnjCVyfLEZ6PmQe1XzmttsJH1QbKRCug_dbfEwMKaRy0XZarr-kFG_Ql-o3-M2HrgzIG5F9O_X70ZnEsna0PU_yOEq4yR3TbCdUmTpGT8EaLtMqlIy0h0D5" />
+                        <button
+                            class="absolute inset-x-4 bottom-4 translate-y-20 group-hover:translate-y-0 bg-primary text-black font-bold py-3 rounded-full transition-all duration-300 flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-xl">add_shopping_cart</span>
+                            ADD TO CART
+                        </button>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h5 class="font-bold text-slate-200">KAMI-O1 TECH HOODIE</h5>
+                            <p class="text-xs text-primary font-bold uppercase mt-1">Limited Release</p>
+                        </div>
+                        <span class="font-bold">₹10,000</span>
+                    </div>
+                </div>
+                <div class="group relative glass-panel rounded-xl overflow-hidden p-4" data-price="11200">
+                    <div class="relative aspect-square mb-4 rounded-lg overflow-hidden bg-black/40">
+                        <img alt="Cargo Pants"
+                            class="w-full h-full object-cover transition-transform group-hover:scale-105"
+                            src="../night_city_cyber_joggers_1773032534008.png" />
+                        <button
+                            class="absolute inset-x-4 bottom-4 translate-y-20 group-hover:translate-y-0 bg-primary text-black font-bold py-3 rounded-full transition-all duration-300 flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-xl">add_shopping_cart</span>
+                            ADD TO CART
+                        </button>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h5 class="font-bold text-slate-200">VOID-STRIKER CARGOS</h5>
+                            <p class="text-xs text-accent-purple-light font-bold uppercase mt-1">Back in stock</p>
+                        </div>
+                        <span class="font-bold">₹11,200</span>
+                    </div>
+                </div>
+                <div class="group relative glass-panel rounded-xl overflow-hidden p-4" data-price="14800">
+                    <div class="relative aspect-square mb-4 rounded-lg overflow-hidden bg-black/40">
+                        <img alt="Kimono" class="w-full h-full object-cover transition-transform group-hover:scale-105"
+                            src="../assets/generated/gojo_infinite_tee_1774247527626.png" />
+                        <button
+                            class="absolute inset-x-4 bottom-4 translate-y-20 group-hover:translate-y-0 bg-primary text-black font-bold py-3 rounded-full transition-all duration-300 flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-xl">add_shopping_cart</span>
+                            ADD TO CART
+                        </button>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h5 class="font-bold text-slate-200">SHINOBI STREET KIMONO</h5>
+                            <p class="text-xs text-primary font-bold uppercase mt-1">New Arrival</p>
+                        </div>
+                        <span class="font-bold">₹14,800</span>
+                    </div>
+                </div>
+                <div class="group relative glass-panel rounded-xl overflow-hidden p-4" data-price="12800">
+                    <div class="relative aspect-square mb-4 rounded-lg overflow-hidden bg-black/40">
+                        <img alt="Bomber Jacket"
+                            class="w-full h-full object-cover transition-transform group-hover:scale-105"
+                            src="../assets/t-shirts/Nine-Tails Unleashed main.png" />
+                        <button
+                            class="absolute inset-x-4 bottom-4 translate-y-20 group-hover:translate-y-0 bg-primary text-black font-bold py-3 rounded-full transition-all duration-300 flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-xl">add_shopping_cart</span>
+                            ADD TO CART
+                        </button>
+                    </div>
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h5 class="font-bold text-slate-200">TITAN-II BOMBER</h5>
+                            <p class="text-xs text-slate-500 font-bold uppercase mt-1">Classic</p>
+                        </div>
+                        <span class="font-bold">₹12,800</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="max-w-[1440px] mx-auto px-8 py-24">
+        <div class="glass-panel rounded-3xl p-12 overflow-hidden relative border-accent-purple/30">
+            <div class="absolute -right-20 -top-20 w-96 h-96 bg-accent-purple/20 blur-[100px] rounded-full"></div>
+            <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
+                <div class="lg:w-1/3">
+                    <div class="flex items-center gap-2 text-primary font-bold mb-4">
+                        <span class="material-symbols-outlined">stars</span>
+                        LOYALTY REWARDS
+                    </div>
+                    <h2 class="font-syne text-5xl uppercase font-extrabold italic mb-6">KamiKoin <span
+                            class="text-accent-purple-light">Network</span></h2>
+                    <p class="text-slate-400 leading-relaxed mb-8">
+                        Every purchase fuels your ascent. Level up your ninja rank to unlock exclusive drops, VIP
+                        access, and custom embroidery services.
+                    </p>
+                    <button
+                        onclick="typeof toggleProfile === 'function' ? toggleProfile(true) : window.location.href='profile.html'"
+                        class="bg-white text-black font-bold px-8 py-4 rounded-full hover:bg-primary transition-all">CHECK
+                        YOUR RANK</button>
+                </div>
+                <div class="lg:w-2/3 w-full">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div
+                            class="glass-panel p-6 rounded-2xl flex flex-col items-center text-center border-white/5 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer">
+                            <span class="material-symbols-outlined text-4xl mb-3">person</span>
+                            <div class="font-bold text-sm">GENIN</div>
+                            <div class="text-[10px] text-slate-500 uppercase mt-1">Lvl 1-10</div>
+                        </div>
+                        <div
+                            class="glass-panel p-6 rounded-2xl flex flex-col items-center text-center border-white/5 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer">
+                            <span class="material-symbols-outlined text-4xl mb-3">security</span>
+                            <div class="font-bold text-sm text-primary">CHUNIN</div>
+                            <div class="text-[10px] text-primary uppercase mt-1">Lvl 11-30</div>
+                        </div>
+                        <div
+                            class="glass-panel p-6 rounded-2xl flex flex-col items-center text-center border-primary/40 bg-white/10 ring-2 ring-primary">
+                            <span class="material-symbols-outlined text-4xl mb-3 text-primary">military_tech</span>
+                            <div class="font-bold text-sm">JONIN</div>
+                            <div class="text-[10px] text-slate-300 uppercase mt-1">Lvl 31-50</div>
+                        </div>
+                        <div
+                            class="glass-panel p-6 rounded-2xl flex flex-col items-center text-center border-white/5 opacity-50 grayscale hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer">
+                            <span
+                                class="material-symbols-outlined text-4xl mb-3 text-accent-purple-light">diamond</span>
+                            <div class="font-bold text-sm">KAGE</div>
+                            <div class="text-[10px] text-accent-purple-light uppercase mt-1">Lvl 51+</div>
+                        </div>
+                    </div>
+                    <div class="mt-8 bg-white/5 h-2 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-primary via-primary to-accent-purple-light w-3/4">
+                        </div>
+                    </div>
+                    <div
+                        class="flex justify-between mt-3 text-[10px] font-bold text-slate-500 tracking-widest uppercase">
+                        <span>XP: 8,450 / 10,000</span>
+                        <span>NEXT RANK: KAGE IN 1,550 XP</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="community" class="max-w-[1440px] mx-auto px-8 py-24 border-t border-white/5">
+        <h2 class="font-syne text-5xl font-extrabold uppercase italic text-center mb-16">The Community</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div class="overflow-hidden rounded-xl aspect-square">
+                <img alt="Community Style 1"
+                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-105 cursor-pointer"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDa4C3vb7dSvJQ891ZkrWog7ztaOJyv0Xivc-UqKJ3bxocK0FLgxif0JxaF7vdCGKct_lP-CM3o8MS7tSeH4hyS7n9j_c5q2QLhw-OZ9mr_kNtQ7qNm8MNqAWpnT-H_BPseiJN8WB17Z5uc8o4H-CEooA3PsI5p6TpbE8QuK4v8_Vf1Ix54CArhutCr2gy9dHP0l-g-X1LORIwP2IGOrFXPpj9wvlgnWhxQLVObu84p_ScmS5_jiwSrEEtaPm5TQYLo0GH3muuSdeI" />
+            </div>
+            <div class="overflow-hidden rounded-xl aspect-square">
+                <img alt="Community Style 2"
+                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-105 cursor-pointer"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCe-BrR_OKT11lQb1DfTy5xiJSe5GtwKmtjtttRIXQFLcprAT-rVn7bvImd_gYpgvf9cug0NCl9YFi62YxcO9RfuKBQKOy2vRHoY2TLeUNSQ4cI59K4ghjEWOR9ipEBe7_wH2xQjZByoV1Yh8SgyhJkeGnjCVyfLEZ6PmQe1XzmttsJH1QbKRCug_dbfEwMKaRy0XZarr-kFG_Ql-o3-M2HrgzIG5F9O_X70ZnEsna0PU_yOEq4yR3TbCdUmTpGT8EaLtMqlIy0h0D5" />
+            </div>
+            <div class="overflow-hidden rounded-xl aspect-square">
+                <img alt="Community Style 3"
+                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-105 cursor-pointer"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUmczTPWFaZUGNI-JNUdx-d4R-jIzp0O6KYSaCzR_usnMI6VFOzHiDvXMjhaOnoW5sdoX4oWCgGfYxynK4-aNL5SkBpcAZbzy96dr_-4iF4IRxBzoL7ZevhZw5bSZt94LxP5GZsUlFvkpmahyg9C9IpwIiJugMTxR_kGvCdortAF10R7IAl_wf9dQJpluTB7rQdKSeHLDe8NJYBg60_ZDDD0YKUAkxwiIlZxpvbV6d570jY347M11L3c-GiOaKJ4RwyNUSdmncQj3D" />
+            </div>
+            <div class="overflow-hidden rounded-xl aspect-square">
+                <img alt="Community Style 4"
+                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-105 cursor-pointer"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwedm46Cu7nDYnipNVxAvH3IAAps_GFIh0t6UdF94MQWZuMfp-9oYp00TTW7JTzrOGNTA7kFwWUb244_J9_GS5_cpmdUTbITEGsXgoXQnVUUGCJCEX-P-JzUBNNFI95bj2p-aYtLTcbGlgndmhMh47dR8D9DYtTy2p7wF-kECTq3DoPekLwZoEm6eQuDHYAlWiDqBGE0rGTU1URnjRJoQWgrMjF5MLgbASJ4dYHTE19FPNcSUPBaR-1i14SlukR2WNp2lkhLyfqQj_" />
+            </div>
+            <div class="overflow-hidden rounded-xl aspect-square">
+                <img alt="Community Style 5"
+                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-105 cursor-pointer"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfBhTdfaOA6ZZKc3FVklttK-X0cF1-YzsbA65WuMzlB4AikQRDSza0hT3XVLvFwdNWtEMVHfKF6DbRdRDP0bZgZdMzlKv-IwZZ2wQY2SO7RwPyAlRpyjAB_-JOsB20dLR0uzmtXhismO7nqS_AUu_GgUPzZbXTx08JmaEmK4VnhoQoKrEm2QsDYvEgwj3gTPMyU4H_R1weu9buAHkS_TT7B9BgwkBV5QOUmkuVYbUyH386sO5QOEuMda9o8N22OubI1Eq8llnttXeE" />
+            </div>
+            <div class="overflow-hidden rounded-xl aspect-square">
+                <img alt="Community Style 6"
+                    class="w-full h-full object-cover transition-transform duration-500 hover:scale-105 cursor-pointer"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJdf9yLLBmQBV9xBqYySFEp2sbGdnXEpvQci0jkOOrNn8R85VpCq_jT_p0RuBOPDAPjV-mERMEiXy-uAsqrEfEO_MdRQ1w80IgPzrtpq_p5_1-itCDoentrULSU7zdF_0DYguvEcSGWaufxw_NqGAaVOOe-sNPO7NBYkfHdXui0LwY5Ckaalh2xQZRk9WdB8GizMBbNaYfzCRbYm7iFzKn1SNpS4O8hueWC6lY3qIGd-JXM8vLOe6mSkGN8nBbDFglseu3b3Z3Tl4B" />
+            </div>
+        </div>
+    </section>
+    <footer class="bg-black/40 border-t border-glass-border pt-24 pb-12">
+        <div class="max-w-[1440px] mx-auto px-8">
+            <div class="flex flex-col lg:flex-row justify-between items-start gap-12 mb-20">
+                <div class="lg:w-1/3">
+                    <h3 class="font-syne text-2xl uppercase italic font-extrabold mb-4">Join the <span
+                            class="text-primary">Syndicate</span></h3>
+                    <p class="text-slate-400 mb-6">Early access, drop alerts, and exclusive lore delivered to your
+                        terminal.</p>
+                    <div class="flex gap-2">
+                        <input
+                            class="glass-panel flex-grow rounded-full px-6 py-3 border-none focus:ring-1 focus:ring-primary text-sm"
+                            placeholder="ENTER YOUR EMAIL" type="email" />
+                        <button
+                            class="bg-primary text-black font-bold px-6 rounded-full hover:scale-105 transition-transform">
+                            <span class="material-symbols-outlined">send</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-12 flex-grow">
+                    <div class="space-y-4">
+                        <h4 class="text-xs font-bold tracking-[0.2em] uppercase text-primary">Archives</h4>
+                        <ul class="space-y-2 text-sm text-slate-400">
+                            <li><a class="hover:text-white transition-colors" href="shop.html">Tops</a></li>
+                            <li><a class="hover:text-white transition-colors" href="shop.html">Bottoms</a></li>
+                            <li><a class="hover:text-white transition-colors" href="shop.html">Accessories</a></li>
+                            <li><a class="hover:text-white transition-colors" href="shop.html">Limited Sets</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="text-xs font-bold tracking-[0.2em] uppercase text-primary">Support</h4>
+                        <ul class="space-y-2 text-sm text-slate-400">
+                            <li><a class="hover:text-white transition-colors" href="checkout.html">Tracking</a></li>
+                            <li><a class="hover:text-white transition-colors" href="#">Shipping Info</a></li>
+                            <li><a class="hover:text-white transition-colors" href="#">Exchanges</a></li>
+                            <li><a class="hover:text-white transition-colors" href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="text-xs font-bold tracking-[0.2em] uppercase text-primary">Connect</h4>
+                        <ul class="space-y-2 text-sm text-slate-400">
+                            <li><a class="hover:text-white transition-colors" href="https://discord.com"
+                                    target="_blank">Discord</a></li>
+                            <li><a class="hover:text-white transition-colors" href="https://instagram.com"
+                                    target="_blank">Instagram</a></li>
+                            <li><a class="hover:text-white transition-colors" href="https://tiktok.com"
+                                    target="_blank">TikTok</a></li>
+                            <li><a class="hover:text-white transition-colors" href="https://twitter.com"
+                                    target="_blank">Twitter</a></li>
+                        </ul>
+                    </div>
+                    <div class="space-y-4">
+                        <h4 class="text-xs font-bold tracking-[0.2em] uppercase text-primary">Legal</h4>
+                        <ul class="space-y-2 text-sm text-slate-400">
+                            <li><a class="hover:text-primary transition-colors" href="profile.html">Identity
+                                    Terminal</a></li>
+                            <li><a class="hover:text-white transition-colors" href="#">Terms</a></li>
+                            <li><a class="hover:text-white transition-colors" href="#">Cookie Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 gap-4">
+                <div class="flex items-center gap-4">
+                    <a href="index_v2.html" class="hover:opacity-80 transition-opacity">
+                        <h1 class="font-syne text-xl tracking-tighter uppercase font-extrabold italic opacity-50">
+                            KAMIWEAR</h1>
+                    </a>
+                    <span class="text-[10px] text-slate-600 tracking-widest">©2024 DESIGNED BY KAMIWEAR STUDIO</span>
+                </div>
+                <div class="flex gap-6 opacity-30">
+                    <span class="material-symbols-outlined">payments</span>
+                    <span class="material-symbols-outlined">credit_card</span>
+                    <span class="material-symbols-outlined">account_balance_wallet</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Core Logic -->
+    <script src="../js/store/core.js?v=2"></script>
+    <script src="../js/components/badge-manager.js"></script>
+    <script src="../js/components/cart-drawer.js"></script>
+    <script src="../js/components/profile-modal.js?v=2"></script>
+    <script src="../js/components/search-overlay.js"></script>
+    <script src="../js/core/app.js"></script>
+</body>
+
+</html>

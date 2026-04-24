@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Kamiwear | Identity Terminal</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Orbitron:wght@400;700&amp;family=Syne:wght@800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2df0d",
+                        "electric-yellow": "#FFF748",
+                        "curse-purple": "#3C1A5B",
+                        "background-dark": "#0A0812",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "orbitron": ["Orbitron", "sans-serif"],
+                        "syne": ["Syne", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .liquid-glass {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.01));
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glow-avatar {
+            filter: drop-shadow(0 0 15px rgba(242, 223, 13, 0.3));
+        }
+
+        .tier-badge {
+            animation: pulse-glow 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 5px rgba(255, 247, 72, 0.2);
+            }
+
+            50% {
+                box-shadow: 0 0 20px rgba(255, 247, 72, 0.5);
+            }
+        }
+
+        .xp-bar-inner {
+            transition: width 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        body {
+            background: radial-gradient(circle at top right, #1a1625, #0A0812 60%);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-dark font-display text-slate-100 antialiased selection:bg-primary selection:text-black min-h-screen">
+    <nav class="fixed top-0 w-full z-50 glass-panel border-b border-white/10 h-20 flex items-center">
+        <div class="max-w-7xl mx-auto px-6 w-full flex justify-between items-center">
+            <a href="index_v2.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <span class="material-symbols-outlined text-primary text-2xl">token</span>
+                <h1 class="font-orbitron font-bold text-xl tracking-tighter text-white">KAMIWEAR</h1>
+            </a>
+            <div class="flex items-center gap-8 text-xs font-orbitron tracking-widest text-slate-400 uppercase">
+                <a class="hover:text-primary transition-colors" href="index_v2.html#collections">Archives</a>
+                <a class="hover:text-primary transition-colors" href="#">Clan Social</a>
+                <a class="text-primary border-b border-primary pb-1" href="profile.html">Terminal</a>
+                <button onclick="toggleCart(true)" class="text-white hover:text-primary transition-colors relative">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span id="cart-count-badge"
+                        class="absolute -top-1 -right-1 bg-primary text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-32 pb-24 max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            <!-- Sidebar: Identity Hub -->
+            <div class="lg:col-span-4 space-y-8">
+                <div class="liquid-glass rounded-[40px] p-10 text-center relative overflow-hidden group">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                    </div>
+
+                    <div class="relative inline-block mb-6">
+                        <div class="w-32 h-32 rounded-full border-4 border-primary p-2 glow-avatar mx-auto">
+                            <img id="user-avatar-large" src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Shinobi"
+                                class="w-full h-full rounded-full bg-slate-900 object-cover">
+                        </div>
+                        <div class="absolute -bottom-2 right-0 tier-badge bg-primary text-black font-orbitron text-[10px] font-bold px-3 py-1 rounded-full border-2 border-background-dark uppercase"
+                            id="user-tier-badge">GENIN</div>
+                    </div>
+
+                    <h2 class="font-syne text-3xl uppercase italic font-bold tracking-tight mb-2"
+                        id="user-name-display">USER_NAME</h2>
+                    <p class="font-orbitron text-[10px] text-slate-500 tracking-[0.4em] uppercase mb-8">ID: <span
+                            id="user-id-display">8829-X-SHINOBI</span></p>
+
+                    <div class="space-y-4">
+                        <div
+                            class="flex justify-between text-[10px] font-orbitron font-bold text-slate-400 uppercase tracking-widest">
+                            <span>KAMI_XP</span>
+                            <span id="xp-text">750 / 1000</span>
+                        </div>
+                        <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden border border-white/5">
+                            <div id="xp-bar" class="xp-bar-inner h-full bg-gradient-to-r from-curse-purple to-primary"
+                                style="width: 75%;"></div>
+                        </div>
+                        <p class="text-[9px] text-slate-500 uppercase tracking-widest">Next Rank: <span
+                                class="text-primary italic">CHUNIN</span></p>
+                    </div>
+                </div>
+
+                <div class="liquid-glass rounded-3xl p-4 space-y-2">
+                    <button id="show-edit-profile"
+                        class="nav-tab-btn active w-full flex items-center gap-4 p-4 text-white bg-white/5 rounded-2xl group transition-all">
+                        <span
+                            class="material-symbols-outlined italic text-xl group-hover:scale-110 transition-transform">terminal</span>
+                        <span class="font-orbitron text-xs font-bold tracking-widest uppercase">Identity Link</span>
+                    </button>
+                    <button id="show-transmissions"
+                        class="nav-tab-btn w-full flex items-center gap-4 p-4 text-slate-400 hover:text-white hover:bg-white/5 rounded-2xl group transition-all">
+                        <span
+                            class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">package_2</span>
+                        <span class="font-orbitron text-xs font-bold tracking-widest uppercase">Transmissions</span>
+                    </button>
+                    <button id="show-wish-archives"
+                        class="nav-tab-btn w-full flex items-center gap-4 p-4 text-slate-400 hover:text-white hover:bg-white/5 rounded-2xl group transition-all">
+                        <span
+                            class="material-symbols-outlined text-xl group-hover:scale-110 transition-transform">favorite</span>
+                        <span class="font-orbitron text-xs font-bold tracking-widest uppercase">Wish Archives</span>
+                    </button>
+                    <button id="profile-logout"
+                        class="w-full flex items-center gap-4 p-4 text-red-400/60 hover:text-red-400 hover:bg-red-400/5 rounded-2xl transition-all">
+                        <span class="material-symbols-outlined text-xl">logout</span>
+                        <span class="font-orbitron text-xs font-bold tracking-widest uppercase">Terminate Session</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Main Panel: Data Feed -->
+            <div class="lg:col-span-8 space-y-12">
+                <header
+                    class="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-white/5">
+                    <div>
+                        <h3 class="font-syne text-4xl italic font-bold uppercase tracking-tighter">Command Terminal</h3>
+                        <p class="text-slate-500 text-sm mt-2">Active session. Synchronized with Tokyo HQ.</p>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="liquid-glass px-6 py-2 rounded-xl text-center">
+                            <span
+                                class="block text-[10px] text-slate-500 font-orbitron uppercase tracking-widest mb-1">Koins</span>
+                            <span class="font-syne text-xl font-bold text-primary" id="koin-count">1.4K</span>
+                        </div>
+                        <div class="liquid-glass px-6 py-2 rounded-xl text-center">
+                            <span
+                                class="block text-[10px] text-slate-500 font-orbitron uppercase tracking-widest mb-1">Missions</span>
+                            <span class="font-syne text-xl font-bold text-white" id="mission-count">12</span>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Identity Link (Edit Profile) Section -->
+                <section id="edit-profile-section" class="tab-content block">
+                    <div class="flex items-center justify-between mb-8">
+                        <h4 class="font-syne text-xl uppercase italic font-bold tracking-tight flex items-center gap-3">
+                            <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+                            Identity Configuration
+                        </h4>
+                    </div>
+                    <div class="liquid-glass rounded-3xl p-8 space-y-6">
+                        <div>
+                            <label class="block text-xs font-orbitron text-slate-400 uppercase tracking-widest mb-2">Codename</label>
+                            <input type="text" id="edit-name" class="w-full bg-white/5 border-white/10 rounded-xl px-6 py-4 focus:ring-primary focus:border-primary text-white" placeholder="Enter codename">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-orbitron text-slate-400 uppercase tracking-widest mb-2">Avatar Seed (Style)</label>
+                            <input type="text" id="edit-avatar-seed" class="w-full bg-white/5 border-white/10 rounded-xl px-6 py-4 focus:ring-primary focus:border-primary text-white" placeholder="e.g. Shinobi, Cyber, Akatsuki">
+                            <p class="text-[10px] text-slate-500 mt-2 font-orbitron">Changes your pixel-art avatar style.</p>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-orbitron text-slate-400 uppercase tracking-widest mb-2">Identity Bio</label>
+                            <textarea id="edit-bio" rows="3" class="w-full bg-white/5 border-white/10 rounded-xl px-6 py-4 focus:ring-primary focus:border-primary text-white" placeholder="Brief description of your status or clan allegiance"></textarea>
+                        </div>
+                        <div class="pt-4 border-t border-white/10 flex justify-end gap-4">
+                            <button id="save-profile-btn" class="bg-primary text-black font-bold px-8 py-3 rounded-full hover:bg-primary/80 transition-all font-orbitron text-xs tracking-widest uppercase flex items-center gap-2">
+                                <span class="material-symbols-outlined text-sm">sync</span> Sync Identity
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Order History / Transmissions Section -->
+                <section id="transmissions-section" class="tab-content hidden">
+                    <div class="flex items-center justify-between mb-8">
+                        <h4 class="font-syne text-xl uppercase italic font-bold tracking-tight flex items-center gap-3">
+                            <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+                            Mission History
+                        </h4>
+                        <button
+                            class="text-[10px] font-orbitron text-slate-500 hover:text-primary uppercase tracking-widest transition-colors">View
+                            All Transmissions</button>
+                    </div>
+
+                    <div class="space-y-6" id="mission-feed">
+                        <!-- Loaded dynamically -->
+                    </div>
+                </section>
+
+                <!-- Wish Archives Section -->
+                <section id="wish-archives-section" class="tab-content hidden">
+                    <div class="flex items-center justify-between mb-8">
+                        <h4 class="font-syne text-xl uppercase italic font-bold tracking-tight flex items-center gap-3">
+                            <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
+                            Wish Archives
+                        </h4>
+                    </div>
+                    <div class="liquid-glass rounded-3xl p-8 text-center text-slate-500 border-white/5 border-dashed border-2">
+                        <span class="material-symbols-outlined text-4xl mb-2 opacity-50">favorite_border</span>
+                        <h5 class="font-syne text-xl uppercase italic">Archive Empty</h5>
+                        <p class="font-orbitron tracking-widest text-[10px] mt-2">You haven't bookmarked any artifacts yet.</p>
+                        <button onclick="window.location.href='index_v2.html#collections'" class="mt-4 px-6 py-2 bg-white/5 border border-white/10 rounded-full hover:text-primary hover:border-primary transition-all font-orbitron text-[10px] tracking-widest uppercase">Explore Core Archives</button>
+                    </div>
+                </section>
+
+                <!-- Exclusive Terminal -->
+                <section class="liquid-glass rounded-[40px] p-10 relative overflow-hidden bg-curse-purple/10">
+                    <div
+                        class="absolute top-0 right-0 w-64 h-64 bg-primary/5 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2">
+                    </div>
+                    <div class="relative z-10 flex flex-col md:flex-row items-center gap-10">
+                        <div class="shrink-0 text-center md:text-left">
+                            <span
+                                class="font-orbitron font-bold text-primary text-xs uppercase tracking-[0.4em] mb-4 block">Level
+                                Status</span>
+                            <h4
+                                class="font-syne text-4xl italic font-bold uppercase tracking-tighter leading-none mb-6">
+                                Ascend to <br />Chunin Tier</h4>
+                            <button
+                                class="bg-primary text-black font-bold px-8 py-4 rounded-full text-xs hover:scale-105 transition-transform flex items-center gap-2 uppercase tracking-widest">
+                                Unlock Perks <span class="material-symbols-outlined text-sm">rocket_launch</span>
+                            </button>
+                        </div>
+                        <div class="flex-grow grid grid-cols-2 gap-4">
+                            <div class="bg-white/5 border border-white/5 rounded-2xl p-4">
+                                <span class="material-symbols-outlined text-primary mb-2">airport_shuttle</span>
+                                <p class="text-[10px] font-bold uppercase tracking-widest text-slate-300">Free Secure
+                                    Shipping</p>
+                            </div>
+                            <div class="bg-white/5 border border-white/5 rounded-2xl p-4">
+                                <span class="material-symbols-outlined text-primary mb-2">lock_open</span>
+                                <p class="text-[10px] font-bold uppercase tracking-widest text-slate-300">Early Access
+                                    Signals</p>
+                            </div>
+                            <div class="bg-white/5 border border-white/5 rounded-2xl p-4">
+                                <span class="material-symbols-outlined text-primary mb-2">confirmation_number</span>
+                                <p class="text-[10px] font-bold uppercase tracking-widest text-slate-300">Member Only
+                                    Drops</p>
+                            </div>
+                            <div class="bg-white/5 border border-white/5 rounded-2xl p-4 opacity-30">
+                                <span class="material-symbols-outlined text-slate-500 mb-2">workspace_premium</span>
+                                <p class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Kage Mystery
+                                    Box</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/store/core.js"></script>
+    <script src="../js/components/badge-manager.js"></script>
+    <script src="../js/components/cart-drawer.js"></script>
+    <script src="../js/components/profile-modal.js"></script>
+    <script src="../js/components/search-overlay.js"></script>
+    <script src="../js/core/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const user = window.Store.getUser();
+            if (!user) {
+                // Redirect if not logged in
+                window.location.href = 'index_v2.html?auth=true';
+                return;
+            }
+
+            // Populate User Data
+            document.getElementById('user-name-display').textContent = user.name;
+            document.getElementById('user-tier-badge').textContent = user.tier || 'GENIN';
+            
+            // Generate a cool unique ID for display
+            const userIdDisplay = user._id ? user._id.slice(-6).toUpperCase() : '8829-X';
+            document.getElementById('user-id-display').textContent = `${userIdDisplay}-${user.name.split(' ')[0].toUpperCase()}`;
+            
+            // Load correct avatar
+            const avatarSeed = user.avatarSeed || user.name;
+            document.getElementById('user-avatar-large').src = `https://api.dicebear.com/7.x/pixel-art/svg?seed=${avatarSeed}`;
+
+            // Add Bio display if it exists
+            if (user.bio) {
+                const bioEl = document.createElement('p');
+                bioEl.className = 'text-xs text-slate-400 mt-4 italic line-clamp-3';
+                bioEl.textContent = user.bio;
+                document.getElementById('user-name-display').parentNode.insertBefore(bioEl, document.getElementById('user-id-display').previousSibling);
+            }
+
+            // Dynamic Tier Upgrading Logic 
+            const pts = user.kamiKoins || 750;
+            const nextTier = pts < 1000 ? 1000 : 2500;
+            const progress = (Math.min(pts, nextTier) / nextTier) * 100;
+
+            document.getElementById('koin-count').textContent = pts >= 1000 ? (pts / 1000).toFixed(1) + 'K' : pts;
+            document.getElementById('xp-text').textContent = `${pts} / ${nextTier}`;
+            document.getElementById('xp-bar').style.width = `${progress}%`;
+
+            // Load Orders dynamically
+            const orders = await window.Store.getOrderHistory();
+            document.getElementById('mission-count').textContent = orders.length;
+            
+            const missionFeed = document.getElementById('mission-feed');
+            
+            if (orders.length === 0) {
+                missionFeed.innerHTML = `
+                    <div class="liquid-glass rounded-3xl p-8 text-center text-slate-500 border-white/5 border-dashed border-2">
+                        <span class="material-symbols-outlined text-4xl mb-2 opacity-50">signal_disconnected</span>
+                        <h5 class="font-syne text-xl uppercase italic">No Signals Found</h5>
+                        <p class="font-orbitron tracking-widest text-[10px] mt-2">Initialize your first drop at the archives.</p>
+                        <button onclick="window.location.href='index_v2.html#collections'" class="mt-4 px-6 py-2 bg-white/5 border border-white/10 rounded-full hover:text-primary hover:border-primary transition-all font-orbitron text-[10px] tracking-widest uppercase">Explore Core Archives</button>
+                    </div>`;
+            } else {
+                missionFeed.innerHTML = '';
+                // Render from newest to oldest
+                orders.slice().reverse().forEach(order => {
+                    const statusClass = order.status === 'Completed' ? 'bg-white/10 text-slate-400' : 'bg-primary/10 text-primary';
+                    const hoverClass = order.status === 'Completed' ? 'opacity-60 grayscale hover:grayscale-0 hover:opacity-100 border-white/5' : 'hover:border-primary/20';
+                    const mainImage = order.items && order.items.length > 0 ? order.items[0].image : '';
+                    const title = order.items && order.items.length > 0 ? order.items[0].name : 'Classified Equipment';
+                    const extraItems = order.items && order.items.length > 1 ? ` +${order.items.length - 1} Module(s)` : '';
+                    
+                    const date = new Date(order.createdAt || Date.now()).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).toUpperCase();
+                    const shortId = order._id ? order._id.slice(-6).toUpperCase() : 'ERR';
+
+                    const card = document.createElement('div');
+                    card.className = `liquid-glass rounded-3xl p-6 flex flex-col md:flex-row items-center gap-8 group transition-all ${hoverClass}`;
+                    card.innerHTML = `
+                        <div class="w-24 h-24 rounded-2xl overflow-hidden bg-white/5 border border-white/10 shrink-0">
+                            <img src="${mainImage || 'https://api.dicebear.com/7.x/pixel-art/svg?seed=mystery'}" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex-grow space-y-2 text-center md:text-left">
+                            <span class="${statusClass} text-[9px] font-orbitron font-bold px-3 py-1 rounded-full uppercase tracking-tighter">${order.status || 'Transmitting'}</span>
+                            <h5 class="font-syne text-xl uppercase font-bold group-hover:text-primary transition-colors">${title}${extraItems}</h5>
+                            <p class="text-[10px] font-orbitron text-slate-500 tracking-widest uppercase">ID: #KM-${shortId} | ${date}</p>
+                        </div>
+                        <div class="text-right shrink-0">
+                            <span class="font-syne text-2xl font-bold italic">₹${order.totalAmount || 0}</span>
+                            <button class="block mt-2 text-[10px] font-orbitron text-slate-400 hover:text-primary uppercase tracking-[0.2em] w-full text-right">${order.status === 'Completed' ? 'View Archive' : 'Track Signal'}</button>
+                        </div>
+                    `;
+                    missionFeed.appendChild(card);
+                });
+            }
+
+            // Logout Event
+            document.getElementById('profile-logout').addEventListener('click', () => {
+                window.Store.logout();
+            });
+
+            // Navigation Logic
+            const navButtons = document.querySelectorAll('.nav-tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            const switchTab = (tabId) => {
+                // Update active state on buttons
+                navButtons.forEach(btn => {
+                    if (btn.id === `show-${tabId}`) {
+                        btn.classList.add('text-white', 'bg-white/5', 'active');
+                        btn.classList.remove('text-slate-400');
+                    } else {
+                        btn.classList.remove('text-white', 'bg-white/5', 'active');
+                        btn.classList.add('text-slate-400');
+                    }
+                });
+
+                // Show target content, hide others
+                tabContents.forEach(content => {
+                    if (content.id === `${tabId}-section`) {
+                        content.classList.remove('hidden');
+                        content.classList.add('block');
+                    } else {
+                        content.classList.remove('block');
+                        content.classList.add('hidden');
+                    }
+                });
+            };
+
+            // Setup listeners for nav buttons
+            document.getElementById('show-edit-profile').addEventListener('click', () => switchTab('edit-profile'));
+            document.getElementById('show-transmissions').addEventListener('click', () => switchTab('transmissions'));
+            document.getElementById('show-wish-archives').addEventListener('click', () => switchTab('wish-archives'));
+
+            // Pre-fill Edit Profile Form
+            document.getElementById('edit-name').value = user.name || '';
+            document.getElementById('edit-bio').value = user.bio || '';
+            document.getElementById('edit-avatar-seed').value = user.avatarSeed || user.name || '';
+
+            // Profile Save Logic
+            const saveProfileBtn = document.getElementById('save-profile-btn');
+            saveProfileBtn.addEventListener('click', async () => {
+                const name = document.getElementById('edit-name').value;
+                const bio = document.getElementById('edit-bio').value;
+                const avatarSeed = document.getElementById('edit-avatar-seed').value;
+
+                if (!name) {
+                    alert('Codename is required for identity synchronization.');
+                    return;
+                }
+
+                saveProfileBtn.disabled = true;
+                const originalText = saveProfileBtn.innerHTML;
+                saveProfileBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> UPLOADING DATA...';
+
+                try {
+                    const res = await window.Store.updateProfile({ name, bio, avatarSeed });
+                    if (res.user) {
+                        saveProfileBtn.innerHTML = '<span class="material-symbols-outlined">check_circle</span> DATA SYNCED';
+                        setTimeout(() => {
+                            window.location.reload(); // Reload to refresh all UI elements
+                        }, 1000);
+                    } else {
+                        throw new Error(res.error || 'Sync Failed');
+                    }
+                } catch (err) {
+                    alert('Profile Update Failed: ' + err.message);
+                    saveProfileBtn.innerHTML = originalText;
+                    saveProfileBtn.disabled = false;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

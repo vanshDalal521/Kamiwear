@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kamiwear | Tanjiro Flame Hoodie</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Orbitron:wght@400;700&amp;family=Syne:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f9f906", // Electric Yellow
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#0A0812", // Ultra-minimal dark
+                        "glass-panel": "rgba(255, 255, 255, 0.03)",
+                        "glass-border": "rgba(255, 255, 255, 0.08)",
+                        "accent-purple": "#6366f1",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "syne": ["Syne", "sans-serif"],
+                        "orbitron": ["Orbitron", "sans-serif"],
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .liquid-glass {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+            backdrop-filter: blur(20px);
+        }
+        .purple-glow {
+            filter: drop-shadow(0 0 40px rgba(99, 102, 241, 0.15));
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 selection:bg-primary selection:text-black">
+<!-- Sticky Glass Navbar -->
+<nav class="sticky top-0 z-50 w-full liquid-glass border-b border-glass-border">
+<div class="max-w-[1440px] mx-auto px-8 h-20 flex items-center justify-between">
+<div class="flex items-center gap-12">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center text-black">
+<span class="material-symbols-outlined text-2xl font-bold">bolt</span>
+</div>
+<h1 class="font-syne font-800 text-2xl tracking-tighter">KAMIWEAR</h1>
+</div>
+<div class="hidden lg:flex items-center gap-8 text-sm font-medium text-slate-400">
+<a class="hover:text-primary transition-colors" href="#">COLLECTIONS</a>
+<a class="hover:text-primary transition-colors" href="#">NEW ARRIVALS</a>
+<a class="hover:text-primary transition-colors" href="#">LIMITED DROPS</a>
+<a class="hover:text-primary transition-colors" href="#">UNIVERSE</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative group hidden md:block">
+<input class="bg-glass-panel border-glass-border rounded-full py-2 px-6 w-64 text-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Search the archives..." type="text"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 text-xl">search</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="relative p-2 hover:bg-glass-panel rounded-full transition-colors">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute top-1 right-1 size-4 bg-primary text-[10px] text-black font-bold rounded-full flex items-center justify-center">2</span>
+</button>
+<button class="p-2 hover:bg-glass-panel rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 size-2 bg-primary rounded-full ring-2 ring-background-dark"></span>
+</button>
+<div class="size-10 rounded-full border border-glass-border overflow-hidden p-0.5">
+<img alt="User Profile" class="w-full h-full rounded-full object-cover" data-alt="Minimalist geometric user profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAP5iaGSb52dv8091ffvCqaPONupw9yUy6mh_MQ4TTbIPGSDbHo5h49sbLq6j87lbqJuoxd4CWHDb9zpgrr_V9gNXR8T3A2nEcGwVREaU4qUnAwYgLxhoV9xhgmXgQEHE-0sZjpD9xk2U_uMoO92PprCT_bfthW5dCbH0PctNSc6f6QCZ_p9EoY3O-olMQspYuKu0tf6Rx06TCBjoNzSii7KGH_5YySBi6HmTqxpU1ooPfKzAwLgL4HJKW7gToi3D1Y822OYpQWudAk"/>
+</div>
+</div>
+</div>
+</div>
+</nav>
+<main class="max-w-[1440px] mx-auto px-8 py-12">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-2 text-xs font-medium text-slate-500 mb-10 uppercase tracking-widest">
+<a class="hover:text-white" href="#">Shop</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<a class="hover:text-white" href="#">Apparel</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-slate-300">Tanjiro Flame Hoodie</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+<!-- Left Column: Product Visuals -->
+<div class="flex flex-col gap-6">
+<div class="relative aspect-[4/5] rounded-xl overflow-hidden glass-card group">
+<!-- Soft Purple Aura Glow -->
+<div class="absolute inset-0 bg-gradient-to-tr from-accent-purple/10 via-transparent to-transparent pointer-events-none"></div>
+<div class="absolute inset-0 flex items-center justify-center p-12">
+<img alt="Tanjiro Flame Hoodie" class="w-full h-full object-contain purple-glow transition-transform duration-700 group-hover:scale-105" data-alt="Premium oversized black hoodie with minimalist red flame embroidery" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC8EwuXQZsEPyiBH9SqLan3mbI2hJlTLtxo3uxEZYAxzox58mfRui8E8Li4ospozlDnHqgRGmzVOEKkRZ-cDwrOCDtpswNgv9QzUSm8crm891CeLDosVzcDJR4jCb6IMCiDcLqteSpLXn0k0MgwykWN3RrNX43Wnk-CVqNlCHUrJgpI4KLb4B8qsbIPf68_YmVnzlOan0fOP7_GfzNIp8FB8Y0mbeLu8VFmZO1t4Juw1WVZ5q097Nq31Dm8kz_ZgBNY52vrkphkI8x2"/>
+</div>
+<!-- 360 View Pill -->
+<div class="absolute bottom-6 left-1/2 -translate-x-1/2">
+<button class="liquid-glass border border-glass-border px-6 py-2.5 rounded-full flex items-center gap-3 text-xs font-bold tracking-widest hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-lg">360</span>
+                            360° VIEW
+                        </button>
+</div>
+</div>
+<!-- Thumbnails -->
+<div class="grid grid-cols-5 gap-4">
+<div class="aspect-square rounded-lg glass-card p-2 border-primary/50 border-2 cursor-pointer">
+<img class="w-full h-full object-contain" data-alt="Front view detail of black hoodie" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDV4kiLXeeVx37wtX0bCbpieFaPLnB-2mraQ74lWgm-qkYfDNTMlGiK0jnywIWaTSKAUppiJccRxo_6xfCO8AP7_DqE-ksaoCM0E3dTCI_S_rwAzZ9DZNICHbZ_TFZsqeQxgF0CeUguCCVOVfjXveWv4K2CSBopWjcgWIf6zB2YnQxHEcLJBgHjbJqWedfOnVSJkUA-jRgiZ1m4ajwE3DqACCPKyNs95IseOhplHBqo_9zhzw1bgrunZT-P0Q2AeVjMarv4KHI6TCl"/>
+</div>
+<div class="aspect-square rounded-lg glass-card p-2 opacity-60 hover:opacity-100 transition-opacity cursor-pointer">
+<img class="w-full h-full object-contain" data-alt="Back view detail showing large flame graphic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBp-fQ0U7KPxCtj75aBPbb8iNzrSboyXX-p-SomFu65tywP001pT6gJZ9GTek3ftHiZV5n7qpn52NIg7XjQoYFahLgvNZ1yJMb5GnofA9G3TGRoEfjNaSW_ayOyD5pxP1CBHwpXSV6vYe058OJwznDRPyEr4mbJzAoYAe7CNqMtK5NHw4qjROe_L9xp7c1xPckFK2rZyyByahICeQ2BSdqVzBimCpOBdCjbw8sZKZ4PB349bIDsYGJZdp46y-ye3nPvhAqmFUxp-97b"/>
+</div>
+<div class="aspect-square rounded-lg glass-card p-2 opacity-60 hover:opacity-100 transition-opacity cursor-pointer">
+<img class="w-full h-full object-contain" data-alt="Sleeve detail with Japanese kanji embroidery" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtzAYyYixbytOvFb3zB__lCkos9BGR-M2fpM2Iv_bH26QnX85zRhet9Su8wQmGsNtInifZ_85D6welkn90Q3ytB-KoaT4IuhNRDqCShS_8venWuxbJVjMexp_zxffsZGZV0DF7WVTLuv4bkG3E731-LyUtmViT6jQ9uW7NYHrba4YTcXK7-rwwWKEZOkH7W4TWW0vfHkHGyZVkmwtRcEykNaQSX9sn_Kuw64YF12psQnu6YFInElEipxV-xslCCLldGOFjF3o4Sb4t"/>
+</div>
+<div class="aspect-square rounded-lg glass-card p-2 opacity-60 hover:opacity-100 transition-opacity cursor-pointer">
+<img class="w-full h-full object-contain" data-alt="Macro shot of premium cotton texture" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYMUVR1m_1VM0ySV2qRQD-VRoZiimD3anzNc8GfcIQ_M6yWYUwJtGdjZC9hTKuoO9aju0fBYQ9dUzCbfEdhkdZMooZwrqGeaXmngW3xyfYwPIr_LTDQxiOOn9TTlA20Hcd8HgRoEIqL_Lo9nX39IzlwDtnNovN7mg3FpZfTAOqtgkkV2VrNnwvtpXalmpw24Micv60_v6ug3S2Y9av6impP8gvlJpPMKFC86Uj5C78rsWsD9ni01EPEkHD9MeS7yYNpkR1ci-dGMQ_"/>
+</div>
+<div class="aspect-square rounded-lg glass-card p-2 opacity-60 hover:opacity-100 transition-opacity cursor-pointer flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-500">play_circle</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Product Details -->
+<div class="flex flex-col gap-8">
+<div>
+<span class="font-orbitron text-xs tracking-[0.3em] text-accent-purple mb-4 block uppercase font-bold">Demon Slayer Series</span>
+<h1 class="font-syne font-800 text-6xl leading-[1.1] text-slate-100 mb-6">Tanjiro Flame <br/>Hoodie</h1>
+<div class="flex items-center gap-4">
+<div class="flex text-primary">
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined">star_half</span>
+</div>
+<span class="text-sm font-medium text-slate-400">4.9 (128 reviews)</span>
+</div>
+</div>
+<div class="flex items-end gap-4">
+<span class="text-4xl font-syne font-800 text-primary">₹1,999</span>
+<span class="text-xl text-slate-500 line-through mb-1">₹3,499</span>
+<span class="bg-primary/20 text-primary text-xs font-bold px-2 py-1 rounded mb-2">42% OFF</span>
+</div>
+<div class="space-y-6">
+<!-- Color Selection -->
+<div class="space-y-3">
+<span class="text-xs font-bold tracking-widest text-slate-400 uppercase">Color: <span class="text-white">Midnight Black</span></span>
+<div class="flex gap-3">
+<button class="size-10 rounded-full bg-black border-2 border-primary ring-4 ring-primary/10"></button>
+<button class="size-10 rounded-full bg-slate-700 border-2 border-transparent hover:border-slate-500"></button>
+<button class="size-10 rounded-full bg-slate-200 border-2 border-transparent hover:border-slate-500"></button>
+</div>
+</div>
+<!-- Size Selection -->
+<div class="space-y-3">
+<div class="flex justify-between items-center max-w-sm">
+<span class="text-xs font-bold tracking-widest text-slate-400 uppercase">Select Size</span>
+<a class="text-xs text-primary underline" href="#">Size Guide</a>
+</div>
+<div class="flex flex-wrap gap-3">
+<button class="px-6 py-3 rounded-xl border border-glass-border hover:border-primary text-sm font-bold transition-colors">S</button>
+<button class="px-6 py-3 rounded-xl border border-glass-border hover:border-primary text-sm font-bold transition-colors">M</button>
+<button class="px-6 py-3 rounded-xl bg-primary text-black text-sm font-bold">L</button>
+<button class="px-6 py-3 rounded-xl border border-glass-border hover:border-primary text-sm font-bold transition-colors">XL</button>
+<button class="px-6 py-3 rounded-xl border border-glass-border hover:border-primary text-sm font-bold transition-colors">XXL</button>
+</div>
+<div class="flex items-center gap-2 text-rose-500 text-sm mt-2">
+<span class="material-symbols-outlined text-sm">warning</span>
+<span class="font-medium">Only 4 left in stock - order soon!</span>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-4">
+<button class="w-full bg-primary hover:bg-yellow-400 text-black py-5 rounded-full font-syne font-800 text-lg tracking-widest shadow-lg shadow-primary/20 transition-all uppercase">
+                        Add to Cart
+                    </button>
+<button class="w-full border border-glass-border hover:bg-glass-panel py-5 rounded-full font-syne font-800 text-lg tracking-widest transition-all uppercase flex items-center justify-center gap-3">
+<span class="material-symbols-outlined">favorite</span>
+                        Add to Wishlist
+                    </button>
+</div>
+<!-- Loyalty Banner -->
+<div class="liquid-glass border border-primary/20 p-4 rounded-xl flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">currency_exchange</span>
+<div>
+<p class="text-sm font-bold">Earn 1,999 KamiKoins</p>
+<p class="text-[10px] text-slate-400 uppercase tracking-tighter">Use them for your next drop</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-500">chevron_right</span>
+</div>
+<!-- Accordions -->
+<div class="border-t border-glass-border pt-4">
+<div class="group py-4 border-b border-glass-border flex justify-between items-center cursor-pointer">
+<span class="font-bold tracking-wide text-sm uppercase">Product Description</span>
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">add</span>
+</div>
+<div class="group py-4 border-b border-glass-border flex justify-between items-center cursor-pointer">
+<span class="font-bold tracking-wide text-sm uppercase">Size &amp; Fit</span>
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">add</span>
+</div>
+<div class="group py-4 border-b border-glass-border flex justify-between items-center cursor-pointer">
+<span class="font-bold tracking-wide text-sm uppercase">Shipping &amp; Returns</span>
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">add</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Complete the Look -->
+<section class="mt-32">
+<h2 class="font-syne font-800 text-3xl mb-12 flex items-center gap-4">
+                Complete the Look
+                <span class="h-px flex-1 bg-glass-border"></span>
+</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<div class="glass-card group p-4 rounded-2xl hover:border-primary/30 transition-all">
+<div class="aspect-[4/5] rounded-xl overflow-hidden bg-background-dark mb-4 relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Tapered black techwear pants with utility pockets" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2I2MaTxwaUzxWSyYF0woUiW048uXXe4rw0TrRiKmwKC-3zn0hTb7Yk8vGEwc7V36a9rNljoyyDs98wIk2Aw1J-IaX9hSKzIn-n0dZ4-KV8qiV6tYx7dFITK2Ry1u2YwA2lwHReE3Ht8jaceVNLKoxu5A8NjWEe9nsnnABUuGXadb6RtSdQk9U6L1qqLp7DCQ06ffkBYcRODQEBawJ6AoyWzuz8d4r7Aow_sAzz4SOXFwuKeGJJiip4uoA3aEgaDOae-k8mpcqD-9Y"/>
+<button class="absolute top-4 right-4 size-10 bg-white/10 backdrop-blur rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl">favorite</span>
+</button>
+</div>
+<h3 class="font-bold text-sm text-slate-100">Zenitsu Tapered Cargos</h3>
+<p class="text-primary font-bold mt-1">₹2,499</p>
+</div>
+<!-- Card 2 -->
+<div class="glass-card group p-4 rounded-2xl hover:border-primary/30 transition-all">
+<div class="aspect-[4/5] rounded-xl overflow-hidden bg-background-dark mb-4 relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="High top custom painted anime sneakers" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoO7Sn4roDSXNQfuyvJNOq0G3q45oTg_l0-E76qjZF_EFhKW1ckNkpx-1gLOc4cgzH2x8SaHtpHZJFZFcwlCQ7K-5CfMcVIg6C4w232pM-idJPEDtlxB2lR1Ay-R6XRlVoaVS455ldL7S-t_nxH-cdrNJ_9Ek7bOi4SNceWrQf58v4gWVwyAz_y9wowUV2lAEuoI52VUq7qObSjwcg9yCHrx2qKdW4pd9cGklEOw5MU8f0N1_-IMpip8J4iOZYPVb1O_AMKYtZHinm"/>
+<button class="absolute top-4 right-4 size-10 bg-white/10 backdrop-blur rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl">favorite</span>
+</button>
+</div>
+<h3 class="font-bold text-sm text-slate-100">Hinokami Kicks v1</h3>
+<p class="text-primary font-bold mt-1">₹4,999</p>
+</div>
+<!-- Card 3 -->
+<div class="glass-card group p-4 rounded-2xl hover:border-primary/30 transition-all">
+<div class="aspect-[4/5] rounded-xl overflow-hidden bg-background-dark mb-4 relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Brushed metal katana pendant necklace" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKStjknOlbD3ZNDdSd9Ay3N0mKtdz8Sj6wf0Mc86q-aWa3Uf7HQvzfDvQ85DqJSEbnveztjqkx6POKD_FaYF_Q3s7NI-k-fTZWv94kKGcDm5sOEXBiHFp_6pT13OMOjjBCG9ngYCKAT0LqawHRmJ11WrJFJs_dX3puy3ByOTGxyoewxUCWl-zGqXMZ1X_z1Xuf6dCwi_99IyzBKAWr5zv6TkdCRqTAh2gYSMV3pFuIGydKxv1P-p5fFC9AUy3kvNii5oUEoAn_6u6i"/>
+<button class="absolute top-4 right-4 size-10 bg-white/10 backdrop-blur rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl">favorite</span>
+</button>
+</div>
+<h3 class="font-bold text-sm text-slate-100">Nichirin Blade Pendant</h3>
+<p class="text-primary font-bold mt-1">₹899</p>
+</div>
+<!-- Card 4 -->
+<div class="glass-card group p-4 rounded-2xl hover:border-primary/30 transition-all">
+<div class="aspect-[4/5] rounded-xl overflow-hidden bg-background-dark mb-4 relative">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Structured black bucket hat with red embroidery" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuxoXFUn5EshX621Y_npuiW0Uua5SanoAKLHJIrALf1MN9J9qunmFgVCghKl2gKRG8LFa2NSAJfynXuoj-ew_9w1T1Zs8u2VfTIi90Gmjrtu4YO1qlQHZkW6LOyPcp_nywiBQfV9IBgA5VR0LLA4Nim14v8_nohINQX4Z4qDmMQrKXq5yhDkaYy_6930-Nis8-vrQO-Sq6ZKIg63OqJMF_whL-tjY__dD1eioIed6o4ivf1LtAgMYKsq4XwpXb24PYuUFA5W_PLzL9"/>
+<button class="absolute top-4 right-4 size-10 bg-white/10 backdrop-blur rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl">favorite</span>
+</button>
+</div>
+<h3 class="font-bold text-sm text-slate-100">Slayer Corps Bucket Hat</h3>
+<p class="text-primary font-bold mt-1">₹1,199</p>
+</div>
+</div>
+</section>
+<!-- Reviews Section -->
+<section class="mt-32">
+<div class="flex flex-col lg:flex-row gap-16">
+<!-- Rating Breakdown -->
+<div class="lg:w-1/3">
+<h2 class="font-syne font-800 text-3xl mb-6">Customer Reviews</h2>
+<div class="flex items-center gap-4 mb-8">
+<span class="text-6xl font-syne font-800">4.9</span>
+<div>
+<div class="flex text-primary">
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+<span class="material-symbols-outlined fill-1">star</span>
+</div>
+<p class="text-slate-400 text-sm font-medium">Based on 128 reviews</p>
+</div>
+</div>
+<!-- Progress bars -->
+<div class="space-y-4">
+<div class="flex items-center gap-4">
+<span class="text-xs font-bold w-4">5</span>
+<div class="flex-1 h-2 bg-glass-panel rounded-full overflow-hidden border border-glass-border">
+<div class="bg-primary h-full w-[92%]"></div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-xs font-bold w-4">4</span>
+<div class="flex-1 h-2 bg-glass-panel rounded-full overflow-hidden border border-glass-border">
+<div class="bg-primary h-full w-[6%]"></div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-xs font-bold w-4">3</span>
+<div class="flex-1 h-2 bg-glass-panel rounded-full overflow-hidden border border-glass-border">
+<div class="bg-primary h-full w-[1%]"></div>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-xs font-bold w-4">2</span>
+<div class="flex-1 h-2 bg-glass-panel rounded-full overflow-hidden border border-glass-border">
+<div class="bg-primary h-full w-[1%]"></div>
+</div>
+</div>
+</div>
+<button class="mt-10 w-full py-4 border border-glass-border rounded-full text-sm font-bold hover:bg-glass-panel transition-all">Write a Review</button>
+</div>
+<!-- Review List -->
+<div class="flex-1 space-y-6">
+<div class="glass-card p-8 rounded-2xl">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-4">
+<img class="size-12 rounded-full border-2 border-primary/20" data-alt="Customer avatar Ryan" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7vF48pByV545BV5EuRaRhCjgj7rEYUWjplquko2-HFEoXxva1ZYMc5UlOykRkveLQORpj6ZEJFGdBifhd3p7LpPYs3lA7SRQ62mdcl9zm4QKH4dspTUbWd4ehGvlQVHjWEFM95l0Du6LVJgXdCWgaWmqFcRH59rBetQ-G4FWVmVRkDAucdSx5WAmgSsvY2vZLZvc-crUF_5SvcaVB1caSi8JZQ43CTvDbYCebLQylIJdrN4-00Gri0p64evEV_l8AXA3El8_W2coI"/>
+<div>
+<h4 class="font-bold text-slate-100">Ryan K.</h4>
+<div class="flex text-primary text-xs">
+<span class="material-symbols-outlined text-[14px] fill-1">star</span>
+<span class="material-symbols-outlined text-[14px] fill-1">star</span>
+<span class="material-symbols-outlined text-[14px] fill-1">star</span>
+<span class="material-symbols-outlined text-[14px] fill-1">star</span>
+<span class="material-symbols-outlined text-[14px] fill-1">star</span>
+</div>
+</div>
+</div>
+<span class="text-xs text-slate-500 font-medium">2 days ago</span>
+</div>
+<p class="text-slate-300 leading-relaxed mb-4">
+                            The quality of the embroidery is insane. It's thick, the colors are vibrant, and the fit is perfectly oversized without looking baggy. Definitely my favorite streetwear piece right now.
+                        </p>
+<div class="flex gap-4">
+<img class="size-20 object-cover rounded-lg border border-glass-border" data-alt="Customer photo of hoodie fit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgyu0A-UgclVRegU9BQ0HPdt_7JB7-CkvV1I7mC2-YAl5-QJ4lPN2XCA7YUSJuBi6UG_Xl9VON5rKi_y3yDfvQOIKW2OYYr4PpbsWy4abjQbjGGdWb4GTOzqADHQaqMAJeXxvaGbQo0n5rfCbBsFJ47CgpQmycsIDFNqh5ejcj1AO8ELojYDon0H5b4UayMonT9xFz-RsyYRifM372FCGZCVS2GZg7qKTKpJ_wp5mwtQtpqZPpG39PeArT8domxRMr2jN4TvbLldtB"/>
+</div>
+</div>
+<div class="glass-card p-8 rounded-2xl">
+<div class="flex justify-between items-start mb-6">
+<div class="flex items-center gap-4">
+<img class="size-12 rounded-full border-2 border-primary/20" data-alt="Customer avatar Akira" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBmlhvXm_JdSrEm2bWWkBW-b6ZPzcB6iuNVO6qsy0qyiWcMmNi3UToCpZnNsSjfgLTDPYXtlX4AU2dIZwfP3c2H7DRliZ56_ZDrJnrowJ7NmUa0p53OjXcVeR1CY4dbyj1jHTnl4oK8nb3HobrttAcjSP2rQ2x857OQZq6ilDZj3G1I7QY7fDbmGQYVZOOhwY9K8X8_djxJMw5ldjJlnqa3NbpOgjTtVyySP5ANF5xGj4reAtfD9wLyC0O1pbRASKY39ozBnPklE6Ce"/>
+<div>
+<h4 class="font-bold text-slate-100">Akira T.</h4>
+<div class="flex text-primary text-xs">
+<span class="material-symbols-outlined text-[14px] fill-1">star</span>
+<span class="material-symbols-outlined text-[14px] fill-1">star</span>
+<span class="material-symbols-outlined text-[14px] fill-1">star</span>
+<span class="material-symbols-outlined text-[14px] fill-1">star</span>
+<span class="material-symbols-outlined text-[14px] fill-1">star</span>
+</div>
+</div>
+</div>
+<span class="text-xs text-slate-500 font-medium">1 week ago</span>
+</div>
+<p class="text-slate-300 leading-relaxed">
+                            Packaging was premium. Fast shipping to Tokyo. The fabric is heavy (450GSM as advertised) and feels like it will last for years. 
+                        </p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="mt-32 border-t border-glass-border pt-20 pb-12">
+<div class="max-w-[1440px] mx-auto px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+<div class="space-y-6">
+<div class="flex items-center gap-3">
+<div class="size-6 bg-primary rounded-md flex items-center justify-center text-black">
+<span class="material-symbols-outlined text-sm font-bold">bolt</span>
+</div>
+<h1 class="font-syne font-800 text-xl tracking-tighter">KAMIWEAR</h1>
+</div>
+<p class="text-slate-400 text-sm leading-relaxed max-w-xs">
+                        Premium anime-inspired streetwear. Blending the spirit of shonen with the aesthetics of the digital future.
+                    </p>
+<div class="flex gap-4">
+<a class="size-10 rounded-full border border-glass-border flex items-center justify-center text-slate-400 hover:text-primary transition-colors" href="#">
+<svg class="size-5 fill-current" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg>
+</a>
+<a class="size-10 rounded-full border border-glass-border flex items-center justify-center text-slate-400 hover:text-primary transition-colors" href="#">
+<svg class="size-5 fill-current" viewbox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.84 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"></path></svg>
+</a>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-slate-100 mb-6 uppercase tracking-widest text-sm">Shop</h4>
+<ul class="space-y-4 text-sm text-slate-500">
+<li><a class="hover:text-primary" href="#">All Collections</a></li>
+<li><a class="hover:text-primary" href="#">Limited Drops</a></li>
+<li><a class="hover:text-primary" href="#">Accessories</a></li>
+<li><a class="hover:text-primary" href="#">Sale</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-slate-100 mb-6 uppercase tracking-widest text-sm">Support</h4>
+<ul class="space-y-4 text-sm text-slate-500">
+<li><a class="hover:text-primary" href="#">Order Tracking</a></li>
+<li><a class="hover:text-primary" href="#">Shipping Policy</a></li>
+<li><a class="hover:text-primary" href="#">Exchanges</a></li>
+<li><a class="hover:text-primary" href="#">Contact Us</a></li>
+</ul>
+</div>
+<div class="space-y-6">
+<h4 class="font-bold text-slate-100 uppercase tracking-widest text-sm">Join the Corps</h4>
+<p class="text-xs text-slate-500">Subscribe for early access to limited edition drops.</p>
+<div class="flex">
+<input class="bg-glass-panel border-glass-border rounded-l-full py-3 px-6 text-sm flex-1 outline-none focus:border-primary transition-all" placeholder="Email Address" type="email"/>
+<button class="bg-primary text-black px-6 rounded-r-full font-bold text-xs uppercase hover:bg-yellow-400">Join</button>
+</div>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center gap-8 border-t border-glass-border pt-12">
+<p class="text-[10px] text-slate-600 uppercase tracking-[0.2em]">© 2024 KAMIWEAR LABS. ALL RIGHTS RESERVED.</p>
+<div class="flex items-center gap-8">
+<img class="opacity-30 grayscale" data-alt="Visa payment icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkO-EoJ4VBYV3riQRAQjkxsRdI2kSiaLKxOcK5PYpQBSo5CGM99P6RjXiae1aYfUklrUrCthW7FgZjnt2KFoh6EI2HFw6RIE3m0LAP41V8M6ZFdjqelkHmVGbTjHSaArfEcXV5xt3qdOOiRr6ORTxpGpLkT9Om7sVRnltFlMduVK0rtfJPJ0m6IbvRRQ_B_FDRrO7NlZg8OgeCnibJdJ539zN-IfQffHhbfhLYuxNoIzuiZFDcHVgpJlLvoB_1szw5jduk-gBVyEl9"/>
+<img class="opacity-30 grayscale" data-alt="Mastercard payment icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbP8wf8YQ4b1Z_eKzSHEHj7bQeZc_nFuYUpjd4UXuJ5ov0kWmfcyHxdlCcOCoaZP3EVA6rXZNDJsWTiuQhfFNRu8oFsei1Uo0J1oRAF6fO7Lg7rBZiQnRdoX0BA52hhhPV5Ms7n4sMeF2QZWwjw0RtDRB1psOON-64EyKvEiIM5asv3Cn4Tt5w2Qn-RA0qrKwNANAgLMw6JPkg-XQ_3RHJq1kM3Cr_eUZ7PE5iEsCRQz6x-dV00sf72Rcg8JgDEbSSuGerQg0iofDf"/>
+<img class="opacity-30 grayscale" data-alt="Apple Pay payment icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9UVkoVonesRmjEgQgg5P_Eh9StBOj9sy5CQD2dIb6SK7HZVMV2R98-iG8YXXO8ks4txw8oio3mfzIWvgwlpfXMTFfJoB8WYKlfE83BOIEXXvOrry6etLg46VG-e2v7mfLvFjU1Q478INLzZbdP7smw4rv-1QB3iK_gqHadipTJJNxJ33wy4GXoIKOud_aN98W7VlXQyuo0uiZqbCKBL6SHV9XXcv7JcOUywA3_AmdPa2YG0LwXEyhmJTLeMpd7HGP8Imal1VbsD-F"/>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
