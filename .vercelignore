@@ -1,0 +1,16 @@
+node_modules
+.git
+.env
+*.md
+.DS_Store
+.svn
+.hg
+CVS
+.sass-cache
+coverage
+.vscode
+.idea
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
