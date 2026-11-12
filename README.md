@@ -107,7 +107,7 @@ render correctly on Vercel and other static hosts.
 
 ## Deployment
 
-See [`docs/VERCEL_DEPLOYMENT.md`](docs/VERCEL_DEPLOYMENT.md). The project uses
-Vercel's zero-configuration Express support: `server.js` exports the app,
-`public/` is served by Vercel's CDN, and `/api/*` is handled by the Express
-function. `vercel.json` only adds cache headers.
+See [`docs/VERCEL_DEPLOYMENT.md`](docs/VERCEL_DEPLOYMENT.md). The project deploys
+as a static frontend from `public/` plus Vercel serverless functions in `api/`
+that mount the Express app for `/api/*`. `server.js` still exports the app for
+local development, and `vercel.json` only adds cache headers.

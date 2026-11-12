@@ -1,15 +1,17 @@
 # Kamiwear — Vercel Deployment Guide
 
 The project is a static HTML/CSS/JS storefront in `public/` plus an Express API in
-`server.js`. It deploys with **Vercel's zero-configuration Express support**:
+`server.js`. It deploys as **static files + Vercel serverless functions**:
 
-- `server.js` exports the Express app (`module.exports = app`) and is listed as
-  `main` in `package.json`.
+- `server.js` exports the Express app (`module.exports = app`).
+- `api/[...path].js`, `api/auth/[...path].js`, and `api/orders/[...path].js`
+  re-export that app so Vercel routes `/api/*` there. The nested functions are
+  required because a top-level catch-all only matches one path segment.
 - `vercel.json` contains only cache headers — no `builds` or `routes`.
-- Vercel runs the Express app as one Fluid function for `/api/*`.
 - Vercel serves everything in `public/` from its CDN, including
-  `public/assets/**`. `express.static()` is only used for local development;
-  Vercel ignores it on purpose.
+  `public/assets/**`. `express.static()` is only used for local development.
+- API responses must be JSON. If `/api/health` returns HTML, the project is
+  being served as a purely static site and the `api/` functions are missing.
 
 Do not restore the old `builds`/`routes` configuration. It was the reason HTML
 worked while `public/assets` images returned 404s in production.
@@ -31,10 +33,17 @@ git push -u origin main
 
 1. Go to [vercel.com/new](https://vercel.com/new).
 2. Import the repository.
-3. Framework preset: **Other** (Vercel auto-detects Express).
-4. Leave the build command and output directory empty.
-5. Add the environment variables below.
-6. Deploy.
+3. **Root Directory:** leave as the repository root (do not select
+   `public/` or a legacy `structure/` folder).
+4. Framework preset: **Other**.
+5. Leave the build command and output directory empty.
+6. Add the environment variables below.
+7. Deploy.
+
+If an older Vercel project still owns the `kamiwear.vercel.app` domain, move the
+domain to the new project under **Project → Settings → Domains** and remove it
+from the old project. A failed old project keeps serving its last successful
+deployment, which can look like the push never happened.
 
 Or with the CLI:
 
@@ -81,8 +90,8 @@ and `storage` should be `mongodb`.
 
 ### Google Sign-In
 
-The app ships a working public Google client ID as a fallback, so login works
-without adding an environment variable. To use your own client:
+Google sign-in is disabled by default. The UI shows a short placeholder instead
+of a broken button when no client ID is configured. To enable it:
 
 1. In Google Cloud Console → APIs & Services → Credentials, create an OAuth
    2.0 Client ID of type **Web application**.
@@ -90,7 +99,7 @@ without adding an environment variable. To use your own client:
    - `http://localhost:3000`
    - `https://your-project.vercel.app`
    - your custom domain, if any
-3. Optionally set `GOOGLE_CLIENT_ID` in Vercel to override the fallback.
+3. Set `GOOGLE_CLIENT_ID` in Vercel (and in local `.env` for local testing).
 4. Redeploy.
 
 The frontend loads the ID from `/api/config`. If the button reports that Google
