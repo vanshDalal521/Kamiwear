@@ -28,6 +28,9 @@ Kamiwear-main/
 ├── middleware/             # JWT auth middleware
 ├── models/                 # MongoDB models with JSON/in-memory fallback
 ├── routes/                 # Express API routes
+├── services/               # Transactional email (Resend/SMTP)
+├── middleware/             # Auth, rate limiting, sanitization, CSRF origin guard
+├── scripts/                # Index creation + original soundtrack generator
 ├── data/                   # Local development data (git-ignored)
 ├── docs/                   # Design system, screenshots, planning, deployment notes
 ├── server.js               # Express server entry point
@@ -54,13 +57,25 @@ npm start
 | Variable               | Purpose                                                        |
 | ---------------------- | -------------------------------------------------------------- |
 | `PORT`                 | Server port (default `3000`)                                   |
-| `JWT_SECRET`           | Secret used to sign auth tokens — use a long random value      |
+| `STORE_URL`            | Public store URL used in emails (no trailing slash)            |
+| `JWT_SECRET`           | Signing secret, **32+ characters required in production**      |
+| `AUTH_RETURN_TOKEN`    | `true` returns a JWT in the response body; keep `false` for browsers |
 | `MONGO_URI`            | MongoDB connection string. Required for durable production data |
-| `GOOGLE_CLIENT_ID`     | Google Sign-In client ID (also expose it to the browser via `/api/config`) |
-| `RAZORPAY_KEY_ID`      | Razorpay key ID (enables card payments)                        |
-| `RAZORPAY_KEY_SECRET`  | Razorpay key secret (server-side only)                         |
-| `ENABLE_BANKING_SIM`   | `true` enables local sandbox card payments (never in production) |
+| `MONGO_MAX_POOL_SIZE`  | MongoDB connection pool size (default `50`)                    |
+| `REQUIRE_MONGO`        | `true` refuses API traffic when MongoDB is not configured      |
+| `GOOGLE_CLIENT_ID`     | Google Sign-In client ID                                       |
+| `ALLOWED_ORIGINS`      | Extra comma-separated browser origins allowed to call the API  |
+| `RATE_LIMIT_REDIS_URL` | Optional shared Redis store for rate limits across instances   |
+| `ADMIN_API_KEY`        | Enables manual UPI verification endpoint (16+ characters)      |
+| `UPI_ID`               | Receiving UPI ID (default `9253395564@ybl`)                    |
+| `UPI_PAYEE_NAME`       | Payee name shown in the UPI deep link (default `Kamiwear`)     |
+| `RESEND_API_KEY`       | Preferred transactional email provider (HTTPS, Vercel-safe)    |
+| `SMTP_*`               | SMTP fallback (`SMTP_HOST`, `SMTP_PORT`, `SMTP_USER`, `SMTP_PASS`) |
+| `KAMIWEAR_EMAIL_FROM`  | Verified sender, e.g. `Kamiwear Orders <orders@kamiwear.in>`   |
+| `KAMIWEAR_SUPPORT_EMAIL` | Reply-to/support address                                    |
 | `LOYALTY_EARN_RATE`    | ₹ spent per 1 KamiKoin (default `10`)                          |
+
+Generate secrets with `openssl rand -hex 32`. Never commit `.env`.
 
 ### Storage behaviour
 
@@ -73,16 +88,55 @@ npm start
 
 ## Payments
 
-* **Cash on Delivery** and **UPI** work without any third-party account.
-* **Card payments** use Razorpay when `RAZORPAY_KEY_ID` and
-  `RAZORPAY_KEY_SECRET` are configured. The checkout opens Razorpay's hosted
-  checkout and the server verifies the payment signature before creating the
-  order.
-* **Sandbox mode** (`ENABLE_BANKING_SIM=true`) accepts test cards locally only.
+Checkout intentionally supports exactly two methods:
 
-The server always recalculates the order total from the submitted line items;
-the old silent "offline success" fallback has been removed, so failed payments
-are reported honestly.
+* **Cash on Delivery** — the order is created immediately and the customer pays
+  the delivery partner.
+* **UPI** — the customer scans the Kamiwear QR
+  (`public/assets/payments/kamiwear-upi-scanner.png`), pays to
+  `9253395564@ybl`, and submits the UPI reference (UTR). The order is created as
+  `Payment pending verification`; an admin verifies the UTR and marks it paid.
+
+Server-side rules:
+
+* Card/Razorpay support is removed. `CARD`, `RAZORPAY`, and any other method are
+  rejected with `Only Cash on Delivery and UPI are accepted at checkout.`
+* The server recalculates the total from the line items; client-supplied totals
+  are ignored.
+* Every checkout carries an idempotency key, so retries return the original
+  order instead of creating a duplicate.
+* Each UTR and transaction ID has a unique index, so one payment reference
+  cannot be attached to two orders.
+* Admin verification: `PATCH /api/orders/:id/verify-payment` with an
+  `x-admin-key: $ADMIN_API_KEY` header. In production this is the point where
+  you confirm the credit in your bank/UPI app.
+
+Personal UPI has no automatic reconciliation or webhook. For fully automatic
+verification and payment-scale guarantees you need a payment gateway.
+
+## Email
+
+Each order triggers a branded confirmation email containing the order number,
+items, total, shipping address, payment method, UPI ID/UTR (for UPI), and the
+current payment status. Delivery is attempted through Resend first, then SMTP.
+Email failures are recorded on the order (`emailStatus`) and never cancel or
+block a confirmed order. Configure `RESEND_API_KEY` and verify the sender domain
+in Resend (or set SMTP credentials) before expecting delivery.
+
+## Security
+
+* JWT is stored in an `httpOnly`, `SameSite=Lax` cookie; `localStorage` never
+  holds the session token.
+* One active session per account: a new login rotates a server-side session ID,
+  and the previous device receives `SESSION_REPLACED` on its next request.
+* Helmet CSP, CORS allowlist, CSRF origin guard, request sanitization, strict
+  JSON body limits, bcrypt cost 12, account lockout, and per-IP/per-account rate
+  limiting are enabled by default.
+* API responses are `Cache-Control: no-store`; HTML is always revalidated.
+* Passwords, session internals, and login IPs are never serialized to clients.
+
+See [`docs/VERCEL_DEPLOYMENT.md`](docs/VERCEL_DEPLOYMENT.md) for production
+hardening and scale notes.
 
 ## API
 
@@ -95,15 +149,27 @@ are reported honestly.
 | POST   | `/api/auth/google`             | Google Sign-In                       |
 | GET    | `/api/auth/me`                 | Current user (auth)                  |
 | PUT    | `/api/auth/update-profile`     | Update profile (auth)                |
-| POST   | `/api/orders/create`           | Place an order (auth)                |
+| POST   | `/api/auth/logout`             | Clear the session cookie (auth)      |
+| POST   | `/api/orders/create`           | Place an order (auth, idempotent)    |
 | GET    | `/api/orders/history`          | Order history (auth)                 |
-| POST   | `/api/orders/razorpay/create`  | Create a Razorpay order (auth)       |
+| PATCH  | `/api/orders/:id/verify-payment` | Manually verify a UPI payment (`x-admin-key`) |
 
 ## Images
 
 All product, collection, trending, wishlist, and avatar imagery is bundled under
 `public/assets/`. No image is hot-linked from Google/Stitch or DiceBear, so pages
 render correctly on Vercel and other static hosts.
+
+## Media
+
+Both demo videos use an original, fully owned anime/taiko-style instrumental
+synthesized by `scripts/generate-soundtrack.js` (no copyrighted anime audio is
+embedded). The encoded audio is already muxed into:
+
+* `public/assets/video/kamiwear-anthem.mp4` (homepage anthem)
+* `docs/demo/kamiwear-walkthrough.mp4` (product walkthrough)
+
+Regenerate the score and remux with ffmpeg if you change the videos.
 
 ## Deployment
 

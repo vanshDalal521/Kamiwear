@@ -6,11 +6,30 @@ dotenv.config({ path: path.join(__dirname, '.env') });
 
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet');
+const compression = require('compression');
+const cookieParser = require('cookie-parser');
+
 const authRoutes = require('./routes/authRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const connectDB = require('./config/db');
-const { ensureDbReady, getDbStatus } = require('./config/db');
+const {
+    ensureDbReady,
+    getDbStatus,
+    isMongoConfigured,
+    isMongoReady,
+} = require('./config/db');
+const { ensureIndexes } = require('./config/indexes');
 const { getGoogleClientId } = require('./config/google');
+const {
+    getAllowedOrigins,
+    isProduction,
+} = require('./config/security');
+const { getPaymentConfig, getUpiConfig, SUPPORT_EMAIL } = require('./config/store');
+const emailService = require('./services/emailService');
+const sanitizeRequest = require('./middleware/sanitize');
+const originGuard = require('./middleware/originGuard');
+const { apiLimiter } = require('./middleware/rateLimit');
 
 // Kick off the connection immediately, but let API routes await it below so a
 // serverless cold start does not accidentally use ephemeral storage.
@@ -19,50 +38,141 @@ connectDB();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.disable('x-powered-by');
 app.set('trust proxy', 1);
 
-// Middleware
-app.use(cors({
-    origin: true,
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    optionsSuccessStatus: 200
+// ---------------------------------------------------------------- Security
+app.use(helmet({
+    contentSecurityPolicy: {
+        useDefaults: false,
+        directives: {
+            defaultSrc: ["'self'"],
+            baseUri: ["'self'"],
+            fontSrc: ["'self'", 'https://fonts.gstatic.com', 'data:'],
+            formAction: ["'self'"],
+            frameAncestors: ["'self'"],
+            frameSrc: ["'self'", 'https://accounts.google.com'],
+            imgSrc: ["'self'", 'data:', 'blob:', 'https:'],
+            mediaSrc: ["'self'", 'blob:'],
+            objectSrc: ["'none'"],
+            scriptSrc: [
+                "'self'",
+                "'unsafe-inline'",
+                'https://cdn.tailwindcss.com',
+                'https://accounts.google.com',
+                'https://apis.google.com',
+            ],
+            scriptSrcAttr: ["'unsafe-inline'"],
+            styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
+            connectSrc: ["'self'", 'https://accounts.google.com', 'https://www.googleapis.com'],
+            workerSrc: ["'self'", 'blob:'],
+            manifestSrc: ["'self'"],
+            ...(isProduction() ? { upgradeInsecureRequests: [] } : { upgradeInsecureRequests: null }),
+        },
+    },
+    crossOriginEmbedderPolicy: false,
+    crossOriginOpenerPolicy: { policy: 'same-origin-allow-popups' },
+    crossOriginResourcePolicy: { policy: 'same-origin' },
+    referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
+    hsts: isProduction() ? { maxAge: 15552000, includeSubDomains: true } : false,
 }));
-app.use(express.json({ limit: '1mb' }));
+
+const allowedOrigins = new Set(getAllowedOrigins());
+app.use(cors({
+    origin(origin, callback) {
+        if (!origin) return callback(null, true);
+        return callback(null, allowedOrigins.has(origin));
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Idempotency-Key', 'X-Admin-Key'],
+    optionsSuccessStatus: 200,
+    maxAge: 600,
+}));
+
+app.use(compression());
+app.use(express.json({ limit: '256kb' }));
+app.use(cookieParser());
+app.use(sanitizeRequest);
+
+// CSRF protection for cookie-authenticated state-changing requests.
+app.use('/api', originGuard);
+
+// API responses can contain account/order data and must never be cached by a
+// browser, proxy, or CDN.
+app.use('/api', (req, res, next) => {
+    res.set('Cache-Control', 'no-store, max-age=0');
+    res.set('Pragma', 'no-cache');
+    next();
+});
+
+app.use('/api', apiLimiter);
 
 // Data-backed routes wait for the (cached) MongoDB connection attempt before
-// running their handlers. Without MONGO_URI this resolves immediately.
+// running their handlers. If MongoDB is configured but unreachable we return
+// 503 instead of silently writing to ephemeral storage.
 app.use(['/api/auth', '/api/orders'], async (req, res, next) => {
     try {
         await ensureDbReady();
     } catch (error) {
         console.error('[Kamiwear Backend] Database readiness check failed:', error.message);
     }
+
+    const status = getDbStatus();
+
+    if (status.configured && !status.connected) {
+        return res.status(503).json({
+            error: 'The database is temporarily unavailable. Please try again in a moment.',
+            code: 'DATABASE_UNAVAILABLE',
+        });
+    }
+
+    if (isMongoConfigured() && status.connected) {
+        await ensureIndexes();
+    }
+
+    if (!isMongoConfigured() && isProduction() && String(process.env.REQUIRE_MONGO || '').toLowerCase() === 'true') {
+        return res.status(503).json({
+            error: 'The store database is not configured yet.',
+            code: 'DATABASE_NOT_CONFIGURED',
+        });
+    }
+
     next();
 });
 
-// API routes
+// ------------------------------------------------------------- API routes
+// Fail closed if production auth is misconfigured instead of letting every
+// login/registration attempt end in an opaque 500.
+app.use('/api/auth', (req, res, next) => {
+    if (isProduction() && String(process.env.JWT_SECRET || '').length < 32) {
+        return res.status(503).json({
+            error: 'Authentication is not configured on this deployment. Set JWT_SECRET.',
+            code: 'AUTH_NOT_CONFIGURED',
+        });
+    }
+    next();
+});
+
 app.use('/api/auth', authRoutes);
 app.use('/api/orders', orderRoutes);
 
 // Public runtime configuration for the frontend (never expose secrets)
 app.get('/api/config', (req, res) => {
-    const razorpayKeyId = process.env.RAZORPAY_KEY_ID || '';
-    const razorpaySecret = process.env.RAZORPAY_KEY_SECRET || '';
-    const simulatedCard = String(process.env.ENABLE_BANKING_SIM || '').toLowerCase() === 'true';
     const googleClientId = getGoogleClientId();
 
     res.status(200).json({
         googleClientId,
         googleConfigured: Boolean(googleClientId),
-        razorpayKeyId,
         currency: 'INR',
-        payments: {
-            cod: true,
-            upi: true,
-            card: Boolean(razorpayKeyId && razorpaySecret),
-            simulatedCard,
+        payments: getPaymentConfig(),
+        upi: getUpiConfig(),
+        emailConfigured: emailService.isConfigured(),
+        emailProvider: emailService.getEmailProvider(),
+        supportEmail: SUPPORT_EMAIL,
+        session: {
+            cookieAuth: true,
+            tokenInBody: String(process.env.AUTH_RETURN_TOKEN || '').toLowerCase() === 'true',
         },
     });
 });
@@ -70,19 +180,46 @@ app.get('/api/config', (req, res) => {
 // Health check
 app.get('/api/health', (req, res) => {
     const database = getDbStatus();
+    const storage = database.connected ? 'mongodb' : (process.env.VERCEL ? 'ephemeral' : 'json');
+    const warnings = [];
 
-    res.status(200).json({
-        status: 'OK',
-        message: 'Kamiwear Backend is running perfectly.',
-        database,
-        storage: database.connected ? 'mongodb' : (process.env.VERCEL ? 'ephemeral' : 'json'),
-        googleConfigured: Boolean(getGoogleClientId()),
-        paymentsConfigured: {
-            cod: true,
-            upi: true,
-            razorpay: Boolean(process.env.RAZORPAY_KEY_ID && process.env.RAZORPAY_KEY_SECRET),
-            sandboxCards: String(process.env.ENABLE_BANKING_SIM || '').toLowerCase() === 'true',
+    if (!database.configured) warnings.push('MONGO_URI is not configured; data will not survive a restart.');
+    if (!emailService.isConfigured()) warnings.push('Email provider is not configured; order confirmation emails will not be delivered.');
+    const jwtSecret = String(process.env.JWT_SECRET || '');
+    if (jwtSecret.length < 32) {
+        warnings.push(
+            isProduction()
+                ? 'JWT_SECRET is missing or shorter than 32 characters; authentication will fail in production.'
+                : 'JWT_SECRET is using the development fallback or is shorter than 32 characters.'
+        );
+    }
+
+    const healthy = !(database.configured && !database.connected);
+
+    res.status(healthy ? 200 : 503).json({
+        status: healthy ? 'OK' : 'DEGRADED',
+        message: healthy ? 'Kamiwear Backend is running.' : 'Kamiwear Backend is running without its database.',
+        database: {
+            connected: database.connected,
+            configured: database.configured,
+            state: database.state,
+            ...(!isProduction() ? { host: database.host, error: database.error } : {}),
         },
+        storage,
+        googleConfigured: Boolean(getGoogleClientId()),
+        payments: getPaymentConfig(),
+        upi: { configured: Boolean(getUpiConfig().id) },
+        email: {
+            configured: emailService.isConfigured(),
+            provider: emailService.getEmailProvider(),
+        },
+        security: {
+            sessionControl: true,
+            cookieAuth: true,
+            rateLimiting: true,
+            requestSanitization: true,
+        },
+        warnings,
         timestamp: new Date().toISOString(),
     });
 });
@@ -95,15 +232,31 @@ app.use('/api', (req, res) => {
 // Serve the frontend (HTML pages, assets, scripts)
 app.use(express.static(path.join(__dirname, 'public'), {
     extensions: ['html'],
-    maxAge: process.env.NODE_ENV === 'production' ? '1h' : 0,
+    etag: true,
+    lastModified: true,
+    setHeaders(res, filePath) {
+        if (/\.html?$/i.test(filePath)) {
+            // Always revalidate HTML so a deploy is visible immediately.
+            res.setHeader('Cache-Control', 'no-cache');
+        } else if (/\.(?:js|css)$/i.test(filePath)) {
+            res.setHeader('Cache-Control', 'public, max-age=3600');
+        } else {
+            res.setHeader('Cache-Control', 'public, max-age=604800');
+        }
+        res.setHeader('X-Content-Type-Options', 'nosniff');
+    },
+    maxAge: isProduction() ? '1h' : 0,
 }));
 
-// JSON body parse errors
+// Error handler
 app.use((err, req, res, next) => {
     if (err && err.type === 'entity.parse.failed') {
         return res.status(400).json({ error: 'Invalid JSON body' });
     }
-    console.error('[Kamiwear Backend] Unhandled error:', err);
+    if (err && err.type === 'entity.too.large') {
+        return res.status(413).json({ error: 'Request body is too large' });
+    }
+    console.error('[Kamiwear Backend] Unhandled error:', err.message || err);
     res.status(500).json({ error: 'Internal server error' });
 });
 
@@ -116,7 +269,12 @@ if (require.main === module) {
         console.log(`- Local: http://localhost:${PORT}`);
         console.log(`- Network: http://127.0.0.1:${PORT}`);
         console.log(`- Database: ${getDbStatus().state}`);
+        console.log(`- Email: ${emailService.getEmailProvider()}`);
     });
+
+    // Keep-alive tuning for self-hosted/container deployments behind a proxy.
+    server.keepAliveTimeout = 65000;
+    server.headersTimeout = 66000;
 
     server.on('error', (err) => {
         if (err.code === 'EADDRINUSE') {

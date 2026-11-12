@@ -1,11 +1,19 @@
 const crypto = require('crypto');
 const User = require('../models/userModel');
 const Order = require('../models/orderModel');
+const emailService = require('../services/emailService');
+const { UPI_ID } = require('../config/store');
+const { getAdminKey } = require('../config/security');
 
 const MAX_ITEM_PRICE = 500000;
 const MAX_QUANTITY = 25;
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const round2 = n => Math.round((Number(n) + Number.EPSILON) * 100) / 100;
+
+// JSON storage does not have Mongo's unique-index guarantee. Serialise order
+// creation in-process so local/emergency fallback mode cannot double-create.
+let jsonCreateQueue = Promise.resolve();
 
 function loyaltyRate() {
     const rate = Number(process.env.LOYALTY_EARN_RATE);
@@ -42,101 +50,38 @@ function normalizeItems(items) {
     });
 }
 
-function simulateCardPayment(paymentDetails, amount) {
-    const { cardNumber, expiry, cvc } = paymentDetails || {};
-    const digits = String(cardNumber || '').replace(/\D/g, '');
-
-    if (digits.length < 13 || digits.length > 19) return { success: false, msg: 'Invalid card number' };
-    if (!/^\d{2}\s*\/\s*\d{2,4}$/.test(String(expiry || ''))) return { success: false, msg: 'Invalid expiry date (MM/YY)' };
-    if (!/^\d{3,4}$/.test(String(cvc || ''))) return { success: false, msg: 'Invalid CVC' };
-
-    return {
-        success: true,
-        transactionId: `SIM_${Date.now()}_${Math.floor(Math.random() * 100000)}`,
-        method: 'Card (sandbox)',
-        status: 'Processing',
+function normalizeShipping(input) {
+    const shipping = input && typeof input === 'object' ? input : {};
+    const clean = {
+        email: String(shipping.email || '').trim().toLowerCase().slice(0, 254),
+        firstName: String(shipping.firstName || '').trim().slice(0, 80),
+        lastName: String(shipping.lastName || '').trim().slice(0, 80),
+        address: String(shipping.address || '').trim().slice(0, 200),
+        apartment: String(shipping.apartment || '').trim().slice(0, 200),
+        city: String(shipping.city || '').trim().slice(0, 80),
+        country: String(shipping.country || '').trim().slice(0, 80),
     };
+
+    if (!EMAIL_RE.test(clean.email)) throw new Error('Please enter a valid email address');
+    if (!clean.firstName) throw new Error('Please enter your first name');
+    if (!clean.address) throw new Error('Please enter your shipping address');
+    if (!clean.city) throw new Error('Please enter your city');
+
+    return clean;
 }
 
-function verifyRazorpaySignature(orderId, paymentId, signature) {
-    const secret = process.env.RAZORPAY_KEY_SECRET;
-    if (!secret) return false;
-    const expected = crypto
-        .createHmac('sha256', secret)
-        .update(`${orderId}|${paymentId}`)
-        .digest('hex');
-    const a = Buffer.from(expected);
-    const b = Buffer.from(String(signature || ''));
-    return a.length === b.length && crypto.timingSafeEqual(a, b);
-}
-
-/**
- * Ask Razorpay for the order we created and confirm it matches this checkout.
- * This prevents a client from paying a ₹1 test order and then submitting a
- * different cart total to the API.
- */
-async function verifyRazorpayOrder({ orderId, amount, userId }) {
-    const keyId = process.env.RAZORPAY_KEY_ID;
-    const keySecret = process.env.RAZORPAY_KEY_SECRET;
-    if (!keyId || !keySecret) return { success: false, status: 503, msg: 'Card payments are not configured on this server' };
-
-    try {
-        const auth = Buffer.from(`${keyId}:${keySecret}`).toString('base64');
-        const response = await fetch(`https://api.razorpay.com/v1/orders/${encodeURIComponent(orderId)}`, {
-            headers: { Authorization: `Basic ${auth}` },
-        });
-        const data = await response.json().catch(() => ({}));
-
-        if (!response.ok) {
-            return { success: false, status: 402, msg: 'Could not verify the Razorpay order' };
-        }
-        if (Number(data.amount) !== Math.round(Number(amount) * 100)) {
-            return { success: false, status: 402, msg: 'Payment amount does not match the order total' };
-        }
-        if (data.notes?.userId && String(data.notes.userId) !== String(userId)) {
-            return { success: false, status: 402, msg: 'Payment does not belong to this account' };
-        }
-        return { success: true };
-    } catch (error) {
-        console.error('Razorpay order verification error:', error.message);
-        return { success: false, status: 502, msg: 'Could not reach Razorpay to verify the payment' };
-    }
-}
-
-async function processKamiKoin(userId, orderTotal) {
-    const earned = Math.max(0, Math.floor(orderTotal / loyaltyRate()));
-    if (earned <= 0) return 0;
-
-    try {
-        let user = await User.findOne({ _id: userId });
-        if (!user) {
-            const users = await User.getAll();
-            const raw = users.find(u => String(u._id) === String(userId) || String(u.id) === String(userId));
-            if (raw) user = await User.findOne({ email: raw.email });
-        }
-        if (!user) return 0;
-
-        user.kamiKoins = (Number(user.kamiKoins) || 0) + earned;
-        if (user.kamiKoins > 1000) user.tier = 'Kage';
-        else if (user.kamiKoins > 500) user.tier = 'Jonin';
-        else if (user.kamiKoins > 200) user.tier = 'Chunin';
-
-        await user.save();
-        return earned;
-    } catch (error) {
-        console.error('Error processing KamiKoins:', error.message);
-        return 0;
-    }
+function normalizeIdempotencyKey(req) {
+    const raw = req.body.idempotencyKey || req.get('Idempotency-Key') || '';
+    const key = String(raw).trim();
+    if (!/^[A-Za-z0-9_-]{8,128}$/.test(key)) return null;
+    return key;
 }
 
 /**
- * Resolve the payment result for the selected method.
- *
- * COD + UPI are always available. Card is only accepted when the simulated
- * banking sandbox is explicitly enabled, and Razorpay is only accepted when
- * real API keys are configured and the signature verifies.
+ * Only Cash on Delivery and UPI are accepted. Card/Razorpay support has been
+ * removed deliberately: the store's payment policy is COD + UPI only.
  */
-async function resolvePayment(method, paymentDetails, amount, userId) {
+function resolvePayment(method, paymentDetails, amount) {
     const normalized = String(method || 'COD').toUpperCase();
 
     if (normalized === 'COD') {
@@ -144,62 +89,118 @@ async function resolvePayment(method, paymentDetails, amount, userId) {
             success: true,
             method: 'Cash on Delivery',
             status: 'Processing',
-            transactionId: `COD_${Date.now()}_${Math.floor(Math.random() * 10000)}`,
+            paymentStatus: 'cod_pending',
+            transactionId: `COD_${crypto.randomUUID()}`,
         };
     }
 
     if (normalized === 'UPI') {
+        const details = paymentDetails && typeof paymentDetails === 'object' ? paymentDetails : {};
+        const claimedUpiId = String(details.upiId || '').trim().toLowerCase();
+        if (claimedUpiId && claimedUpiId !== UPI_ID.toLowerCase()) {
+            return {
+                success: false,
+                httpStatus: 400,
+                msg: `Please pay to the Kamiwear UPI ID: ${UPI_ID}`,
+            };
+        }
+
+        const utr = String(details.utr || details.upiTransactionRef || details.reference || '')
+            .replace(/[\s-]+/g, '')
+            .toUpperCase()
+            .slice(0, 30);
+
+        if (!/^[A-Z0-9]{8,30}$/.test(utr)) {
+            return {
+                success: false,
+                httpStatus: 400,
+                msg: 'Enter the UPI reference (UTR) shown in your payment app after paying',
+            };
+        }
+
         return {
             success: true,
             method: 'UPI',
             status: 'Payment pending verification',
-            transactionId: `UPI_${Date.now()}_${Math.floor(Math.random() * 10000)}`,
-        };
-    }
-
-    if (normalized === 'RAZORPAY') {
-        const { razorpayOrderId, razorpayPaymentId, razorpaySignature } = paymentDetails || {};
-        if (!process.env.RAZORPAY_KEY_ID || !process.env.RAZORPAY_KEY_SECRET) {
-            return { success: false, status: 503, msg: 'Card payments are not configured on this server' };
-        }
-        if (!razorpayOrderId || !razorpayPaymentId || !razorpaySignature) {
-            return { success: false, status: 400, msg: 'Missing Razorpay payment confirmation' };
-        }
-        if (!verifyRazorpaySignature(razorpayOrderId, razorpayPaymentId, razorpaySignature)) {
-            return { success: false, status: 402, msg: 'Payment signature verification failed' };
-        }
-
-        const orderCheck = await verifyRazorpayOrder({
-            orderId: razorpayOrderId,
+            paymentStatus: 'pending_verification',
+            transactionId: `UPI_${utr}`,
+            utr,
+            upiId: UPI_ID,
             amount,
-            userId,
-        });
-        if (!orderCheck.success) return orderCheck;
-
-        return {
-            success: true,
-            method: 'Card (Razorpay)',
-            status: 'Processing',
-            transactionId: razorpayPaymentId,
         };
     }
 
-    if (normalized === 'CARD') {
-        if (String(process.env.ENABLE_BANKING_SIM || '').toLowerCase() !== 'true') {
-            return { success: false, status: 503, msg: 'Card payments are not configured. Choose Cash on Delivery or UPI.' };
-        }
-        const simulated = simulateCardPayment(paymentDetails, amount);
-        return simulated.success
-            ? { ...simulated, status: simulated.status || 'Processing' }
-            : { success: false, status: 402, msg: simulated.msg };
-    }
+    return {
+        success: false,
+        httpStatus: 400,
+        msg: 'Only Cash on Delivery and UPI are accepted at checkout.',
+    };
+}
 
-    return { success: false, status: 400, msg: `Unsupported payment method: ${method}` };
+function publicOrder(order) {
+    const raw = Order.serialize(order) || {};
+    delete raw.__v;
+    delete raw.idempotencyKey;
+    delete raw.emailLastError;
+    delete raw.pointsAwarded;
+    return {
+        ...raw,
+        _id: String(raw._id || raw.id),
+        id: String(raw._id || raw.id),
+    };
+}
+
+function duplicateField(error) {
+    if (!error || error.code !== 11000) return '';
+    if (error.keyPattern) return Object.keys(error.keyPattern)[0] || '';
+    const match = String(error.message || '').match(/index:\s+([A-Za-z0-9_]+)/);
+    return match ? match[1] : '';
+}
+
+async function findExistingOrder(idempotencyKey, userId) {
+    return Order.findByIdempotencyKey(idempotencyKey, userId);
+}
+
+async function insertOrder(orderData) {
+    if (!require('../config/db').isMongoReady()) {
+        const previous = jsonCreateQueue;
+        let release;
+        jsonCreateQueue = new Promise(resolve => { release = resolve; });
+        await previous;
+        try {
+            return await Order.create(orderData);
+        } finally {
+            release();
+        }
+    }
+    return Order.create(orderData);
 }
 
 const createOrder = async (req, res) => {
     try {
         const userId = req.user.id;
+        const idempotencyKey = normalizeIdempotencyKey(req);
+
+        if (!idempotencyKey) {
+            return res.status(400).json({
+                error: 'Missing or invalid idempotency key. Please refresh checkout and try again.',
+                code: 'IDEMPOTENCY_KEY_REQUIRED',
+            });
+        }
+
+        // Fast path: a retry after a dropped response returns the original
+        // order instead of creating a second one.
+        const existing = await findExistingOrder(idempotencyKey, userId);
+        if (existing) {
+            return res.status(200).json({
+                success: true,
+                duplicate: true,
+                message: 'This order was already placed.',
+                order: publicOrder(existing),
+                email: { status: existing.emailStatus || 'pending', to: existing.shipping?.email || '' },
+            });
+        }
+
         const items = normalizeItems(req.body.items);
         const total = round2(items.reduce((sum, item) => sum + item.price * item.quantity, 0));
 
@@ -207,43 +208,132 @@ const createOrder = async (req, res) => {
             return res.status(400).json({ error: 'Invalid order total' });
         }
 
+        const shipping = normalizeShipping(req.body.shipping);
         const method = req.body.paymentMethod || req.body.method || (req.body.paymentDetails && req.body.paymentDetails.method) || 'COD';
-        const payment = await resolvePayment(method, req.body.paymentDetails, total, userId);
+        const payment = resolvePayment(method, req.body.paymentDetails, total);
 
         if (!payment.success) {
-            return res.status(payment.status || 402).json({ error: 'Payment failed', details: payment.msg });
+            return res.status(payment.httpStatus || 400).json({
+                error: payment.msg || 'Payment method is not available',
+                code: 'PAYMENT_UNAVAILABLE',
+            });
         }
 
-        // Prevent the same Razorpay payment from being replayed for another order.
-        if (String(method).toUpperCase() === 'RAZORPAY') {
-            const existingOrders = await Order.getAll();
-            if (existingOrders.some(order => order.transactionId === payment.transactionId)) {
-                return res.status(409).json({ error: 'Payment failed', details: 'This payment has already been used' });
+        // A UPI reference can only belong to one order, even if the client
+        // retries with a new idempotency key.
+        if (payment.utr) {
+            const usedUtr = await Order.findByUtr(payment.utr);
+            if (usedUtr) {
+                return res.status(409).json({
+                    error: 'This UPI reference has already been used for another order.',
+                    code: 'UPI_REFERENCE_USED',
+                });
             }
         }
 
-        const earnedPoints = await processKamiKoin(userId, total);
-
-        const order = await Order.create({
+        const earnedPoints = Math.max(0, Math.floor(total / loyaltyRate()));
+        const orderData = {
             userId: String(userId),
             items,
             totalAmount: total,
+            idempotencyKey,
             transactionId: payment.transactionId,
             status: payment.status,
+            paymentStatus: payment.paymentStatus,
             earnedPoints,
+            pointsAwarded: false,
             paymentMethod: payment.method,
-            shipping: req.body.shipping || {},
-        });
+            shipping,
+            emailStatus: 'pending',
+            ...(payment.utr ? { utr: payment.utr } : {}),
+            ...(payment.upiId ? { upiId: payment.upiId } : {}),
+        };
 
-        const serialized = typeof order.toObject === 'function' ? order.toObject() : order;
+        let order;
+        try {
+            order = await insertOrder(orderData);
+        } catch (error) {
+            const field = duplicateField(error);
+            if (field === 'idempotencyKey') {
+                const duplicate = await findExistingOrder(idempotencyKey, userId);
+                if (duplicate) {
+                    return res.status(200).json({
+                        success: true,
+                        duplicate: true,
+                        message: 'This order was already placed.',
+                        order: publicOrder(duplicate),
+                        email: { status: duplicate.emailStatus || 'pending', to: duplicate.shipping?.email || '' },
+                    });
+                }
+            }
+            if (field === 'utr' || field === 'transactionId') {
+                return res.status(409).json({
+                    error: 'This payment reference has already been used for another order.',
+                    code: 'PAYMENT_REFERENCE_USED',
+                });
+            }
+            throw error;
+        }
+
+        // Award loyalty points after the durable insert. If this step fails the
+        // order still exists and can be reconciled; it is never lost.
+        try {
+            await User.addKamiKoins(userId, earnedPoints);
+            await Order.updateById(order._id, { pointsAwarded: true });
+        } catch (error) {
+            console.error('Order points update failed:', error.message);
+        }
+
+        // Email is best-effort: a provider outage must never cancel a paid or
+        // confirmed order. The result is stored on the order for support.
+        let emailResult = {
+            sent: false,
+            status: 'not_configured',
+            provider: '',
+            to: shipping.email,
+            error: 'Email provider is not configured',
+        };
+        try {
+            emailResult = await emailService.sendOrderConfirmation(order, req.user);
+        } catch (error) {
+            console.error('Order email error:', error.message);
+            emailResult = {
+                sent: false,
+                status: 'failed',
+                provider: emailService.getEmailProvider(),
+                to: shipping.email,
+                error: error.message,
+            };
+        }
+
+        try {
+            await Order.updateById(order._id, {
+                emailStatus: emailResult.status,
+                emailProvider: emailResult.provider || '',
+                emailSentAt: emailResult.sent ? new Date() : null,
+                emailLastError: String(emailResult.error || '').slice(0, 300),
+            });
+        } catch (error) {
+            console.error('Could not store email status:', error.message);
+        }
+
+        const serialized = {
+            ...Order.serialize(order),
+            emailStatus: emailResult.status,
+            emailProvider: emailResult.provider || '',
+        };
 
         res.status(201).json({
             success: true,
             message: 'Order placed successfully!',
-            order: { ...serialized, _id: String(serialized._id), id: String(serialized._id) },
+            order: publicOrder(serialized),
+            email: {
+                status: emailResult.status,
+                to: emailResult.to || shipping.email,
+            },
         });
     } catch (error) {
-        const isValidation = /cart is empty|Invalid|Too many|missing/i.test(error.message);
+        const isValidation = /cart is empty|Invalid|Too many|missing|Please enter|not accepted/i.test(error.message);
         console.error('Create order error:', error.message);
         res.status(isValidation ? 400 : 500).json({
             error: isValidation ? error.message : 'Server error during order processing',
@@ -253,63 +343,61 @@ const createOrder = async (req, res) => {
 
 const getOrderHistory = async (req, res) => {
     try {
-        const orders = await Order.findByUser(String(req.user.id));
-        res.status(200).json({
-            orders: orders.map(o => {
-                const raw = typeof o.toObject === 'function' ? o.toObject() : o;
-                return { ...raw, _id: String(raw._id), id: String(raw._id) };
-            }),
-        });
+        const limit = Math.max(1, Math.min(100, Number(req.query.limit) || 100));
+        const orders = await Order.findByUser(String(req.user.id), limit);
+        res.status(200).json({ orders: orders.map(publicOrder) });
     } catch (error) {
-        console.error('Failed to fetch orders:', error);
+        console.error('Failed to fetch orders:', error.message);
         res.status(500).json({ error: 'Server error fetching orders' });
     }
 };
 
+function safeEqual(a, b) {
+    const left = Buffer.from(String(a));
+    const right = Buffer.from(String(b));
+    return left.length === right.length && crypto.timingSafeEqual(left, right);
+}
+
 /**
- * Create a Razorpay order (called by checkout before opening Razorpay's UI).
- * Uses Razorpay's REST API so no extra SDK dependency is needed.
+ * Manual UPI reconciliation. Protected by ADMIN_API_KEY; disabled entirely
+ * when no admin key is configured so the endpoint cannot be probed.
  */
-const createRazorpayOrder = async (req, res) => {
+const verifyUpiPayment = async (req, res) => {
     try {
-        const keyId = process.env.RAZORPAY_KEY_ID;
-        const keySecret = process.env.RAZORPAY_KEY_SECRET;
-        if (!keyId || !keySecret) {
-            return res.status(503).json({ error: 'Razorpay is not configured' });
+        const configuredKey = getAdminKey();
+        const suppliedKey = req.get('x-admin-key') || '';
+        if (!configuredKey || !safeEqual(suppliedKey, configuredKey)) {
+            return res.status(404).json({ error: 'Not found' });
         }
 
-        const items = normalizeItems(req.body.items);
-        const total = round2(items.reduce((sum, item) => sum + item.price * item.quantity, 0));
-        if (total <= 0) return res.status(400).json({ error: 'Invalid order total' });
+        const order = await Order.findById(req.params.id);
+        if (!order) return res.status(404).json({ error: 'Order not found' });
+        if (!/upi/i.test(String(order.paymentMethod || ''))) {
+            return res.status(400).json({ error: 'This order is not a UPI order' });
+        }
 
-        const auth = Buffer.from(`${keyId}:${keySecret}`).toString('base64');
-        const response = await fetch('https://api.razorpay.com/v1/orders', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Basic ${auth}`,
-            },
-            body: JSON.stringify({
-                amount: Math.round(total * 100),
-                currency: 'INR',
-                receipt: `kw_${Date.now()}`,
-                payment_capture: 1,
-                notes: { userId: String(req.user.id) },
-            }),
+        if (order.paymentStatus === 'paid') {
+            return res.status(200).json({ success: true, alreadyVerified: true, order: publicOrder(order) });
+        }
+
+        const updated = await Order.updateById(order._id, {
+            paymentStatus: 'paid',
+            status: 'Processing',
+            verifiedAt: new Date(),
+            verifiedBy: 'admin',
         });
 
-        const data = await response.json();
-        if (!response.ok) {
-            console.error('Razorpay order error:', data);
-            return res.status(502).json({ error: data.error?.description || 'Unable to start Razorpay payment' });
+        try {
+            await emailService.sendPaymentVerifiedEmail(updated || order);
+        } catch (error) {
+            console.error('Payment verified email failed:', error.message);
         }
 
-        res.status(201).json({ keyId, orderId: data.id, amount: data.amount, currency: data.currency });
+        res.status(200).json({ success: true, order: publicOrder(updated || order) });
     } catch (error) {
-        const isValidation = /cart is empty|Invalid|Too many|missing/i.test(error.message);
-        console.error('Razorpay create error:', error.message);
-        res.status(isValidation ? 400 : 500).json({ error: isValidation ? error.message : 'Unable to start payment' });
+        console.error('Verify payment error:', error.message);
+        res.status(500).json({ error: 'Server error verifying payment' });
     }
 };
 
-module.exports = { createOrder, getOrderHistory, createRazorpayOrder };
+module.exports = { createOrder, getOrderHistory, verifyUpiPayment };

@@ -10,6 +10,10 @@ node_modules/
 data/*.json
 !data/.gitkeep
 
+# Generated soundtrack masters (videos embed the encoded audio; regenerate with
+# scripts/generate-soundtrack.js if needed)
+public/assets/audio/*.wav
+
 # Logs
 *.log
 npm-debug.log*

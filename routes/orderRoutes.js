@@ -1,10 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
-const { createOrder, getOrderHistory, createRazorpayOrder } = require('../controllers/orderController');
+const { createOrder, getOrderHistory, verifyUpiPayment } = require('../controllers/orderController');
+const { orderLimiter, sensitiveLimiter } = require('../middleware/rateLimit');
 
-router.post('/create', auth, createOrder);
+router.post('/create', auth, orderLimiter, createOrder);
 router.get('/history', auth, getOrderHistory);
-router.post('/razorpay/create', auth, createRazorpayOrder);
+router.patch('/:id/verify-payment', sensitiveLimiter, verifyUpiPayment);
 
 module.exports = router;

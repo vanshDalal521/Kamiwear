@@ -157,8 +157,8 @@
 </p>
 </footer>
     <script src="js/core/assets.js?v=4"></script>
-<script src="js/store/core.js?v=4"></script>
-<script src="js/components/profile-modal.js?v=4"></script>
+<script src="js/store/core.js?v=6"></script>
+<script src="js/components/profile-modal.js?v=6"></script>
     <script src="js/core/enhance.js?v=5"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -219,8 +219,8 @@
                 emailEl.focus();
                 return;
             }
-            if (password.length < 6) {
-                showMessage('Password must be at least 6 characters.');
+            if (password.length < 8) {
+                showMessage('Password must be at least 8 characters.');
                 passwordEl.focus();
                 return;
             }

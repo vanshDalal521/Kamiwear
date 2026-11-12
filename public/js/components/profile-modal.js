@@ -497,4 +497,17 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initial verification handled by app.js, but we listen for updates
     window.addEventListener('authUpdated', updateView);
+
+    // A new login on another device rotates the server-side session. Clear the
+    // stale profile immediately so this device cannot keep acting signed in.
+    window.addEventListener('authExpired', event => {
+        updateView();
+        if (event.detail?.message) {
+            const message = document.getElementById('auth-msg');
+            if (message) {
+                message.classList.remove('hidden');
+                message.textContent = event.detail.message;
+            }
+        }
+    });
 });

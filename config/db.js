@@ -2,6 +2,8 @@ const mongoose = require('mongoose');
 
 let lastError = null;
 let connectPromise = null;
+let lastAttemptAt = 0;
+const FAILURE_COOLDOWN_MS = 5000;
 
 const getMongoUri = () => String(process.env.MONGO_URI || process.env.MONGODB_URI || '').trim();
 
@@ -11,23 +13,22 @@ const hasUsableMongoUri = () => {
     return !uri.includes('<db_password>') && !uri.includes('<user>') && !uri.includes('your-cluster');
 };
 
+function poolSize() {
+    const configured = Number(process.env.MONGO_MAX_POOL_SIZE);
+    if (Number.isFinite(configured) && configured > 0) return Math.min(configured, 200);
+    return 50;
+}
+
 /**
  * Connect to MongoDB when a usable connection string is configured.
  *
- * The connection attempt is cached so that API middleware can await the same
- * promise on the first request.  This matters on serverless platforms: the
- * module is evaluated and the handler may receive a request before the async
- * connection has settled.  Without awaiting, the first request would see
- * `readyState !== 1` and wrongly fall back to ephemeral storage.
- *
- * The app deliberately keeps working without MongoDB (JSON/in-memory fallback)
- * so local development is frictionless.  In production you should always set a
- * real MONGO_URI — serverless filesystems are read-only and ephemeral.
+ * The connection attempt is cached so API middleware can await the same
+ * promise on the first request. A failed attempt is retried after a short
+ * cooldown instead of being cached forever.
  */
 const connectDB = () => {
     if (connectPromise) return connectPromise;
 
-    // Support both common names so deployments can use whichever they prefer.
     const uri = getMongoUri();
 
     if (!hasUsableMongoUri()) {
@@ -43,19 +44,36 @@ const connectDB = () => {
         return connectPromise;
     }
 
+    if (lastError && Date.now() - lastAttemptAt < FAILURE_COOLDOWN_MS) {
+        return Promise.resolve(null);
+    }
+
+    lastAttemptAt = Date.now();
+
     connectPromise = (async () => {
         try {
             mongoose.set('strictQuery', true);
+            mongoose.set('sanitizeFilter', true);
+
             const conn = await mongoose.connect(uri, {
-                serverSelectionTimeoutMS: 5000,
+                serverSelectionTimeoutMS: 10000,
+                connectTimeoutMS: 10000,
+                socketTimeoutMS: 45000,
+                maxPoolSize: poolSize(),
+                minPoolSize: Math.min(2, poolSize()),
+                maxIdleTimeMS: 60000,
+                heartbeatFrequencyMS: 10000,
+                retryWrites: true,
+                w: 'majority',
+                autoIndex: false,
             });
             lastError = null;
             console.log(`[Kamiwear Backend] MongoDB Connected: ${conn.connection.host}`);
             return conn;
         } catch (error) {
             lastError = error.message;
+            connectPromise = null;
             console.error(`[Kamiwear Backend] MongoDB connection failed: ${error.message}`);
-            console.error('[Kamiwear Backend] Falling back to local JSON storage.');
             return null;
         }
     })();
@@ -66,6 +84,8 @@ const connectDB = () => {
 const ensureDbReady = () => connectPromise || connectDB();
 
 const isMongoReady = () => mongoose.connection.readyState === 1;
+
+const isMongoConfigured = () => hasUsableMongoUri();
 
 const getDbStatus = () => ({
     connected: isMongoReady(),
@@ -79,4 +99,5 @@ module.exports = connectDB;
 module.exports.connectDB = connectDB;
 module.exports.ensureDbReady = ensureDbReady;
 module.exports.isMongoReady = isMongoReady;
+module.exports.isMongoConfigured = isMongoConfigured;
 module.exports.getDbStatus = getDbStatus;

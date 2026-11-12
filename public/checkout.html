@@ -121,66 +121,63 @@
                             <span class="material-symbols-outlined text-primary">qr_code_2</span>
                             <span>
                                 <span class="block text-sm font-bold uppercase tracking-widest">UPI / QR</span>
-                                <span class="block text-xs text-slate-500">Scan and pay from any UPI app</span>
-                            </span>
-                        </label>
-
-                        <label id="card-method" class="hidden liquid-glass rounded-xl p-4 flex items-center gap-4 cursor-pointer border border-white/10 hover:border-primary/40 transition-colors">
-                            <input type="radio" name="payment-method" value="CARD" class="text-primary focus:ring-primary">
-                            <span class="material-symbols-outlined text-primary">credit_card</span>
-                            <span>
-                                <span class="block text-sm font-bold uppercase tracking-widest">Card</span>
-                                <span id="card-method-note" class="block text-xs text-slate-500">Secure card payment</span>
+                                <span class="block text-xs text-slate-500">Pay from any UPI app, then enter your UTR</span>
                             </span>
                         </label>
                     </div>
+
+                    <p class="mt-4 flex items-center gap-2 text-[11px] uppercase tracking-widest text-slate-500">
+                        <span class="material-symbols-outlined text-sm text-primary">lock</span>
+                        Secure session · Only Cash on Delivery and UPI are accepted
+                    </p>
 
                     <!-- UPI panel -->
                     <div id="upi-panel" class="hidden liquid-glass rounded-2xl p-8 border border-primary/20 relative overflow-hidden mt-4">
                         <div class="absolute -right-20 -top-20 size-64 bg-primary/10 blur-3xl rounded-full"></div>
-                        <div class="flex flex-col md:flex-row items-center gap-8 relative z-10">
-                            <div class="shrink-0 w-48 h-48 bg-white/5 border border-primary/30 p-2 rounded-xl">
-                                <img src="assets/brand/qr-code.png" class="w-full h-full object-cover rounded-lg" alt="UPI QR Scanner">
+                        <div class="flex flex-col md:flex-row items-start gap-8 relative z-10">
+                            <div class="shrink-0 w-48 h-48 bg-white p-2 rounded-xl border border-primary/30 mx-auto md:mx-0">
+                                <img id="upi-qr" src="assets/payments/kamiwear-upi-scanner.png"
+                                    class="w-full h-full object-contain rounded-lg" alt="Kamiwear UPI QR code">
                             </div>
-                            <div class="space-y-6 flex-grow text-center md:text-left w-full">
+                            <div class="space-y-5 flex-grow text-center md:text-left w-full">
                                 <div>
-                                    <h3 class="font-syne text-xl uppercase font-bold text-primary mb-2">Scan to Transmit</h3>
-                                    <p class="text-sm text-slate-400">Use any UPI app, then place the order. Payment is verified manually.</p>
+                                    <h3 class="font-syne text-xl uppercase font-bold text-primary mb-2">Scan &amp; Pay</h3>
+                                    <p class="text-sm text-slate-400">
+                                        Pay <strong id="upi-amount" class="text-white">₹0.00</strong> to the Kamiwear UPI ID below.
+                                        Scan the QR with any UPI app, or open the payment app directly.
+                                    </p>
                                 </div>
-                                <div class="space-y-3">
-                                    <div class="bg-black/40 border border-white/10 rounded-lg p-3 flex justify-between items-center group">
-                                        <span class="font-orbitron text-xs text-slate-300">kamiwear@upi</span>
-                                        <button type="button" class="text-primary hover:text-white transition-colors" onclick="navigator.clipboard.writeText('kamiwear@upi'); alert('UPI ID Copied!')">
-                                            <span class="material-symbols-outlined text-sm">content_copy</span>
-                                        </button>
-                                    </div>
-                                    <div class="bg-black/40 border border-white/10 rounded-lg p-3 flex justify-between items-center group">
-                                        <span class="font-orbitron text-xs text-slate-300">9876543210@paytm</span>
-                                        <button type="button" class="text-primary hover:text-white transition-colors" onclick="navigator.clipboard.writeText('9876543210@paytm'); alert('UPI ID Copied!')">
-                                            <span class="material-symbols-outlined text-sm">content_copy</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <!-- Card panel (Razorpay or sandbox) -->
-                    <div id="card-panel" class="hidden liquid-glass rounded-2xl p-6 border border-primary/20 mt-4 space-y-4">
-                        <p id="card-panel-note" class="text-xs text-slate-400"></p>
-                        <div id="card-fields" class="hidden space-y-4">
-                            <input id="card-number" inputmode="numeric" placeholder="Card Number"
-                                class="w-full bg-white/5 border-white/10 rounded-xl px-6 py-4 focus:ring-primary focus:border-primary">
-                            <div class="grid grid-cols-2 gap-4">
-                                <input id="card-expiry" inputmode="numeric" placeholder="MM/YY"
-                                    class="bg-white/5 border-white/10 rounded-xl px-6 py-4 focus:ring-primary focus:border-primary">
-                                <input id="card-cvc" inputmode="numeric" placeholder="CVC"
-                                    class="bg-white/5 border-white/10 rounded-xl px-6 py-4 focus:ring-primary focus:border-primary">
+                                <div class="bg-black/40 border border-white/10 rounded-lg p-3 flex justify-between items-center gap-3">
+                                    <span id="upi-id-value" class="font-orbitron text-xs sm:text-sm text-slate-200 break-all">9253395564@ybl</span>
+                                    <button id="upi-copy" type="button"
+                                        class="shrink-0 text-primary hover:text-white transition-colors p-2 rounded-lg hover:bg-white/5"
+                                        aria-label="Copy UPI ID">
+                                        <span class="material-symbols-outlined text-sm">content_copy</span>
+                                    </button>
+                                </div>
+
+                                <a id="upi-pay-link" href="upi://pay?pa=9253395564%40ybl&amp;pn=Kamiwear&amp;cu=INR"
+                                    class="inline-flex w-full items-center justify-center gap-2 bg-primary text-black font-bold py-3 rounded-full hover:scale-[1.01] transition-transform text-sm">
+                                    <span class="material-symbols-outlined text-lg">open_in_new</span>
+                                    OPEN UPI APP
+                                </a>
+
+                                <div class="space-y-2 text-left">
+                                    <label for="upi-utr" class="block text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                                        UPI Reference / UTR <span class="text-primary">*</span>
+                                    </label>
+                                    <input id="upi-utr" type="text" inputmode="numeric" autocomplete="off"
+                                        maxlength="30" placeholder="Enter the 12-digit UTR from your payment app"
+                                        class="w-full bg-white/5 border-white/10 rounded-xl px-5 py-4 text-sm focus:ring-primary focus:border-primary">
+                                    <p class="text-[11px] text-slate-500">
+                                        The UTR is shown after a successful UPI payment. Your order is confirmed now and
+                                        dispatched after we verify this reference.
+                                    </p>
+                                    <p id="upi-copy-status" class="hidden text-[11px] text-green-400">UPI ID copied.</p>
+                                </div>
                             </div>
                         </div>
-                        <button id="razorpay-pay" type="button" class="hidden w-full bg-primary text-black font-bold py-4 rounded-full">
-                            PAY SECURELY WITH RAZORPAY
-                        </button>
                     </div>
                 </section>
 
@@ -219,10 +216,10 @@
     </main>
 
         <script src="js/core/assets.js?v=4"></script>
-<script src="js/store/core.js?v=4"></script>
+<script src="js/store/core.js?v=6"></script>
     <script src="js/components/badge-manager.js?v=4"></script>
     <script src="js/components/cart-drawer.js?v=4"></script>
-    <script src="js/components/profile-modal.js?v=4"></script>
+    <script src="js/components/profile-modal.js?v=6"></script>
     <script src="js/components/search-overlay.js?v=4"></script>
     <script src="js/core/app.js?v=4"></script>
     <script src="js/core/enhance.js?v=5"></script>
@@ -287,8 +284,13 @@
                 completeBtn.disabled = busy;
                 completeBtn.textContent = busy ? 'TRANSMITTING...' : 'COMPLETE MISSION';
             };
-            const requireLogin = () => {
-                if (window.Store.getUser()) return true;
+            const requireLogin = async () => {
+                if (window.Store.getUser()) {
+                    // Force a server check so a session that was signed in on
+                    // another device cannot place an order from this one.
+                    const verified = await window.Store.verifySession(true);
+                    if (verified) return true;
+                }
 
                 // Send the user back to checkout after they authenticate.
                 sessionStorage.setItem('kw_redirect_after_login', 'checkout.html');
@@ -301,48 +303,63 @@
 
             // ---------------------------------------------------- Payment setup
             const config = await window.Store.getConfig();
-            const cardMethod = document.getElementById('card-method');
-            const cardMethodNote = document.getElementById('card-method-note');
-            const cardPanel = document.getElementById('card-panel');
-            const cardPanelNote = document.getElementById('card-panel-note');
-            const cardFields = document.getElementById('card-fields');
-            const razorpayBtn = document.getElementById('razorpay-pay');
             const upiPanel = document.getElementById('upi-panel');
-            let cardMode = null;
+            const upiId = String(config.upi?.id || '9253395564@ybl');
+            const upiPayee = String(config.upi?.payeeName || 'Kamiwear');
+            const upiIdEl = document.getElementById('upi-id-value');
+            const upiQrEl = document.getElementById('upi-qr');
+            const upiAmountEl = document.getElementById('upi-amount');
+            const upiPayLink = document.getElementById('upi-pay-link');
+            const upiCopyBtn = document.getElementById('upi-copy');
+            const upiCopyStatus = document.getElementById('upi-copy-status');
+            const utrInput = document.getElementById('upi-utr');
+            let idempotencyKey = window.Store.newIdempotencyKey();
 
-            const setRazorpayBusy = busy => {
-                if (!razorpayBtn) return;
-                razorpayBtn.disabled = busy;
-                razorpayBtn.textContent = busy ? 'OPENING RAZORPAY…' : 'PAY SECURELY WITH RAZORPAY';
+            if (upiIdEl) upiIdEl.textContent = upiId;
+            if (upiQrEl && config.upi?.qrImage) upiQrEl.src = config.upi.qrImage.replace(/^\//, '');
+
+            const buildUpiLink = amount => {
+                const params = [
+                    ['pa', upiId],
+                    ['pn', upiPayee],
+                    ['am', Number(amount || 0).toFixed(2)],
+                    ['cu', 'INR'],
+                    ['tn', `Kamiwear order ${money(amount)}`],
+                ].map(([key, value]) => `${key}=${encodeURIComponent(value)}`).join('&');
+                return `upi://pay?${params}`;
             };
 
-            if (config.payments?.card) {
-                cardMode = 'razorpay';
-                cardMethod.classList.remove('hidden');
-                cardMethod.querySelector('input').value = 'RAZORPAY';
-                cardMethodNote.textContent = 'Secure card payment via Razorpay';
-                cardPanelNote.textContent = 'You will be redirected to Razorpay to complete the payment securely.';
-                razorpayBtn.classList.remove('hidden');
-            } else if (config.payments?.simulatedCard) {
-                cardMode = 'sandbox';
-                cardMethod.classList.remove('hidden');
-                cardMethodNote.textContent = 'Sandbox mode — test cards only';
-                cardPanelNote.textContent = 'Development sandbox: no money is charged. Use a test card like 4111 1111 1111 1111.';
-                cardFields.classList.remove('hidden');
-            }
+            if (upiAmountEl) upiAmountEl.textContent = money(subtotal);
+            if (upiPayLink) upiPayLink.href = buildUpiLink(subtotal);
+
+            upiCopyBtn?.addEventListener('click', async () => {
+                try {
+                    if (navigator.clipboard?.writeText) {
+                        await navigator.clipboard.writeText(upiId);
+                    } else {
+                        const helper = document.createElement('textarea');
+                        helper.value = upiId;
+                        helper.style.position = 'fixed';
+                        helper.style.opacity = '0';
+                        document.body.appendChild(helper);
+                        helper.select();
+                        document.execCommand('copy');
+                        helper.remove();
+                    }
+                    if (upiCopyStatus) {
+                        upiCopyStatus.classList.remove('hidden');
+                        setTimeout(() => upiCopyStatus.classList.add('hidden'), 2500);
+                    }
+                } catch (error) {
+                    showError(`Could not copy automatically. Pay to UPI ID: ${upiId}`);
+                }
+            });
 
             const selectedMethod = () =>
                 document.querySelector('input[name="payment-method"]:checked')?.value || 'COD';
 
             const updatePaymentPanels = () => {
-                const method = selectedMethod();
-                upiPanel.classList.toggle('hidden', method !== 'UPI');
-                const showCard = method === 'CARD' || method === 'RAZORPAY';
-                cardPanel.classList.toggle('hidden', !showCard);
-                if (showCard) {
-                    cardFields.classList.toggle('hidden', cardMode !== 'sandbox');
-                    razorpayBtn.classList.toggle('hidden', cardMode !== 'razorpay');
-                }
+                upiPanel.classList.toggle('hidden', selectedMethod() !== 'UPI');
             };
 
             document.querySelectorAll('input[name="payment-method"]').forEach(radio => {
@@ -371,106 +388,69 @@
             };
 
             const finalizeOrder = async (paymentMethod, paymentDetails, shipping) => {
-                const res = await window.Store.placeOrder({ paymentMethod, paymentDetails, shipping });
+                const res = await window.Store.placeOrder({
+                    paymentMethod,
+                    paymentDetails,
+                    shipping,
+                    idempotencyKey,
+                });
+
                 if (res.success && res.order) {
-                    localStorage.setItem('kw_recent_order', JSON.stringify(res.order));
+                    const recent = {
+                        ...res.order,
+                        emailStatus: res.email?.status || res.order.emailStatus || 'pending',
+                        emailTo: res.email?.to || shipping.email,
+                    };
+                    localStorage.setItem('kw_recent_order', JSON.stringify(recent));
                     window.location.href = 'confirmation.html';
                     return;
                 }
+
                 throw new Error(res.message || 'Payment failed. Please try again.');
-            };
-
-            const loadScript = src => new Promise((resolve, reject) => {
-                if (document.querySelector(`script[src="${src}"]`)) return resolve();
-                const script = document.createElement('script');
-                script.src = src;
-                script.onload = resolve;
-                script.onerror = () => reject(new Error('Could not load the payment provider.'));
-                document.head.appendChild(script);
-            });
-
-            const payWithRazorpay = async shipping => {
-                const order = await window.Store.createRazorpayOrder();
-                await loadScript('https://checkout.razorpay.com/v1/checkout.js');
-
-                await new Promise((resolve, reject) => {
-                    const rzp = new window.Razorpay({
-                        key: order.keyId,
-                        amount: order.amount,
-                        currency: order.currency || 'INR',
-                        name: 'Kamiwear',
-                        description: 'Anime streetwear order',
-                        order_id: order.orderId,
-                        prefill: {
-                            name: `${shipping.firstName} ${shipping.lastName}`.trim(),
-                            email: shipping.email,
-                        },
-                        theme: { color: '#f2df0d' },
-                        handler: async response => {
-                            try {
-                                await finalizeOrder('RAZORPAY', {
-                                    razorpayOrderId: response.razorpay_order_id,
-                                    razorpayPaymentId: response.razorpay_payment_id,
-                                    razorpaySignature: response.razorpay_signature,
-                                }, shipping);
-                                resolve();
-                            } catch (error) {
-                                reject(error);
-                            }
-                        },
-                        modal: {
-                            ondismiss: () => reject(new Error('Payment was cancelled.')),
-                        },
-                    });
-                    rzp.on('payment.failed', response => {
-                        reject(new Error(response.error?.description || 'Payment failed.'));
-                    });
-                    rzp.open();
-                });
             };
 
             // ------------------------------------------------------- Checkout
             const submitOrder = async () => {
                 clearError();
 
-                if (!requireLogin()) return;
+                if (!(await requireLogin())) return;
 
                 setBusy(true);
-                setRazorpayBusy(true);
 
                 try {
                     const shipping = collectShipping();
                     const method = selectedMethod();
 
-                    if (method === 'RAZORPAY') {
-                        await payWithRazorpay(shipping);
-                        return;
+                    if (method !== 'COD' && method !== 'UPI') {
+                        throw new Error('Please choose Cash on Delivery or UPI.');
                     }
 
                     let paymentDetails = {};
-                    if (method === 'CARD') {
-                        paymentDetails = {
-                            cardNumber: document.getElementById('card-number').value.replace(/\s+/g, ''),
-                            expiry: document.getElementById('card-expiry').value.trim(),
-                            cvc: document.getElementById('card-cvc').value.trim(),
-                        };
-                        if (!/^\d{13,19}$/.test(paymentDetails.cardNumber)) throw new Error('Enter a valid card number.');
-                        if (!/^\d{2}\s*\/\s*\d{2,4}$/.test(paymentDetails.expiry)) throw new Error('Enter expiry as MM/YY.');
-                        if (!/^\d{3,4}$/.test(paymentDetails.cvc)) throw new Error('Enter a valid CVC.');
+                    if (method === 'UPI') {
+                        const utr = String(utrInput?.value || '')
+                            .trim()
+                            .toUpperCase()
+                            .replace(/[\s-]+/g, '');
+
+                        if (!/^[A-Z0-9]{8,30}$/.test(utr)) {
+                            throw new Error('Enter the UPI reference (UTR) shown in your payment app after paying.');
+                        }
+
+                        paymentDetails = { upiId, utr };
                     }
 
                     await finalizeOrder(method, paymentDetails, shipping);
                 } catch (error) {
-                    console.error(error);
+                    // Validation errors are expected (missing UTR, address, etc.)
+                    // and are shown inline instead of being logged as failures.
+                    console.warn('[Kamiwear Checkout]', error.message);
                     showError(error.message || 'Something went wrong. Please try again.');
                 } finally {
                     setBusy(false);
-                    setRazorpayBusy(false);
                 }
             };
 
             completeBtn.addEventListener('click', submitOrder);
-            razorpayBtn?.addEventListener('click', submitOrder);
         });
     </script>
 </body>

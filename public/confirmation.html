@@ -184,9 +184,23 @@
                 <div class="glass-panel rounded-xl p-6">
                     <h3 class="font-syne font-bold text-sm mb-4 uppercase text-slate-500">Payment Method</h3>
                     <div class="flex items-center gap-2">
-                        <span class="material-symbols-outlined text-slate-400">credit_card</span>
+                        <span class="material-symbols-outlined text-slate-400">payments</span>
                         <span id="payment-method-label" class="text-sm font-medium">—</span>
                     </div>
+                    <div class="mt-4 pt-4 border-t border-white/10">
+                        <p id="payment-status-label" class="text-xs font-bold uppercase tracking-widest text-primary">—</p>
+                        <div id="upi-payment-details" class="hidden mt-3 space-y-2 text-xs text-slate-400">
+                            <p>UPI ID: <span id="confirmation-upi-id" class="text-slate-200">—</span></p>
+                            <p>UTR / Reference: <span id="confirmation-utr" class="font-orbitron text-slate-200">—</span></p>
+                            <p class="text-amber-400">We will verify this UPI reference before dispatching your order.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-panel rounded-xl p-6">
+                    <h3 class="font-syne font-bold text-sm mb-3 uppercase text-slate-500">Email Confirmation</h3>
+                    <p id="email-status" class="text-xs leading-relaxed text-slate-400">
+                        A confirmation email with your order and payment details will be sent shortly.
+                    </p>
                 </div>
             </aside>
         </div>
@@ -261,10 +275,10 @@
         </div>
     </footer>
         <script src="js/core/assets.js?v=4"></script>
-<script src="js/store/core.js?v=4"></script>
+<script src="js/store/core.js?v=6"></script>
     <script src="js/components/badge-manager.js?v=4"></script>
     <script src="js/components/cart-drawer.js?v=4"></script>
-    <script src="js/components/profile-modal.js?v=4"></script>
+    <script src="js/components/profile-modal.js?v=6"></script>
     <script src="js/components/search-overlay.js?v=4"></script>
     <script src="js/core/app.js?v=4"></script>
     <script src="js/core/enhance.js?v=5"></script>
@@ -282,6 +296,11 @@
             const deliveryAddressEl = document.getElementById('delivery-address');
             const estimatedDeliveryEl = document.getElementById('estimated-delivery');
             const paymentMethodEl = document.getElementById('payment-method-label');
+            const paymentStatusEl = document.getElementById('payment-status-label');
+            const upiDetailsEl = document.getElementById('upi-payment-details');
+            const confirmationUpiIdEl = document.getElementById('confirmation-upi-id');
+            const confirmationUtrEl = document.getElementById('confirmation-utr');
+            const emailStatusEl = document.getElementById('email-status');
 
             let order = null;
             try {
@@ -354,6 +373,44 @@
                 }
 
                 if (paymentMethodEl) paymentMethodEl.textContent = order.paymentMethod || 'Cash on Delivery';
+
+                const paymentStatus = order.paymentStatus ||
+                    (String(order.paymentMethod || '').toUpperCase() === 'UPI' ? 'pending_verification' : 'cod_pending');
+                const paymentStatusLabels = {
+                    cod_pending: 'Pay on delivery',
+                    pending_verification: 'Pending verification',
+                    paid: 'Payment verified',
+                    failed: 'Payment failed',
+                    refunded: 'Refunded',
+                };
+                if (paymentStatusEl) {
+                    paymentStatusEl.textContent = paymentStatusLabels[paymentStatus] || paymentStatus;
+                    paymentStatusEl.classList.toggle('text-amber-400', paymentStatus === 'pending_verification');
+                    paymentStatusEl.classList.toggle('text-green-400', paymentStatus === 'paid');
+                }
+
+                if (paymentStatus === 'pending_verification' && upiDetailsEl) {
+                    upiDetailsEl.classList.remove('hidden');
+                    if (confirmationUpiIdEl) confirmationUpiIdEl.textContent = order.upiId || '9253395564@ybl';
+                    if (confirmationUtrEl) confirmationUtrEl.textContent = order.utr || '—';
+                }
+
+                if (emailStatusEl) {
+                    const emailStatus = order.emailStatus || 'pending';
+                    const recipient = order.emailTo || shipping.email || 'your email address';
+                    if (emailStatus === 'sent') {
+                        emailStatusEl.textContent = `Confirmation email sent to ${recipient}. Check spam if it does not arrive within a few minutes.`;
+                        emailStatusEl.className = 'text-xs leading-relaxed text-green-400';
+                    } else if (emailStatus === 'not_configured') {
+                        emailStatusEl.textContent = 'Your order is confirmed. Email delivery is not configured on this deployment yet, so please save your order number.';
+                        emailStatusEl.className = 'text-xs leading-relaxed text-amber-400';
+                    } else if (emailStatus === 'failed') {
+                        emailStatusEl.textContent = `Your order is confirmed, but the confirmation email to ${recipient} could not be sent. Please save your order number.`;
+                        emailStatusEl.className = 'text-xs leading-relaxed text-amber-400';
+                    } else {
+                        emailStatusEl.textContent = `Your confirmation email is being sent to ${recipient}.`;
+                    }
+                }
             } else {
                 if (orderIdEl) orderIdEl.textContent = 'NO RECENT ORDER';
                 if (earnedEl) earnedEl.textContent = 'START A NEW MISSION';
@@ -368,6 +425,8 @@
                 totalsContainer?.classList.add('hidden');
                 if (estimatedDeliveryEl) estimatedDeliveryEl.textContent = '—';
                 if (paymentMethodEl) paymentMethodEl.textContent = '—';
+                if (paymentStatusEl) paymentStatusEl.textContent = '—';
+                if (emailStatusEl) emailStatusEl.textContent = 'No recent order found on this device.';
                 const heroTitle = document.querySelector('main section:first-of-type h1');
                 const heroCopy = document.querySelector('main section:first-of-type p');
                 if (heroTitle) heroTitle.textContent = 'MISSION ARCHIVE';

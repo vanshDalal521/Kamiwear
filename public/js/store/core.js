@@ -5,6 +5,17 @@ const API_BASE = isLocal
     ? `${window.location.protocol}//${window.location.hostname}:3000/api`
     : '/api';
 
+const SESSION_HINT_KEY = 'kw_session_hint';
+const SESSION_VERIFIED_KEY = 'kw_session_verified_at';
+const SESSION_CACHE_MS = 60 * 1000;
+
+function newIdempotencyKey() {
+    if (window.crypto && typeof window.crypto.randomUUID === 'function') {
+        return window.crypto.randomUUID();
+    }
+    return `kw_${Date.now()}_${Math.random().toString(36).slice(2)}${Math.random().toString(36).slice(2)}`;
+}
+
 function parsePrice(value) {
     if (typeof value === 'number') return Number.isFinite(value) ? value : 0;
     const cleaned = String(value || '').replace(/[^0-9.]/g, '');
@@ -72,9 +83,17 @@ const Store = {
             })
             .then(config => ({
                 googleClientId: config.googleClientId || '',
-                razorpayKeyId: config.razorpayKeyId || '',
                 currency: config.currency || 'INR',
                 payments: config.payments || { cod: true, upi: true, card: false, simulatedCard: false },
+                upi: config.upi || {
+                    id: '9253395564@ybl',
+                    payeeName: 'Kamiwear',
+                    qrImage: '/assets/payments/kamiwear-upi-scanner.png',
+                },
+                emailConfigured: Boolean(config.emailConfigured),
+                emailProvider: config.emailProvider || 'none',
+                supportEmail: config.supportEmail || 'orders@kamiwear.in',
+                session: config.session || { cookieAuth: true, tokenInBody: false },
             }))
             .catch(() => {
                 // Do not cache a failed lookup: the next open should retry
@@ -82,9 +101,17 @@ const Store = {
                 this._configPromise = null;
                 return {
                     googleClientId: '',
-                    razorpayKeyId: '',
                     currency: 'INR',
                     payments: { cod: true, upi: true, card: false, simulatedCard: false },
+                    upi: {
+                        id: '9253395564@ybl',
+                        payeeName: 'Kamiwear',
+                        qrImage: '/assets/payments/kamiwear-upi-scanner.png',
+                    },
+                    emailConfigured: false,
+                    emailProvider: 'none',
+                    supportEmail: 'orders@kamiwear.in',
+                    session: { cookieAuth: true, tokenInBody: false },
                 };
             });
 
@@ -95,10 +122,16 @@ const Store = {
         const headers = { ...(options.headers || {}) };
         if (options.body && !headers['Content-Type']) headers['Content-Type'] = 'application/json';
 
+        // Bearer support remains for old clients/API tools, but the browser
+        // session itself lives in an httpOnly cookie and is not readable by JS.
         const token = this.getToken();
         if (token && options.auth !== false) headers.Authorization = `Bearer ${token}`;
 
-        const response = await fetch(`${API_BASE}${path}`, { ...options, headers });
+        const response = await fetch(`${API_BASE}${path}`, {
+            ...options,
+            headers,
+            credentials: 'include',
+        });
         let data = {};
         try {
             data = await response.json();
@@ -109,7 +142,14 @@ const Store = {
             const message = data.details || data.error || `Request failed (${response.status})`;
             const error = new Error(message);
             error.status = response.status;
+            error.code = data.code || '';
             error.data = data;
+
+            if (response.status === 401 && ['SESSION_REPLACED', 'SESSION_EXPIRED', 'INVALID_TOKEN', 'TOKEN_EXPIRED'].includes(error.code)) {
+                this._clearLocalSession();
+                window.dispatchEvent(new CustomEvent('authExpired', { detail: { message, code: error.code } }));
+            }
+
             throw error;
         }
         return data;
@@ -159,10 +199,22 @@ const Store = {
     },
 
     _storeSession(data) {
-        if (!data || !data.token) return;
-        localStorage.setItem('kw_token', data.token);
+        if (!data || !data.user) return;
+
+        // Do not persist the JWT in localStorage. The server sets an httpOnly
+        // cookie; localStorage only caches the public profile for instant UI.
+        localStorage.removeItem('kw_token');
         localStorage.setItem('kw_user', JSON.stringify(data.user));
+        localStorage.setItem(SESSION_HINT_KEY, '1');
+        localStorage.setItem(SESSION_VERIFIED_KEY, String(Date.now()));
         window.dispatchEvent(new CustomEvent('authUpdated', { detail: data.user }));
+    },
+
+    _clearLocalSession() {
+        localStorage.removeItem('kw_token');
+        localStorage.removeItem('kw_user');
+        localStorage.removeItem(SESSION_HINT_KEY);
+        localStorage.removeItem(SESSION_VERIFIED_KEY);
     },
 
     async updateProfile(profileData) {
@@ -171,9 +223,9 @@ const Store = {
                 method: 'PUT',
                 body: JSON.stringify(profileData),
             });
-            if (data.token) localStorage.setItem('kw_token', data.token);
             if (data.user) {
                 localStorage.setItem('kw_user', JSON.stringify(data.user));
+                localStorage.setItem(SESSION_VERIFIED_KEY, String(Date.now()));
                 window.dispatchEvent(new CustomEvent('authUpdated', { detail: data.user }));
             }
             return data;
@@ -182,33 +234,49 @@ const Store = {
         }
     },
 
-    async verifySession() {
-        const token = this.getToken();
-        if (!token) return null;
+    async verifySession(force = false) {
+        const cachedUser = this.getUser();
+        const hasSession = Boolean(cachedUser || localStorage.getItem(SESSION_HINT_KEY));
+        if (!hasSession) return null;
+
+        const verifiedAt = Number(localStorage.getItem(SESSION_VERIFIED_KEY) || 0);
+        if (!force && cachedUser && Date.now() - verifiedAt < SESSION_CACHE_MS) {
+            return cachedUser;
+        }
 
         try {
             const data = await this._request('/auth/me');
             if (data.user) {
                 localStorage.setItem('kw_user', JSON.stringify(data.user));
+                localStorage.setItem(SESSION_HINT_KEY, '1');
+                localStorage.setItem(SESSION_VERIFIED_KEY, String(Date.now()));
                 window.dispatchEvent(new CustomEvent('authUpdated', { detail: data.user }));
                 return data.user;
             }
-            this.logout();
+            this._clearLocalSession();
             return null;
         } catch (error) {
             if (error.status === 401 || error.status === 404) {
-                this.logout();
+                this._clearLocalSession();
+                window.dispatchEvent(new CustomEvent('authUpdated', { detail: null }));
                 return null;
             }
             // Network/server issue: keep the cached session instead of logging out.
             console.error('Session verification failed:', error.message);
-            return this.getUser();
+            return cachedUser;
         }
     },
 
-    logout() {
-        localStorage.removeItem('kw_token');
-        localStorage.removeItem('kw_user');
+    async logout() {
+        try {
+            await this._request('/auth/logout', { method: 'POST' });
+        } catch (error) {
+            // Even if the server is unreachable, clear the local profile. The
+            // httpOnly cookie expires on its own; the server also rotates the
+            // session when the request succeeds.
+        }
+        this._clearLocalSession();
+        window.dispatchEvent(new CustomEvent('authUpdated', { detail: null }));
         if (window.location.pathname.includes('profile.html')) {
             window.location.href = 'index.html';
         } else {
@@ -226,7 +294,13 @@ const Store = {
     },
 
     getToken() {
+        // Legacy only. New sessions use the httpOnly cookie and never write a
+        // token into localStorage.
         return localStorage.getItem('kw_token');
+    },
+
+    newIdempotencyKey() {
+        return newIdempotencyKey();
     },
 
     // -------------------------------------------------------------------- Cart
@@ -358,26 +432,38 @@ const Store = {
     },
 
     // ------------------------------------------------------------------ Orders
-    async placeOrder({ paymentMethod = 'COD', paymentDetails = {}, shipping = {} } = {}) {
-        if (!this.getToken()) return { success: false, message: 'Please log in to complete your order.' };
+    async placeOrder({ paymentMethod = 'COD', paymentDetails = {}, shipping = {}, idempotencyKey = '' } = {}) {
+        if (!this.getUser() && !localStorage.getItem(SESSION_HINT_KEY)) {
+            return { success: false, message: 'Please log in to complete your order.' };
+        }
 
         const cart = this.getCart();
         if (cart.length === 0) return { success: false, message: 'Your cart is empty.' };
 
+        const key = String(idempotencyKey || newIdempotencyKey()).trim();
+
         try {
             const data = await this._request('/orders/create', {
                 method: 'POST',
+                headers: { 'Idempotency-Key': key },
                 body: JSON.stringify({
                     items: cart,
                     paymentMethod,
                     paymentDetails,
                     shipping,
+                    idempotencyKey: key,
                 }),
             });
 
             if (data.order) {
                 this.clearCart();
-                return { success: true, order: data.order, message: data.message };
+                return {
+                    success: true,
+                    order: data.order,
+                    message: data.message,
+                    email: data.email || null,
+                    duplicate: Boolean(data.duplicate),
+                };
             }
             return { success: false, message: data.error || 'Order could not be created.' };
         } catch (error) {
@@ -385,20 +471,14 @@ const Store = {
             return {
                 success: false,
                 message: error.message || 'Could not reach the server. Please try again.',
+                code: error.code || '',
+                status: error.status || 0,
             };
         }
     },
 
-    async createRazorpayOrder() {
-        const cart = this.getCart();
-        return this._request('/orders/razorpay/create', {
-            method: 'POST',
-            body: JSON.stringify({ items: cart }),
-        });
-    },
-
     async getOrderHistory() {
-        if (!this.getToken()) return [];
+        if (!this.getUser() && !localStorage.getItem(SESSION_HINT_KEY)) return [];
         try {
             const data = await this._request('/orders/history');
             return data.orders || [];
