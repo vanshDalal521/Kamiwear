@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kamiwear Immersive Login Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Syne:wght@700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f9e806",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#0A0812",
+                        "brand-purple": "#6d28d9",
+                        "brand-lavender": "#a78bfa",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "syne": ["Syne", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .liquid-glow {
+            background: radial-gradient(circle at center, rgba(109, 40, 217, 0.15) 0%, transparent 70%);
+        }
+        .input-glass {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .input-glass:focus {
+            border-color: #f9e806;
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .floating-particle {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.2;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen relative overflow-hidden flex flex-col items-center justify-center">
+<!-- Full-Page Background Gradient & Particles -->
+<div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] liquid-glow rounded-full"></div>
+<!-- Decorative Anime Silhouette (Left) -->
+<div class="absolute bottom-0 left-[-10%] opacity-10 h-full w-full max-w-[600px] pointer-events-none select-none">
+<img alt="anime character silhouette standing in shadow" class="h-full w-full object-contain object-left-bottom grayscale invert" data-alt="faint anime character silhouette in background" src="assets/cdn/anime-character-silhouette-standing-in-534776.png"/>
+</div>
+<!-- Floating Particles (Static Mockup) -->
+<div class="floating-particle w-1 h-1 top-1/4 left-1/3"></div>
+<div class="floating-particle w-2 h-2 top-3/4 left-1/4"></div>
+<div class="floating-particle w-1 h-1 top-1/2 right-1/4"></div>
+<div class="floating-particle w-1.5 h-1.5 top-1/3 right-1/3"></div>
+</div>
+<!-- Floating Badge (Right) -->
+<div class="hidden lg:flex absolute top-1/3 right-10 xl:right-40 z-20 items-center gap-3 px-6 py-4 glass-card rounded-xl">
+<div class="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">monetization_on</span>
+</div>
+<div>
+<p class="text-sm font-bold text-white leading-tight">Earn KamiKoins</p>
+<p class="text-xs text-brand-lavender">Join the inner circle</p>
+</div>
+</div>
+<!-- Top Navigation (Simplified from component) -->
+<header class="absolute top-0 left-0 w-full z-50 px-10 py-8 flex items-center justify-between">
+        <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+            <div class="text-primary">
+                <span class="material-symbols-outlined text-4xl leading-none">diamond</span>
+            </div>
+            <h2 class="font-syne text-2xl font-bold tracking-widest text-white">KAMIWEAR</h2>
+        </a>
+<div class="hidden md:flex items-center gap-10">
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium" href="#">COLLECTIONS</a>
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium" href="#">DROP LIST</a>
+<a class="text-slate-400 hover:text-white transition-colors text-sm font-medium" href="#">ABOUT</a>
+</div>
+</header>
+<!-- Centered Auth Card -->
+<main class="relative z-10 w-full max-w-[480px] px-6">
+<div class="glass-card rounded-lg p-8 md:p-12 shadow-2xl">
+<!-- Logo & Title -->
+<div class="text-center mb-10">
+            <a href="index.html" class="hover:opacity-80 transition-opacity">
+                <h1 class="text-4xl font-syne font-extrabold tracking-tighter text-white mb-2 uppercase">KAMIWEAR</h1>
+            </a>
+<div class="flex justify-center mt-6 border-b border-white/10">
+<button id="tab-signin" class="px-6 pb-4 text-sm font-bold border-b-2 border-primary text-white tracking-widest">SIGN IN</button>
+<button id="tab-signup" class="px-6 pb-4 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-300 tracking-widest transition-colors">SIGN UP</button>
+</div>
+</div>
+<!-- Sign In Form -->
+<div class="space-y-6">
+<div class="space-y-2">
+<h3 id="auth-heading" class="text-2xl font-syne font-bold text-white">Welcome back.</h3>
+<p id="auth-subheading" class="text-brand-lavender/60 text-sm">Enter your credentials to access your Kamiwear account.</p>
+</div>
+<div class="space-y-4">
+<!-- Name Field (sign up only) -->
+<div id="name-field" class="relative group hidden">
+<input class="peer input-glass w-full rounded-lg h-14 px-4 pt-4 text-white placeholder-transparent focus:outline-none" id="name" placeholder="Name" type="text" autocomplete="name"/>
+<label class="absolute left-4 top-1 text-[10px] uppercase font-bold text-brand-lavender/50 tracking-widest transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-focus:top-1 peer-focus:text-[10px] pointer-events-none" for="name">Full Name</label>
+</div>
+<!-- Email Field -->
+<div class="relative group">
+<input class="peer input-glass w-full rounded-lg h-14 px-4 pt-4 text-white placeholder-transparent focus:outline-none" id="email" placeholder="Email" type="email"/>
+<label class="absolute left-4 top-1 text-[10px] uppercase font-bold text-brand-lavender/50 tracking-widest transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-focus:top-1 peer-focus:text-[10px] pointer-events-none" for="email">Email Address</label>
+</div>
+<!-- Password Field -->
+<div class="relative group">
+<input class="peer input-glass w-full rounded-lg h-14 px-4 pt-4 text-white placeholder-transparent focus:outline-none" id="password" placeholder="Password" type="password"/>
+<label class="absolute left-4 top-1 text-[10px] uppercase font-bold text-brand-lavender/50 tracking-widest transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-4 peer-focus:top-1 peer-focus:text-[10px] pointer-events-none" for="password">Password</label>
+<button class="absolute right-4 top-4 text-brand-lavender/40 hover:text-white transition-colors">
+<span class="material-symbols-outlined text-lg">visibility</span>
+</button>
+</div>
+<div class="flex justify-end">
+<a class="text-xs font-medium text-brand-lavender hover:text-primary transition-colors" href="#">Forgot password?</a>
+</div>
+</div>
+<div id="auth-message" class="hidden rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-xs text-red-300"></div>
+<!-- CTA Actions -->
+<div class="space-y-4 pt-2">
+<button id="auth-submit" class="w-full h-14 bg-primary text-background-dark font-bold text-sm tracking-[0.2em] rounded-full hover:scale-[1.02] active:scale-95 transition-all shadow-[0_0_20px_rgba(249,232,6,0.2)]">
+                        SIGN IN
+                    </button>
+<div class="relative py-2">
+<div class="absolute inset-0 flex items-center"><div class="w-full border-t border-white/10"></div></div>
+<div class="relative flex justify-center text-xs"><span class="bg-transparent px-2 text-slate-500 uppercase tracking-widest">OR</span></div>
+</div>
+<div id="google-auth-btn-container" class="w-full min-h-14 flex items-center justify-center"></div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="absolute bottom-8 w-full text-center px-6 z-10">
+<p class="text-[10px] text-brand-lavender/40 uppercase tracking-[0.2em] max-w-xs mx-auto">
+            By continuing, you agree to our <a class="underline hover:text-primary transition-colors" href="#">Terms</a> &amp; <a class="underline hover:text-primary transition-colors" href="#">Privacy Policy</a>
+</p>
+</footer>
+    <script src="js/core/assets.js?v=4"></script>
+<script src="js/store/core.js?v=4"></script>
+<script src="js/components/profile-modal.js?v=4"></script>
+    <script src="js/core/enhance.js?v=5"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const nameField = document.getElementById('name-field');
+        const heading = document.getElementById('auth-heading');
+        const subheading = document.getElementById('auth-subheading');
+        const submitBtn = document.getElementById('auth-submit');
+        const messageEl = document.getElementById('auth-message');
+        const tabSignin = document.getElementById('tab-signin');
+        const tabSignup = document.getElementById('tab-signup');
+        const emailEl = document.getElementById('email');
+        const passwordEl = document.getElementById('password');
+        const nameEl = document.getElementById('name');
+
+        let mode = 'signin';
+
+        const showMessage = (text, ok = false) => {
+            if (!messageEl) return;
+            messageEl.textContent = text;
+            messageEl.className = ok
+                ? 'rounded-xl border border-green-500/30 bg-green-500/10 px-4 py-3 text-xs text-green-300'
+                : 'rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-xs text-red-300';
+        };
+
+        const clearMessage = () => messageEl?.classList.add('hidden');
+
+        const setMode = next => {
+            mode = next;
+            const isSignup = mode === 'signup';
+
+            nameField.classList.toggle('hidden', !isSignup);
+            heading.textContent = isSignup ? 'Join the Corps.' : 'Welcome back.';
+            subheading.textContent = isSignup
+                ? 'Create your Kamiwear account to track orders and earn KamiKoins.'
+                : 'Enter your credentials to access your Kamiwear account.';
+            submitBtn.textContent = isSignup ? 'CREATE ACCOUNT' : 'SIGN IN';
+
+            tabSignin.className = isSignup
+                ? 'px-6 pb-4 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-300 tracking-widest transition-colors'
+                : 'px-6 pb-4 text-sm font-bold border-b-2 border-primary text-white tracking-widest';
+            tabSignup.className = isSignup
+                ? 'px-6 pb-4 text-sm font-bold border-b-2 border-primary text-white tracking-widest'
+                : 'px-6 pb-4 text-sm font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-300 tracking-widest transition-colors';
+
+            clearMessage();
+        };
+
+        tabSignin.addEventListener('click', () => setMode('signin'));
+        tabSignup.addEventListener('click', () => setMode('signup'));
+
+        const submit = async () => {
+            clearMessage();
+            const email = emailEl.value.trim();
+            const password = passwordEl.value;
+
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showMessage('Please enter a valid email address.');
+                emailEl.focus();
+                return;
+            }
+            if (password.length < 6) {
+                showMessage('Password must be at least 6 characters.');
+                passwordEl.focus();
+                return;
+            }
+
+            if (mode === 'signup' && nameEl.value.trim().length < 2) {
+                showMessage('Please enter your name.');
+                nameEl.focus();
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'PLEASE WAIT...';
+
+            const result = mode === 'signup'
+                ? await window.Store.register(nameEl.value.trim(), email, password)
+                : await window.Store.login(email, password);
+
+            if (result && result.error) {
+                showMessage(result.error);
+                submitBtn.disabled = false;
+                submitBtn.textContent = mode === 'signup' ? 'CREATE ACCOUNT' : 'SIGN IN';
+                return;
+            }
+
+            const redirect = new URLSearchParams(window.location.search).get('redirect');
+            const safeRedirect = redirect && !/^(https?:)?\/\//i.test(redirect) ? redirect : 'index.html';
+            window.location.href = safeRedirect;
+        };
+
+        submitBtn.addEventListener('click', submit);
+        [emailEl, passwordEl, nameEl].forEach(input => {
+            input.addEventListener('keydown', event => {
+                if (event.key === 'Enter') submit();
+            });
+        });
+
+        document.getElementById('google-auth-btn')?.addEventListener('click', () => {
+            if (typeof window.toggleProfile === 'function') {
+                window.toggleProfile(true);
+            } else {
+                window.location.href = 'index.html?auth=true';
+            }
+        });
+
+        document.querySelector('#password + label + button, .relative.group button')?.addEventListener('click', event => {
+            event.preventDefault();
+            passwordEl.type = passwordEl.type === 'password' ? 'text' : 'password';
+        });
+
+        if (new URLSearchParams(window.location.search).get('mode') === 'signup') setMode('signup');
+        if (window.Store.getUser()) showMessage('You are already signed in.', true);
+    });
+</script>
+</body></html>

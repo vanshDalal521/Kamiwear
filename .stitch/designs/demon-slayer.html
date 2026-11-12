@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kamiwear | Demon Slayer Collection</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Orbitron:wght@400;700&amp;family=Syne:wght@800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f9e806",
+                        "crimson": "#8B0000",
+                        "flame": "#FF4500",
+                        "lavender": "#E6E6FA",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#0A0812",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "orbitron": ["Orbitron", "sans-serif"],
+                        "syne": ["Syne", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .liquid-glass {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .flame-gradient {
+            background: linear-gradient(to right, #8B0000, #FF4500, #0A0812);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased selection:bg-primary selection:text-black">
+<!-- Sticky Glass Navbar -->
+<nav class="fixed top-0 w-full z-50 glass border-b border-white/10">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-12">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl">flare</span>
+<h1 class="font-orbitron font-bold text-2xl tracking-tighter text-white">KAMIWEAR</h1>
+</div>
+<div class="hidden md:flex items-center gap-8 text-sm font-medium uppercase tracking-widest text-slate-400">
+<a class="hover:text-primary transition-colors" href="#">Collections</a>
+<a class="hover:text-primary transition-colors" href="#">Shop All</a>
+<a class="text-white border-b-2 border-primary pb-1" href="#">Demon Slayer</a>
+<a class="hover:text-primary transition-colors" href="#">About</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="text-white hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute -top-1 -right-1 bg-primary text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
+</button>
+<button class="text-white hover:text-primary transition-colors">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Collection Hero -->
+<section class="relative w-full min-h-[80vh] flex items-center overflow-hidden">
+<div class="absolute inset-0 flame-gradient opacity-40"></div>
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(255,69,0,0.2),transparent_50%)]"></div>
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 relative z-10 w-full">
+<div class="flex flex-col justify-center space-y-6">
+<div class="inline-flex items-center px-4 py-1 rounded-full border border-crimson bg-crimson/20 text-crimson font-orbitron text-xs font-bold tracking-widest uppercase">
+                        Collection
+                    </div>
+<h1 class="font-syne text-7xl md:text-8xl leading-none text-white uppercase tracking-tighter">
+                        Demon<br/><span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-flame">Slayer</span>
+</h1>
+<p class="text-lavender/80 text-xl font-medium tracking-wide">
+                        The Hashira Collection — Limited release apparel inspired by the masters of the blade.
+                    </p>
+<div class="flex gap-4 pt-4">
+<button class="bg-primary text-black font-bold px-8 py-4 rounded-full hover:scale-105 transition-transform flex items-center gap-2">
+                            EXPLORE DROP <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- 2x2 Floating Grid -->
+<div class="hidden lg:grid grid-cols-2 gap-6 items-center transform rotate-3 scale-110">
+<div class="liquid-glass rounded-xl p-4 mt-12 space-y-3">
+<div class="aspect-square rounded-lg bg-cover bg-center" data-alt="Black hoodie with red flame patterns on sleeves" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAZYkOL6x8HM3cCvJCO6YVN3tRxNQCyRmfT0mnzhQlYtQh5u0b9rDbkFO7yu_ppPwDtI0x5lY53WogYq_mzJ3crpnAH1BJUgjWNgejYAHf99JzYKo3w_WekiP9RLlssuuatH3fEno1lHBaYgaD-5Gl7a4QKPKCVQMIjKYRwGFFAz9WDsCDkF647dDmzbO42X9mWsxurJLej8uCTapD9gx7G6SLu6K2KWQ0PNBy21ZSeHxxcmCmgzSCOa-vjmiby-tl8xWTPFk6q-0_S')"></div>
+<div class="font-orbitron text-[10px] text-crimson font-bold">HASHIRA V1</div>
+</div>
+<div class="liquid-glass rounded-xl p-4 space-y-3">
+<div class="aspect-square rounded-lg bg-cover bg-center" data-alt="White oversized t-shirt with anime graphic on back" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBudr59-6ZxD_4E-17iQcVkp1oxzj4B8QrMD6MzSRdVMJE3jvYGlBxOYr09N37gxB9tIf-cdfDjgSHS8umy4Ii6exHX8dMPVmawW6HWbd8aqO4unnrFf-OaI06CWPIZ20U7hEKDNpmwwa-J2SkmbuxDGnyTWaJ58iNyxCe2xagtQofL8iSVQ2gFmPmmCh2Dx2wWizm_oBzjTF6_PrkPdMkcT4bEFXKSkSsil-X_X_-cYoyRHptgcMVIzoMzdv1mcmc4Q0e23t927AdI')"></div>
+<div class="font-orbitron text-[10px] text-crimson font-bold">NEZUKO TEE</div>
+</div>
+<div class="liquid-glass rounded-xl p-4 mt-[-24px] space-y-3">
+<div class="aspect-square rounded-lg bg-cover bg-center" data-alt="Graphic streetwear hoodie with katana illustration" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBSuRs7-DauQJ0qkSbnNdVEkrv9ahkxvgLRPsq1kXyITCD1EB7jf9Xvv_Pkn0tD2b_sSMpYg6ZWrQfC23_VeoOUn4I4aOSLtmxldZ5--8BYjAXlGvYkL_H6i-YnWAyHz0mEmmK9zDM3rSDnqE8PNIE27FZ7jIUwOnZrNF2XcVMXWse_BxMu7WMZPlWn7-rum-k5DIZky7BUuKiwJMMiLbM5u5brcgWUhqAQLZJuOjJ23HQeKczB50o1Enm9b0ehVYqsPC7LE2qjNNPc')"></div>
+<div class="font-orbitron text-[10px] text-crimson font-bold">KATANA HOODIE</div>
+</div>
+<div class="liquid-glass rounded-xl p-4 mt-[-48px] space-y-3">
+<div class="aspect-square rounded-lg bg-cover bg-center" data-alt="Minimalist black t-shirt with yellow Japanese text" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAPbqYJWn7e_cYkgKsV6ZG4NVxnPc4mCSkHO5RDGYvzgOykPaTeRdb0WiKTng4kDq2GNZZ5pD2L3cuGo2Czt2SetYpsy6rUVdlARPclpa119Qxa5eJ6uMZ0tmZP6FCR5uET99i5xmtIf7UHDos9ZUcbU7oCqUq4UxO7iyj6SDdD0ZAzgPDkevqw8ONVfEcu0OfbYJ5qtytoG8WAcj1gxXjHTntUnPy1iJcDwX477vqqn2A5B5FgYvRKYfa2ZzSa-U6T_8G9aGN6ZiaM')"></div>
+<div class="font-orbitron text-[10px] text-crimson font-bold">ZENITSU CORE</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Filter Bar -->
+<section class="max-w-7xl mx-auto px-6 py-12">
+<div class="liquid-glass p-2 rounded-full inline-flex gap-2">
+<button class="bg-primary text-black font-bold px-6 py-2 rounded-full text-sm">All</button>
+<button class="hover:bg-white/5 text-slate-300 font-medium px-6 py-2 rounded-full text-sm transition-colors">T-Shirts</button>
+<button class="hover:bg-white/5 text-slate-300 font-medium px-6 py-2 rounded-full text-sm transition-colors">Hoodies</button>
+<button class="hover:bg-white/5 text-slate-300 font-medium px-6 py-2 rounded-full text-sm transition-colors">Accessories</button>
+</div>
+</section>
+<!-- Product Grid -->
+<section class="max-w-7xl mx-auto px-6 pb-24">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Product Card 1 -->
+<div class="group relative liquid-glass rounded-2xl p-4 flex flex-col transition-all duration-300 hover:border-primary/30">
+<div class="absolute top-6 left-6 z-10 font-orbitron text-[10px] text-crimson font-bold bg-black/40 px-2 py-0.5 rounded border border-crimson/50">DEMON SLAYER</div>
+<div class="absolute top-6 right-6 z-10 font-orbitron text-[10px] text-flame font-bold bg-black/40 px-2 py-0.5 rounded border border-flame/50">HASHIRA EDITION</div>
+<div class="aspect-[4/5] rounded-xl bg-cover bg-center mb-6" data-alt="Tanjiro themed premium hoodie in forest green and black" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCK1mx-GxVh2PpA2Werq462R7osY7eSEyZDfh_PwslzzCR6utpxWCDZK-tc0Hb6_n63uY3TsWrPd2_psv4t0Yki5uFxHaHmXZmMRhlTMvMx-SFvJbHVDyfRaCJufWdalPtszVSOiGXul003CoOhAePKu2ieYSKfy89IsN6EOp5BORmvFIfgVKO29PzVWlXHUlXJJjcPDoM_Pabx1AjSJH-UGYh8xpjRWVKfoHpZjVZX5EsI_d0ksF3PDCmA7YfVz083-kspvN8aCIHt')"></div>
+<div class="space-y-1">
+<h3 class="text-lavender font-bold text-lg">Tanjiro Hoodie</h3>
+<p class="text-primary font-bold text-xl">$85.00</p>
+</div>
+<button class="mt-4 w-full bg-primary text-black font-bold py-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                        ADD TO CART <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
+</button>
+</div>
+<!-- Product Card 2 -->
+<div class="group relative liquid-glass rounded-2xl p-4 flex flex-col transition-all duration-300 hover:border-primary/30">
+<div class="absolute top-6 left-6 z-10 font-orbitron text-[10px] text-crimson font-bold bg-black/40 px-2 py-0.5 rounded border border-crimson/50">DEMON SLAYER</div>
+<div class="aspect-[4/5] rounded-xl bg-cover bg-center mb-6" data-alt="Nezuko graphic t-shirt in baby pink with embroidery" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCroH6TildoPI8GUVN00cWHORUEFMXikFfxXluBwVzREdtSrFq3kQTcZHuqPMQZnvwu8p9VGG4pa1Rb_EFSkC4rgGo-6Jr7O0a_DgNSqbBljBu31szxSRIuqmmCRwF0gQBbjH0cEIus-I5fJPvYi7SQpzrgASFOAeWAf1kMdcnirIOcaAaXq8QSsZCK9cei6NUDeqFrpqwGMOkIAM0Zv52y1vY2DEdUgWXKbW8TJBmd9eqVrWWDVvq3-eRrXLMwjhHiH6x0uX--M9ek')"></div>
+<div class="space-y-1">
+<h3 class="text-lavender font-bold text-lg">Nezuko Tee</h3>
+<p class="text-primary font-bold text-xl">$45.00</p>
+</div>
+<button class="mt-4 w-full bg-primary text-black font-bold py-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                        ADD TO CART <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
+</button>
+</div>
+<!-- Product Card 3 -->
+<div class="group relative liquid-glass rounded-2xl p-4 flex flex-col transition-all duration-300 hover:border-primary/30">
+<div class="absolute top-6 left-6 z-10 font-orbitron text-[10px] text-crimson font-bold bg-black/40 px-2 py-0.5 rounded border border-crimson/50">DEMON SLAYER</div>
+<div class="absolute top-6 right-6 z-10 font-orbitron text-[10px] text-flame font-bold bg-black/40 px-2 py-0.5 rounded border border-flame/50">HASHIRA EDITION</div>
+<div class="aspect-[4/5] rounded-xl bg-cover bg-center mb-6" data-alt="Zenitsu lightning themed oversized hoodie in yellow and black" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC0ohbISaGR1dBKjx0N-fZb5GaW7RrfcgmpjwSAoxhow-lDVTDj4A5KxpGXodaiP1GCU3xWMrs4vI5NzviIrh2ZocS_en39EVgaR_J_1s47ES5oyrYzh2NCQSfD2-5YXIxSw0_9GmLnyWgrb_P3nXYXwsDcJD8IYA7-6aqRevMHJwgeM3uq6iwA-I0qE2G6XRMn5UdTIeuUTR-BHJ1lpumm-K86VLwv-hBSixe22SURYV8X-WlXf2b1VXJYHrL8OhnNRz3JD_Cv8KaX')"></div>
+<div class="space-y-1">
+<h3 class="text-lavender font-bold text-lg">Zenitsu Oversized</h3>
+<p class="text-primary font-bold text-xl">$95.00</p>
+</div>
+<button class="mt-4 w-full bg-primary text-black font-bold py-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                        ADD TO CART <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
+</button>
+</div>
+<!-- Product Card 4 -->
+<div class="group relative liquid-glass rounded-2xl p-4 flex flex-col transition-all duration-300 hover:border-primary/30">
+<div class="absolute top-6 left-6 z-10 font-orbitron text-[10px] text-crimson font-bold bg-black/40 px-2 py-0.5 rounded border border-crimson/50">DEMON SLAYER</div>
+<div class="aspect-[4/5] rounded-xl bg-cover bg-center mb-6" data-alt="Inosuke boar mask minimalist black t-shirt" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAsYbIsfMzNnTniT57vNZVlsfAFeOaiTpG3Vpcqsq_eKM8UiAVON7Nuf6ElqetPc5fYC7sQhNHw_BdktQQ4qnTBRmAg9lk2X5UU-6MUEI8_fGpk7BZmwv8ZRN50ku6lBphr_YYGvQb3PFICNsC-z7Vzeh3SBPCG4iiZgXx10aezxykY8lGx344gGSwFZvmYkDKJ49o14uCO3C4zQ_f9HeGlCRIK9iUOwaNW57pWI9r76i_azhK_JP1OhXijECZG86pZu9-XxC3Bfc4t')"></div>
+<div class="space-y-1">
+<h3 class="text-lavender font-bold text-lg">Inosuke Graphic</h3>
+<p class="text-primary font-bold text-xl">$45.00</p>
+</div>
+<button class="mt-4 w-full bg-primary text-black font-bold py-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                        ADD TO CART <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
+</button>
+</div>
+<!-- Product Card 5 -->
+<div class="group relative liquid-glass rounded-2xl p-4 flex flex-col transition-all duration-300 hover:border-primary/30">
+<div class="absolute top-6 left-6 z-10 font-orbitron text-[10px] text-crimson font-bold bg-black/40 px-2 py-0.5 rounded border border-crimson/50">DEMON SLAYER</div>
+<div class="absolute top-6 right-6 z-10 font-orbitron text-[10px] text-flame font-bold bg-black/40 px-2 py-0.5 rounded border border-flame/50">HASHIRA EDITION</div>
+<div class="aspect-[4/5] rounded-xl bg-cover bg-center mb-6" data-alt="Rengoku flame style graphic hoodie in bright orange" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD3hW0qrpoOCzK93JBAF7tJ8b6asC-OBZ0lzavU7XSpDgIhcvV29gEoo0Y-WXn4F3TvjPeOoWFopaHCoCMhQVI0jZDPPIgoIzwRsG-ptkUrzvVAGW7bZHAeQjtpDK-eE0mq3FjhYo7-Iqv8XDeLDtkZT2ZtyJd79JCRQQT5exEBdUcVUun5GE1fKUrIc1dEI_aGKwjtA2NuuxmKDkJ9AeabTwxS3utHPc2BR30Am-X8GXg3LxsFNWYREwdmuLA2aQNkx6oxJaSbwhtE')"></div>
+<div class="space-y-1">
+<h3 class="text-lavender font-bold text-lg">Rengoku Flame</h3>
+<p class="text-primary font-bold text-xl">$110.00</p>
+</div>
+<button class="mt-4 w-full bg-primary text-black font-bold py-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                        ADD TO CART <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
+</button>
+</div>
+<!-- Product Card 6 -->
+<div class="group relative liquid-glass rounded-2xl p-4 flex flex-col transition-all duration-300 hover:border-primary/30">
+<div class="absolute top-6 left-6 z-10 font-orbitron text-[10px] text-crimson font-bold bg-black/40 px-2 py-0.5 rounded border border-crimson/50">DEMON SLAYER</div>
+<div class="aspect-[4/5] rounded-xl bg-cover bg-center mb-6" data-alt="Shinobu butterfly themed minimalist white shirt" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCg81hmMHmdgnTKPC-rOSytJZXe4ls82i-NdA8IQR5q7QCTgpiVmp7tYZEpPKPRhoNf_IttNN5BUB1Fwf37MsPmz9uZ3g0nDIVY3fup-sPkQ8UrFYmdem8l5ffiaUgB4Ilk22U3L3bLWOm_dlsyFXz4AOpb2CjUQF0A4yBIGUUvvjgmZg67CS7PQY2X6vWO7iwSnqafZw6DFXSobaRboJpgS6_fRrE5Dp8ISO4XOtZZTV-S3vvjytcYE5t8RiQGpnwMChVzW8JAV9O0')"></div>
+<div class="space-y-1">
+<h3 class="text-lavender font-bold text-lg">Shinobu Butterfly</h3>
+<p class="text-primary font-bold text-xl">$48.00</p>
+</div>
+<button class="mt-4 w-full bg-primary text-black font-bold py-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                        ADD TO CART <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
+</button>
+</div>
+<!-- Product Card 7 -->
+<div class="group relative liquid-glass rounded-2xl p-4 flex flex-col transition-all duration-300 hover:border-primary/30">
+<div class="absolute top-6 left-6 z-10 font-orbitron text-[10px] text-crimson font-bold bg-black/40 px-2 py-0.5 rounded border border-crimson/50">DEMON SLAYER</div>
+<div class="absolute top-6 right-6 z-10 font-orbitron text-[10px] text-flame font-bold bg-black/40 px-2 py-0.5 rounded border border-flame/50">HASHIRA EDITION</div>
+<div class="aspect-[4/5] rounded-xl bg-cover bg-center mb-6" data-alt="Giyu Tomioka half-and-half patterned streetwear hoodie" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDe-rIZnMi095ub_J1xcOVBymFPwOdrnQM83SZ66XLdwb6KT6olSzSL2UJItMmOTI2or06YyA2AUXXEBKWaRcBy2Z86k8FTgJTaFbfRR4ozMUX5nREQiSQci5NtCgv3Jv3ZzCEZqhl5220Bp6mrviqCnSEeFR2lHG1jOV0mzpnaYB0E7nunu5apL_sVHhXdTB79mGdUbqXgj2QOeV6nELu9qRCHTFvMBTrlVa6F5meVBRsyhXCJRF0tHp4SvHCO7H7eDQK95CMnUQmq')"></div>
+<div class="space-y-1">
+<h3 class="text-lavender font-bold text-lg">Giyu Water Hashira</h3>
+<p class="text-primary font-bold text-xl">$90.00</p>
+</div>
+<button class="mt-4 w-full bg-primary text-black font-bold py-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                        ADD TO CART <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
+</button>
+</div>
+<!-- Product Card 8 -->
+<div class="group relative liquid-glass rounded-2xl p-4 flex flex-col transition-all duration-300 hover:border-primary/30">
+<div class="absolute top-6 left-6 z-10 font-orbitron text-[10px] text-crimson font-bold bg-black/40 px-2 py-0.5 rounded border border-crimson/50">DEMON SLAYER</div>
+<div class="aspect-[4/5] rounded-xl bg-cover bg-center mb-6" data-alt="Collection of anime theme keychains and accessories" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDWwJRhvjI5lJ54QULvAxCkEg_VDzf9z3ezZSDvqOllbX5ljBD2mhZu5OOn9Wikv-5i4jG6QDg8FCimysjOlJW-kZTOtG1OJ4B32TYMXgF4ecjPNbj2-FCm2O4UtKzMl4rIkFZ4bR9jphXjrnD0shAmHqho9vRVsEPFaRWkb7S-yujYCBwjoCMDP0c_2WKwShLkupk6egUQBfYoflK_etb1LxLNU-H7Qv1AY1xPOSsbxOL4du9szmJH92WiOfCvEBkDKU9VjNLVA5ym')"></div>
+<div class="space-y-1">
+<h3 class="text-lavender font-bold text-lg">Accessories Pack</h3>
+<p class="text-primary font-bold text-xl">$25.00</p>
+</div>
+<button class="mt-4 w-full bg-primary text-black font-bold py-3 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                        ADD TO CART <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Collection Story -->
+<section class="max-w-7xl mx-auto px-6 pb-24">
+<div class="liquid-glass rounded-3xl p-12 relative overflow-hidden flex flex-col items-center text-center">
+<div class="absolute top-0 right-0 w-64 h-64 bg-flame/10 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2"></div>
+<div class="absolute bottom-0 left-0 w-96 h-96 bg-crimson/10 blur-3xl rounded-full -translate-x-1/2 translate-y-1/2"></div>
+<span class="font-orbitron text-crimson font-bold tracking-[0.4em] mb-4 uppercase">The Story</span>
+<h2 class="font-syne text-5xl md:text-6xl text-white mb-8">BREATH OF THE BLADE</h2>
+<div class="max-w-3xl space-y-6 text-lavender/70 text-lg leading-relaxed">
+<p>
+                        In collaboration with the artisans of Kyoto and the visual storytellers of the Hashira line, KAMIWEAR presents a collection that transcends anime apparel. Each piece is crafted from heavy-weight 450GSM cotton, designed to endure the trials of the modern world.
+                    </p>
+<p>
+                        From the lightning-fast precision of Zenitsu’s embroidery to the fluid elegance of Giyu’s water patterns, this drop embodies the spirit of the Demon Slayer Corps. Protect your humanity. Wear the blade.
+                    </p>
+</div>
+<div class="mt-12 flex gap-12 grayscale opacity-40 hover:grayscale-0 transition-all">
+<span class="material-symbols-outlined text-6xl">swords</span>
+<span class="material-symbols-outlined text-6xl">water_drop</span>
+<span class="material-symbols-outlined text-6xl">bolt</span>
+<span class="material-symbols-outlined text-6xl">local_fire_department</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-background-dark border-t border-white/5 py-16">
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="space-y-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-2xl">flare</span>
+<h2 class="font-orbitron font-bold text-xl tracking-tighter text-white">KAMIWEAR</h2>
+</div>
+<p class="text-slate-500 text-sm">Elevating streetwear through cinematic narratives and premium craftsmanship.</p>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Collections</h4>
+<ul class="text-slate-500 text-sm space-y-4">
+<li><a class="hover:text-primary transition-colors" href="#">Demon Slayer</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Cyberpunk 2077</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Ghost Shell</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Archive Drop</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Support</h4>
+<ul class="text-slate-500 text-sm space-y-4">
+<li><a class="hover:text-primary transition-colors" href="#">Shipping</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Returns</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Size Guide</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Join the Corps</h4>
+<p class="text-slate-500 text-sm mb-4">Be the first to know about secret drops.</p>
+<div class="flex gap-2">
+<input class="bg-white/5 border-white/10 rounded-lg flex-1 text-sm focus:ring-primary focus:border-primary" placeholder="Email Address" type="email"/>
+<button class="bg-primary text-black font-bold p-2 rounded-lg">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-slate-600 text-[10px] font-orbitron uppercase tracking-widest">
+<p>© 2024 KAMIWEAR STUDIO. ALL RIGHTS RESERVED.</p>
+<div class="flex gap-8">
+<a class="hover:text-white transition-colors" href="#">Instagram</a>
+<a class="hover:text-white transition-colors" href="#">Twitter</a>
+<a class="hover:text-white transition-colors" href="#">Discord</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Kamiwear | Your Cart</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Syne:wght@400;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2df0d",
+                        "background-dark": "#0A0812",
+                        "accent-purple": "#7c3aed",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "syne": ["Syne", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .liquid-glass {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .text-glow-yellow { text-shadow: 0 0 15px rgba(242, 223, 13, 0.4); }
+    </style>
+</head>
+
+<body class="bg-background-dark font-display text-slate-100 min-h-screen">
+    <nav class="sticky top-0 z-50 w-full border-b border-white/10 liquid-glass px-6 py-4">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                <span class="material-symbols-outlined text-primary text-3xl">flare</span>
+                <h1 class="font-syne font-extrabold text-2xl tracking-tighter">KAMIWEAR</h1>
+            </a>
+            <div class="hidden md:flex items-center gap-10">
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="shop.html">Shop</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="index.html#collections">Collections</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="shop.html">New Drops</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="profile.html#orders">Archive</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="p-2 hover:bg-white/10 rounded-full transition-colors" aria-label="Search"
+                    onclick="typeof toggleSearch==='function' ? toggleSearch(true) : null">
+                    <span class="material-symbols-outlined">search</span>
+                </button>
+                <button class="p-2 hover:bg-white/10 rounded-full transition-colors" aria-label="Account"
+                    onclick="typeof toggleProfile==='function' ? toggleProfile(true) : null">
+                    <span class="material-symbols-outlined">person</span>
+                </button>
+                <button class="p-2 hover:bg-white/10 rounded-full transition-colors relative" aria-label="Cart"
+                    onclick="typeof toggleCart==='function' ? toggleCart(true) : null">
+                    <span class="material-symbols-outlined">shopping_cart</span>
+                    <span id="cart-count-badge"
+                        class="absolute -top-1 -right-1 bg-primary text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 py-12">
+        <div class="mb-10">
+            <h2 class="font-syne font-extrabold text-5xl md:text-6xl uppercase tracking-tighter mb-2">Your Cart</h2>
+            <p id="cart-page-count" class="text-slate-400 font-medium tracking-widest uppercase text-xs">0 items selected</p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 space-y-6">
+                <div id="cart-page-items" class="liquid-glass rounded-2xl p-6 md:p-8 space-y-6"></div>
+
+                <div class="liquid-glass rounded-xl p-6 space-y-4">
+                    <div class="flex justify-between items-center">
+                        <p class="text-sm font-medium"><span class="text-primary font-bold uppercase">Free shipping on all orders</span></p>
+                        <p class="text-xs text-slate-400">Kamiwear Labs</p>
+                    </div>
+                    <div class="w-full h-2 bg-white/10 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-accent-purple to-primary w-full"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="liquid-glass rounded-2xl p-8 sticky top-28">
+                    <h3 class="font-syne font-extrabold text-2xl uppercase mb-8">Order Summary</h3>
+                    <div class="space-y-4 text-sm mb-8">
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">Subtotal</span>
+                            <span id="cart-page-subtotal" class="font-bold">₹0</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-400">Shipping</span>
+                            <span class="text-primary uppercase font-bold">Free</span>
+                        </div>
+                    </div>
+                    <div class="border-t border-white/10 pt-6 mb-8">
+                        <div class="flex justify-between items-end">
+                            <span class="font-syne font-bold uppercase">Total</span>
+                            <span id="cart-page-total" class="font-syne font-extrabold text-4xl text-primary text-glow-yellow">₹0</span>
+                        </div>
+                    </div>
+                    <button id="cart-page-checkout"
+                        class="w-full bg-primary text-black font-syne font-extrabold py-5 rounded-full text-lg shadow-[0_0_20px_rgba(242,223,13,0.3)] hover:scale-[1.02] active:scale-95 transition-all">
+                        PROCEED TO CHECKOUT
+                    </button>
+                    <div class="mt-6 flex items-center justify-center gap-2 py-3 rounded-xl bg-accent-purple/10 border border-accent-purple/20">
+                        <span class="material-symbols-outlined text-accent-purple text-lg">token</span>
+                        <p id="cart-page-points" class="text-xs font-bold text-slate-300">+0 KamiKoins earned</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="mt-24">
+            <h3 class="font-syne font-extrabold text-3xl uppercase mb-8">You May Also Like</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="liquid-glass rounded-xl p-4 group cursor-pointer" data-price="3600">
+                    <div class="aspect-[3/4] rounded-lg bg-cover bg-center mb-4 overflow-hidden relative"
+                        style="background-image: url('assets/cdn/black-minimalist-anime-t-shirt-1c0599.png')">
+                        <div class="w-full h-full bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                            <button class="bg-primary text-black px-4 py-2 rounded-full font-bold text-xs uppercase">ADD TO CART</button>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-sm">Zenith Oversized Tee</h4>
+                    <p class="text-primary font-bold mt-1">₹3,600</p>
+                </div>
+                <div class="liquid-glass rounded-xl p-4 group cursor-pointer" data-price="16800">
+                    <div class="aspect-[3/4] rounded-lg bg-cover bg-center mb-4 overflow-hidden relative"
+                        style="background-image: url('assets/cdn/denim-jacket-with-embroidery-87f061.png')">
+                        <div class="w-full h-full bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                            <button class="bg-primary text-black px-4 py-2 rounded-full font-bold text-xs uppercase">ADD TO CART</button>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-sm">Cyberpunk Denim Jacket</h4>
+                    <p class="text-primary font-bold mt-1">₹16,800</p>
+                </div>
+                <div class="liquid-glass rounded-xl p-4 group cursor-pointer" data-price="2800">
+                    <div class="aspect-[3/4] rounded-lg bg-cover bg-center mb-4 overflow-hidden relative"
+                        style="background-image: url('assets/cdn/canvas-tote-bag-with-anime-print-d34cca.png')">
+                        <div class="w-full h-full bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                            <button class="bg-primary text-black px-4 py-2 rounded-full font-bold text-xs uppercase">ADD TO CART</button>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-sm">Ukiyo-e Tote Bag</h4>
+                    <p class="text-primary font-bold mt-1">₹2,800</p>
+                </div>
+                <div class="liquid-glass rounded-xl p-4 group cursor-pointer" data-price="7600">
+                    <div class="aspect-[3/4] rounded-lg bg-cover bg-center mb-4 overflow-hidden relative"
+                        style="background-image: url('assets/cdn/anime-graphic-joggers-ac17a0.png')">
+                        <div class="w-full h-full bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+                            <button class="bg-primary text-black px-4 py-2 rounded-full font-bold text-xs uppercase">ADD TO CART</button>
+                        </div>
+                    </div>
+                    <h4 class="font-bold text-sm">Neon District Joggers</h4>
+                    <p class="text-primary font-bold mt-1">₹7,600</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-white/10 py-12 mt-24">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+            <a href="index.html" class="flex items-center gap-2 opacity-50 hover:opacity-80 transition-opacity">
+                <span class="material-symbols-outlined text-primary">flare</span>
+                <h1 class="font-syne font-extrabold text-lg tracking-tighter">KAMIWEAR</h1>
+            </a>
+            <div class="flex gap-8 text-xs font-medium uppercase tracking-widest text-slate-400">
+                <a class="hover:text-primary transition-colors" href="shop.html">Shop</a>
+                <a class="hover:text-primary transition-colors" href="index.html">Home</a>
+                <a class="hover:text-primary transition-colors" href="profile.html#orders">Orders</a>
+            </div>
+            <p class="text-[10px] text-slate-500 uppercase tracking-tighter">© 2024 Kamiwear Syndicate. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+        <script src="js/core/assets.js?v=4"></script>
+<script src="js/store/core.js?v=4"></script>
+    <script src="js/components/badge-manager.js?v=4"></script>
+    <script src="js/components/cart-drawer.js?v=4"></script>
+    <script src="js/components/profile-modal.js?v=4"></script>
+    <script src="js/components/search-overlay.js?v=4"></script>
+    <script src="js/core/app.js?v=4"></script>
+    <script src="js/core/enhance.js?v=5"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const money = value => `₹${Number(value || 0).toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
+            const escapeHtml = value => String(value || '')
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+            const container = document.getElementById('cart-page-items');
+            const countEl = document.getElementById('cart-page-count');
+            const subtotalEl = document.getElementById('cart-page-subtotal');
+            const totalEl = document.getElementById('cart-page-total');
+            const pointsEl = document.getElementById('cart-page-points');
+            const checkoutBtn = document.getElementById('cart-page-checkout');
+
+            const render = () => {
+                const cart = window.Store.getCart();
+                const count = cart.reduce((sum, item) => sum + Number(item.quantity || 0), 0);
+                const subtotal = window.Store.getCartTotal();
+
+                countEl.textContent = `${count} item${count === 1 ? '' : 's'} selected`;
+                subtotalEl.textContent = money(subtotal);
+                totalEl.textContent = money(subtotal);
+                pointsEl.textContent = `+${Math.floor(subtotal / 10).toLocaleString('en-IN')} KamiKoins earned`;
+                checkoutBtn.disabled = cart.length === 0;
+                checkoutBtn.classList.toggle('opacity-40', cart.length === 0);
+
+                if (cart.length === 0) {
+                    container.innerHTML = `
+                        <div class="py-16 text-center space-y-4">
+                            <span class="material-symbols-outlined text-6xl text-slate-600">inventory_2</span>
+                            <p class="uppercase tracking-widest text-sm text-slate-400">Your cart is empty</p>
+                            <a href="shop.html" class="inline-block bg-primary text-black font-bold px-6 py-3 rounded-full text-sm">CONTINUE SHOPPING</a>
+                        </div>`;
+                    return;
+                }
+
+                container.innerHTML = cart.map(item => `
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-5 border-b border-white/10 pb-6 last:border-0 last:pb-0">
+                        <div class="w-24 h-32 rounded-xl overflow-hidden bg-white/5 border border-white/10 shrink-0">
+                            <img src="${escapeHtml(item.image || 'assets/brand/placeholder.jpg')}" alt="${escapeHtml(item.name)}"
+                                class="w-full h-full object-cover"
+                                onerror="this.onerror=null;this.src='assets/brand/placeholder.jpg'">
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="font-syne font-bold text-xl truncate">${escapeHtml(item.name)}</h3>
+                            <p class="text-slate-400 text-sm mt-1">${escapeHtml(item.category || 'Apparel')}</p>
+                            <div class="mt-4 flex items-center gap-4">
+                                <div class="flex items-center bg-white/5 border border-white/10 rounded-full px-3 py-1">
+                                    <button data-qty="${escapeHtml(item.id)}" data-delta="-1" class="p-1 hover:text-primary" aria-label="Decrease quantity">
+                                        <span class="material-symbols-outlined text-sm">remove</span>
+                                    </button>
+                                    <span class="px-4 font-bold text-sm">${Number(item.quantity || 0)}</span>
+                                    <button data-qty="${escapeHtml(item.id)}" data-delta="1" class="p-1 hover:text-primary" aria-label="Increase quantity">
+                                        <span class="material-symbols-outlined text-sm">add</span>
+                                    </button>
+                                </div>
+                                <button data-remove="${escapeHtml(item.id)}" class="text-slate-500 hover:text-red-500 transition-colors" aria-label="Remove item">
+                                    <span class="material-symbols-outlined text-sm">delete</span>
+                                </button>
+                            </div>
+                        </div>
+                        <p class="font-syne font-bold text-xl">${money(Number(item.price || 0) * Number(item.quantity || 0))}</p>
+                    </div>
+                `).join('');
+            };
+
+            container.addEventListener('click', event => {
+                const qtyBtn = event.target.closest('[data-qty]');
+                if (qtyBtn) {
+                    const id = qtyBtn.dataset.qty;
+                    const delta = Number(qtyBtn.dataset.delta || 0);
+                    const item = window.Store.getCart().find(entry => entry.id === id);
+                    if (item) window.Store.updateQuantity(id, item.quantity + delta);
+                    return;
+                }
+                const removeBtn = event.target.closest('[data-remove]');
+                if (removeBtn) window.Store.removeFromCart(removeBtn.dataset.remove);
+            });
+
+            checkoutBtn.addEventListener('click', () => {
+                if (window.Store.getCart().length === 0) return;
+                if (window.Store.getUser()) {
+                    window.location.href = 'checkout.html';
+                } else {
+                    sessionStorage.setItem('kw_redirect_after_login', 'checkout.html');
+                    if (window.toggleProfile) window.toggleProfile(true, true);
+                }
+            });
+
+            window.addEventListener('cartUpdated', render);
+            render();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kamiwear Shopping Cart Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Syne:wght@400;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f9f906",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#0A0812",
+                        "glass": "rgba(255, 255, 255, 0.03)",
+                        "glass-border": "rgba(255, 255, 255, 0.1)",
+                        "accent-purple": "#7c3aed",
+                        "soft-lavender": "#d1d5db"
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "syne": ["Syne", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .liquid-glass {
+            background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .text-glow-yellow {
+            text-shadow: 0 0 15px rgba(249, 249, 6, 0.4);
+        }
+        .purple-glow {
+            box-shadow: 0 0 30px rgba(124, 58, 237, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 min-h-screen">
+<nav class="sticky top-0 z-50 w-full border-b border-glass-border liquid-glass px-6 py-4">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl">flare</span>
+<h1 class="font-syne font-800 text-2xl tracking-tighter">KAMIWEAR</h1>
+</div>
+<div class="hidden md:flex items-center gap-10">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Shop</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Collections</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">New Drops</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Archive</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 hover:bg-white/10 rounded-full transition-colors">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="p-2 hover:bg-white/10 rounded-full transition-colors">
+<span class="material-symbols-outlined">person</span>
+</button>
+<button class="p-2 hover:bg-white/10 rounded-full transition-colors relative">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute top-0 right-0 bg-primary text-black text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full">3</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-6 py-12">
+<div class="mb-10">
+<h2 class="font-syne font-800 text-6xl uppercase tracking-tighter mb-2">Your Cart</h2>
+<p class="text-soft-lavender font-medium tracking-widest uppercase text-xs">3 Items Selected</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 space-y-6">
+<div class="liquid-glass rounded-xl p-8 space-y-8">
+<div class="flex items-center gap-6 border-b border-glass-border pb-8">
+<div class="w-24 h-32 rounded-lg bg-cover bg-center flex-shrink-0" data-alt="Black anime hoodie with flame graphics" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB8BD9VKS5ztdRJMqFALD4YjoGG8m5k9etFf3r1Lxy2kWMvdr9pH7-u832aFlWYZHKmPr9_KQGrUzR3ef_DPWW43Z76X_d1gPntXE0c0_5eNhurzEJ_UjgcnvCVR0ZHK_Ca9azCabRjr-bYlOq71hMwtSz0T6E6jtV1ICEr70nDsBxwIc5DSBW2-vINTudHlvUd9tlPS_dmeSdBpbvw7b7gM3ab4EniyWiP_WjI0peNaYus_0fXPibMKHqQS7NWmG1gjgiW4yHc39pC')"></div>
+<div class="flex-1">
+<h3 class="font-syne font-bold text-xl">Tanjiro Flame Hoodie</h3>
+<p class="text-soft-lavender text-sm mt-1">Size: L • Color: Black</p>
+<div class="mt-4 flex items-center gap-4">
+<div class="flex items-center bg-white/5 border border-glass-border rounded-full px-3 py-1">
+<button class="p-1 hover:text-primary"><span class="material-symbols-outlined text-sm">remove</span></button>
+<span class="px-4 font-bold text-sm">1</span>
+<button class="p-1 hover:text-primary"><span class="material-symbols-outlined text-sm">add</span></button>
+</div>
+</div>
+</div>
+<div class="text-right flex flex-col justify-between h-32">
+<button class="text-soft-lavender hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+<p class="font-syne font-bold text-xl">₹1,999</p>
+</div>
+</div>
+<div class="flex items-center gap-6 border-b border-glass-border pb-8">
+<div class="w-24 h-32 rounded-lg bg-cover bg-center flex-shrink-0" data-alt="White t-shirt with red cloud logo" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCYD_ZeXtEOPLE-WSC7mkVSeQppjSDNN1ZDVzfWsORWk_4GIZnO6C3SLMIeEfnUk_TlkcoM7xPhl-sTVpR9hB7sTeAXK0rFiIIncP6LRLeopgMbEGe6H9oTBRfLMhtMQ7bAlUtIAiZ6VgimCRuP_t_OkWFK4RkzUwKKuqlCHh1VuV__APkmjg7YvUXop4u2HaYn1-ZgAbCwUk_HW9sYMuIaK8SM0pKZsw3j_g1TVrPKmnK8qhdp5uEgqsi6jG1IJbfG_ILEPh08rpMB')"></div>
+<div class="flex-1">
+<h3 class="font-syne font-bold text-xl">Naruto Akatsuki Tee</h3>
+<p class="text-soft-lavender text-sm mt-1">Size: M • Color: White</p>
+<div class="mt-4 flex items-center gap-4">
+<div class="flex items-center bg-white/5 border border-glass-border rounded-full px-3 py-1">
+<button class="p-1 hover:text-primary"><span class="material-symbols-outlined text-sm">remove</span></button>
+<span class="px-4 font-bold text-sm">2</span>
+<button class="p-1 hover:text-primary"><span class="material-symbols-outlined text-sm">add</span></button>
+</div>
+</div>
+</div>
+<div class="text-right flex flex-col justify-between h-32">
+<button class="text-soft-lavender hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+<p class="font-syne font-bold text-xl">₹1,798</p>
+</div>
+</div>
+<div class="flex items-center gap-6 pb-4">
+<div class="w-24 h-32 rounded-lg bg-cover bg-center flex-shrink-0" data-alt="Red eye shaped metal keychain" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBZ97LIQmL4agpYtflkrxYAvcRooIG0JSr4EztsQjzbsu7GyafIPXP-l58lYYcKYSjCxaF8TBw-QIQRkTZRfY_QarMWhBY-VHNe5uMRukTX45Z2FT62JLJ7OisZdNqWoDhcZFERMvkDTM0RC07jLdbjXyC-Ffyi0nflc8FGT_0_ElbVxcabbIX3Odkpw3BT6EhWCFv0Kx8zRtjNS8vvhqPUImIjqewR19q8MCMv9tO_IAvmnxin1c4Z2eyFF0_AemG88jvKOkrWkPEQ')"></div>
+<div class="flex-1">
+<h3 class="font-syne font-bold text-xl">Demon Eyes Keychain</h3>
+<p class="text-soft-lavender text-sm mt-1">Accessory</p>
+<div class="mt-4 flex items-center gap-4">
+<div class="flex items-center bg-white/5 border border-glass-border rounded-full px-3 py-1">
+<button class="p-1 hover:text-primary"><span class="material-symbols-outlined text-sm">remove</span></button>
+<span class="px-4 font-bold text-sm">1</span>
+<button class="p-1 hover:text-primary"><span class="material-symbols-outlined text-sm">add</span></button>
+</div>
+</div>
+</div>
+<div class="text-right flex flex-col justify-between h-32">
+<button class="text-soft-lavender hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+<p class="font-syne font-bold text-xl">₹349</p>
+</div>
+</div>
+</div>
+<div class="liquid-glass rounded-xl p-6 space-y-4">
+<div class="flex justify-between items-center">
+<p class="text-sm font-medium">Add <span class="text-primary">₹202</span> more for <span class="uppercase font-bold">Free Shipping!</span></p>
+<p class="text-xs text-soft-lavender">92% Reach</p>
+</div>
+<div class="w-full h-2 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-gradient-to-r from-accent-purple to-primary w-[92%]"></div>
+</div>
+</div>
+</div>
+<div class="space-y-6">
+<div class="liquid-glass rounded-xl p-8 sticky top-28">
+<h3 class="font-syne font-800 text-2xl uppercase mb-8">Order Summary</h3>
+<div class="space-y-4 text-sm mb-8">
+<div class="flex justify-between">
+<span class="text-soft-lavender">Subtotal</span>
+<span class="font-bold">₹4,146</span>
+</div>
+<div class="flex justify-between">
+<span class="text-soft-lavender">Shipping</span>
+<span class="text-primary uppercase font-bold">Free</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-soft-lavender">Discount (ANIME20)</span>
+<span class="text-accent-purple font-bold">-₹829</span>
+</div>
+</div>
+<div class="flex gap-2 mb-8">
+<input class="bg-white/5 border border-glass-border rounded-lg px-4 py-3 flex-1 text-sm focus:ring-1 focus:ring-primary outline-none" placeholder="Promo Code" type="text"/>
+<button class="bg-primary text-black font-bold px-6 py-3 rounded-lg text-sm hover:opacity-90 transition-opacity">APPLY</button>
+</div>
+<div class="border-t border-glass-border pt-6 mb-8">
+<div class="flex justify-between items-end">
+<span class="font-syne font-bold uppercase">Total</span>
+<span class="font-syne font-800 text-4xl text-primary text-glow-yellow">₹3,317</span>
+</div>
+</div>
+<button class="w-full bg-primary text-black font-syne font-800 py-5 rounded-full text-lg shadow-[0_0_20px_rgba(249,249,6,0.3)] hover:scale-[1.02] active:scale-95 transition-all">
+                        PROCEED TO CHECKOUT
+                    </button>
+<div class="mt-6 flex items-center justify-center gap-2 py-3 rounded-xl bg-accent-purple/10 border border-accent-purple/20 purple-glow">
+<span class="material-symbols-outlined text-accent-purple text-lg">token</span>
+<p class="text-xs font-bold text-soft-lavender">+3,317 KamiKoins earned</p>
+</div>
+</div>
+</div>
+</div>
+<section class="mt-24">
+<h3 class="font-syne font-800 text-3xl uppercase mb-8">You May Also Like</h3>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+<div class="liquid-glass rounded-xl p-4 group cursor-pointer">
+<div class="aspect-[3/4] rounded-lg bg-cover bg-center mb-4 overflow-hidden" data-alt="Black minimalist anime t-shirt" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAGys08eirplv-WTP9IU0Ofsqg79VMNJlfFmWsdjXUOl3k3LBwgpa9-IgcsEBVo0HR5ZoZI6oQt-mBKyGxgsgAfiRVw1OInmPZE5wVFQYwv0qVJJasM-0N4dLduVF6NX9XgUSGasyOVa_dcscTw27n3b99aM-I0_PP5dN7Dozm_kCLEYMITZbWjoGNTloCL2Igmt0tsmZtTt26S4352E6upLPxDMwP6uZhMhmxHGuA3Nia_F5h0Rxz8-ilkYw0RPQfm22CCLMgM_Dcb')">
+<div class="w-full h-full bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+<button class="bg-primary text-black px-4 py-2 rounded-full font-bold text-xs uppercase">Quick Add</button>
+</div>
+</div>
+<h4 class="font-bold text-sm">Zenith Oversized Tee</h4>
+<p class="text-primary font-bold mt-1">₹1,499</p>
+</div>
+<div class="liquid-glass rounded-xl p-4 group cursor-pointer">
+<div class="aspect-[3/4] rounded-lg bg-cover bg-center mb-4 overflow-hidden" data-alt="Denim jacket with embroidery" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA4orqR7pbUV6NPC5NbaWvSrJaV1KLwSoKMKCTraxRvIm_-AcVJ_vuXOgQD1j2023upMfnqlZuJsjWSiFoe0UuwSCuz3h2BenkxOuJxKbVx3UkBKAaPjFDH6qpM4kwYitVrc9eaqXkYtcjJyRGt8HJ4Dx3qcbfW0jwdr1M3fhYa5KrRbyUag6khHkPiGiiAf4UgYtmeaaWi8WtD4qg2BaYqfwZ5udVkVkhyQuOjX_NqBD_Kup9ARYOTLS2GB7hZzUyc_IsDouwnWpte')">
+<div class="w-full h-full bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+<button class="bg-primary text-black px-4 py-2 rounded-full font-bold text-xs uppercase">Quick Add</button>
+</div>
+</div>
+<h4 class="font-bold text-sm">Cyberpunk Denim Jacket</h4>
+<p class="text-primary font-bold mt-1">₹3,999</p>
+</div>
+<div class="liquid-glass rounded-xl p-4 group cursor-pointer">
+<div class="aspect-[3/4] rounded-lg bg-cover bg-center mb-4 overflow-hidden" data-alt="Canvas tote bag with anime print" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBdF4Ziy_kHazg9690eb5ObD19I7NHr3ReVGe4MadHP-IVaECbvhxpPnneI_s19J61eDUcIQunGGAOvWKxUxUuFDxg6L0L90aveTzSNIHBljo8zGbeUt15lPdJoBFDFqjDU8YHNJ7Xlfxy0_NTywAuRmhz6mvQuQFjukpEJcIGsfjW-b10CYGOa7z0vLQWfaUf8focUMpRaeJciZCxqvJjS6maymVcT7UMivP5IlZDbhxoX0phgRL6tbhtJjkEwmUtYSkMVJ6K4F8b_')">
+<div class="w-full h-full bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+<button class="bg-primary text-black px-4 py-2 rounded-full font-bold text-xs uppercase">Quick Add</button>
+</div>
+</div>
+<h4 class="font-bold text-sm">Ukiyo-e Tote Bag</h4>
+<p class="text-primary font-bold mt-1">₹899</p>
+</div>
+<div class="liquid-glass rounded-xl p-4 group cursor-pointer">
+<div class="aspect-[3/4] rounded-lg bg-cover bg-center mb-4 overflow-hidden" data-alt="Anime graphic joggers" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBGriSkKDB3c5Y2BscUQMUyMGcwo30xr4-kPseuxdR6ytHyiZKSa2r_nVgeU1aPeaEuarVma6iqzYZnMemI6XH0uISXjHruh_qNIDpHsQ8WEEP5j8J7M7d8NTYOoAgkuq00L12GAM4gCUVpBpFOiJRRo86JPCYRTe602tHY81Z6sXU0byBMdj1VIrK4G8xaBopQlcnNrxyKohp0Sc3NMPmnktuRjagSWAOiw4jeXfODA2ci_kLPlViFc37w3WgCFFn23yttX7BaovsO')">
+<div class="w-full h-full bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+<button class="bg-primary text-black px-4 py-2 rounded-full font-bold text-xs uppercase">Quick Add</button>
+</div>
+</div>
+<h4 class="font-bold text-sm">Neon District Joggers</h4>
+<p class="text-primary font-bold mt-1">₹2,499</p>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-glass-border py-12 mt-24">
+<div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex items-center gap-2 opacity-50">
+<span class="material-symbols-outlined text-primary">flare</span>
+<h1 class="font-syne font-800 text-lg tracking-tighter">KAMIWEAR</h1>
+</div>
+<div class="flex gap-8 text-xs font-medium uppercase tracking-widest text-soft-lavender">
+<a class="hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms</a>
+<a class="hover:text-primary transition-colors" href="#">Contact</a>
+<a class="hover:text-primary transition-colors" href="#">Shipping</a>
+</div>
+<p class="text-[10px] text-soft-lavender/50 uppercase tracking-tighter">© 2024 Kamiwear Syndicate. All Rights Reserved.</p>
+</div>
+</footer>
+</body></html>

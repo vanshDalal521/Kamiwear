@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kamiwear | Your Wishlist</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Syne:wght@400;700;800&amp;family=Orbitron:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f9f906",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#0A0812",
+                        "glass": "rgba(255, 255, 255, 0.03)",
+                        "glass-border": "rgba(255, 255, 255, 0.1)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "syne": ["Syne", "sans-serif"],
+                        "orbitron": ["Orbitron", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .deep-glow {
+            box-shadow: 0 0 40px -10px rgba(139, 92, 246, 0.15);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 selection:bg-primary selection:text-black">
+<!-- Sticky Glass Navbar -->
+<header class="sticky top-0 z-50 w-full border-b border-glass-border liquid-glass px-6 lg:px-20 py-4 flex items-center justify-between">
+<div class="flex items-center gap-12">
+<a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+<div class="size-8 bg-primary flex items-center justify-center rounded-lg">
+<span class="material-symbols-outlined text-black font-bold">bolt</span>
+</div>
+<h1 class="text-2xl font-orbitron font-bold tracking-tighter text-slate-100">KAMIWEAR</h1>
+</a>
+<nav class="hidden md:flex items-center gap-8 uppercase tracking-widest text-xs font-bold text-slate-400">
+<a class="hover:text-primary transition-colors" href="shop.html">Shop</a>
+<a class="hover:text-primary transition-colors" href="index.html#collections">Collections</a>
+<a class="hover:text-primary transition-colors" href="shop.html">New Drops</a>
+<a class="text-primary flex items-center gap-1" href="wishlist.html">Wishlist <span class="size-1 bg-primary rounded-full"></span></a>
+</nav>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xl">search</span>
+<input class="bg-white/5 border-none rounded-full pl-10 pr-4 py-2 text-sm focus:ring-1 focus:ring-primary w-64" placeholder="Search Archives" type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-primary"><span class="material-symbols-outlined fill-1">favorite</span></button>
+<button class="relative hover:text-primary transition-colors" aria-label="Open cart"><span class="material-symbols-outlined">shopping_bag</span><span id="cart-count-badge" class="absolute -top-1 -right-1 bg-primary text-black text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">0</span></button>
+<button class="hover:text-primary transition-colors" aria-label="Open profile"><span class="material-symbols-outlined">person</span></button>
+</div>
+</div>
+</header>
+<main class="max-w-[1440px] mx-auto px-6 lg:px-20 py-12">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-2 text-xs uppercase tracking-widest text-slate-500 mb-8 font-bold">
+<a class="hover:text-slate-300" href="index.html">Home</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-slate-200">Wishlist</span>
+</nav>
+<!-- Page Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+<div>
+<h2 class="font-syne text-6xl md:text-8xl font-extrabold leading-none text-slate-100 tracking-tighter">YOUR WISHLIST</h2>
+<p id="wishlist-summary" class="text-slate-400 mt-4 text-lg font-medium">0 saved items across 0 collections</p>
+</div>
+<!-- Wishlist Actions -->
+<div class="flex items-center gap-4">
+<button id="wishlist-share" class="liquid-glass px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider hover:bg-white/10 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">share</span> Share Wishlist
+                </button>
+<button id="wishlist-add-all" class="bg-primary text-black px-8 py-3 rounded-full text-sm font-bold uppercase tracking-wider hover:scale-105 transition-transform flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">add_shopping_cart</span> Add All to Cart
+                </button>
+<button id="wishlist-clear" class="text-slate-500 hover:text-red-400 text-xs font-bold uppercase tracking-widest ml-2 transition-colors">Clear All</button>
+</div>
+</div>
+<!-- Wishlist Grid -->
+<div id="wishlist-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Product Card 1 -->
+<div class="liquid-glass rounded-xl overflow-hidden flex flex-col group deep-glow" data-price="15120">
+<div class="relative aspect-[4/5] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Cyberpunk black hoodie with neon yellow accents" src="assets/cdn/cyberpunk-black-hoodie-with-neon-yello-a4caf7.png"/>
+<button class="absolute top-4 right-4 size-10 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center text-red-500 border border-white/10">
+<span class="material-symbols-outlined fill-1">favorite</span>
+</button>
+<div class="absolute bottom-4 left-4 bg-primary/20 backdrop-blur-md px-3 py-1 rounded-md border border-primary/30">
+<span class="font-orbitron text-[10px] font-bold text-primary tracking-widest">NEON GENESIS</span>
+</div>
+</div>
+<div class="p-6 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-syne font-bold text-xl text-slate-100 uppercase leading-tight">EVA-01 Tech Shell</h3>
+<p class="text-primary font-bold text-lg mt-1">₹15,120</p>
+</div>
+<div class="flex gap-1.5">
+<span class="size-3 rounded-full bg-black ring-1 ring-white/20"></span>
+<span class="size-3 rounded-full bg-slate-600 ring-1 ring-white/20"></span>
+<span class="size-3 rounded-full bg-purple-600 ring-1 ring-white/20"></span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 py-1.5 border border-white/10 rounded text-[10px] font-bold text-slate-400 hover:border-primary hover:text-primary">S</button>
+<button class="flex-1 py-1.5 border border-primary rounded text-[10px] font-bold text-primary">M</button>
+<button class="flex-1 py-1.5 border border-white/10 rounded text-[10px] font-bold text-slate-400 hover:border-primary hover:text-primary">L</button>
+<button class="flex-1 py-1.5 border border-white/10 rounded text-[10px] font-bold text-slate-400 hover:border-primary hover:text-primary">XL</button>
+</div>
+<button class="w-full bg-primary text-black py-4 rounded font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_20px_rgba(249,249,6,0.4)] transition-all">Add to Cart</button>
+</div>
+</div>
+<!-- Product Card 2 (Limited Stock) -->
+<div class="liquid-glass rounded-xl overflow-hidden flex flex-col group deep-glow" data-price="4400">
+<div class="relative aspect-[4/5] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Oversized white anime graphic t-shirt" src="assets/cdn/oversized-white-anime-graphic-t-shirt-71804a.png"/>
+<button class="absolute top-4 right-4 size-10 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center text-red-500 border border-white/10">
+<span class="material-symbols-outlined fill-1">favorite</span>
+</button>
+<div class="absolute top-4 left-4 bg-orange-500 text-white px-3 py-1 rounded text-[10px] font-bold tracking-tighter uppercase">Only 2 Left!</div>
+<div class="absolute bottom-4 left-4 bg-primary/20 backdrop-blur-md px-3 py-1 rounded-md border border-primary/30">
+<span class="font-orbitron text-[10px] font-bold text-primary tracking-widest">AKIRA OVERDRIVE</span>
+</div>
+</div>
+<div class="p-6 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-syne font-bold text-xl text-slate-100 uppercase leading-tight">Neo-Tokyo Tee</h3>
+<p class="text-primary font-bold text-lg mt-1">₹4,400</p>
+</div>
+<div class="flex gap-1.5">
+<span class="size-3 rounded-full bg-white ring-1 ring-white/20"></span>
+<span class="size-3 rounded-full bg-red-600 ring-1 ring-white/20"></span>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 py-1.5 border border-white/10 rounded text-[10px] font-bold text-slate-400">S</button>
+<button class="flex-1 py-1.5 border border-white/10 rounded text-[10px] font-bold text-slate-400">M</button>
+<button class="flex-1 py-1.5 border border-white/10 rounded text-[10px] font-bold text-slate-400">L</button>
+</div>
+<button class="w-full bg-primary text-black py-4 rounded font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_20px_rgba(249,249,6,0.4)] transition-all">Add to Cart</button>
+</div>
+</div>
+<!-- Product Card 3 (Sold Out) -->
+<div class="liquid-glass rounded-xl overflow-hidden flex flex-col group opacity-80" data-price="16800">
+<div class="relative aspect-[4/5] overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Distressed denim jacket with anime embroidery" src="assets/generated/nobara-resonance-jacket-1774247650512.png"/>
+<div class="absolute inset-0 bg-background-dark/60 flex items-center justify-center backdrop-blur-[2px]">
+<span class="font-syne text-3xl font-bold text-red-500 -rotate-12 border-4 border-red-500 px-6 py-2">SOLD OUT</span>
+</div>
+<button class="absolute top-4 right-4 size-10 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center text-red-500 border border-white/10">
+<span class="material-symbols-outlined fill-1">favorite</span>
+</button>
+<div class="absolute bottom-4 left-4 bg-white/10 backdrop-blur-md px-3 py-1 rounded-md border border-white/20">
+<span class="font-orbitron text-[10px] font-bold text-slate-300 tracking-widest">GHOST SHELL</span>
+</div>
+</div>
+<div class="p-6 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-syne font-bold text-xl text-slate-500 uppercase leading-tight">Section 9 Bomber</h3>
+<p class="text-slate-600 font-bold text-lg mt-1">₹16,800</p>
+</div>
+</div>
+<button class="w-full bg-white/5 text-slate-400 py-4 rounded font-bold uppercase tracking-widest text-xs border border-white/10 hover:bg-white/10 transition-all">Notify Me</button>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="liquid-glass rounded-xl overflow-hidden flex flex-col group deep-glow" data-price="9600">
+<div class="relative aspect-[4/5] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Model wearing futuristic techwear joggers" src="assets/cdn/model-wearing-futuristic-techwear-jogg-6a6594.png"/>
+<button class="absolute top-4 right-4 size-10 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center text-red-500 border border-white/10">
+<span class="material-symbols-outlined fill-1">favorite</span>
+</button>
+<div class="absolute bottom-4 left-4 bg-primary/20 backdrop-blur-md px-3 py-1 rounded-md border border-primary/30">
+<span class="font-orbitron text-[10px] font-bold text-primary tracking-widest">VOID WALKER</span>
+</div>
+</div>
+<div class="p-6 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-syne font-bold text-xl text-slate-100 uppercase leading-tight">Dimension Joggers</h3>
+<p class="text-primary font-bold text-lg mt-1">₹9,600</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 py-1.5 border border-white/10 rounded text-[10px] font-bold text-slate-400">28</button>
+<button class="flex-1 py-1.5 border border-white/10 rounded text-[10px] font-bold text-slate-400">30</button>
+<button class="flex-1 py-1.5 border border-white/10 rounded text-[10px] font-bold text-slate-400">32</button>
+</div>
+<button class="w-full bg-primary text-black py-4 rounded font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_20px_rgba(249,249,6,0.4)] transition-all">Add to Cart</button>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="liquid-glass rounded-xl overflow-hidden flex flex-col group deep-glow" data-price="7600">
+<div class="relative aspect-[4/5] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Black futuristic utility vest" src="assets/cdn/black-futuristic-utility-vest-8965f8.png"/>
+<button class="absolute top-4 right-4 size-10 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center text-red-500 border border-white/10">
+<span class="material-symbols-outlined fill-1">favorite</span>
+</button>
+<div class="absolute bottom-4 left-4 bg-primary/20 backdrop-blur-md px-3 py-1 rounded-md border border-primary/30">
+<span class="font-orbitron text-[10px] font-bold text-primary tracking-widest">SHINIGAMI</span>
+</div>
+</div>
+<div class="p-6 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-syne font-bold text-xl text-slate-100 uppercase leading-tight">Soul Reaper Vest</h3>
+<p class="text-primary font-bold text-lg mt-1">₹7,600</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 py-1.5 border border-white/10 rounded text-[10px] font-bold text-slate-400">OS</button>
+</div>
+<button class="w-full bg-primary text-black py-4 rounded font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_20px_rgba(249,249,6,0.4)] transition-all">Add to Cart</button>
+</div>
+</div>
+<!-- Product Card 6 -->
+<div class="liquid-glass rounded-xl overflow-hidden flex flex-col group deep-glow" data-price="23920">
+<div class="relative aspect-[4/5] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Neon green leather jacket with anime patch" src="assets/cdn/neon-green-leather-jacket-with-anime-p-78711f.png"/>
+<button class="absolute top-4 right-4 size-10 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center text-red-500 border border-white/10">
+<span class="material-symbols-outlined fill-1">favorite</span>
+</button>
+<div class="absolute bottom-4 left-4 bg-primary/20 backdrop-blur-md px-3 py-1 rounded-md border border-primary/30">
+<span class="font-orbitron text-[10px] font-bold text-primary tracking-widest">CYBERPUNK 2077</span>
+</div>
+</div>
+<div class="p-6 flex flex-col gap-4">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="font-syne font-bold text-xl text-slate-100 uppercase leading-tight">Night City Jacket</h3>
+<p class="text-primary font-bold text-lg mt-1">₹23,920</p>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="flex-1 py-1.5 border border-white/10 rounded text-[10px] font-bold text-slate-400">M</button>
+<button class="flex-1 py-1.5 border border-white/10 rounded text-[10px] font-bold text-slate-400">L</button>
+</div>
+<button class="w-full bg-primary text-black py-4 rounded font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_20px_rgba(249,249,6,0.4)] transition-all">Add to Cart</button>
+</div>
+</div>
+</div>
+<!-- Recommendations Section -->
+<section class="mt-32">
+<div class="flex items-center justify-between mb-12">
+<h2 class="font-syne text-4xl font-bold text-slate-100 uppercase tracking-tighter">You Might Also Like</h2>
+<a class="text-primary text-sm font-bold uppercase tracking-widest border-b border-primary pb-1" href="shop.html">View All Drops</a>
+</div>
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Rec 1 -->
+<div class="liquid-glass rounded-lg overflow-hidden group" data-price="3600">
+<div class="aspect-[4/5] relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Sleek black techwear bucket hat" src="assets/accessories/headband-replica.jpeg"/>
+</div>
+<div class="p-4">
+<h4 class="font-syne text-sm font-bold text-slate-200">Cyber Shield Cap</h4>
+<p class="text-primary text-xs font-bold mt-1">₹3,600</p>
+</div>
+</div>
+<!-- Rec 2 -->
+<div class="liquid-glass rounded-lg overflow-hidden group" data-price="5200">
+<div class="aspect-[4/5] relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Minimalist long sleeve t-shirt with japanese characters" src="assets/cdn/minimalist-long-sleeve-t-shirt-with-ja-e27d0e.png"/>
+</div>
+<div class="p-4">
+<h4 class="font-syne text-sm font-bold text-slate-200">Kanji LS Tee</h4>
+<p class="text-primary text-xs font-bold mt-1">₹5,200</p>
+</div>
+</div>
+<!-- Rec 3 -->
+<div class="liquid-glass rounded-lg overflow-hidden group" data-price="6800">
+<div class="aspect-[4/5] relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Black cargo shorts with many straps" src="assets/cdn/black-cargo-shorts-with-many-straps-27d7ee.png"/>
+</div>
+<div class="p-4">
+<h4 class="font-syne text-sm font-bold text-slate-200">Utility Shorts</h4>
+<p class="text-primary text-xs font-bold mt-1">₹6,800</p>
+</div>
+</div>
+<!-- Rec 4 -->
+<div class="liquid-glass rounded-lg overflow-hidden group" data-price="7200">
+<div class="aspect-[4/5] relative">
+<img class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" data-alt="Black graphic hoodie with white logo" src="assets/cdn/black-graphic-hoodie-with-white-logo-2cdc74.png"/>
+</div>
+<div class="p-4">
+<h4 class="font-syne text-sm font-bold text-slate-200">Kami Classic Hoodie</h4>
+<p class="text-primary text-xs font-bold mt-1">₹7,200</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="mt-20 border-t border-glass-border py-12 px-6 lg:px-20 bg-background-dark">
+<div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<a href="index.html" class="flex items-center gap-2 hover:opacity-80 transition-opacity">
+<div class="size-6 bg-slate-800 flex items-center justify-center rounded">
+<span class="material-symbols-outlined text-slate-400 text-sm">bolt</span>
+</div>
+<h3 class="font-orbitron font-bold text-slate-500 text-sm tracking-widest">KAMIWEAR</h3>
+</a>
+<div class="flex gap-12 text-[10px] font-bold uppercase tracking-[0.2em] text-slate-600">
+<a class="hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="hover:text-primary transition-colors" href="#">Shipping</a>
+<a class="hover:text-primary transition-colors" href="#">Returns</a>
+<a class="hover:text-primary transition-colors" href="#">Discord</a>
+</div>
+<p class="text-[10px] text-slate-600 font-medium uppercase tracking-widest">© 2024 Kamiwear Global Archives. Designed in Neo-Tokyo.</p>
+</div>
+</footer>
+    <script src="js/core/assets.js?v=4"></script>
+    <script src="js/store/core.js?v=4"></script>
+    <script src="js/components/badge-manager.js?v=4"></script>
+    <script src="js/components/cart-drawer.js?v=4"></script>
+    <script src="js/components/profile-modal.js?v=4"></script>
+    <script src="js/components/search-overlay.js?v=4"></script>
+    <script src="js/core/app.js?v=4"></script>
+    <script src="js/core/enhance.js?v=5"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('wishlist-grid');
+            const summary = document.getElementById('wishlist-summary');
+            const addAllBtn = document.getElementById('wishlist-add-all');
+            const clearBtn = document.getElementById('wishlist-clear');
+            const shareBtn = document.getElementById('wishlist-share');
+            if (!grid) return;
+
+            const cards = () => Array.from(grid.querySelectorAll('[data-price]'));
+
+            const productFromCard = card => {
+                const name = card.querySelector('h3, h4')?.textContent.trim();
+                const price = Number(card.dataset.price || 0);
+                const image = card.querySelector('img')?.getAttribute('src') || '';
+                const categoryEl = card.querySelector('.font-orbitron');
+                const category = categoryEl ? categoryEl.textContent.replace(/\s+/g, ' ').trim() : 'Apparel';
+                return { name, price, image, category };
+            };
+
+            const escapeHtml = value => String(value || '')
+                .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+            const updateSummary = () => {
+                const remaining = cards();
+                const collections = new Set(
+                    remaining.map(card => {
+                        const label = card.querySelector('.font-orbitron');
+                        return label ? label.textContent.replace(/\s+/g, ' ').trim() : 'Archive';
+                    })
+                );
+                if (summary) {
+                    summary.textContent = remaining.length === 0
+                        ? 'Your wishlist is empty — the archive awaits.'
+                        : `${remaining.length} saved item${remaining.length === 1 ? '' : 's'} across ${collections.size} collection${collections.size === 1 ? '' : 's'}`;
+                }
+                if (addAllBtn) addAllBtn.disabled = remaining.length === 0;
+            };
+
+            const makeCard = item => `
+                <div class="liquid-glass rounded-xl overflow-hidden flex flex-col group deep-glow" data-price="${Number(item.price)}" data-wishlist-id="${escapeHtml(item.id)}">
+                    <div class="relative aspect-[4/5] overflow-hidden">
+                        <img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                            src="${escapeHtml(item.image || 'assets/brand/placeholder.jpg')}" alt="${escapeHtml(item.name)}">
+                        <button class="absolute top-4 right-4 size-10 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center text-red-500 border border-white/10" aria-label="Remove from wishlist">
+                            <span class="material-symbols-outlined fill-1">favorite</span>
+                        </button>
+                        <div class="absolute bottom-4 left-4 bg-primary/20 backdrop-blur-md px-3 py-1 rounded-md border border-primary/30">
+                            <span class="font-orbitron text-[10px] font-bold text-primary tracking-widest">${escapeHtml(item.category || 'ARCHIVE')}</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex flex-col gap-4">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h3 class="font-syne font-bold text-xl text-slate-100 uppercase leading-tight">${escapeHtml(item.name)}</h3>
+                                <p class="text-primary font-bold text-lg mt-1">₹${Number(item.price).toLocaleString('en-IN')}</p>
+                            </div>
+                        </div>
+                        <button class="w-full bg-primary text-black py-4 rounded font-bold uppercase tracking-widest text-xs hover:shadow-[0_0_20px_rgba(249,249,6,0.4)] transition-all">Add to Cart</button>
+                    </div>
+                </div>
+            `;
+
+            // The page ships with a curated demo archive. Persist it once, then
+            // use localStorage as the source of truth so products added from the
+            // product page and removals both survive a reload.
+            if (localStorage.getItem('kw_wishlist') === null) {
+                window.Store.saveWishlist(
+                    cards().map(productFromCard).filter(item => item.name && item.price > 0)
+                );
+            }
+
+            const savedItems = window.Store.getWishlist();
+            const savedIds = new Set(savedItems.map(item => item.id));
+
+            cards().forEach(card => {
+                const product = productFromCard(card);
+                const id = window.Store.productId(product);
+                card.dataset.wishlistId = id;
+                if (!savedIds.has(id)) card.remove();
+            });
+
+            const renderedIds = new Set(cards().map(card => card.dataset.wishlistId));
+            savedItems.slice().reverse().forEach(item => {
+                if (renderedIds.has(item.id)) return;
+                grid.insertAdjacentHTML('afterbegin', makeCard(item));
+                renderedIds.add(item.id);
+            });
+
+            grid.addEventListener('click', event => {
+                const button = event.target.closest('button');
+                const icon = button?.querySelector('.material-symbols-outlined');
+                if (!button || icon?.textContent.trim() !== 'favorite') return;
+
+                event.preventDefault();
+                event.stopPropagation();
+                const card = button.closest('[data-price]');
+                if (!card) return;
+
+                window.Store.removeFromWishlist(window.Store.productId(productFromCard(card)));
+                card.remove();
+                updateSummary();
+            });
+
+            addAllBtn?.addEventListener('click', () => {
+                let added = 0;
+                cards().forEach(card => {
+                    const text = card.textContent.toUpperCase();
+                    if (text.includes('SOLD OUT') || text.includes('NOTIFY ME')) return;
+                    const product = productFromCard(card);
+                    if (product.name && product.price > 0 && window.Store.addToCart(product)) added += 1;
+                });
+
+                if (added > 0 && typeof window.toggleCart === 'function') {
+                    window.toggleCart(true);
+                }
+            });
+
+            clearBtn?.addEventListener('click', () => {
+                window.Store.saveWishlist([]);
+                cards().forEach(card => card.remove());
+                updateSummary();
+            });
+
+            shareBtn?.addEventListener('click', async () => {
+                const shareData = {
+                    title: 'My Kamiwear Wishlist',
+                    text: 'Check out the pieces saved in my Kamiwear archive.',
+                    url: window.location.href,
+                };
+                try {
+                    if (navigator.share) {
+                        await navigator.share(shareData);
+                    } else if (navigator.clipboard) {
+                        await navigator.clipboard.writeText(window.location.href);
+                        const original = shareBtn.innerHTML;
+                        shareBtn.innerHTML = '<span class="material-symbols-outlined text-lg">check</span> Link Copied';
+                        setTimeout(() => { shareBtn.innerHTML = original; }, 1800);
+                    }
+                } catch (error) {
+                    // Sharing was cancelled or is unavailable — no action needed.
+                }
+            });
+
+            updateSummary();
+        });
+    </script>
+</body></html>

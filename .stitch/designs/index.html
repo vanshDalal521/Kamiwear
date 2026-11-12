@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kamiwear | Premium Anime Streetwear</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#3c1a5b",
+                        "accent-yellow": "#EFFF00",
+                        "background-light": "#f7f6f8",
+                        "background-dark": "#0A0812",
+                        "glass-border": "rgba(255, 255, 255, 0.1)",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "syne": ["Syne", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "1.5rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .hero-glow {
+            background: radial-gradient(circle, rgba(60, 26, 91, 0.4) 0%, rgba(10, 8, 18, 0) 70%);
+        }
+        .marquee {
+            white-space: nowrap;
+            overflow: hidden;
+            display: flex;
+        }
+        .marquee-content {
+            display: flex;
+            animation: scroll 20s linear infinite;
+        }
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden">
+<!-- Sticky Glass Navbar -->
+<nav class="fixed top-0 w-full z-50 px-6 py-4">
+<div class="max-w-7xl mx-auto glass rounded-full px-8 py-3 flex items-center justify-between">
+<div class="flex items-center gap-12">
+<a class="font-syne text-2xl font-800 tracking-tighter text-slate-100" href="#">KAMIWEAR</a>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-slate-400 hover:text-slate-100 text-sm font-medium transition-colors" href="#">Collections</a>
+<a class="text-slate-400 hover:text-slate-100 text-sm font-medium transition-colors" href="#">New Arrivals</a>
+<a class="text-slate-400 hover:text-slate-100 text-sm font-medium transition-colors" href="#">KamiKoin</a>
+<a class="text-slate-400 hover:text-slate-100 text-sm font-medium transition-colors" href="#">About</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-slate-400 hover:text-slate-100">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button class="text-slate-400 hover:text-slate-100">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<button class="relative text-slate-400 hover:text-slate-100">
+<span class="material-symbols-outlined">shopping_bag</span>
+<span class="absolute -top-1 -right-1 bg-accent-yellow text-background-dark text-[10px] font-bold px-1 rounded-full">2</span>
+</button>
+<div class="w-8 h-8 rounded-full glass overflow-hidden border border-glass-border">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="User profile avatar close-up" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBFnNJNUsS3W-rbC-LQBwvC60fLULWF8LOPYUXr1RL_nu01Kj_Xhb18mkVQ2iljsBr9ZeczRZYihtGWGeyT-r-JIIXoSo9kJFHCOlOQiI9csCv7_-BJOFzteyNbn3E5QrHA7MTfnB6iD_JmFFHSh6ubTXWT8ghDSMGt-H0rPQlCKkCd1q-anpDQM3WFvpp-bZIj33zBR9LRsSI3LZc1xDxMEXoXlAuGIPyk0hy0ZJQYkFpU5EQEBcdEFBj6FSSMNHKvxWFy1I-G-TP"/>
+</div>
+</div>
+</div>
+</nav>
+<main class="pt-24">
+<!-- Hero Section -->
+<section class="relative max-w-7xl mx-auto px-6 py-12 lg:py-24 flex flex-col lg:flex-row items-center gap-12">
+<div class="flex-1 space-y-8 z-10">
+<div class="inline-flex items-center glass px-4 py-2 rounded-full border border-glass-border">
+<span class="w-2 h-2 rounded-full bg-accent-yellow mr-3 animate-pulse"></span>
+<span class="text-accent-yellow text-xs font-bold tracking-widest uppercase">New Collection Drops</span>
+</div>
+<h1 class="font-syne text-7xl lg:text-8xl font-800 text-slate-100 leading-[0.9] tracking-tighter">
+                    WEAR THE<br/><span class="text-primary brightness-150">ANIME</span>
+</h1>
+<p class="text-slate-400 text-lg max-w-lg leading-relaxed">
+                    Premium Silicon Valley minimalism meets authentic anime culture. Precision engineered streetwear for the modern otaku.
+                </p>
+<div class="flex items-center gap-6">
+<button class="bg-accent-yellow text-background-dark font-bold px-10 py-4 rounded-full hover:scale-105 transition-transform">
+                        SHOP NOW
+                    </button>
+<button class="glass px-8 py-4 rounded-full text-slate-100 font-bold hover:bg-white/5 transition-colors">
+                        LOOKBOOK
+                    </button>
+</div>
+</div>
+<div class="flex-1 relative">
+<div class="absolute inset-0 hero-glow"></div>
+<div class="relative z-10 flex justify-center items-center">
+<div class="relative">
+<img alt="Hero Hoodie" class="w-[500px] h-auto drop-shadow-2xl hover:scale-105 transition-transform duration-700" data-alt="Premium black hoodie mockup against purple background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBleGrnA1MtnTQu7MiWyGD1-taLw4aSE-9LZxD2RE9HYvv5To4IqxCBoNrjQbd1pTGx4TDXGqekuHcFR7xFquetxwgCsYsjXk1TCuW0sjV_u4naLHa-qCVyXpd8F7B0Cdu-U3AoSN3um0PwRpdlJcVmytzGgsI04NdpjPE49p964RXT7RekOmfw0rM0aikavHguBfb8OCzeFmCj6Y4vanG8VMTIqxDIi4dAGBtc_EptZeLzlqzGO5ROiy01jk4LI2292fT0neX318JS"/>
+<div class="absolute -bottom-4 -left-8 glass p-6 rounded-lg border border-glass-border shadow-2xl">
+<p class="text-xs text-slate-400 uppercase tracking-widest mb-1">Limited Edition</p>
+<h3 class="font-bold text-xl text-slate-100">"Void" Heavy Hoodie</h3>
+<div class="flex items-center justify-between mt-4">
+<span class="text-accent-yellow font-bold text-2xl">$120.00</span>
+<span class="bg-primary/30 text-primary brightness-150 text-[10px] px-2 py-1 rounded font-bold uppercase">In Stock</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Announcement Ticker -->
+<section class="w-full glass border-y border-glass-border py-4 my-12 overflow-hidden">
+<div class="marquee">
+<div class="marquee-content gap-12 items-center">
+<span class="text-accent-yellow font-syne font-800 text-sm tracking-widest uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">bolt</span> Limited Edition Drops Live Now
+                    </span>
+<span class="text-slate-400 font-syne font-800 text-sm tracking-widest uppercase">•</span>
+<span class="text-accent-yellow font-syne font-800 text-sm tracking-widest uppercase flex items-center gap-2">
+                         Worldwide Shipping Available
+                    </span>
+<span class="text-slate-400 font-syne font-800 text-sm tracking-widest uppercase">•</span>
+<span class="text-accent-yellow font-syne font-800 text-sm tracking-widest uppercase flex items-center gap-2">
+                        Join KamiKoin Rewards
+                    </span>
+<span class="text-slate-400 font-syne font-800 text-sm tracking-widest uppercase">•</span>
+<span class="text-accent-yellow font-syne font-800 text-sm tracking-widest uppercase flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">bolt</span> Limited Edition Drops Live Now
+                    </span>
+<!-- Duplicate for infinite effect -->
+<span class="text-slate-400 font-syne font-800 text-sm tracking-widest uppercase">•</span>
+<span class="text-accent-yellow font-syne font-800 text-sm tracking-widest uppercase flex items-center gap-2">
+                        Worldwide Shipping Available
+                    </span>
+</div>
+</div>
+</section>
+<!-- Featured Collections -->
+<section class="max-w-7xl mx-auto px-6 py-16">
+<div class="flex justify-between items-end mb-12">
+<div>
+<h2 class="font-syne text-4xl font-800 text-slate-100 tracking-tighter uppercase">Featured Series</h2>
+<p class="text-slate-400 mt-2">Official collaborations and original designs.</p>
+</div>
+<a class="text-accent-yellow text-sm font-bold flex items-center gap-2 hover:gap-4 transition-all uppercase tracking-widest" href="#">
+                    View All <span class="material-symbols-outlined">trending_flat</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Collection Card 1 -->
+<div class="group relative h-[450px] glass rounded-lg overflow-hidden cursor-pointer border border-glass-border">
+<img alt="Demon Slayer" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="Anime silhouette illustration in red tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPAxxcuwR-pckTsrnO5Rq3k4DutVd5EyTfDhisoiq4nYTbdMbDcgMl69eqABcCthnKlOmFqKh5vPL_dz3A6eeb54Injd5t5RYX3DzplVGXLoxUQS65MLHfFEWnB_QUOms0U1BE8rR67qChKMqo3bIkUwzCDjpEfuWa1nVoWPuOd4-jW_Rf1m3EuXu8O3qrw5zebMIMA6VaQrThb_sh7SEXzsMGYcdPh0mtawmawHAfdILseySd5NCgzw6NAaVt8HgyeRu4TiD-5wUh"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full translate-y-4 group-hover:translate-y-0 transition-transform">
+<p class="text-accent-yellow text-[10px] font-bold tracking-widest uppercase mb-2">Series 01</p>
+<h3 class="text-2xl font-syne font-800 text-slate-100">SLAYER CORE</h3>
+<div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="text-sm text-slate-300 font-bold border-b border-accent-yellow pb-1">EXPLORE COLLECTION</span>
+</div>
+</div>
+</div>
+<!-- Collection Card 2 -->
+<div class="group relative h-[450px] glass rounded-lg overflow-hidden cursor-pointer border border-glass-border">
+<img alt="Naruto" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="Abstract yellow and orange anime art" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVegjKgBKHmJhDrhgqxZEviDbVKs_-EDjdOEOaZOW1uposfL0BTYGLPCJ6U6LXLQCTGO7OsDR1Ms08osPiVOtBxn_jbACreXvsR_EI-YA0OsJXgg6X4gArlRUmEEcJlJWVhaaok68GsEopJ35TP2zPsDTTAwCwpx0ePRpqbtpV8NvUyMIrRUX4mWZJUiN2W6n_tRghocMUq1MqJX-zB0lusLuyQjSy6VBZ2TKLIvAwLf0A74o2PdcJBSzTQ3yPRcBWcMbEdFfelo6y"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full translate-y-4 group-hover:translate-y-0 transition-transform">
+<p class="text-accent-yellow text-[10px] font-bold tracking-widest uppercase mb-2">Series 02</p>
+<h3 class="text-2xl font-syne font-800 text-slate-100">SHINOBI TECH</h3>
+<div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="text-sm text-slate-300 font-bold border-b border-accent-yellow pb-1">EXPLORE COLLECTION</span>
+</div>
+</div>
+</div>
+<!-- Collection Card 3 -->
+<div class="group relative h-[450px] glass rounded-lg overflow-hidden cursor-pointer border border-glass-border">
+<img alt="Cyber" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="Cyberpunk style anime character neon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD89E5dg85sZx91TN2vdiIodUFYz86EbcK8k1uk50QRYgSzTcyec5wLEveaNhhKN6gzcaERA7siX_3awzJ7YUKBm2__KhAOneRmOb1uAU8d_xrmbUGZDOd58Lb_0MI0iRRTuNWieGkM3iEh8pyw-RjgaYZbO7wtL7Z7voXsKU_2KeRijvRJszXEvUxOnun4c72GYicVqMnr3XCbk3_bVFVZMuyt1FmdKPH6fCd03bGM4Lq-xZKyYK9EQ2TzhVbHcim9RrJIunRsuY0l"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full translate-y-4 group-hover:translate-y-0 transition-transform">
+<p class="text-accent-yellow text-[10px] font-bold tracking-widest uppercase mb-2">Series 03</p>
+<h3 class="text-2xl font-syne font-800 text-slate-100">NEO-TOKYO</h3>
+<div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="text-sm text-slate-300 font-bold border-b border-accent-yellow pb-1">EXPLORE COLLECTION</span>
+</div>
+</div>
+</div>
+<!-- Collection Card 4 -->
+<div class="group relative h-[450px] glass rounded-lg overflow-hidden cursor-pointer border border-glass-border">
+<img alt="Originals" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" data-alt="Zen style minimalist anime background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfPDTzUIlTgcB5mlHRrG80KqugN6oQ6bJ4eeTdeK8CzN5dECr5FgZ8yOT52Ztucsu2Y6HQ_WSSAsO8-Yln9EoAjp5IvfWEnIZg080kWJk7oZCA_ytPDfBL82faNtjN_93W6kbI-j4XmpwItbPg5GkPtIAu7_RjB6KAx6POgQJkLQvRzhRVXPnaBpbXELD9tm8lETAjH6tHsUEEm70WrR6iV0XRJqHPzrJavRXgeuxNPMltuh6GXRTjWu5tZ029gwggqDp8l4DQM_ua"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-transparent opacity-80"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full translate-y-4 group-hover:translate-y-0 transition-transform">
+<p class="text-accent-yellow text-[10px] font-bold tracking-widest uppercase mb-2">Series 04</p>
+<h3 class="text-2xl font-syne font-800 text-slate-100">ORIGINALS</h3>
+<div class="mt-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="text-sm text-slate-300 font-bold border-b border-accent-yellow pb-1">EXPLORE COLLECTION</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trending Products -->
+<section class="max-w-7xl mx-auto px-6 py-16">
+<h2 class="font-syne text-4xl font-800 text-slate-100 tracking-tighter uppercase mb-12 text-center">Trending Drops</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Product 1 -->
+<div class="group flex flex-col gap-4">
+<div class="aspect-[4/5] glass rounded-lg overflow-hidden relative border border-glass-border">
+<img alt="Product 1" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Black graphic t-shirt with anime design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrqnTPDnOhT8Gd3RvNN7XfIx0gkl8C9l-EQIjGo2oZApUYjsuwxmFLLeVKVjsGL0hBFIGoLfv3Vp7waOo5L2Ozmo31BGLDoqldeZGx63Gk4ILd7gZziD2dNpl0JirDRMDyIaB3grVcyuYfBrNcoTsOSAhS9_wNcwwba7LZj0aZYsTpDNFYZs_ooK_KKnX4z44TxlsGhuI4ufnO6mjJw0eZqt5DD2_0r9Xi7J1d5QTtHmoDdpcbkKc6nFgH-XcScqHn5SaKdgYhdtMZ"/>
+<div class="absolute top-4 left-4">
+<span class="bg-primary/80 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded">SHINOBI TECH</span>
+</div>
+<div class="absolute inset-0 bg-background-dark/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<button class="w-full bg-accent-yellow text-background-dark font-bold py-3 rounded text-sm transition-transform translate-y-4 group-hover:translate-y-0">
+                                ADD TO CART
+                            </button>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<h4 class="text-slate-100 font-bold">Techno-Ramen Oversized Tee</h4>
+<p class="text-accent-yellow font-bold">$45.00</p>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="group flex flex-col gap-4">
+<div class="aspect-[4/5] glass rounded-lg overflow-hidden relative border border-glass-border">
+<img alt="Product 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Light colored streetwear hoodie with minimal graphics" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCP4bRz2AVJ1Am1YRW7_gClnP3R93din6pfs7YWdycXn8y3P1rcRGHPRBw5hrXo6xYnJeCT3vGHPg9QHhLhtGEhMo_ZosyMnaiqr0SavcAFUrMGUcDVs1M2yzdNySHk_326eQltO68QNyzKWTulTD9Xk8NVb_Mdu0ZM0ewnrv_qCTNex9AAbmMSRbQOFeo_YM2JGbg4mIdA_P6tdZn6-F7OwQskDBLLMa0c_RovGdA0enwOfpFmG3igFBHuR_8FO9yHQxHg76xiD4Lc"/>
+<div class="absolute top-4 left-4">
+<span class="bg-primary/80 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded">NEO-TOKYO</span>
+</div>
+<div class="absolute inset-0 bg-background-dark/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<button class="w-full bg-accent-yellow text-background-dark font-bold py-3 rounded text-sm transition-transform translate-y-4 group-hover:translate-y-0">
+                                ADD TO CART
+                            </button>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<h4 class="text-slate-100 font-bold">Cyber-Grid Lightweight Hoodie</h4>
+<p class="text-accent-yellow font-bold">$85.00</p>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="group flex flex-col gap-4">
+<div class="aspect-[4/5] glass rounded-lg overflow-hidden relative border border-glass-border">
+<img alt="Product 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="White t-shirt with large anime character back print" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDW013X0S6JyEd8Lulrk4ZifvMqCpVh-wuQqZ4W-dK_NP7LqbSxhf04W3P1Dr3lw7FVtWFnjq-YGv6wtw1P2VzwPJN76PB42PNiLCVPPFHB7X0EmXjXz3-Q0PAM_pf7BedaXuN1MOLb7nqPsFiW3d21lSMwclDNJsaTD-dq1NIp8428j7bkLfK5UiZF9jo6bv5hT0fZ8-JgQsgqYr1Nkvrn_aqRM3FbNjF06w8F9bPmAusKGQ_EcC62a0zuGlY9f1BAi4yYuOA_q66a"/>
+<div class="absolute top-4 left-4">
+<span class="bg-primary/80 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded">SLAYER CORE</span>
+</div>
+<div class="absolute inset-0 bg-background-dark/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<button class="w-full bg-accent-yellow text-background-dark font-bold py-3 rounded text-sm transition-transform translate-y-4 group-hover:translate-y-0">
+                                ADD TO CART
+                            </button>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<h4 class="text-slate-100 font-bold">Breath of Wind Boxy Tee</h4>
+<p class="text-accent-yellow font-bold">$42.00</p>
+</div>
+</div>
+<!-- Product 4 -->
+<div class="group flex flex-col gap-4">
+<div class="aspect-[4/5] glass rounded-lg overflow-hidden relative border border-glass-border">
+<img alt="Product 4" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Black bomber jacket with subtle anime embroidery" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3m80XXYk7SEm0f-EmPn0St6ixA1fXRP1__pZ95562hNkcVxO-CoswdaZFPZk9UNsQemn2-OpFHvziXPQoWUTT7yq0Vr-gsy6-8CxAaprmEDk_DRR73vANdnSz9GpMKn5NeH1gdnqsZBzQ63rblA2k4B-Dkx7wJIt4pV1XuAIGlHATEnBSLv-CemhkVvt00802waMJOZHvsZ1PlVTWxeQhAWXMDAey86PMi-1OybrTcKwjA9SGrcRtsxVEHcKsbtKLtRVL41myrxob"/>
+<div class="absolute top-4 left-4">
+<span class="bg-primary/80 backdrop-blur-md text-white text-[10px] font-bold px-2 py-1 rounded">ORIGINALS</span>
+</div>
+<div class="absolute inset-0 bg-background-dark/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+<button class="w-full bg-accent-yellow text-background-dark font-bold py-3 rounded text-sm transition-transform translate-y-4 group-hover:translate-y-0">
+                                ADD TO CART
+                            </button>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<h4 class="text-slate-100 font-bold">Kamimon Bomber Jacket</h4>
+<p class="text-accent-yellow font-bold">$140.00</p>
+</div>
+</div>
+</div>
+</section>
+<!-- KamiKoin Banner -->
+<section class="max-w-7xl mx-auto px-6 py-16">
+<div class="relative glass rounded-xl border border-glass-border overflow-hidden p-12 bg-gradient-to-br from-primary/30 to-background-dark">
+<div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-12">
+<div class="max-w-xl">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-12 h-12 rounded-full bg-accent-yellow flex items-center justify-center">
+<span class="material-symbols-outlined text-background-dark text-3xl font-bold">generating_tokens</span>
+</div>
+<h2 class="font-syne text-4xl font-800 text-slate-100 tracking-tighter uppercase">KamiKoin Rewards</h2>
+</div>
+<p class="text-slate-300 text-lg mb-8 leading-relaxed">
+                            Ascend the ranks from Genin to Kage. Earn 5 KamiKoins for every $1 spent. Unlock exclusive early access, free shipping, and limited custom patches.
+                        </p>
+<div class="w-full h-2 bg-white/10 rounded-full mb-4 overflow-hidden">
+<div class="h-full bg-accent-yellow w-[65%] rounded-full shadow-[0_0_15px_rgba(239,255,0,0.5)]"></div>
+</div>
+<div class="flex justify-between text-xs font-bold text-slate-400 uppercase tracking-widest">
+<span>Genin</span>
+<span class="text-accent-yellow">Chunin (Current)</span>
+<span>Jonin</span>
+<span>Kage</span>
+</div>
+</div>
+<div class="flex flex-col items-center gap-4">
+<div class="glass p-8 rounded-lg border border-glass-border text-center">
+<p class="text-slate-400 text-sm uppercase mb-1">Your Balance</p>
+<p class="text-5xl font-syne font-800 text-slate-100">2,450</p>
+<p class="text-accent-yellow text-xs font-bold mt-2 tracking-widest uppercase">KOINS</p>
+</div>
+<button class="bg-white text-background-dark font-bold px-8 py-3 rounded-full hover:scale-105 transition-transform text-sm">
+                            VIEW REWARDS
+                        </button>
+</div>
+</div>
+<div class="absolute -right-20 -top-20 w-80 h-80 bg-primary/20 blur-[100px] rounded-full"></div>
+</div>
+</section>
+<!-- Social Proof Grid -->
+<section class="max-w-7xl mx-auto px-6 py-16">
+<h2 class="font-syne text-4xl font-800 text-slate-100 tracking-tighter uppercase mb-12 text-center">The Community</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+<div class="glass aspect-square rounded-lg overflow-hidden border border-glass-border">
+<img alt="Social 1" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" data-alt="Streetwear fashion photo of a person in a hoodie" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwUdg9d5BxPkUoVUqYFSyKu7k4m3SPB3Tl0Up5HwwLLDU3nNpq2A2DVFwk8AyTnmjXjVDFhC3-DH4Yo-UtY2YIJLja0v5t4mn9rcBlrNW56SZ_A5mY7HwcZxGtLtIQ6TnXa1WKeBDeQ2MR46b_PnlX04SzmJzkGNMKJz-3j_icA0kkMFf67LoV4qFejwUBJLs95QguxSCKJPKml1hBTybSlXWrLNomL1zBI8omee-e0DkgDfi2gsJX6Qa3ek8vm_gSALdmZbdA8aps"/>
+</div>
+<div class="glass aspect-square rounded-lg overflow-hidden border border-glass-border">
+<img alt="Social 2" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" data-alt="Person wearing oversized streetwear outfit" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBup4RnroX7d7jtasgKr1uGCQpuQ_8ZVuKg_bzGiEILZbvXR7ThMkroS_3HPa_NSextmzaJJwdC9axTtWrIPkc8WZ4AddcR8ECp4QvOhzgvHvW4nHtvdGFyQtss1WxYEG0fc8-HlFmdLgcURq7O35TGheLYEhwxw76_1AHWb_fsDLe1ow4AF5RGtKU_OX3FzvLw7V_Cm1ykCmHXD2NCW0AhGHoF-_Ti3Z2AX5GY8QoUE_T8ZGGVDyC9OOrWTLS08ugTVGZ01V8-cmQj"/>
+</div>
+<div class="glass aspect-square rounded-lg overflow-hidden border border-glass-border">
+<img alt="Social 3" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" data-alt="Close up of anime character embroidery on a jacket" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAj9zT-6K-2-cjwwlVmr4Y4ntqgbTLdefgbeGwhQ80TQxvvqlRpI1PQjJb-29uQ5UazT13sYHkP2fJbQzTinO3JeKmq6OtkngscWZOgDInt_3jtchVW1ELnBSOCPo-tQezmfWgtwwO17oIWjGLX_R63IPHmgtzlfgi9Q_yffgc6_ykGSVEscOitoCM58L-Pd9BdYgubFyJhsvgbnNvZcFxSYyAsn3ZBM2rQzmxrU_yWCyN76wcwjJpKk14cNnT1iez-izHsJzNgd27O"/>
+</div>
+<div class="glass aspect-square rounded-lg overflow-hidden border border-glass-border">
+<img alt="Social 4" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" data-alt="Fashion portrait of a person in techwear anime style" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3QTLBk9lm_I04HnnuX7eMhruUnnKZ9s63nydX_Zs90fsD6pOEW7QJxw1BJJYuUavSUlkkSHgK_-UVubUXCj4aCc9XAyN4D9Wyg7Sqh_7NlI1vT-RWJZauaPxBKRLVYguUcsJ3wJSSJ4NA1ENAWIa83sYkS7go6SsFer22oheKCiDyHSIZX1LgQYgmejf-F4dDtZC6MUqRVgNq7kAo_mv87uRlSMpZQphy57D78LJMvj0Kp06lNIgbz1gfhhXu697H4hoZwMKCa7UZ"/>
+</div>
+<div class="glass aspect-square rounded-lg overflow-hidden border border-glass-border hidden md:block">
+<img alt="Social 5" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" data-alt="Aesthetic anime themed bedroom with neon lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBKq2j57--HY-F43beLQMrfF1nIACXWPQGb1DVQ_V8C2MVfHfbIbXgo8sua9PdWaEGU21LHa1RehWfyH1DNrQ9Fj4Km-EuxK5wznZ0ToXI9n64qS3xQ7V5f9e_Gf5pNT0kTi_paRcG-_hAeNszYA4ylrE2KQIB6ZxroOVo_oWWCOGq_Y52Sj-nAOVHQ2xprZ3NwCj1BI3TS8Iaxc0Ecbc8Dw6pHA1DpdDN3NEk1kPybc2Poz9i_t6BmytTHS9Ebbx14kW9ohtyAZWq"/>
+</div>
+<div class="glass aspect-square rounded-lg overflow-hidden border border-glass-border hidden md:block">
+<img alt="Social 6" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" data-alt="Stack of folded high quality anime hoodies" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoug8JV-qKmK4R8h4LWHJKj2obGLUuAFIT8Iv-5SP3PNnY09mMy497ERC5tHpndvKrpRdkst65e10Q_TtarqgH4vEU65kqxWBO4TyFdEFbA53AOe2oJ48pkJcNa7fVRRQeh__M84-LIt-_yetqTQf-SewggnGoXC3l8WjGrhN0QdaKIjc49FXZxrIbb35PRhGTIpZh2qKBjLv9P6EylC1TWONdoSKzejo6zW1ZAB1mS0pckkv8fBOjoU13yTXFZrTrHyFxm_iFrzYG"/>
+</div>
+</div>
+<div class="mt-8 text-center">
+<button class="text-slate-400 hover:text-slate-100 transition-colors font-bold text-sm tracking-widest">#KAMIWEAR_STYLE</button>
+</div>
+</section>
+<!-- Newsletter -->
+<section class="max-w-7xl mx-auto px-6 py-24 text-center">
+<div class="max-w-2xl mx-auto glass p-12 rounded-xl border border-glass-border">
+<h2 class="font-syne text-3xl font-800 text-slate-100 tracking-tighter uppercase mb-4">Join the Inner Circle</h2>
+<p class="text-slate-400 mb-8">Get notified for stealth drops and secret archive sales.</p>
+<form class="flex flex-col sm:flex-row gap-4">
+<input class="flex-1 bg-white/5 border border-glass-border rounded-full px-6 py-4 text-slate-100 focus:outline-none focus:border-accent-yellow transition-colors placeholder:text-slate-600" placeholder="ENTER YOUR EMAIL" type="email"/>
+<button class="bg-primary text-white font-bold px-10 py-4 rounded-full hover:brightness-125 transition-all" type="submit">
+                        SUBSCRIBE
+                    </button>
+</form>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="glass border-t border-glass-border mt-24 py-16">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+<div class="space-y-6">
+<a class="font-syne text-2xl font-800 tracking-tighter text-slate-100" href="#">KAMIWEAR</a>
+<p class="text-slate-500 text-sm leading-relaxed">
+                        Redefining the relationship between premium fashion and global anime culture. Crafted in Silicon Valley, inspired by Tokyo.
+                    </p>
+<div class="flex gap-4">
+<a class="w-10 h-10 glass rounded-full flex items-center justify-center text-slate-400 hover:text-accent-yellow transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">public</span>
+</a>
+<a class="w-10 h-10 glass rounded-full flex items-center justify-center text-slate-400 hover:text-accent-yellow transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">camera</span>
+</a>
+<a class="w-10 h-10 glass rounded-full flex items-center justify-center text-slate-400 hover:text-accent-yellow transition-colors" href="#">
+<span class="material-symbols-outlined text-lg">alternate_email</span>
+</a>
+</div>
+</div>
+<div>
+<h4 class="text-slate-100 font-bold mb-6 text-sm uppercase tracking-widest">Collections</h4>
+<ul class="space-y-4 text-slate-400 text-sm">
+<li><a class="hover:text-slate-100 transition-colors" href="#">Slayer Core</a></li>
+<li><a class="hover:text-slate-100 transition-colors" href="#">Shinobi Tech</a></li>
+<li><a class="hover:text-slate-100 transition-colors" href="#">Neo-Tokyo</a></li>
+<li><a class="hover:text-slate-100 transition-colors" href="#">The Vault</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-slate-100 font-bold mb-6 text-sm uppercase tracking-widest">Support</h4>
+<ul class="space-y-4 text-slate-400 text-sm">
+<li><a class="hover:text-slate-100 transition-colors" href="#">Shipping &amp; Returns</a></li>
+<li><a class="hover:text-slate-100 transition-colors" href="#">Sizing Guide</a></li>
+<li><a class="hover:text-slate-100 transition-colors" href="#">Care Instructions</a></li>
+<li><a class="hover:text-slate-100 transition-colors" href="#">FAQ</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-slate-100 font-bold mb-6 text-sm uppercase tracking-widest">Legal</h4>
+<ul class="space-y-4 text-slate-400 text-sm">
+<li><a class="hover:text-slate-100 transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-slate-100 transition-colors" href="#">Terms of Service</a></li>
+<li><a class="hover:text-slate-100 transition-colors" href="#">Accessibility</a></li>
+</ul>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-glass-border text-slate-600 text-[10px] font-bold uppercase tracking-widest">
+<p>© 2024 KAMIWEAR COLLECTIVE. ALL RIGHTS RESERVED.</p>
+<div class="flex gap-6 mt-4 md:mt-0">
+<span>DESIGNED IN SF</span>
+<span>MADE IN JAPAN</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>
