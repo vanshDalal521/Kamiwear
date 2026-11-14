@@ -446,10 +446,19 @@
     }
 
     function initShop() {
-        const grid = $('main .grid.grid-cols-1.sm\\:grid-cols-2.lg\\:grid-cols-4') || $('.product-card')?.parentElement;
+        const grids = $$('main .grid.grid-cols-1.sm\\:grid-cols-2.lg\\:grid-cols-4');
+        const grid = grids[0] || $('.product-card')?.parentElement;
         if (!grid) return;
-        const allCards = () => $$('.product-card', grid);
+        // The shop is split into gender sections, so filters must span every
+        // grid rather than only the first one.
+        const allCards = () => $$('.product-card', $('main')).filter(card => !card.closest('footer'));
         const countEl = $$('main p').find(p => /Showing\s+\d+\s+of\s+\d+/i.test(p.textContent));
+
+        // Category chip labels that map onto classifyProduct() buckets.
+        const CATEGORY_ALIASES = { ALL: '', JEANS: 'BOTTOMS', HOODIES: 'OUTERWEAR' };
+        const isCategoryChip = button =>
+            !button.classList.contains('gender-filter-btn') &&
+            /^(ALL|OUTERWEAR|TEES|BOTTOMS|JEANS|HOODIES|ACCESSORIES)$/i.test(clean(button.textContent));
 
         // The static template ships with two decorative "active filter" chips
         // that do not match the unfiltered catalog. Remove them so the chip row
@@ -480,25 +489,37 @@
 
         function applyFilters() {
             const series = seriesTouched ? selectedSeries() : [];
-            let visible = 0;
             allCards().forEach(card => {
                 const categoryOk = !activeCategory || card.dataset.category === activeCategory;
                 const seriesOk = series.length === 0 ||
                     series.some(name => String(card.dataset.series || '').toUpperCase().includes(name));
-                const show = categoryOk && seriesOk;
-                card.style.display = show ? '' : 'none';
-                if (show) visible += 1;
+                // Record the verdict instead of writing display directly: the
+                // shop's pagination (kwApplyShopView) owns the final rendering
+                // so filters and paging never fight over element styles.
+                card.dataset.kwFilter = (categoryOk && seriesOk) ? '1' : '0';
             });
-            if (countEl) {
-                countEl.textContent = `Showing ${visible} of ${allCards().length} products in premium catalog`;
+            if (window.kwApplyShopView) {
+                window.kwApplyShopView();
+            } else {
+                allCards().forEach(card => {
+                    card.style.display = card.dataset.kwFilter === '0' ? 'none' : '';
+                });
+                if (countEl) {
+                    const visible = allCards().filter(card => card.dataset.kwFilter !== '0').length;
+                    countEl.textContent = `Showing ${visible} of ${allCards().length} products in premium catalog`;
+                }
             }
         }
 
         function setCategory(category, clicked) {
             activeCategory = category;
-            const chips = $$('aside button').filter(button => /^(ALL|OUTERWEAR|TEES|BOTTOMS|ACCESSORIES)$/i.test(clean(button.textContent)));
+            const chips = $$('aside button').filter(isCategoryChip);
             chips.forEach(chip => {
-                const isActive = clean(chip.textContent).toUpperCase() === (category || 'ALL');
+                const label = clean(chip.textContent).toUpperCase();
+                const effective = Object.prototype.hasOwnProperty.call(CATEGORY_ALIASES, label)
+                    ? CATEGORY_ALIASES[label]
+                    : label;
+                const isActive = effective === (category || '');
                 chip.classList.toggle('bg-primary', isActive);
                 chip.classList.toggle('text-background-dark', isActive);
                 chip.classList.toggle('bg-white/10', !isActive);
@@ -520,11 +541,16 @@
             }
         }
         $$('aside button').forEach(button => {
-            const text = clean(button.textContent).toUpperCase();
-            if (!/^(ALL|OUTERWEAR|TEES|BOTTOMS|ACCESSORIES)$/.test(text)) return;
+            if (!isCategoryChip(button)) return;
             if (button.dataset.kwCategory === 'true') return;
             button.dataset.kwCategory = 'true';
-            button.addEventListener('click', () => setCategory(text === 'ALL' ? '' : text, true));
+            button.addEventListener('click', () => {
+                const label = clean(button.textContent).toUpperCase();
+                const category = Object.prototype.hasOwnProperty.call(CATEGORY_ALIASES, label)
+                    ? CATEGORY_ALIASES[label]
+                    : label;
+                setCategory(category, true);
+            });
         });
         setCategory('', false);
 
@@ -631,7 +657,7 @@
         const gridButton = $$('button').find(button => clean(button.querySelector('.material-symbols-outlined')?.textContent) === 'grid_view');
         const listButton = $$('button').find(button => clean(button.querySelector('.material-symbols-outlined')?.textContent) === 'view_list');
         const setView = list => {
-            grid.classList.toggle('kw-list-view', list);
+            grids.forEach(target => target.classList.toggle('kw-list-view', list));
             gridButton?.classList.toggle('text-primary', !list);
             listButton?.classList.toggle('text-primary', list);
             gridButton?.classList.toggle('bg-white/10', !list);
@@ -642,9 +668,10 @@
         gridButton?.addEventListener('click', () => setView(false));
         listButton?.addEventListener('click', () => setView(true));
 
-        // Load more.
+        // Load more. Buttons marked data-kw-paginated belong to the shop's own
+        // gender-aware pagination, so leave those alone.
         const loadMore = $$('button').find(button => /LOAD MORE/i.test(clean(button.textContent)));
-        if (loadMore && loadMore.dataset.kwLoadMore !== 'true') {
+        if (loadMore && loadMore.dataset.kwLoadMore !== 'true' && loadMore.dataset.kwPaginated !== 'true') {
             loadMore.dataset.kwLoadMore = 'true';
             loadMore.addEventListener('click', () => {
                 if (loadMore.disabled) return;

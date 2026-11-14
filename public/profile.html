@@ -299,7 +299,7 @@
     <script src="js/components/profile-modal.js?v=6"></script>
     <script src="js/components/search-overlay.js?v=4"></script>
     <script src="js/core/app.js?v=4"></script>
-    <script src="js/core/enhance.js?v=5"></script>
+    <script src="js/core/enhance.js?v=6"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             const user = window.Store.getUser();
@@ -464,6 +464,36 @@
             });
         });
     </script>
-</body>
+    <script>
+      // Real‑time KamiCoins and Rank display
+      async function updateUserStats() {
+        try {
+          const resp = await fetch('/api/auth/me', { credentials: 'include' });
+          if (!resp.ok) return;
+          const data = await resp.json();
+          const user = data.user;
+          const koinEl = document.getElementById('koin-count');
+          const tierEl = document.getElementById('user-tier-badge');
+          if (koinEl && user.kamiKoins != null) {
+            const formatted = Number(user.kamiKoins).toLocaleString();
+            koinEl.textContent = formatted + ' K';
+          }
+          if (tierEl) {
+            const coins = Number(user.kamiKoins) || 0;
+            let tier = 'Genin';
+            if (coins >= 20000) tier = 'Kage';
+            else if (coins >= 5000) tier = 'Jonin';
+            else if (coins >= 1000) tier = 'Chunin';
+            tierEl.textContent = tier.toUpperCase();
+          }
+        } catch (e) {
+          console.error('Failed to fetch user stats', e);
+        }
+      }
+      // Initial load and poll every 30 seconds
+      updateUserStats();
+      setInterval(updateUserStats, 30000);
+    </script>
+  </body>
 
 </html>

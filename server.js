@@ -119,6 +119,8 @@ app.use(['/api/auth', '/api/orders'], async (req, res, next) => {
     }
 
     const status = getDbStatus();
+    const ephemeralAllowed = String(process.env.ALLOW_EPHEMERAL_DB || '').toLowerCase() === 'true';
+    const isOrderRoute = String(req.originalUrl || '').startsWith('/api/orders');
 
     if (status.configured && !status.connected) {
         return res.status(503).json({
@@ -127,11 +129,28 @@ app.use(['/api/auth', '/api/orders'], async (req, res, next) => {
         });
     }
 
+    // On Vercel, api/auth and api/orders can be separate function bundles with
+    // separate ephemeral stores. Without MongoDB an account created by one
+    // bundle is invisible to the other, so checkout would fail with a
+    // misleading "session expired" error. Fail clearly instead of accepting
+    // orders that cannot be stored or reconciled.
+    if (isOrderRoute && !isMongoConfigured() && isProduction() && !ephemeralAllowed) {
+        return res.status(503).json({
+            error: 'Checkout is temporarily unavailable because the store database is not configured. Set MONGO_URI to enable orders.',
+            code: 'DATABASE_NOT_CONFIGURED',
+        });
+    }
+
     if (isMongoConfigured() && status.connected) {
         await ensureIndexes();
     }
 
-    if (!isMongoConfigured() && isProduction() && String(process.env.REQUIRE_MONGO || '').toLowerCase() === 'true') {
+    if (
+        !isMongoConfigured() &&
+        isProduction() &&
+        !ephemeralAllowed &&
+        String(process.env.REQUIRE_MONGO || '').toLowerCase() === 'true'
+    ) {
         return res.status(503).json({
             error: 'The store database is not configured yet.',
             code: 'DATABASE_NOT_CONFIGURED',

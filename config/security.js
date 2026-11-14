@@ -56,6 +56,7 @@ function clearSessionCookieOptions() {
         sameSite: 'lax',
         path: '/',
         maxAge: 0,
+        expires: new Date(0), // Belt-and-suspenders: set epoch so all browsers delete the cookie
     };
 }
 

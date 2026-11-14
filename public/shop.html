@@ -124,6 +124,19 @@
             <!-- Sidebar Filters -->
             <aside class="w-64 flex-shrink-0 space-y-8">
                 <div class="glass-panel p-6 rounded-2xl">
+                    <!-- Gender Filter -->
+                    <h3 class="text-xs font-bold uppercase tracking-widest text-primary mb-4">Shop By</h3>
+                    <div class="flex flex-col gap-2 mb-6">
+                        <button id="filter-all" onclick="filterGender('all')"
+                            class="gender-filter-btn px-4 py-2 rounded-full text-[11px] font-bold bg-primary text-background-dark text-left">ALL</button>
+                        <button id="filter-men" onclick="filterGender('men')"
+                            class="gender-filter-btn px-4 py-2 rounded-full text-[11px] font-bold bg-white/10 hover:bg-white/20 text-left">MEN</button>
+                        <button id="filter-women" onclick="filterGender('women')"
+                            class="gender-filter-btn px-4 py-2 rounded-full text-[11px] font-bold bg-white/10 hover:bg-white/20 text-left">WOMEN</button>
+                        <button id="filter-unisex" onclick="filterGender('unisex')"
+                            class="gender-filter-btn px-4 py-2 rounded-full text-[11px] font-bold bg-white/10 hover:bg-white/20 text-left">UNISEX</button>
+                    </div>
+                    <div class="h-px bg-white/10 mb-6"></div>
                     <h3 class="text-xs font-bold uppercase tracking-widest text-primary mb-6">Anime Series</h3>
                     <div class="space-y-4 max-h-60 overflow-y-auto custom-scrollbar pr-2">
                         <label class="flex items-center gap-3 cursor-pointer group">
@@ -167,6 +180,10 @@
                             <button
                                 class="px-3 py-1.5 rounded-full text-[10px] font-bold bg-white/10 hover:bg-white/20">BOTTOMS</button>
                             <button
+                                class="px-3 py-1.5 rounded-full text-[10px] font-bold bg-white/10 hover:bg-white/20">JEANS</button>
+                            <button
+                                class="px-3 py-1.5 rounded-full text-[10px] font-bold bg-white/10 hover:bg-white/20">HOODIES</button>
+                            <button
                                 class="px-3 py-1.5 rounded-full text-[10px] font-bold bg-white/10 hover:bg-white/20">ACCESSORIES</button>
                         </div>
                     </div>
@@ -198,30 +215,18 @@
             </aside>
             <!-- Product Display Area -->
             <div class="flex-1">
-                <!-- Sort Bar -->
-                <div class="glass-panel rounded-2xl p-4 flex items-center justify-between mb-8">
-                    <div class="flex items-center gap-4">
-                        <div class="flex items-center gap-2">
-                            <span class="text-xs font-medium text-slate-400">Sort by:</span>
-                            <select
-                                class="bg-transparent border-none text-xs font-bold text-white focus:ring-0 cursor-pointer">
-                                <option>Newest First</option>
-                                <option>Price: Low to High</option>
-                                <option>Price: High to Low</option>
-                                <option>Best Selling</option>
-                            </select>
-                        </div>
-                        <div class="h-4 w-[1px] bg-white/10 mx-2"></div>
-                        <div class="flex gap-2">
-                            <span
-                                class="px-3 py-1 bg-primary text-background-dark rounded-full text-[10px] font-bold flex items-center gap-1">
-                                NEON GENESIS <span class="material-symbols-outlined text-[12px]">close</span>
-                            </span>
-                            <span
-                                class="px-3 py-1 bg-primary text-background-dark rounded-full text-[10px] font-bold flex items-center gap-1">
-                                OUTERWEAR <span class="material-symbols-outlined text-[12px]">close</span>
-                            </span>
-                        </div>
+                <!-- Sort Bar + Gender Filter Tabs -->
+                <div class="glass-panel rounded-2xl p-4 flex items-center justify-between mb-6">
+                    <div class="flex items-center gap-3 flex-wrap">
+                        <span class="text-xs font-medium text-slate-400">Filter:</span>
+                        <button id="tab-all" onclick="filterGender('all')"
+                            class="gender-tab px-4 py-1.5 rounded-full text-[10px] font-bold bg-primary text-background-dark transition-all">ALL</button>
+                        <button id="tab-men" onclick="filterGender('men')"
+                            class="gender-tab px-4 py-1.5 rounded-full text-[10px] font-bold bg-white/10 hover:bg-white/20 transition-all">♂ MEN</button>
+                        <button id="tab-women" onclick="filterGender('women')"
+                            class="gender-tab px-4 py-1.5 rounded-full text-[10px] font-bold bg-white/10 hover:bg-white/20 transition-all">♀ WOMEN</button>
+                        <button id="tab-unisex" onclick="filterGender('unisex')"
+                            class="gender-tab px-4 py-1.5 rounded-full text-[10px] font-bold bg-white/10 hover:bg-white/20 transition-all">⚥ UNISEX</button>
                     </div>
                     <div class="flex items-center gap-2">
                         <button class="p-2 bg-white/10 rounded-lg text-primary">
@@ -232,337 +237,992 @@
                         </button>
                     </div>
                 </div>
-                <!-- Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <!-- Product 1 -->
-                    <div class="product-card group relative" data-price="14400">
-                        <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
-                            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                data-alt="Cyberpunk style black oversized hoodie with yellow tech graphics"
-                                src="assets/cdn/shop-4d6939.png" />
-                            <div class="absolute top-4 left-4 flex flex-col gap-2">
-                                <span
-                                    class="font-orbitron text-[10px] bg-primary text-background-dark px-2 py-1 font-bold">LIMITED</span>
+                <!-- ═══════════════════════════════════════════════════════════
+                     WOMEN'S SECTION
+                ═══════════════════════════════════════════════════════════ -->
+                <div class="product-section" data-gender="women">
+                    <!-- Section Header -->
+                    <div class="relative mb-8 overflow-hidden rounded-2xl" style="background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 40%, #0f0f1a 100%);">
+                        <div class="absolute inset-0 opacity-20" style="background: radial-gradient(circle at 30% 50%, #a855f7 0%, transparent 60%), radial-gradient(circle at 70% 50%, #ec4899 0%, transparent 60%);"></div>
+                        <div class="relative p-8 flex items-center justify-between">
+                            <div>
+                                <p class="text-[10px] font-bold tracking-[0.3em] text-pink-400 uppercase mb-2">Kamiwear × Women</p>
+                                <h2 class="font-syne text-4xl font-extrabold text-white tracking-tight">WOMEN'S COLLECTION</h2>
+                                <p class="text-slate-400 text-sm mt-2">Wide-leg jeans · Hoodies · Shirts · Pants &amp; bottoms</p>
                             </div>
-                            <button
-                                class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
-                                <span class="material-symbols-outlined text-xl">favorite</span>
-                            </button>
-                            <div
-                                class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
-                                <button
-                                    class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick
-                                    View</button>
-                                <button
-                                    class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2">
-                                    <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
-                                    ADD TO CART
-                                </button>
-                            </div>
-                        </div>
-                        <div class="space-y-1 px-2">
-                            <p class="text-[10px] font-bold text-accent-purple tracking-widest uppercase">Neon Genesis
-                            </p>
-                            <h3 class="text-sm font-semibold text-white/90">EVA-01 TECH HOODIE</h3>
-                            <div class="flex items-center justify-between mt-2">
-                                <p class="text-sm font-bold text-primary">₹14,400.00</p>
-                                <div class="flex text-primary">
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs">star</span>
-                                </div>
-                            </div>
+                            <span class="text-7xl opacity-20">♀</span>
                         </div>
                     </div>
-                    <!-- Product 2 -->
-                    <div class="product-card group relative" data-price="3600">
-                        <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
-                            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                data-alt="Minimalist street fashion t-shirt with anime eye graphic"
-                                src="assets/generated/neo-tokyo-product-akira-vest-1773032421281.png" />
-                            <div class="absolute top-4 left-4 flex flex-col gap-2">
-                                <span
-                                    class="font-orbitron text-[10px] bg-red-600 text-white px-2 py-1 font-bold">SALE</span>
-                            </div>
-                            <button
-                                class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
-                                <span class="material-symbols-outlined text-xl">favorite</span>
-                            </button>
-                            <div
-                                class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
-                                <button
-                                    class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick
-                                    View</button>
-                                <button
-                                    class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2">
-                                    <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
-                                    ADD TO CART
+
+                    <!-- Women's Wide-Leg Jeans -->
+                    <h3 class="font-syne text-xl font-bold tracking-widest uppercase mb-4 flex items-center gap-3">
+                        <span class="h-px flex-1 bg-white/10"></span>
+                        <span class="text-pink-400">Wide-Leg Jeans</span>
+                        <span class="h-px flex-1 bg-white/10"></span>
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                        <div class="product-card group relative" data-price="2800" data-name="Women Wide-Leg Jean Style 1" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/fashion/photo-1598554747436-c9293d6a588f.jpg" alt="Women Wide-Leg Jeans Blue" />
+                                <div class="absolute top-4 left-4"><span class="font-orbitron text-[10px] bg-pink-500 text-white px-2 py-1 font-bold">NEW</span></div>
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
+                                    <span class="material-symbols-outlined text-xl">favorite</span>
                                 </button>
-                            </div>
-                        </div>
-                        <div class="space-y-1 px-2">
-                            <p class="text-[10px] font-bold text-accent-purple tracking-widest uppercase">Akira</p>
-                            <h3 class="text-sm font-semibold text-white/90">NEO-TOKYO OVERSIZED TEE</h3>
-                            <div class="flex items-center justify-between mt-2">
-                                <div class="flex items-center gap-2">
-                                    <p class="text-sm font-bold text-primary">₹3,600.00</p>
-                                    <p class="text-[10px] line-through text-slate-500">₹5,200.00</p>
-                                </div>
-                                <div class="flex text-primary">
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2">
+                                        <span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART
+                                    </button>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <!-- Product 3 -->
-                    <div class="product-card group relative" data-price="16800">
-                        <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
-                            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                data-alt="Dark aesthetic denim jacket with cyberpunk back patch"
-                                src="assets/generated/night-city-cover-perfect-v2-1773032380473.png" />
-                            <button
-                                class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
-                                <span class="material-symbols-outlined text-xl">favorite</span>
-                            </button>
-                            <div
-                                class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
-                                <button
-                                    class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick
-                                    View</button>
-                                <button
-                                    class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2">
-                                    <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
-                                    ADD TO CART
-                                </button>
-                            </div>
-                        </div>
-                        <div class="space-y-1 px-2">
-                            <p class="text-[10px] font-bold text-accent-purple tracking-widest uppercase">Cyberpunk</p>
-                            <h3 class="text-sm font-semibold text-white/90">EDGERUNNERS CARGO JACKET</h3>
-                            <div class="flex items-center justify-between mt-2">
-                                <p class="text-sm font-bold text-primary">₹16,800.00</p>
-                                <div class="flex text-primary">
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs">star</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Product 4 -->
-                    <div class="product-card group relative" data-price="9600">
-                        <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
-                            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                data-alt="White premium knit sweater with minimal anime line art"
-                                src="assets/generated/gojo-infinite-tee-1774247527626.png" />
-                            <button
-                                class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
-                                <span class="material-symbols-outlined text-xl">favorite</span>
-                            </button>
-                            <div
-                                class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
-                                <button
-                                    class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick
-                                    View</button>
-                                <button
-                                    class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2">
-                                    <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
-                                    ADD TO CART
-                                </button>
-                            </div>
-                        </div>
-                        <div class="space-y-1 px-2">
-                            <p class="text-[10px] font-bold text-accent-purple tracking-widest uppercase">Jujutsu Kaisen
-                            </p>
-                            <h3 class="text-sm font-semibold text-white/90">DOMAIN EXPANSION KNIT</h3>
-                            <div class="flex items-center justify-between mt-2">
-                                <p class="text-sm font-bold text-primary">₹9,600.00</p>
-                                <div class="flex text-primary">
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Repeat for 8 total products (Mocking the grid) -->
-                    <!-- Product 5 -->
-                    <div class="product-card group relative" data-price="12400">
-                        <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
-                            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                data-alt="Black joggers with techwear straps and yellow embroidery"
-                                src="assets/cdn/domain-expansion-knit-e90538.png" />
-                            <button
-                                class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
-                                <span class="material-symbols-outlined text-xl">favorite</span>
-                            </button>
-                            <div
-                                class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
-                                <button
-                                    class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick
-                                    View</button>
-                                <button
-                                    class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2">
-                                    <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
-                                    ADD TO CART
-                                </button>
-                            </div>
-                        </div>
-                        <div class="space-y-1 px-2">
-                            <p class="text-[10px] font-bold text-accent-purple tracking-widest uppercase">Ghost in the
-                                Shell</p>
-                            <h3 class="text-sm font-semibold text-white/90">SECTION 9 CARGO RUNNERS</h3>
-                            <div class="flex items-center justify-between mt-2">
-                                <p class="text-sm font-bold text-primary">₹12,400.00</p>
-                                <div class="flex text-primary">
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs">star</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Product 6 -->
-                    <div class="product-card group relative" data-price="23600">
-                        <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
-                            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                data-alt="Cyberpunk high top sneakers black and primary yellow"
-                                src="assets/cdn/section-9-cargo-runners-c1122f.png" />
-                            <div class="absolute top-4 left-4 flex flex-col gap-2">
-                                <span
-                                    class="font-orbitron text-[10px] bg-primary text-background-dark px-2 py-1 font-bold">LIMITED</span>
-                            </div>
-                            <button
-                                class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
-                                <span class="material-symbols-outlined text-xl">favorite</span>
-                            </button>
-                            <div
-                                class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
-                                <button
-                                    class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick
-                                    View</button>
-                                <button
-                                    class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2">
-                                    <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
-                                    ADD TO CART
-                                </button>
-                            </div>
-                        </div>
-                        <div class="space-y-1 px-2">
-                            <p class="text-[10px] font-bold text-accent-purple tracking-widest uppercase">Neon Genesis
-                            </p>
-                            <h3 class="text-sm font-semibold text-white/90">PILOT-01 TECH SNEAKERS</h3>
-                            <div class="flex items-center justify-between mt-2">
-                                <p class="text-sm font-bold text-primary">₹23,600.00</p>
-                                <div class="flex text-primary">
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Product 7 -->
-                    <div class="product-card group relative" data-price="4400">
-                        <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
-                            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                data-alt="Oversized white t-shirt with subtle purple anime embroidery"
-                                src="assets/generated/cursed-energy-product-sukuna-1773032399164.png" />
-                            <button
-                                class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
-                                <span class="material-symbols-outlined text-xl">favorite</span>
-                            </button>
-                            <div
-                                class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
-                                <button
-                                    class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick
-                                    View</button>
-                                <button
-                                    class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2">
-                                    <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
-                                    ADD TO CART
-                                </button>
-                            </div>
-                        </div>
-                        <div class="space-y-1 px-2">
-                            <p class="text-[10px] font-bold text-accent-purple tracking-widest uppercase">Jujutsu Kaisen
-                            </p>
-                            <h3 class="text-sm font-semibold text-white/90">SUKUNA CURSED SEAL TEE</h3>
-                            <div class="flex items-center justify-between mt-2">
-                                <p class="text-sm font-bold text-primary">₹4,400.00</p>
-                                <div class="flex text-primary">
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs">star</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Product 8 -->
-                    <div class="product-card group relative" data-price="2800">
-                        <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
-                            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                data-alt="Industrial techwear belt with electric yellow accents"
-                                src="assets/cdn/sukuna-cursed-seal-tee-677a45.png" />
-                            <div class="absolute top-4 left-4 flex flex-col gap-2">
-                                <span
-                                    class="font-orbitron text-[10px] bg-red-600 text-white px-2 py-1 font-bold">SALE</span>
-                            </div>
-                            <button
-                                class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
-                                <span class="material-symbols-outlined text-xl">favorite</span>
-                            </button>
-                            <div
-                                class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
-                                <button
-                                    class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick
-                                    View</button>
-                                <button
-                                    class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2">
-                                    <span class="material-symbols-outlined text-sm">add_shopping_cart</span>
-                                    ADD TO CART
-                                </button>
-                            </div>
-                        </div>
-                        <div class="space-y-1 px-2">
-                            <p class="text-[10px] font-bold text-accent-purple tracking-widest uppercase">Accessories
-                            </p>
-                            <h3 class="text-sm font-semibold text-white/90">TACTICAL SHINOBI BELT</h3>
-                            <div class="flex items-center justify-between mt-2">
-                                <div class="flex items-center gap-2">
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-pink-400 tracking-widest uppercase">Women · Jeans</p>
+                                <h3 class="text-sm font-semibold text-white/90">WIDE-LEG BAGGY JEAN #1</h3>
+                                <div class="flex items-center justify-between mt-2">
                                     <p class="text-sm font-bold text-primary">₹2,800.00</p>
-                                    <p class="text-[10px] line-through text-slate-500">₹4,000.00</p>
+                                    <div class="flex text-primary">
+                                        <span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs">star</span>
+                                    </div>
                                 </div>
-                                <div class="flex text-primary">
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs fill-1">star</span>
-                                    <span class="material-symbols-outlined text-xs">star</span>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="3200" data-name="Women Wide-Leg Jean Style 2" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/fashion/jean-women-5ec93480f187.jpg" alt="Women Wide-Leg Jeans 2" />
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
+                                    <span class="material-symbols-outlined text-xl">favorite</span>
+                                </button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2">
+                                        <span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART
+                                    </button>
                                 </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-pink-400 tracking-widest uppercase">Women · Jeans</p>
+                                <h3 class="text-sm font-semibold text-white/90">WIDE-LEG BAGGY JEAN #2</h3>
+                                <div class="flex items-center justify-between mt-2">
+                                    <p class="text-sm font-bold text-primary">₹3,200.00</p>
+                                    <div class="flex text-primary">
+                                        <span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="2600" data-name="Women Wide-Leg Jean Style 3" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/fashion/jean-women-b33a17686afa.jpg" alt="Women Wide-Leg Jeans 3" />
+                                <div class="absolute top-4 left-4"><span class="font-orbitron text-[10px] bg-red-600 text-white px-2 py-1 font-bold">SALE</span></div>
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
+                                    <span class="material-symbols-outlined text-xl">favorite</span>
+                                </button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2">
+                                        <span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-pink-400 tracking-widest uppercase">Women · Jeans</p>
+                                <h3 class="text-sm font-semibold text-white/90">WIDE-LEG BAGGY JEAN #3</h3>
+                                <div class="flex items-center justify-between mt-2">
+                                    <div class="flex items-center gap-2"><p class="text-sm font-bold text-primary">₹2,600.00</p><p class="text-[10px] line-through text-slate-500">₹3,800.00</p></div>
+                                    <div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs">star</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="3400" data-name="Women Wide-Leg Jean Style 4" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/fashion/jean-women-14dcfe6cf9d8.jpg" alt="Women Wide-Leg Jeans 4" />
+                                <div class="absolute top-4 left-4"><span class="font-orbitron text-[10px] bg-primary text-background-dark px-2 py-1 font-bold">LIMITED</span></div>
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
+                                    <span class="material-symbols-outlined text-xl">favorite</span>
+                                </button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2">
+                                        <span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-pink-400 tracking-widest uppercase">Women · Jeans</p>
+                                <h3 class="text-sm font-semibold text-white/90">WIDE-LEG BAGGY JEAN #4</h3>
+                                <div class="flex items-center justify-between mt-2">
+                                    <p class="text-sm font-bold text-primary">₹3,400.00</p>
+                                    <div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="2900" data-name="Women Wide-Leg Jean Style 5" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/fashion/jean-women-4c08d816d0d8.jpg" alt="Women Wide-Leg Jeans 5" />
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
+                                    <span class="material-symbols-outlined text-xl">favorite</span>
+                                </button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2">
+                                        <span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-pink-400 tracking-widest uppercase">Women · Jeans</p>
+                                <h3 class="text-sm font-semibold text-white/90">WIDE-LEG BAGGY JEAN #5</h3>
+                                <div class="flex items-center justify-between mt-2">
+                                    <p class="text-sm font-bold text-primary">₹2,900.00</p>
+                                    <div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs">star</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="3100" data-name="Women Wide-Leg Jean Style 6" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/fashion/jean-women-483e7b05d793.png" alt="Women Wide-Leg Jeans 6" />
+                                <div class="absolute top-4 left-4"><span class="font-orbitron text-[10px] bg-pink-500 text-white px-2 py-1 font-bold">HOT</span></div>
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
+                                    <span class="material-symbols-outlined text-xl">favorite</span>
+                                </button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2">
+                                        <span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-pink-400 tracking-widest uppercase">Women · Jeans</p>
+                                <h3 class="text-sm font-semibold text-white/90">WIDE-LEG BAGGY JEAN #6</h3>
+                                <div class="flex items-center justify-between mt-2">
+                                    <p class="text-sm font-bold text-primary">₹3,100.00</p>
+                                    <div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="2750" data-name="Women Wide-Leg Jean Style 7" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/fashion/jean-women-369c625f8739.jpg" alt="Women Wide-Leg Jeans 7" />
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
+                                    <span class="material-symbols-outlined text-xl">favorite</span>
+                                </button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2">
+                                        <span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-pink-400 tracking-widest uppercase">Women · Jeans</p>
+                                <h3 class="text-sm font-semibold text-white/90">WIDE-LEG BAGGY JEAN #7</h3>
+                                <div class="flex items-center justify-between mt-2">
+                                    <p class="text-sm font-bold text-primary">₹2,750.00</p>
+                                    <div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs">star</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="3300" data-name="Women Wide-Leg Jean Style 8" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/fashion/jean-women-ae5ac93bbca9.jpg" alt="Women Wide-Leg Jeans 8" />
+                                <div class="absolute top-4 left-4"><span class="font-orbitron text-[10px] bg-primary text-background-dark px-2 py-1 font-bold">TRENDING</span></div>
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
+                                    <span class="material-symbols-outlined text-xl">favorite</span>
+                                </button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2">
+                                        <span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-pink-400 tracking-widest uppercase">Women · Jeans</p>
+                                <h3 class="text-sm font-semibold text-white/90">WIDE-LEG BAGGY JEAN #8</h3>
+                                <div class="flex items-center justify-between mt-2">
+                                    <p class="text-sm font-bold text-primary">₹3,300.00</p>
+                                    <div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="2950" data-name="Women Wide-Leg Jean Style 9" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/fashion/jean-women-172673208dc8.png" alt="Women Wide-Leg Jeans 9" />
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
+                                    <span class="material-symbols-outlined text-xl">favorite</span>
+                                </button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2">
+                                        <span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-pink-400 tracking-widest uppercase">Women · Jeans</p>
+                                <h3 class="text-sm font-semibold text-white/90">WIDE-LEG BAGGY JEAN #9</h3>
+                                <div class="flex items-center justify-between mt-2">
+                                    <p class="text-sm font-bold text-primary">₹2,950.00</p>
+                                    <div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="3050" data-name="Women Wide-Leg Jean Style 10" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/fashion/jean-women-1fe31edf149d.png" alt="Women Wide-Leg Jeans 10" />
+                                <div class="absolute top-4 left-4"><span class="font-orbitron text-[10px] bg-pink-500 text-white px-2 py-1 font-bold">NEW</span></div>
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all">
+                                    <span class="material-symbols-outlined text-xl">favorite</span>
+                                </button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2">
+                                        <span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-pink-400 tracking-widest uppercase">Women · Jeans</p>
+                                <h3 class="text-sm font-semibold text-white/90">WIDE-LEG BAGGY JEAN #10</h3>
+                                <div class="flex items-center justify-between mt-2">
+                                    <p class="text-sm font-bold text-primary">₹3,050.00</p>
+                                    <div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs">star</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Women's Hoodies & Sweatshirts -->
+                    <h3 class="font-syne text-xl font-bold tracking-widest uppercase mb-4 flex items-center gap-3">
+                        <span class="h-px flex-1 bg-white/10"></span>
+                        <span class="text-pink-400">Hoodies &amp; Sweatshirts</span>
+                        <span class="h-px flex-1 bg-white/10"></span>
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                        <div class="product-card group relative" data-price="4200" data-name="Women Crew Sweatshirt White" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/fashion/photo-1620799140408-edc6dcb6d633.jpg" alt="Women Crew Sweatshirt White" />
+                                <div class="absolute top-4 left-4"><span class="font-orbitron text-[10px] bg-primary text-background-dark px-2 py-1 font-bold">HOT</span></div>
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-pink-400 tracking-widest uppercase">Women · Sweatshirts</p>
+                                <h3 class="text-sm font-semibold text-white/90">CREW SWEATSHIRT — WHITE</h3>
+                                <div class="flex items-center justify-between mt-2"><p class="text-sm font-bold text-primary">₹4,200.00</p><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span></div></div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="4500" data-name="Women Graphic Hoodie Black" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/cdn/black-graphic-hoodie-with-white-logo-2cdc74.png" alt="Women Graphic Hoodie Black" />
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-pink-400 tracking-widest uppercase">Women · Hoodies</p>
+                                <h3 class="text-sm font-semibold text-white/90">GRAPHIC HOODIE — BLACK</h3>
+                                <div class="flex items-center justify-between mt-2"><p class="text-sm font-bold text-primary">₹4,500.00</p><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs">star</span></div></div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="4800" data-name="Women Zip Hoodie Set Yellow" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/fashion/photo-1515886657613-9f3515b0c78f.jpg" alt="Women Zip Hoodie Set Yellow" />
+                                <div class="absolute top-4 left-4"><span class="font-orbitron text-[10px] bg-pink-500 text-white px-2 py-1 font-bold">NEW</span></div>
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-pink-400 tracking-widest uppercase">Women · Hoodies</p>
+                                <h3 class="text-sm font-semibold text-white/90">ZIP HOODIE SET — YELLOW</h3>
+                                <div class="flex items-center justify-between mt-2"><p class="text-sm font-bold text-primary">₹4,800.00</p><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span></div></div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="3900" data-name="Women Oversized Hoodie" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/cdn/black-anime-hoodie-with-flame-graphics-59266a.png" alt="Women Oversized Hoodie Flame" />
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-pink-400 tracking-widest uppercase">Women · Hoodies</p>
+                                <h3 class="text-sm font-semibold text-white/90">OVERSIZED HOODIE — FLAME</h3>
+                                <div class="flex items-center justify-between mt-2"><div class="flex items-center gap-2"><p class="text-sm font-bold text-primary">₹3,900.00</p><p class="text-[10px] line-through text-slate-500">₹5,200.00</p></div><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs">star</span></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Women's Shirts -->
+                    <h3 class="font-syne text-xl font-bold tracking-widest uppercase mb-4 flex items-center gap-3">
+                        <span class="h-px flex-1 bg-white/10"></span>
+                        <span class="text-pink-400">Classy Shirts</span>
+                        <span class="h-px flex-1 bg-white/10"></span>
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                        <div class="product-card group relative" data-price="2200" data-name="Women Oversized White Tee" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/cdn/oversized-white-anime-graphic-t-shirt-71804a.png" alt="Women Oversized White Tee" />
+                                <div class="absolute top-4 left-4"><span class="font-orbitron text-[10px] bg-primary text-background-dark px-2 py-1 font-bold">TRENDING</span></div>
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-pink-400 tracking-widest uppercase">Women · Shirts</p>
+                                <h3 class="text-sm font-semibold text-white/90">OVERSIZED GRAPHIC TEE — WHITE</h3>
+                                <div class="flex items-center justify-between mt-2"><p class="text-sm font-bold text-primary">₹2,200.00</p><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span></div></div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="2400" data-name="Women Oversized Black Tee" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/cdn/black-minimalist-anime-t-shirt-1c0599.png" alt="Women Oversized Black Tee" />
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-pink-400 tracking-widest uppercase">Women · Shirts</p>
+                                <h3 class="text-sm font-semibold text-white/90">OVERSIZED GRAPHIC TEE — BLACK</h3>
+                                <div class="flex items-center justify-between mt-2"><p class="text-sm font-bold text-primary">₹2,400.00</p><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs">star</span></div></div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="1900" data-name="Women Long-Sleeve Tee" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/cdn/minimalist-long-sleeve-t-shirt-with-ja-e27d0e.png" alt="Women Long-Sleeve Tee" />
+                                <div class="absolute top-4 left-4"><span class="font-orbitron text-[10px] bg-red-600 text-white px-2 py-1 font-bold">SALE</span></div>
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-pink-400 tracking-widest uppercase">Women · Shirts</p>
+                                <h3 class="text-sm font-semibold text-white/90">LONG-SLEEVE TEE</h3>
+                                <div class="flex items-center justify-between mt-2"><div class="flex items-center gap-2"><p class="text-sm font-bold text-primary">₹1,900.00</p><p class="text-[10px] line-through text-slate-500">₹2,800.00</p></div><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span></div></div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="2600" data-name="Women Graphic Tee Red Cloud" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/cdn/white-t-shirt-with-red-cloud-logo-3663c1.png" alt="Women Graphic Tee Red Cloud" />
+                                <div class="absolute top-4 left-4"><span class="font-orbitron text-[10px] bg-pink-500 text-white px-2 py-1 font-bold">NEW</span></div>
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-pink-400 tracking-widest uppercase">Women · Shirts</p>
+                                <h3 class="text-sm font-semibold text-white/90">GRAPHIC TEE — RED CLOUD</h3>
+                                <div class="flex items-center justify-between mt-2"><p class="text-sm font-bold text-primary">₹2,600.00</p><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Women's Pants & Bottoms -->
+                    <h3 class="font-syne text-xl font-bold tracking-widest uppercase mb-4 flex items-center gap-3">
+                        <span class="h-px flex-1 bg-white/10"></span>
+                        <span class="text-pink-400">Pants &amp; Bottoms</span>
+                        <span class="h-px flex-1 bg-white/10"></span>
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                        <div class="product-card group relative" data-price="2600" data-name="Women Relaxed Sweatpants Grey" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/fashion/photo-1588117305388-c2631a279f82.jpg" alt="Women Relaxed Sweatpants Grey" />
+                                <div class="absolute top-4 left-4"><span class="font-orbitron text-[10px] bg-pink-500 text-white px-2 py-1 font-bold">NEW</span></div>
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-pink-400 tracking-widest uppercase">Women · Pants</p>
+                                <h3 class="text-sm font-semibold text-white/90">RELAXED SWEATPANTS — GREY</h3>
+                                <div class="flex items-center justify-between mt-2"><p class="text-sm font-bold text-primary">₹2,600.00</p><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span></div></div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="2900" data-name="Women Graphic Joggers" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/cdn/anime-graphic-joggers-ac17a0.png" alt="Women Graphic Joggers" />
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-pink-400 tracking-widest uppercase">Women · Pants</p>
+                                <h3 class="text-sm font-semibold text-white/90">GRAPHIC JOGGERS</h3>
+                                <div class="flex items-center justify-between mt-2"><p class="text-sm font-bold text-primary">₹2,900.00</p><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span></div></div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="1900" data-name="Women Cargo Shorts Black" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/cdn/black-cargo-shorts-with-many-straps-27d7ee.png" alt="Women Cargo Shorts Black" />
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-pink-400 tracking-widest uppercase">Women · Bottoms</p>
+                                <h3 class="text-sm font-semibold text-white/90">CARGO SHORTS — BLACK</h3>
+                                <div class="flex items-center justify-between mt-2"><p class="text-sm font-bold text-primary">₹1,900.00</p><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span></div></div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <!-- ═══════════════════════════════════════════════════════════
+                     MEN'S SECTION
+                ═══════════════════════════════════════════════════════════ -->
+                <div class="product-section" data-gender="men">
+                    <!-- Section Header -->
+                    <div class="relative mb-8 overflow-hidden rounded-2xl" style="background: linear-gradient(135deg, #0a1628 0%, #1a2f4e 40%, #0a0a1a 100%);">
+                        <div class="absolute inset-0 opacity-20" style="background: radial-gradient(circle at 30% 50%, #3b82f6 0%, transparent 60%), radial-gradient(circle at 70% 50%, #06b6d4 0%, transparent 60%);"></div>
+                        <div class="relative p-8 flex items-center justify-between">
+                            <div>
+                                <p class="text-[10px] font-bold tracking-[0.3em] text-blue-400 uppercase mb-2">Kamiwear × Men</p>
+                                <h2 class="font-syne text-4xl font-extrabold text-white tracking-tight">MEN'S COLLECTION</h2>
+                                <p class="text-slate-400 text-sm mt-2">Denim · Zipper hoodies · Tees · Streetwear essentials</p>
+                            </div>
+                            <span class="text-7xl opacity-20">♂</span>
+                        </div>
+                    </div>
+
+                    <!-- Men's Denim -->
+                    <h3 class="font-syne text-xl font-bold tracking-widest uppercase mb-4 flex items-center gap-3">
+                        <span class="h-px flex-1 bg-white/10"></span>
+                        <span class="text-blue-400">Denim &amp; Jeans</span>
+                        <span class="h-px flex-1 bg-white/10"></span>
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                        <div class="product-card group relative" data-price="3200" data-name="Men Wide-Leg Jean Baggy Black" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/fashion/jean-women-48c39f8f8ffd.jpg" alt="Men Wide-Leg Jeans Black" />
+                                <div class="absolute top-4 left-4"><span class="font-orbitron text-[10px] bg-primary text-background-dark px-2 py-1 font-bold">TRENDING</span></div>
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-blue-400 tracking-widest uppercase">Men · Jeans</p>
+                                <h3 class="text-sm font-semibold text-white/90">BAGGY WIDE-LEG JEAN — BLACK</h3>
+                                <div class="flex items-center justify-between mt-2"><p class="text-sm font-bold text-primary">₹3,200.00</p><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span></div></div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="2900" data-name="Men Wide-Leg Jean Blue Wash" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/fashion/photo-1542272604-787c3835535d.jpg" alt="Men Wide-Leg Jeans Blue" />
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-blue-400 tracking-widest uppercase">Men · Jeans</p>
+                                <h3 class="text-sm font-semibold text-white/90">BAGGY WIDE-LEG JEAN — BLUE WASH</h3>
+                                <div class="flex items-center justify-between mt-2"><p class="text-sm font-bold text-primary">₹2,900.00</p><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs">star</span></div></div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="3500" data-name="Men Cargo Wide-Leg Jean" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/fashion/photo-1604176354204-9268737828e4.jpg" alt="Men Cargo Wide-Leg" />
+                                <div class="absolute top-4 left-4"><span class="font-orbitron text-[10px] bg-primary text-background-dark px-2 py-1 font-bold">LIMITED</span></div>
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-blue-400 tracking-widest uppercase">Men · Jeans</p>
+                                <h3 class="text-sm font-semibold text-white/90">CARGO WIDE-LEG JEAN — KHAKI</h3>
+                                <div class="flex items-center justify-between mt-2"><p class="text-sm font-bold text-primary">₹3,500.00</p><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span></div></div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="2800" data-name="Men Denim Jacket Embroidered" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/cdn/denim-jacket-with-embroidery-87f061.png" alt="Men Denim Jacket" />
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-blue-400 tracking-widest uppercase">Men · Outerwear</p>
+                                <h3 class="text-sm font-semibold text-white/90">EMBROIDERED DENIM JACKET</h3>
+                                <div class="flex items-center justify-between mt-2"><div class="flex items-center gap-2"><p class="text-sm font-bold text-primary">₹2,800.00</p><p class="text-[10px] line-through text-slate-500">₹3,900.00</p></div><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs">star</span></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Men's Zipper Hoodies -->
+                    <h3 class="font-syne text-xl font-bold tracking-widest uppercase mb-4 flex items-center gap-3">
+                        <span class="h-px flex-1 bg-white/10"></span>
+                        <span class="text-blue-400">Zipper Hoodies</span>
+                        <span class="h-px flex-1 bg-white/10"></span>
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                        <div class="product-card group relative" data-price="5200" data-name="Men Zipper Hoodie Black Tech" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/cdn/shop-4d6939.png" alt="Men Zipper Hoodie Black" />
+                                <div class="absolute top-4 left-4"><span class="font-orbitron text-[10px] bg-primary text-background-dark px-2 py-1 font-bold">BESTSELLER</span></div>
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-blue-400 tracking-widest uppercase">Men · Hoodies</p>
+                                <h3 class="text-sm font-semibold text-white/90">TECH ZIP HOODIE — BLACK</h3>
+                                <div class="flex items-center justify-between mt-2"><p class="text-sm font-bold text-primary">₹5,200.00</p><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span></div></div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="4800" data-name="Men Zip Hoodie Cyber Grey" data-series="Cyberpunk 2077">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/generated/demon-slayer-kokushibo-hoodie-1773032491748.png" alt="Men Zip Hoodie Grey" />
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-blue-400 tracking-widest uppercase">Men · Hoodies</p>
+                                <h3 class="text-sm font-semibold text-white/90">CYBER ZIP HOODIE — GREY</h3>
+                                <div class="flex items-center justify-between mt-2"><p class="text-sm font-bold text-primary">₹4,800.00</p><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs">star</span></div></div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="5600" data-name="Men Heavy Zip Hoodie Oversized" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/generated/gojo-infinite-tee-1774247527626.png" alt="Men Heavy Zip Hoodie" />
+                                <div class="absolute top-4 left-4"><span class="font-orbitron text-[10px] bg-primary text-background-dark px-2 py-1 font-bold">LIMITED</span></div>
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-blue-400 tracking-widest uppercase">Men · Hoodies</p>
+                                <h3 class="text-sm font-semibold text-white/90">HEAVY OVERSIZED ZIP HOODIE</h3>
+                                <div class="flex items-center justify-between mt-2"><p class="text-sm font-bold text-primary">₹5,600.00</p><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span></div></div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="4400" data-name="Men Street Zip Hoodie" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/cdn/domain-expansion-knit-e90538.png" alt="Men Street Zip Hoodie" />
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-blue-400 tracking-widest uppercase">Men · Hoodies</p>
+                                <h3 class="text-sm font-semibold text-white/90">STREET ZIP HOODIE — WASHED</h3>
+                                <div class="flex items-center justify-between mt-2"><div class="flex items-center gap-2"><p class="text-sm font-bold text-primary">₹4,400.00</p><p class="text-[10px] line-through text-slate-500">₹5,800.00</p></div><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs">star</span></div></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Men's Shirts -->
+                    <h3 class="font-syne text-xl font-bold tracking-widest uppercase mb-4 flex items-center gap-3">
+                        <span class="h-px flex-1 bg-white/10"></span>
+                        <span class="text-blue-400">Shirts</span>
+                        <span class="h-px flex-1 bg-white/10"></span>
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                        <div class="product-card group relative" data-price="2400" data-name="Men Oversized Tee Cyber" data-series="Cyberpunk 2077">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/cdn/nobara-resonance-c48588.png" alt="Men Oversized Tee" />
+                                <div class="absolute top-4 left-4"><span class="font-orbitron text-[10px] bg-primary text-background-dark px-2 py-1 font-bold">HOT</span></div>
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-blue-400 tracking-widest uppercase">Men · Shirts</p>
+                                <h3 class="text-sm font-semibold text-white/90">CYBER OVERSIZED TEE</h3>
+                                <div class="flex items-center justify-between mt-2"><p class="text-sm font-bold text-primary">₹2,400.00</p><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span></div></div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="2800" data-name="Men Graphic Tee Anime" data-series="Jujutsu Kaisen">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/generated/cursed-energy-product-sukuna-1773032399164.png" alt="Men Graphic Tee" />
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-blue-400 tracking-widest uppercase">Men · Shirts</p>
+                                <h3 class="text-sm font-semibold text-white/90">CURSED SEAL GRAPHIC TEE</h3>
+                                <div class="flex items-center justify-between mt-2"><p class="text-sm font-bold text-primary">₹2,800.00</p><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs">star</span></div></div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="3200" data-name="Men Cargo Shirt Techwear" data-series="Ghost in the Shell">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/generated/night-city-cover-perfect-v2-1773032380473.png" alt="Men Cargo Shirt" />
+                                <div class="absolute top-4 left-4"><span class="font-orbitron text-[10px] bg-primary text-background-dark px-2 py-1 font-bold">LIMITED</span></div>
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-blue-400 tracking-widest uppercase">Men · Shirts</p>
+                                <h3 class="text-sm font-semibold text-white/90">TECHWEAR CARGO SHIRT</h3>
+                                <div class="flex items-center justify-between mt-2"><p class="text-sm font-bold text-primary">₹3,200.00</p><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span></div></div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="2600" data-name="Men Neo-Tokyo Oversized Tee" data-series="Akira">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/generated/neo-tokyo-product-akira-vest-1773032421281.png" alt="Men Neo-Tokyo Tee" />
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-blue-400 tracking-widest uppercase">Men · Shirts</p>
+                                <h3 class="text-sm font-semibold text-white/90">NEO-TOKYO OVERSIZED TEE</h3>
+                                <div class="flex items-center justify-between mt-2"><div class="flex items-center gap-2"><p class="text-sm font-bold text-primary">₹2,600.00</p><p class="text-[10px] line-through text-slate-500">₹3,800.00</p></div><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ═══════════════════════════════════════════════════════════
+                     UNISEX SECTION
+                ═══════════════════════════════════════════════════════════ -->
+                <div class="product-section" data-gender="unisex">
+                    <!-- Section Header -->
+                    <div class="relative mb-8 overflow-hidden rounded-2xl" style="background: linear-gradient(135deg, #0a1a0a 0%, #1a2a1a 40%, #0a0a0a 100%);">
+                        <div class="absolute inset-0 opacity-20" style="background: radial-gradient(circle at 30% 50%, #f9f906 0%, transparent 60%), radial-gradient(circle at 70% 50%, #22c55e 0%, transparent 60%);"></div>
+                        <div class="relative p-8 flex items-center justify-between">
+                            <div>
+                                <p class="text-[10px] font-bold tracking-[0.3em] text-primary uppercase mb-2">Kamiwear × Unisex</p>
+                                <h2 class="font-syne text-4xl font-extrabold text-white tracking-tight">UNISEX COLLECTION</h2>
+                                <p class="text-slate-400 text-sm mt-2">Hoodies · Cargo pants · Accessories · For everyone</p>
+                            </div>
+                            <span class="text-7xl opacity-20">⚥</span>
+                        </div>
+                    </div>
+
+                    <!-- Unisex Essentials -->
+                    <h3 class="font-syne text-xl font-bold tracking-widest uppercase mb-4 flex items-center gap-3">
+                        <span class="h-px flex-1 bg-white/10"></span>
+                        <span class="text-primary">Streetwear Essentials</span>
+                        <span class="h-px flex-1 bg-white/10"></span>
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                        <div class="product-card group relative" data-price="14400" data-name="EVA-01 Tech Hoodie Unisex" data-series="Neon Genesis">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/cdn/shop-4d6939.png" alt="EVA-01 Tech Hoodie" />
+                                <div class="absolute top-4 left-4"><span class="font-orbitron text-[10px] bg-primary text-background-dark px-2 py-1 font-bold">LIMITED</span></div>
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-accent-purple tracking-widest uppercase">Unisex · Neon Genesis</p>
+                                <h3 class="text-sm font-semibold text-white/90">EVA-01 TECH HOODIE</h3>
+                                <div class="flex items-center justify-between mt-2"><p class="text-sm font-bold text-primary">₹14,400.00</p><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs">star</span></div></div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="16800" data-name="Edgerunners Cargo Jacket Unisex" data-series="Cyberpunk 2077">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/generated/night-city-cover-perfect-v2-1773032380473.png" alt="Edgerunners Cargo Jacket" />
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-accent-purple tracking-widest uppercase">Unisex · Cyberpunk</p>
+                                <h3 class="text-sm font-semibold text-white/90">EDGERUNNERS CARGO JACKET</h3>
+                                <div class="flex items-center justify-between mt-2"><p class="text-sm font-bold text-primary">₹16,800.00</p><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs">star</span></div></div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="9600" data-name="Domain Expansion Knit Unisex" data-series="Jujutsu Kaisen">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/generated/gojo-infinite-tee-1774247527626.png" alt="Domain Expansion Knit" />
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-accent-purple tracking-widest uppercase">Unisex · Jujutsu Kaisen</p>
+                                <h3 class="text-sm font-semibold text-white/90">DOMAIN EXPANSION KNIT</h3>
+                                <div class="flex items-center justify-between mt-2"><p class="text-sm font-bold text-primary">₹9,600.00</p><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span></div></div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="12400" data-name="Section 9 Cargo Runners Unisex" data-series="Ghost in the Shell">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/cdn/domain-expansion-knit-e90538.png" alt="Section 9 Cargo Runners" />
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-accent-purple tracking-widest uppercase">Unisex · Ghost in the Shell</p>
+                                <h3 class="text-sm font-semibold text-white/90">SECTION 9 CARGO RUNNERS</h3>
+                                <div class="flex items-center justify-between mt-2"><p class="text-sm font-bold text-primary">₹12,400.00</p><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs">star</span></div></div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="23600" data-name="Pilot-01 Tech Sneakers Unisex" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/cdn/section-9-cargo-runners-c1122f.png" alt="Tech Sneakers" />
+                                <div class="absolute top-4 left-4"><span class="font-orbitron text-[10px] bg-primary text-background-dark px-2 py-1 font-bold">LIMITED</span></div>
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-accent-purple tracking-widest uppercase">Unisex · Neon Genesis</p>
+                                <h3 class="text-sm font-semibold text-white/90">PILOT-01 TECH SNEAKERS</h3>
+                                <div class="flex items-center justify-between mt-2"><p class="text-sm font-bold text-primary">₹23,600.00</p><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span></div></div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="4400" data-name="Sukuna Cursed Seal Tee Unisex" data-series="Jujutsu Kaisen">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/generated/cursed-energy-product-sukuna-1773032399164.png" alt="Sukuna Tee" />
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-accent-purple tracking-widest uppercase">Unisex · Jujutsu Kaisen</p>
+                                <h3 class="text-sm font-semibold text-white/90">SUKUNA CURSED SEAL TEE</h3>
+                                <div class="flex items-center justify-between mt-2"><p class="text-sm font-bold text-primary">₹4,400.00</p><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs">star</span></div></div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="2800" data-name="Tactical Shinobi Belt Unisex" data-series="Streetwear">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/cdn/sukuna-cursed-seal-tee-677a45.png" alt="Tactical Belt" />
+                                <div class="absolute top-4 left-4"><span class="font-orbitron text-[10px] bg-red-600 text-white px-2 py-1 font-bold">SALE</span></div>
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-accent-purple tracking-widest uppercase">Unisex · Accessories</p>
+                                <h3 class="text-sm font-semibold text-white/90">TACTICAL SHINOBI BELT</h3>
+                                <div class="flex items-center justify-between mt-2"><div class="flex items-center gap-2"><p class="text-sm font-bold text-primary">₹2,800.00</p><p class="text-[10px] line-through text-slate-500">₹4,000.00</p></div><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs">star</span></div></div>
+                            </div>
+                        </div>
+                        <div class="product-card group relative" data-price="7600" data-name="Cyber Joggers 2077 Unisex" data-series="Cyberpunk 2077">
+                            <div class="relative aspect-[4/5] glass-panel rounded-2xl overflow-hidden mb-4">
+                                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                    src="assets/generated/night-city-cyber-joggers-1773032534008.png" alt="Cyber Joggers" />
+                                <button class="absolute top-4 right-4 h-10 w-10 glass-panel flex items-center justify-center rounded-full hover:bg-white/20 transition-all"><span class="material-symbols-outlined text-xl">favorite</span></button>
+                                <div class="quick-view absolute bottom-4 left-4 right-4 opacity-0 transform translate-y-4 transition-all duration-300 flex flex-col gap-2">
+                                    <button class="w-full py-3 bg-white text-background-dark font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase">Quick View</button>
+                                    <button class="w-full py-3 bg-primary text-black font-bold text-xs tracking-widest rounded-xl shadow-2xl uppercase flex items-center justify-center gap-2"><span class="material-symbols-outlined text-sm">add_shopping_cart</span>ADD TO CART</button>
+                                </div>
+                            </div>
+                            <div class="space-y-1 px-2">
+                                <p class="text-[10px] font-bold text-accent-purple tracking-widest uppercase">Unisex · Night City</p>
+                                <h3 class="text-sm font-semibold text-white/90">CYBER JOGGERS 2077</h3>
+                                <div class="flex items-center justify-between mt-2"><p class="text-sm font-bold text-primary">₹7,600.00</p><div class="flex text-primary"><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span><span class="material-symbols-outlined text-xs fill-1">star</span></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gender filter + progressive reveal script -->
+                <script>
+                    (function () {
+                        const PAGE_SIZE = 12;
+                        let activeGender = 'all';
+                        let cardLimit = PAGE_SIZE;
+
+                        const setActive = (selector, id) => {
+                            document.querySelectorAll(selector).forEach(btn => {
+                                const on = btn.id === id;
+                                btn.classList.toggle('bg-primary', on);
+                                btn.classList.toggle('text-background-dark', on);
+                                btn.classList.toggle('bg-white/10', !on);
+                                btn.classList.toggle('hover:bg-white/20', !on);
+                            });
+                        };
+
+                        // Hide a row header when none of the cards under it are visible,
+                        // so pagination and filters never leave an empty category title.
+                        const syncRowHeaders = section => {
+                            section.querySelectorAll(':scope > h3').forEach(heading => {
+                                let cards = 0;
+                                let shown = 0;
+                                let node = heading.nextElementSibling;
+                                while (node && node.tagName !== 'H3') {
+                                    const inNode = node.matches && node.matches('.product-card')
+                                        ? [node]
+                                        : Array.from(node.querySelectorAll ? node.querySelectorAll('.product-card') : []);
+                                    cards += inNode.length;
+                                    shown += inNode.filter(card => card.style.display !== 'none').length;
+                                    node = node.nextElementSibling;
+                                }
+                                heading.style.display = (cards > 0 && shown === 0) ? 'none' : '';
+                            });
+                        };
+
+                        const applyView = () => {
+                            let hiddenLeft = 0;
+                            let totalShown = 0;
+
+                            document.querySelectorAll('.product-section').forEach(section => {
+                                const match = activeGender === 'all' || section.dataset.gender === activeGender;
+                                if (!match) {
+                                    section.style.display = 'none';
+                                    return;
+                                }
+
+                                // A card passes when it survives the category/series filters
+                                // (kwFilter is maintained by enhance.js) and is within the page.
+                                let seen = 0;
+                                let shown = 0;
+                                section.querySelectorAll('.product-card').forEach(card => {
+                                    const pass = card.dataset.kwFilter !== '0';
+                                    if (pass) seen += 1;
+                                    const show = pass && seen <= cardLimit;
+                                    card.style.display = show ? '' : 'none';
+                                    if (show) shown += 1;
+                                    if (pass && !show) hiddenLeft += 1;
+                                });
+                                section.style.display = shown > 0 ? '' : 'none';
+                                syncRowHeaders(section);
+                                totalShown += shown;
+                            });
+
+                            const countEl = Array.from(document.querySelectorAll('main p'))
+                                .find(p => /Showing\s+\d+\s+of\s+\d+/i.test(p.textContent));
+                            if (countEl) {
+                                const total = document.querySelectorAll('main .product-card').length;
+                                countEl.textContent = `Showing ${totalShown} of ${total} products in premium catalog`;
+                            }
+
+                            const loadMore = document.getElementById('load-more');
+                            if (loadMore) loadMore.parentElement.style.display = hiddenLeft > 0 ? '' : 'none';
+                        };
+
+                        // enhance.js calls this after it recomputes category/series filters
+                        // so pagination and filtering always render from one pass.
+                        window.kwApplyShopView = applyView;
+
+                        window.filterGender = function (gender) {
+                            activeGender = gender;
+                            cardLimit = PAGE_SIZE;
+                            setActive('.gender-tab', 'tab-' + gender);
+                            setActive('.gender-filter-btn', 'filter-' + gender);
+                            applyView();
+                        };
+
+                        window.revealMoreProducts = function () {
+                            cardLimit += PAGE_SIZE;
+                            applyView();
+                        };
+
+                        const attachLoadMore = () => {
+                            const loadMoreBtn = document.getElementById('load-more');
+                            if (loadMoreBtn) loadMoreBtn.addEventListener('click', window.revealMoreProducts);
+                        };
+                        if (document.readyState === 'loading') {
+                            document.addEventListener('DOMContentLoaded', attachLoadMore);
+                        } else {
+                            attachLoadMore();
+                        }
+
+                        // Initialize: show all
+                        filterGender('all');
+                    })();
+                </script>
                 <!-- Load More -->
                 <div class="mt-16 flex justify-center">
-                    <button
+                    <button id="load-more" data-kw-paginated="true"
                         class="px-12 py-4 border border-white/20 rounded-xl font-bold text-xs tracking-[0.2em] hover:bg-primary hover:text-background-dark hover:border-primary transition-all duration-300 uppercase">Load
                         More Products</button>
                 </div>
@@ -640,7 +1300,7 @@
     <script src="js/components/profile-modal.js?v=6"></script>
     <script src="js/components/search-overlay.js?v=4"></script>
     <script src="js/core/app.js?v=4"></script>
-    <script src="js/core/enhance.js?v=5"></script>
+    <script src="js/core/enhance.js?v=6"></script>
 </body>
 
 </html>

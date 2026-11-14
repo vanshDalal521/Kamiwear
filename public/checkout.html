@@ -135,9 +135,16 @@
                     <div id="upi-panel" class="hidden liquid-glass rounded-2xl p-8 border border-primary/20 relative overflow-hidden mt-4">
                         <div class="absolute -right-20 -top-20 size-64 bg-primary/10 blur-3xl rounded-full"></div>
                         <div class="flex flex-col md:flex-row items-start gap-8 relative z-10">
-                            <div class="shrink-0 w-48 h-48 bg-white p-2 rounded-xl border border-primary/30 mx-auto md:mx-0">
-                                <img id="upi-qr" src="assets/payments/kamiwear-upi-scanner.png"
-                                    class="w-full h-full object-contain rounded-lg" alt="Kamiwear UPI QR code">
+                            <div class="shrink-0 w-48 mx-auto md:mx-0">
+                                <div class="w-48 h-48 bg-white p-2 rounded-xl border border-primary/30 relative overflow-hidden">
+                                    <img id="upi-qr" src="assets/payments/kamiwear-upi-scanner.png"
+                                        class="w-full h-full object-contain rounded-lg" alt="Kamiwear UPI QR code">
+                                    <canvas id="upi-qr-canvas" class="hidden w-full h-full"
+                                        role="img" aria-label="UPI QR code pre-filled with this order's total"></canvas>
+                                </div>
+                                <p id="upi-qr-note" class="hidden mt-2 text-[10px] font-black uppercase tracking-widest text-center text-black bg-primary px-2 py-1 rounded-full">
+                                    Exact total pre-filled
+                                </p>
                             </div>
                             <div class="space-y-5 flex-grow text-center md:text-left w-full">
                                 <div>
@@ -217,12 +224,13 @@
 
         <script src="js/core/assets.js?v=4"></script>
 <script src="js/store/core.js?v=6"></script>
+    <script src="js/vendor/qrcode.js?v=1"></script>
     <script src="js/components/badge-manager.js?v=4"></script>
     <script src="js/components/cart-drawer.js?v=4"></script>
     <script src="js/components/profile-modal.js?v=6"></script>
     <script src="js/components/search-overlay.js?v=4"></script>
     <script src="js/core/app.js?v=4"></script>
-    <script src="js/core/enhance.js?v=5"></script>
+    <script src="js/core/enhance.js?v=6"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             const money = value => `₹${Number(value || 0).toLocaleString('en-IN', { maximumFractionDigits: 2 })}`;
@@ -329,8 +337,56 @@
                 return `upi://pay?${params}`;
             };
 
+            /**
+             * Render a QR that encodes this cart's exact total, so scanning it
+             * opens the UPI app with the amount already filled in. The static
+             * Scanner.png encodes a fixed payload and cannot do that, so it is
+             * kept only as the fallback if generation is unavailable.
+             */
+            const upiQrCanvas = document.getElementById('upi-qr-canvas');
+            const upiQrNote = document.getElementById('upi-qr-note');
+
+            const renderUpiQr = link => {
+                if (!upiQrCanvas || typeof window.qrcode !== 'function') return false;
+                try {
+                    const qr = window.qrcode(0, 'M'); // 0 = pick the smallest version that fits
+                    qr.addData(link);
+                    qr.make();
+
+                    const count = qr.getModuleCount();
+                    const quiet = 4; // quiet zone in modules, required by the QR spec
+                    const box = count + quiet * 2;
+                    const scale = Math.max(4, Math.floor(384 / box));
+                    const size = box * scale;
+
+                    upiQrCanvas.width = size;
+                    upiQrCanvas.height = size;
+                    const ctx = upiQrCanvas.getContext('2d');
+                    if (!ctx) return false;
+
+                    ctx.fillStyle = '#ffffff';
+                    ctx.fillRect(0, 0, size, size);
+                    ctx.fillStyle = '#000000';
+                    for (let row = 0; row < count; row++) {
+                        for (let col = 0; col < count; col++) {
+                            if (!qr.isDark(row, col)) continue;
+                            ctx.fillRect((col + quiet) * scale, (row + quiet) * scale, scale, scale);
+                        }
+                    }
+
+                    upiQrEl?.classList.add('hidden');
+                    upiQrCanvas.classList.remove('hidden');
+                    upiQrNote?.classList.remove('hidden');
+                    return true;
+                } catch (error) {
+                    console.warn('[Kamiwear Checkout] QR render failed — using the static scanner image.', error);
+                    return false;
+                }
+            };
+
             if (upiAmountEl) upiAmountEl.textContent = money(subtotal);
             if (upiPayLink) upiPayLink.href = buildUpiLink(subtotal);
+            renderUpiQr(buildUpiLink(subtotal));
 
             upiCopyBtn?.addEventListener('click', async () => {
                 try {

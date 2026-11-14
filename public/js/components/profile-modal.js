@@ -403,8 +403,14 @@ document.addEventListener('DOMContentLoaded', () => {
         handleAuth('register', [name, email, password]);
     });
 
-    document.getElementById('logout-btn').addEventListener('click', () => {
-        window.Store.logout();
+    document.getElementById('logout-btn').addEventListener('click', async () => {
+        const btn = document.getElementById('logout-btn');
+        if (btn) { btn.disabled = true; btn.textContent = 'SIGNING OUT...'; }
+        try {
+            await window.Store.logout();
+        } catch(e) {
+            // Even on error, local session is already cleared by Store.logout()
+        }
         toggleProfile(false);
     });
 
