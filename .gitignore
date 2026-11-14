@@ -4,7 +4,31 @@ node_modules/
 # Environment / secrets
 .env
 .env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 !.env.example
+*.pem
+*.key
+*.cert
+*.p12
+*.pfx
+credentials.json
+client_secret*.json
+service-account*.json
+token*.json
+
+# Scanner / UPI QR images (private payment images)
+Scanner.png
+*scanner*.png
+*scanner*.jpg
+*scanner*.jpeg
+*Scanner*.png
+*Scanner*.jpg
+*Scanner*.jpeg
+public/assets/payments/*scanner*
+public/assets/payments/*Scanner*
 
 # Runtime data (contains user records)
 data/*.json
