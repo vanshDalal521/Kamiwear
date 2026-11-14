@@ -1094,7 +1094,7 @@
         initNewsletter();
 
         if (page === 'index.html' || page === '') initHome();
-        if (page === 'shop.html') initShop();
+        if (page === 'shop.html' || page === 'new-fashion.html') initShop();
         if (page === 'product.html') initProduct();
         initCollection();
         initWishlist();

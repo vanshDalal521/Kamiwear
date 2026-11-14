@@ -158,29 +158,33 @@
                 </div>
             </div>
             <div class="relative hidden lg:flex items-center justify-center">
-                <div class="relative z-20 transform hover:scale-105 transition-transform duration-500">
-                    <img alt="Techwear Hoodie"
-                        class="w-full max-w-lg rounded-xl drop-shadow-[0_0_50px_rgba(124,58,237,0.3)]"
-                        src="assets/cdn/index-73699d.png" />
-                    <div
-                        class="absolute -top-10 -right-10 glass-panel p-4 rounded-lg border-t-2 border-t-primary animate-bounce">
-                        <div class="text-[10px] text-primary font-bold uppercase tracking-widest mb-1">Material Spec
+                <div class="relative z-20 w-full max-w-[420px] transform hover:scale-[1.02] transition-transform duration-500">
+                    <!-- Glass Showcase Frame -->
+                    <div class="glass-panel p-2.5 rounded-3xl border border-white/20 shadow-[0_0_60px_rgba(249,232,6,0.2)] bg-gradient-to-b from-white/10 via-background-dark/40 to-background-dark/80 backdrop-blur-xl group">
+                        <div class="relative overflow-hidden rounded-2xl aspect-[3/4] max-h-[540px] bg-black/40">
+                            <img alt="Hero Oversized Street Jacket"
+                                class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                                src="assets/fashion/hero-oversized-jacket.jpg" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 via-background-dark/20 to-transparent pointer-events-none"></div>
+                            <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+                                <div>
+                                    <span class="font-orbitron text-[10px] font-bold text-primary tracking-widest uppercase bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-full border border-primary/30">2026 HERO DROP</span>
+                                    <h4 class="font-syne text-sm font-bold text-white mt-1">OVERSIZED STREET JACKET</h4>
+                                </div>
+                                <span class="font-bold text-primary bg-primary/10 border border-primary/30 text-xs px-3 py-1 rounded-full">₹4,200</span>
+                            </div>
                         </div>
-                        <div class="text-sm font-bold">380GSM ARMOR COTTON</div>
+                    </div>
+                    <!-- Spec Badges with safe non-clipping offsets -->
+                    <div
+                        class="absolute -top-4 -right-4 glass-panel px-4 py-3 rounded-xl border-t-2 border-t-primary shadow-[0_10px_30px_rgba(0,0,0,0.7)] backdrop-blur-xl bg-background-dark/90 animate-bounce z-30">
+                        <div class="text-[10px] text-primary font-bold uppercase tracking-widest mb-0.5">Material Spec</div>
+                        <div class="text-xs font-bold text-white">380GSM ARMOR COTTON</div>
                     </div>
                     <div
-                        class="absolute bottom-20 -left-20 glass-panel p-4 rounded-lg border-b-2 border-b-accent-purple-light">
-                        <div class="text-[10px] text-accent-purple-light font-bold uppercase tracking-widest mb-1">
-                            Durability</div>
-                        <div class="text-sm font-bold">REINFORCED KEVLAR STITCH</div>
-                    </div>
-                    <div class="absolute inset-0 pointer-events-none">
-                        <div
-                            class="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent-purple-light to-transparent rotate-45 scale-x-150 blur-sm">
-                        </div>
-                        <div
-                            class="absolute top-2/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary to-transparent -rotate-[30deg] scale-x-150 blur-sm">
-                        </div>
+                        class="absolute -bottom-4 -left-4 glass-panel px-4 py-3 rounded-xl border-b-2 border-b-accent-purple-light shadow-[0_10px_30px_rgba(0,0,0,0.7)] backdrop-blur-xl bg-background-dark/90 z-30">
+                        <div class="text-[10px] text-accent-purple-light font-bold uppercase tracking-widest mb-0.5">Durability</div>
+                        <div class="text-xs font-bold text-white">REINFORCED KEVLAR STITCH</div>
                     </div>
                 </div>
             </div>
@@ -235,7 +239,7 @@
                     <div class="mt-4 h-1 w-0 group-hover:w-full bg-primary transition-all duration-500"></div>
                 </div>
             </div>
-            <div onclick="window.location.href='shop.html'"
+            <div onclick="window.location.href='new-fashion.html'"
                 class="group relative overflow-hidden rounded-xl aspect-[3/4] cursor-pointer">
                 <div class="collection-img absolute inset-0 bg-cover bg-center group-hover:scale-110"
                     style="background-image: url('assets/fashion/jean-women-48c39f8f8ffd.jpg');">
@@ -258,18 +262,18 @@
                     <span class="h-px flex-grow bg-white/10"></span>
                 </h2>
                 <div class="flex flex-wrap gap-2">
-                    <a href="shop.html" class="px-4 py-2 rounded-full bg-primary text-black text-[11px] font-bold tracking-widest uppercase">All</a>
-                    <a href="shop.html" class="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-[11px] font-bold tracking-widest uppercase transition-colors">Men</a>
-                    <a href="shop.html" class="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-[11px] font-bold tracking-widest uppercase transition-colors">Women</a>
-                    <a href="shop.html" class="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-[11px] font-bold tracking-widest uppercase transition-colors">Unisex</a>
+                    <a href="new-fashion.html" class="px-4 py-2 rounded-full bg-primary text-black text-[11px] font-bold tracking-widest uppercase">All</a>
+                    <a href="new-fashion.html?gender=men" class="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-[11px] font-bold tracking-widest uppercase transition-colors">Men</a>
+                    <a href="new-fashion.html?gender=women" class="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-[11px] font-bold tracking-widest uppercase transition-colors">Women</a>
+                    <a href="new-fashion.html?gender=unisex" class="px-4 py-2 rounded-full bg-white/10 hover:bg-white/20 text-[11px] font-bold tracking-widest uppercase transition-colors">Unisex</a>
                 </div>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="group relative glass-panel rounded-xl overflow-hidden p-4" data-price="2800" data-name="Embroidered Denim Jacket">
+                <div class="group relative glass-panel rounded-xl overflow-hidden p-4" data-price="4200" data-name="Hero Oversized Street Jacket">
                     <div class="relative aspect-square mb-4 rounded-lg overflow-hidden bg-black/40">
-                        <img alt="Embroidered Denim Jacket"
+                        <img alt="Hero Oversized Street Jacket"
                             class="w-full h-full object-cover transition-transform group-hover:scale-105"
-                            src="assets/cdn/denim-jacket-with-embroidery-87f061.png" />
+                            src="assets/fashion/hero-oversized-jacket.jpg" />
                         <button
                             class="absolute inset-x-4 bottom-4 translate-y-20 group-hover:translate-y-0 bg-primary text-black font-bold py-3 rounded-full transition-all duration-300 flex items-center justify-center gap-2">
                             <span class="material-symbols-outlined text-xl">add_shopping_cart</span>
@@ -278,10 +282,10 @@
                     </div>
                     <div class="flex justify-between items-start">
                         <div>
-                            <h5 class="font-bold text-slate-200">EMBROIDERED DENIM JACKET</h5>
-                            <p class="text-xs text-primary font-bold uppercase mt-1">Men · Outerwear</p>
+                            <h5 class="font-bold text-slate-200">HERO OVERSIZED STREET JACKET</h5>
+                            <p class="text-xs text-primary font-bold uppercase mt-1">Unisex · Outerwear</p>
                         </div>
-                        <span class="font-bold">₹2,800</span>
+                        <span class="font-bold">₹4,200</span>
                     </div>
                 </div>
                 <div class="group relative glass-panel rounded-xl overflow-hidden p-4" data-price="2800" data-name="Women Wide-Leg Jeans Blue">
@@ -501,7 +505,7 @@
             <div class="overflow-hidden rounded-xl aspect-square">
                 <img alt="Community Style 2"
                     class="w-full h-full object-cover transition-transform duration-500 hover:scale-105 cursor-pointer"
-                    src="assets/cdn/neo-tokyo-c3e3e2.png" />
+                    src="assets/newgen/model-streetwear-outfit-men-full-body-397d5c.jpg" />
             </div>
             <div class="overflow-hidden rounded-xl aspect-square">
                 <img alt="Community Style 3"
@@ -611,7 +615,7 @@
     <script src="js/components/profile-modal.js?v=6"></script>
     <script src="js/components/search-overlay.js?v=4"></script>
     <script src="js/core/app.js?v=4"></script>
-    <script src="js/core/enhance.js?v=6"></script>
+    <script src="js/core/enhance.js?v=7"></script>
 </body>
 
 </html>
