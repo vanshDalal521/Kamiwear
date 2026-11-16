@@ -162,14 +162,30 @@ render correctly on Vercel and other static hosts.
 
 ## Media
 
-Both demo videos use an original, fully owned anime/taiko-style instrumental
-synthesized by `scripts/generate-soundtrack.js` (no copyrighted anime audio is
-embedded). The encoded audio is already muxed into:
+`public/assets/video/kamiwear-anthem.mp4` is the 36-second homepage anthem: a
+1280×720, 30fps cinematic showcase of new-season clothes (hero oversized jacket,
+gradient puff-print hoodie, acid-wash baggy denim, Kokushibo hoodie, Night City
+joggers, Sukuna hoodie, and a rapid three-piece drop montage). Every frame is
+built from scratch with kinetic typography, slash wipes, impact flashes, camera
+shake, parallax product cards, HUD overlays, and a product-strip outro. It is
+muxed with an original, fully owned Demon-Slayer-inspired epic score (taiko
+percussion, shakuhachi flute, koto, choir, and risers) synthesized from scratch —
+**no copyrighted anime or movie audio is embedded**.
 
-* `public/assets/video/kamiwear-anthem.mp4` (homepage anthem)
-* `docs/demo/kamiwear-walkthrough.mp4` (product walkthrough)
+`public/assets/video/kamiwear-anthem-poster.jpg` is the matching poster frame.
 
-Regenerate the score and remux with ffmpeg if you change the videos.
+Regenerate the anthem video, poster, and audio with:
+
+```bash
+python3 scripts/make_anthem_video.py
+```
+
+Use `python3 scripts/make_anthem_video.py --reuse-audio` to re-encode video and
+poster without re-synthesizing the score.
+
+`docs/demo/kamiwear-walkthrough.mp4` is the product walkthrough demo.
+
+The legacy instrumental generator remains at `scripts/generate-soundtrack.js`.
 
 ## Deployment
 

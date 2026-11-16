@@ -7,7 +7,16 @@ const API_BASE = isLocal
 
 const SESSION_HINT_KEY = 'kw_session_hint';
 const SESSION_VERIFIED_KEY = 'kw_session_verified_at';
+const LAST_EMAIL_KEY = 'kw_last_email';
 const SESSION_CACHE_MS = 60 * 1000;
+
+function normalizeSearchText(value) {
+    return String(value || '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+}
 
 function newIdempotencyKey() {
     if (window.crypto && typeof window.crypto.randomUUID === 'function') {
@@ -207,6 +216,10 @@ const Store = {
         localStorage.setItem('kw_user', JSON.stringify(data.user));
         localStorage.setItem(SESSION_HINT_KEY, '1');
         localStorage.setItem(SESSION_VERIFIED_KEY, String(Date.now()));
+        if (data.user.email) localStorage.setItem(LAST_EMAIL_KEY, data.user.email);
+        try {
+            sessionStorage.removeItem('kw_signed_out');
+        } catch (error) {}
         window.dispatchEvent(new CustomEvent('authUpdated', { detail: data.user }));
     },
 
@@ -276,12 +289,27 @@ const Store = {
             // session when the request succeeds.
         }
         this._clearLocalSession();
+        try {
+            sessionStorage.setItem('kw_signed_out', '1');
+        } catch (error) {}
         window.dispatchEvent(new CustomEvent('authUpdated', { detail: null }));
         if (window.location.pathname.includes('profile.html')) {
-            window.location.href = 'index.html';
+            window.location.href = 'index.html?auth=true';
         } else {
-            window.location.reload();
+            const next = new URL(window.location.href);
+            next.searchParams.set('auth', 'true');
+            window.location.href = next.toString();
         }
+    },
+
+    getLastEmail() {
+        return localStorage.getItem(LAST_EMAIL_KEY) || '';
+    },
+
+    rememberEmail(email) {
+        const value = String(email || '').trim().toLowerCase();
+        if (value) localStorage.setItem(LAST_EMAIL_KEY, value);
+        return value;
     },
 
     getUser() {
@@ -489,21 +517,96 @@ const Store = {
     },
 
     // ------------------------------------------------------------------ Search
-    searchProducts(query) {
-        const q = String(query || '').toLowerCase().trim();
-        const products = [
-            { id: 'tanjiro-hoodie', name: 'Tanjiro Hoodie V2', price: 6800, image: 'assets/hoodies/water-breathing-hoodie-main.jpeg', category: 'Demon Slayer' },
-            { id: 'neo-tokyo-tee', name: 'Neo-Tokyo Heavy Tee', price: 4400, image: 'assets/cdn/nobara-resonance-c48588.png', category: 'Neo Tokyo' },
-            { id: 'sukuna-hoodie', name: 'Sukuna Cursed Hoodie', price: 6320, image: 'assets/t-shirts/sukuna-cursed-energy-main.jpeg', category: 'Cursed Energy' },
-            { id: 'zenitsu-jacket', name: 'Zenitsu Bolt Jacket', price: 9600, image: 'assets/generated/demon-slayer-kokushibo-hoodie-1773032491748.png', category: 'Demon Slayer' },
-            { id: 'cyber-joggers', name: 'Cyber Joggers 2077', price: 7600, image: 'assets/generated/night-city-cyber-joggers-1773032534008.png', category: 'Night City' },
-            { id: 'shinobi-mask', name: 'Shinobi Tech Mask', price: 3600, image: 'assets/accessories/headband-replica.jpeg', category: 'Accessories' },
-        ];
+    _catalog: null,
+    _catalogPromise: null,
 
+    /**
+     * Load the complete product catalog generated from every storefront page.
+     * The result is cached for the rest of the session; the overlay preloads it
+     * so typing stays instant.
+     */
+    loadProductCatalog(force = false) {
+        if (!force && Array.isArray(this._catalog) && this._catalog.length) {
+            return Promise.resolve(this._catalog);
+        }
+        if (!force && this._catalogPromise) return this._catalogPromise;
+
+        this._catalogPromise = fetch('data/products.json?v=2', {
+            headers: { Accept: 'application/json' },
+            credentials: 'same-origin',
+        })
+            .then(response => {
+                if (!response.ok) throw new Error(`Catalog request failed (${response.status})`);
+                return response.json();
+            })
+            .then(payload => {
+                const products = Array.isArray(payload) ? payload : payload.products;
+                this._catalog = Array.isArray(products)
+                    ? products.filter(product => product && product.name && Number(product.price) > 0)
+                    : [];
+                return this._catalog;
+            })
+            .catch(error => {
+                console.error('[Kamiwear] Product catalog unavailable:', error.message);
+                this._catalog = Array.isArray(this._catalog) ? this._catalog : [];
+                return this._catalog;
+            })
+            .finally(() => {
+                this._catalogPromise = null;
+            });
+
+        return this._catalogPromise;
+    },
+
+    getProductCatalog() {
+        return Array.isArray(this._catalog) ? this._catalog : [];
+    },
+
+    searchProducts(query, catalog = null) {
+        const q = normalizeSearchText(query);
         if (!q) return [];
-        return products.filter(product =>
-            product.name.toLowerCase().includes(q) || product.category.toLowerCase().includes(q)
-        );
+
+        const products = Array.isArray(catalog) ? catalog : this.getProductCatalog();
+        if (!products.length) return [];
+
+        const tokens = q.split(' ');
+        const scored = [];
+
+        products.forEach(product => {
+            const name = normalizeSearchText(product.name);
+            const category = normalizeSearchText(product.category);
+            const series = normalizeSearchText(product.series);
+            const haystack = normalizeSearchText(
+                product.search || [product.name, product.category, product.series, product.gender, product.type].join(' ')
+            );
+
+            // Every query word must appear somewhere in the product record, so
+            // "women baggy jeans" narrows instead of widening the result set.
+            if (!tokens.every(token => haystack.includes(token))) return;
+
+            let score = 0;
+            if (name === q) score += 120;
+            else if (name.startsWith(q)) score += 60;
+            else if (name.includes(q)) score += 30;
+
+            tokens.forEach(token => {
+                if (name.split(' ').includes(token)) score += 8;
+                else if (name.includes(token)) score += 4;
+                if (category.includes(token)) score += 2;
+                if (series.includes(token)) score += 1;
+                if (String(product.gender || '').toLowerCase() === token) score += 3;
+            });
+
+            scored.push({ product, score });
+        });
+
+        scored.sort((a, b) => b.score - a.score || a.product.name.localeCompare(b.product.name));
+        return scored.map(entry => entry.product);
+    },
+
+    async searchProductsAsync(query) {
+        const catalog = await this.loadProductCatalog();
+        return this.searchProducts(query, catalog);
     },
 };
 

@@ -99,6 +99,9 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const finishAuth = () => {
+        try {
+            sessionStorage.removeItem('kw_signed_out');
+        } catch (error) {}
         const queryRedirect = new URLSearchParams(window.location.search).get('redirect');
         const target =
             safeRedirectTarget(queryRedirect) ||
@@ -299,7 +302,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (show) {
             modal.classList.remove('opacity-0', 'pointer-events-none');
             content.classList.remove('scale-95');
-            authMsg.classList.toggle('hidden', !showAuthMsg);
+            let signedOut = false;
+            try {
+                signedOut = sessionStorage.getItem('kw_signed_out') === '1';
+            } catch (error) {}
+            authMsg.classList.toggle('hidden', !(showAuthMsg || signedOut));
+            if (signedOut) {
+                authMsg.textContent = 'Session ended. Sign in with the email and password you registered with.';
+            }
             updateView();
             // Render/refresh the Google button when the modal is displayed.
             if (!document.querySelector('#google-login-btn-container iframe')) {
@@ -311,6 +321,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
     window.toggleProfile = toggleProfile;
+
+    const prefillEmails = () => {
+        const lastEmail = window.Store?.getLastEmail?.() || '';
+        if (!lastEmail) return;
+        const loginEmail = document.getElementById('login-email');
+        const signupEmail = document.getElementById('signup-email');
+        if (loginEmail && !loginEmail.value) loginEmail.value = lastEmail;
+        if (signupEmail && !signupEmail.value) signupEmail.value = lastEmail;
+    };
 
     const updateView = () => {
         const user = window.Store.getUser();
@@ -327,15 +346,19 @@ document.addEventListener('DOMContentLoaded', () => {
             loginView.classList.remove('hidden');
             signupView.classList.add('hidden');
             userView.classList.add('hidden');
+            prefillEmails();
         }
     };
+    prefillEmails();
 
     // View Toggles
     document.getElementById('to-signup').addEventListener('click', () => {
+        prefillEmails();
         loginView.classList.add('hidden');
         signupView.classList.remove('hidden');
     });
     document.getElementById('to-login').addEventListener('click', () => {
+        prefillEmails();
         signupView.classList.add('hidden');
         loginView.classList.remove('hidden');
     });
@@ -401,6 +424,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = document.getElementById('signup-password').value;
         if (!name || !email || !password) return;
         handleAuth('register', [name, email, password]);
+    });
+
+    [document.getElementById('login-email'), document.getElementById('login-password')].forEach(field => {
+        field?.addEventListener('keydown', event => {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                document.getElementById('login-submit').click();
+            }
+        });
+    });
+
+    [document.getElementById('signup-name'), document.getElementById('signup-email'), document.getElementById('signup-password')].forEach(field => {
+        field?.addEventListener('keydown', event => {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                document.getElementById('register-submit').click();
+            }
+        });
     });
 
     document.getElementById('logout-btn').addEventListener('click', async () => {

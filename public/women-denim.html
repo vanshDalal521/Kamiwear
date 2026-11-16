@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta name="description"
+        content="Kamiwear New Fashion: the women's denim edit. Wide-leg, baggy and flare jeans in soft washes made for every body." />
+    <title>Kamiwear | Women's Denim Edit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700;800&family=Syne:wght@600;700;800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#ff9ec4",
+                        blush: "#ffd3e3",
+                        lavender: "#cdb4ff",
+                        "background-dark": "#160d16",
+                        panel: "#241322",
+                        cream: "#fff4f9",
+                        "deep-rose": "#ff6fa5",
+                    },
+                    fontFamily: {
+                        display: ["Inter", "sans-serif"],
+                        syne: ["Syne", "sans-serif"],
+                        serif: ["DM Serif Display", "serif"],
+                        orbitron: ["Orbitron", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "1rem",
+                        lg: "2rem",
+                        xl: "2.5rem",
+                        full: "9999px",
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        :root {
+            color-scheme: dark;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            overflow-x: hidden;
+            background:
+                radial-gradient(circle at 10% 4%, rgba(255, 158, 196, 0.16), transparent 28rem),
+                radial-gradient(circle at 92% 12%, rgba(205, 180, 255, 0.12), transparent 30rem),
+                radial-gradient(circle at 50% 90%, rgba(255, 111, 165, 0.07), transparent 32rem),
+                #160d16;
+            color: #fff4f9;
+        }
+
+        .glass-panel {
+            background: rgba(255, 244, 249, 0.045);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 158, 196, 0.16);
+        }
+
+        .nav-blur {
+            background: rgba(22, 13, 22, 0.74);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .soft-serif {
+            font-family: "DM Serif Display", serif;
+            font-style: italic;
+            font-weight: 400;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-frame {
+            position: relative;
+            overflow: hidden;
+            border-radius: 2.5rem;
+            border: 1px solid rgba(255, 158, 196, 0.26);
+            background: linear-gradient(145deg, #2a1724, #1a0f18);
+            box-shadow: 0 45px 110px -35px rgba(0, 0, 0, 0.9),
+                inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+        }
+
+        .hero-frame::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(to top, rgba(22, 13, 22, 0.72), transparent 46%),
+                linear-gradient(125deg, rgba(255, 158, 196, 0.12), transparent 42%);
+        }
+
+        .glow {
+            position: absolute;
+            border-radius: 999px;
+            filter: blur(74px);
+            pointer-events: none;
+        }
+
+        .filter-chip {
+            border: 1px solid rgba(255, 158, 196, 0.22);
+            background: rgba(255, 244, 249, 0.035);
+            color: #ffd3e3;
+            transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease,
+                box-shadow 0.25s ease, transform 0.25s ease;
+        }
+
+        .filter-chip:hover {
+            border-color: rgba(255, 158, 196, 0.55);
+            background: rgba(255, 158, 196, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .filter-chip.is-active {
+            background: #ff9ec4;
+            border-color: #ff9ec4;
+            color: #25101c;
+            box-shadow: 0 12px 34px -12px rgba(255, 158, 196, 0.75);
+        }
+
+        .product-card {
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .product-card:hover {
+            transform: translateY(-7px);
+        }
+
+        .product-media {
+            background: linear-gradient(150deg, #2b1725, #1a0f18);
+        }
+
+        .product-card img {
+            transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .product-card:hover .product-media img {
+            transform: scale(1.045);
+        }
+
+        .product-card .quick-view {
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .product-card:hover .quick-view,
+        .product-card:focus-within .quick-view {
+            opacity: 1;
+            transform: none;
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: kwMarquee 34s linear infinite;
+        }
+
+        @keyframes kwMarquee {
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        .kw-card-in {
+            animation: kwCardIn 0.45s ease both;
+        }
+
+        @keyframes kwCardIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        .fade-up {
+            animation: kwFadeUp 0.8s ease both;
+        }
+
+        .fade-up-delay {
+            animation: kwFadeUp 0.8s 0.12s ease both;
+        }
+
+        @keyframes kwFadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        @media (hover: none) {
+            .product-card .quick-view {
+                opacity: 1;
+                transform: none;
+                inset: auto 0.75rem 0.75rem auto;
+                width: auto;
+            }
+
+            .product-card .quick-view>button:first-child {
+                display: none;
+            }
+
+            .product-card .quick-view>button:last-child {
+                width: 2.75rem;
+                height: 2.75rem;
+                padding: 0;
+                border-radius: 9999px;
+                font-size: 0;
+                gap: 0;
+                box-shadow: 0 10px 26px -10px rgba(0, 0, 0, 0.7);
+            }
+
+            .product-card .quick-view>button:last-child .material-symbols-outlined {
+                font-size: 20px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            html {
+                scroll-behavior: auto;
+            }
+
+            .marquee-track,
+            .kw-card-in,
+            .fade-up,
+            .fade-up-delay {
+                animation: none !important;
+            }
+
+            .product-card,
+            .product-card img,
+            .filter-chip {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-display min-h-screen text-cream antialiased selection:bg-primary selection:text-[#25101c]">
+    <div class="bg-primary text-[#2b0d1e]">
+        <div
+            class="max-w-[1440px] mx-auto px-5 md:px-8 py-2 flex items-center justify-center gap-2 text-[10px] font-bold tracking-[0.22em] uppercase text-center">
+            <span class="material-symbols-outlined text-[14px]">local_florist</span>
+            <span>New denim drop · free shipping over ₹2,999 · easy 7-day exchanges</span>
+        </div>
+    </div>
+
+    <nav class="sticky top-0 z-50 nav-blur border-b border-white/10">
+        <div class="max-w-[1440px] mx-auto px-5 md:px-8 h-20 flex items-center justify-between gap-6">
+            <a href="index.html" class="flex items-center gap-2.5 hover:opacity-80 transition-opacity shrink-0">
+                <span class="material-symbols-outlined text-primary text-2xl sm:text-3xl">token</span>
+                <span class="font-syne text-lg sm:text-2xl font-extrabold italic tracking-tighter uppercase">Kamiwear</span>
+            </a>
+            <div class="hidden lg:flex items-center gap-7 xl:gap-9">
+                <a class="text-[11px] font-bold tracking-[0.16em] uppercase text-white/70 hover:text-primary transition-colors"
+                    href="shop.html">Shop</a>
+                <a class="text-[11px] font-bold tracking-[0.16em] uppercase text-white/70 hover:text-primary transition-colors"
+                    href="index.html#collections">Collections</a>
+                <a class="text-[11px] font-bold tracking-[0.16em] uppercase text-white/70 hover:text-primary transition-colors"
+                    href="new-fashion.html">New Arrivals</a>
+                <a class="text-[11px] font-bold tracking-[0.16em] uppercase text-primary border-b border-primary/60 pb-1"
+                    href="women-denim.html">Denim Edit</a>
+                <a class="text-[11px] font-bold tracking-[0.16em] uppercase text-white/70 hover:text-primary transition-colors"
+                    href="lookbook.html">Lookbook</a>
+            </div>
+            <div class="flex items-center gap-0.5 sm:gap-2">
+                <button type="button" aria-label="Search"
+                    class="hidden sm:flex h-10 w-10 rounded-full hover:bg-white/10 transition-colors items-center justify-center">
+                    <span class="material-symbols-outlined text-[22px]">search</span>
+                </button>
+                <a href="wishlist.html" aria-label="Wishlist"
+                    class="h-9 w-9 sm:h-10 sm:w-10 rounded-full hover:bg-white/10 transition-colors flex items-center justify-center">
+                    <span class="material-symbols-outlined text-[21px] sm:text-[22px]">favorite</span>
+                </a>
+                <button type="button" aria-label="Open cart" onclick="if (window.toggleCart) window.toggleCart(true)"
+                    class="h-9 w-9 sm:h-10 sm:w-10 rounded-full hover:bg-white/10 transition-colors flex items-center justify-center relative">
+                    <span class="material-symbols-outlined text-[21px] sm:text-[22px]">shopping_bag</span>
+                    <span id="cart-count-badge"
+                        class="absolute -top-0.5 -right-0.5 bg-primary text-[#25101c] text-[9px] font-extrabold h-4 min-w-4 px-1 rounded-full flex items-center justify-center">0</span>
+                </button>
+                <button id="profile-btn-trigger" type="button" aria-label="Profile"
+                    onclick="if (window.toggleProfile) window.toggleProfile(true)"
+                    class="hidden sm:flex h-10 w-10 rounded-full hover:bg-white/10 transition-colors items-center justify-center">
+                    <span class="material-symbols-outlined text-[22px]">person</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="relative overflow-hidden">
+            <div class="glow h-72 w-72 bg-primary/30 -top-20 -left-24"></div>
+            <div class="glow h-80 w-80 bg-lavender/20 top-10 right-0"></div>
+            <div class="glow h-64 w-64 bg-deep-rose/20 bottom-0 left-1/3"></div>
+
+            <div
+                class="relative max-w-[1440px] mx-auto px-5 md:px-8 pt-8 pb-16 lg:pt-14 lg:pb-24 grid lg:grid-cols-[1.02fr_0.98fr] gap-12 lg:gap-16 items-center">
+                <div class="fade-up min-w-0">
+                    <nav class="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-white/40 mb-7">
+                        <a class="hover:text-primary transition-colors" href="index.html">Home</a>
+                        <span class="material-symbols-outlined text-[12px]">chevron_right</span>
+                        <a class="hover:text-primary transition-colors" href="new-fashion.html">New Fashion</a>
+                        <span class="material-symbols-outlined text-[12px]">chevron_right</span>
+                        <span class="text-primary">Women's Denim</span>
+                    </nav>
+
+                    <div
+                        class="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.24em] text-blush mb-6">
+                        <span class="h-1.5 w-1.5 rounded-full bg-primary animate-pulse"></span>
+                        New Fashion · Phase 04
+                    </div>
+
+                    <h1 class="font-syne font-extrabold uppercase display-tight text-[clamp(3.4rem,8vw,6.6rem)]">
+                        Denim,
+                        <span class="block soft-serif normal-case text-primary text-[clamp(3.7rem,8.4vw,7rem)]">but softer.</span>
+                    </h1>
+
+                    <p class="mt-7 max-w-[34rem] text-[15px] md:text-base leading-relaxed text-white/65">
+                        The women's denim edit is here. Wide-leg, baggy and soft flare fits in washed blue, deep
+                        indigo and cream — cut for every body, styled for every main-character moment.
+                    </p>
+
+                    <div class="mt-8 flex flex-wrap items-center gap-3">
+                        <a href="#denim-grid"
+                            class="inline-flex items-center gap-3 rounded-full bg-primary px-7 py-4 text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#25101c] shadow-[0_18px_45px_-16px_rgba(255,158,196,0.8)] hover:bg-blush transition-colors">
+                            Shop the edit
+                            <span class="material-symbols-outlined text-[18px]">arrow_downward</span>
+                        </a>
+                        <a href="#fit-notes"
+                            class="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-4 text-[11px] font-extrabold uppercase tracking-[0.18em] text-white/80 hover:border-primary/50 hover:text-primary transition-colors">
+                            Find your fit
+                            <span class="material-symbols-outlined text-[17px]">straighten</span>
+                        </a>
+                    </div>
+
+                    <div class="mt-10 grid grid-cols-3 gap-4 max-w-[29rem]">
+                        <div class="border-l border-primary/30 pl-4">
+                            <p class="font-syne text-2xl font-bold text-cream">10</p>
+                            <p class="mt-1 text-[9px] uppercase tracking-[0.16em] text-white/40 leading-relaxed">Pieces in<br />the edit</p>
+                        </div>
+                        <div class="border-l border-primary/30 pl-4">
+                            <p class="font-syne text-2xl font-bold text-cream">₹2.6k+</p>
+                            <p class="mt-1 text-[9px] uppercase tracking-[0.16em] text-white/40 leading-relaxed">Soft on<br />the pocket</p>
+                        </div>
+                        <div class="border-l border-primary/30 pl-4">
+                            <p class="font-syne text-2xl font-bold text-cream">S–XXL</p>
+                            <p class="mt-1 text-[9px] uppercase tracking-[0.16em] text-white/40 leading-relaxed">Made for<br />every body</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative fade-up-delay min-w-0">
+                    <div class="hero-frame aspect-[3/4] w-full max-w-full sm:max-w-[500px] mx-auto lg:ml-auto">
+                        <img src="assets/fashion/photo-1598554747436-c9293d6a588f.jpg"
+                            alt="Model wearing light-wash wide-leg jeans with a white top"
+                            class="h-full w-full object-cover object-[50%_24%]" />
+                        <div
+                            class="absolute top-5 left-5 z-10 rounded-full bg-[#1b0f19]/75 backdrop-blur-md border border-white/15 px-4 py-2 text-[9px] font-extrabold uppercase tracking-[0.22em] text-blush">
+                            ✿ New Season
+                        </div>
+                        <div class="absolute bottom-5 left-5 right-5 z-10 flex items-end justify-between gap-4">
+                            <div>
+                                <p class="text-[9px] font-bold uppercase tracking-[0.24em] text-primary">The denim edit</p>
+                                <p class="mt-1 font-syne text-xl md:text-2xl font-bold uppercase leading-tight">
+                                    Wide-leg<br />energy
+                                </p>
+                            </div>
+                            <a href="#denim-grid" aria-label="Shop the denim edit"
+                                class="h-11 w-11 shrink-0 rounded-full bg-primary text-[#25101c] flex items-center justify-center hover:bg-blush transition-colors">
+                                <span class="material-symbols-outlined text-[20px]">arrow_outward</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div
+                        class="hidden md:flex absolute -top-3 -right-2 xl:right-4 rotate-3 items-center gap-2 rounded-full bg-blush text-[#2b0d1e] px-4 py-2 text-[9px] font-extrabold uppercase tracking-[0.14em] shadow-xl">
+                        <span class="material-symbols-outlined text-[15px]">favorite</span>
+                        10 new pairs
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="border-y border-primary/15 bg-[#1d101c]/80 overflow-hidden">
+            <div class="py-4 overflow-hidden">
+                <div class="marquee-track items-center gap-8 text-[10px] font-extrabold uppercase tracking-[0.3em] text-blush/75">
+                    <span class="flex items-center gap-8">
+                        <span>✿ Wide-leg</span><span class="text-primary">✿</span>
+                        <span>Baggy fits</span><span class="text-lavender">✿</span>
+                        <span>Acid wash</span><span class="text-primary">✿</span>
+                        <span>Soft girl energy</span><span class="text-lavender">✿</span>
+                        <span>Made for every body</span><span class="text-primary">✿</span>
+                        <span>New denim drop</span><span class="text-lavender">✿</span>
+                    </span>
+                    <span class="flex items-center gap-8" aria-hidden="true">
+                        <span>✿ Wide-leg</span><span class="text-primary">✿</span>
+                        <span>Baggy fits</span><span class="text-lavender">✿</span>
+                        <span>Acid wash</span><span class="text-primary">✿</span>
+                        <span>Soft girl energy</span><span class="text-lavender">✿</span>
+                        <span>Made for every body</span><span class="text-primary">✿</span>
+                        <span>New denim drop</span><span class="text-lavender">✿</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <section class="relative max-w-[1440px] mx-auto px-5 md:px-8 pt-16 md:pt-24 pb-16 md:pb-24">
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+                <div>
+                    <p class="text-[10px] font-extrabold uppercase tracking-[0.28em] text-primary mb-3">The edit · 10 pieces</p>
+                    <h2 class="font-syne text-4xl md:text-5xl xl:text-[3.5rem] font-extrabold uppercase leading-[0.95]">
+                        Find your
+                        <span class="soft-serif normal-case text-primary">favourite fit.</span>
+                    </h2>
+                </div>
+                <div class="max-w-[26rem] lg:text-right">
+                    <p class="text-sm leading-relaxed text-white/55">
+                        Hand-picked denim, shot on real bodies. Prices include taxes. New washes land every Friday.
+                    </p>
+                    <p id="denim-count"
+                        class="mt-3 text-[10px] font-bold uppercase tracking-[0.2em] text-primary/80">Showing 10 of 10</p>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap gap-2.5 mb-10" role="group" aria-label="Filter denim by fit or wash">
+                <button type="button" data-denim-filter="all"
+                    class="filter-chip is-active rounded-full px-5 py-2.5 text-[10px] font-extrabold uppercase tracking-[0.16em]">All pieces</button>
+                <button type="button" data-denim-filter="wide"
+                    class="filter-chip rounded-full px-5 py-2.5 text-[10px] font-extrabold uppercase tracking-[0.16em]">Wide-leg</button>
+                <button type="button" data-denim-filter="baggy"
+                    class="filter-chip rounded-full px-5 py-2.5 text-[10px] font-extrabold uppercase tracking-[0.16em]">Baggy</button>
+                <button type="button" data-denim-filter="flare"
+                    class="filter-chip rounded-full px-5 py-2.5 text-[10px] font-extrabold uppercase tracking-[0.16em]">Flare</button>
+                <button type="button" data-denim-filter="light"
+                    class="filter-chip rounded-full px-5 py-2.5 text-[10px] font-extrabold uppercase tracking-[0.16em]">Light wash</button>
+                <button type="button" data-denim-filter="dark"
+                    class="filter-chip rounded-full px-5 py-2.5 text-[10px] font-extrabold uppercase tracking-[0.16em]">Dark wash</button>
+                <button type="button" data-denim-filter="cream"
+                    class="filter-chip rounded-full px-5 py-2.5 text-[10px] font-extrabold uppercase tracking-[0.16em]">Cream</button>
+            </div>
+
+            <div id="denim-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-5 gap-y-10 scroll-mt-28">
+                <article class="product-card group relative" data-price="2800" data-name="Ink Wash Baggy Jeans"
+                    data-series="Denim Edit" data-tags="baggy dark">
+                    <div class="product-media relative aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-4 border border-white/10">
+                        <img src="assets/fashion/jean-women-48c39f8f8ffd.jpg"
+                            alt="Ink Wash black baggy jeans" class="h-full w-full object-cover" />
+                        <div class="absolute left-3 top-3 z-10 flex flex-wrap gap-2">
+                            <span class="rounded-full bg-primary px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[0.12em] text-[#25101c]">New</span>
+                            <span class="rounded-full bg-[#1b0f19]/70 backdrop-blur px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[0.12em] text-blush border border-white/10">Bestseller</span>
+                        </div>
+                        <button type="button" aria-label="Add Ink Wash Baggy Jeans to wishlist"
+                            class="absolute right-3 top-3 z-10 h-9 w-9 rounded-full glass-panel flex items-center justify-center hover:bg-primary hover:text-[#25101c] transition-colors">
+                            <span class="material-symbols-outlined text-[18px]">favorite</span>
+                        </button>
+                        <div class="quick-view absolute inset-x-3 bottom-3 z-10 flex flex-col gap-2">
+                            <button type="button"
+                                class="w-full rounded-full bg-white/95 py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#25101c] hover:bg-white transition-colors">Quick view</button>
+                            <button type="button"
+                                class="w-full rounded-full bg-primary py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#25101c] hover:bg-blush transition-colors flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-[16px]">shopping_bag</span>Add to cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="px-1">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <p class="text-[9px] font-bold uppercase tracking-[0.22em] text-primary/80">Women · Baggy</p>
+                                <h3 class="mt-1.5 text-[13px] font-bold uppercase tracking-wide text-white/90">Ink Wash Baggy</h3>
+                            </div>
+                            <p class="shrink-0 text-sm font-bold text-blush">₹2,800</p>
+                        </div>
+                        <div class="mt-3 flex items-center justify-between border-t border-white/10 pt-3">
+                            <div class="flex text-primary">
+                                <span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px]">star</span>
+                            </div>
+                            <span class="text-[9px] font-bold uppercase tracking-[0.14em] text-white/35">Free shipping</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card group relative" data-price="3200" data-name="Indigo Muse Wide-Leg Jeans"
+                    data-series="Denim Edit" data-tags="wide dark">
+                    <div class="product-media relative aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-4 border border-white/10">
+                        <img src="assets/fashion/jean-women-5ec93480f187.jpg"
+                            alt="Indigo Muse deep-blue wide-leg jeans" class="h-full w-full object-cover" />
+                        <div class="absolute left-3 top-3 z-10">
+                            <span class="rounded-full bg-primary px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[0.12em] text-[#25101c]">New</span>
+                        </div>
+                        <button type="button" aria-label="Add Indigo Muse Wide-Leg Jeans to wishlist"
+                            class="absolute right-3 top-3 z-10 h-9 w-9 rounded-full glass-panel flex items-center justify-center hover:bg-primary hover:text-[#25101c] transition-colors">
+                            <span class="material-symbols-outlined text-[18px]">favorite</span>
+                        </button>
+                        <div class="quick-view absolute inset-x-3 bottom-3 z-10 flex flex-col gap-2">
+                            <button type="button"
+                                class="w-full rounded-full bg-white/95 py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#25101c] hover:bg-white transition-colors">Quick view</button>
+                            <button type="button"
+                                class="w-full rounded-full bg-primary py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#25101c] hover:bg-blush transition-colors flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-[16px]">shopping_bag</span>Add to cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="px-1">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <p class="text-[9px] font-bold uppercase tracking-[0.22em] text-primary/80">Women · Wide-leg</p>
+                                <h3 class="mt-1.5 text-[13px] font-bold uppercase tracking-wide text-white/90">Indigo Muse Wide-Leg</h3>
+                            </div>
+                            <p class="shrink-0 text-sm font-bold text-blush">₹3,200</p>
+                        </div>
+                        <div class="mt-3 flex items-center justify-between border-t border-white/10 pt-3">
+                            <div class="flex text-primary">
+                                <span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span>
+                            </div>
+                            <span class="text-[9px] font-bold uppercase tracking-[0.14em] text-white/35">Free shipping</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card group relative" data-price="2600" data-name="Frosted Blue Wide-Leg Jeans"
+                    data-series="Denim Edit" data-tags="wide light">
+                    <div class="product-media relative aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-4 border border-white/10">
+                        <img src="assets/fashion/jean-women-b33a17686afa.jpg"
+                            alt="Frosted Blue light-wash wide-leg jeans" class="h-full w-full object-cover" />
+                        <div class="absolute left-3 top-3 z-10">
+                            <span class="rounded-full bg-primary px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[0.12em] text-[#25101c]">New</span>
+                        </div>
+                        <button type="button" aria-label="Add Frosted Blue Wide-Leg Jeans to wishlist"
+                            class="absolute right-3 top-3 z-10 h-9 w-9 rounded-full glass-panel flex items-center justify-center hover:bg-primary hover:text-[#25101c] transition-colors">
+                            <span class="material-symbols-outlined text-[18px]">favorite</span>
+                        </button>
+                        <div class="quick-view absolute inset-x-3 bottom-3 z-10 flex flex-col gap-2">
+                            <button type="button"
+                                class="w-full rounded-full bg-white/95 py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#25101c] hover:bg-white transition-colors">Quick view</button>
+                            <button type="button"
+                                class="w-full rounded-full bg-primary py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#25101c] hover:bg-blush transition-colors flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-[16px]">shopping_bag</span>Add to cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="px-1">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <p class="text-[9px] font-bold uppercase tracking-[0.22em] text-primary/80">Women · Wide-leg</p>
+                                <h3 class="mt-1.5 text-[13px] font-bold uppercase tracking-wide text-white/90">Frosted Blue Wide-Leg</h3>
+                            </div>
+                            <p class="shrink-0 text-sm font-bold text-blush">₹2,600</p>
+                        </div>
+                        <div class="mt-3 flex items-center justify-between border-t border-white/10 pt-3">
+                            <div class="flex text-primary">
+                                <span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px]">star</span>
+                            </div>
+                            <span class="text-[9px] font-bold uppercase tracking-[0.14em] text-white/35">Free shipping</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card group relative" data-price="3400" data-name="Daydream Baggy Jeans"
+                    data-series="Denim Edit" data-tags="baggy light">
+                    <div class="product-media relative aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-4 border border-white/10">
+                        <img src="assets/fashion/jean-women-14dcfe6cf9d8.jpg"
+                            alt="Daydream light-wash baggy jeans" class="h-full w-full object-cover" />
+                        <div class="absolute left-3 top-3 z-10 flex flex-wrap gap-2">
+                            <span class="rounded-full bg-primary px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[0.12em] text-[#25101c]">New</span>
+                            <span class="rounded-full bg-[#1b0f19]/70 backdrop-blur px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[0.12em] text-blush border border-white/10">Roomiest fit</span>
+                        </div>
+                        <button type="button" aria-label="Add Daydream Baggy Jeans to wishlist"
+                            class="absolute right-3 top-3 z-10 h-9 w-9 rounded-full glass-panel flex items-center justify-center hover:bg-primary hover:text-[#25101c] transition-colors">
+                            <span class="material-symbols-outlined text-[18px]">favorite</span>
+                        </button>
+                        <div class="quick-view absolute inset-x-3 bottom-3 z-10 flex flex-col gap-2">
+                            <button type="button"
+                                class="w-full rounded-full bg-white/95 py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#25101c] hover:bg-white transition-colors">Quick view</button>
+                            <button type="button"
+                                class="w-full rounded-full bg-primary py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#25101c] hover:bg-blush transition-colors flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-[16px]">shopping_bag</span>Add to cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="px-1">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <p class="text-[9px] font-bold uppercase tracking-[0.22em] text-primary/80">Women · Baggy</p>
+                                <h3 class="mt-1.5 text-[13px] font-bold uppercase tracking-wide text-white/90">Daydream Baggy</h3>
+                            </div>
+                            <p class="shrink-0 text-sm font-bold text-blush">₹3,400</p>
+                        </div>
+                        <div class="mt-3 flex items-center justify-between border-t border-white/10 pt-3">
+                            <div class="flex text-primary">
+                                <span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span>
+                            </div>
+                            <span class="text-[9px] font-bold uppercase tracking-[0.14em] text-white/35">Free shipping</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card group relative" data-price="2900" data-name="Sunday Wide-Leg Jeans"
+                    data-series="Denim Edit" data-tags="wide light">
+                    <div class="product-media relative aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-4 border border-white/10">
+                        <img src="assets/fashion/jean-women-4c08d816d0d8.jpg"
+                            alt="Sunday classic blue wide-leg jeans" class="h-full w-full object-cover" />
+                        <div class="absolute left-3 top-3 z-10">
+                            <span class="rounded-full bg-primary px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[0.12em] text-[#25101c]">New</span>
+                        </div>
+                        <button type="button" aria-label="Add Sunday Wide-Leg Jeans to wishlist"
+                            class="absolute right-3 top-3 z-10 h-9 w-9 rounded-full glass-panel flex items-center justify-center hover:bg-primary hover:text-[#25101c] transition-colors">
+                            <span class="material-symbols-outlined text-[18px]">favorite</span>
+                        </button>
+                        <div class="quick-view absolute inset-x-3 bottom-3 z-10 flex flex-col gap-2">
+                            <button type="button"
+                                class="w-full rounded-full bg-white/95 py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#25101c] hover:bg-white transition-colors">Quick view</button>
+                            <button type="button"
+                                class="w-full rounded-full bg-primary py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#25101c] hover:bg-blush transition-colors flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-[16px]">shopping_bag</span>Add to cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="px-1">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <p class="text-[9px] font-bold uppercase tracking-[0.22em] text-primary/80">Women · Wide-leg</p>
+                                <h3 class="mt-1.5 text-[13px] font-bold uppercase tracking-wide text-white/90">Sunday Wide-Leg</h3>
+                            </div>
+                            <p class="shrink-0 text-sm font-bold text-blush">₹2,900</p>
+                        </div>
+                        <div class="mt-3 flex items-center justify-between border-t border-white/10 pt-3">
+                            <div class="flex text-primary">
+                                <span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px]">star</span>
+                            </div>
+                            <span class="text-[9px] font-bold uppercase tracking-[0.14em] text-white/35">Free shipping</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card group relative" data-price="3100" data-name="Electric Flare Jeans"
+                    data-series="Denim Edit" data-tags="flare dark">
+                    <div class="product-media relative aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-4 border border-white/10">
+                        <img src="assets/fashion/jean-women-483e7b05d793.png"
+                            alt="Electric Flare dark-wash flared jeans" class="h-full w-full object-cover" />
+                        <div class="absolute left-3 top-3 z-10 flex flex-wrap gap-2">
+                            <span class="rounded-full bg-primary px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[0.12em] text-[#25101c]">New</span>
+                            <span class="rounded-full bg-[#1b0f19]/70 backdrop-blur px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[0.12em] text-blush border border-white/10">Party fit</span>
+                        </div>
+                        <button type="button" aria-label="Add Electric Flare Jeans to wishlist"
+                            class="absolute right-3 top-3 z-10 h-9 w-9 rounded-full glass-panel flex items-center justify-center hover:bg-primary hover:text-[#25101c] transition-colors">
+                            <span class="material-symbols-outlined text-[18px]">favorite</span>
+                        </button>
+                        <div class="quick-view absolute inset-x-3 bottom-3 z-10 flex flex-col gap-2">
+                            <button type="button"
+                                class="w-full rounded-full bg-white/95 py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#25101c] hover:bg-white transition-colors">Quick view</button>
+                            <button type="button"
+                                class="w-full rounded-full bg-primary py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#25101c] hover:bg-blush transition-colors flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-[16px]">shopping_bag</span>Add to cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="px-1">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <p class="text-[9px] font-bold uppercase tracking-[0.22em] text-primary/80">Women · Flare</p>
+                                <h3 class="mt-1.5 text-[13px] font-bold uppercase tracking-wide text-white/90">Electric Flare</h3>
+                            </div>
+                            <p class="shrink-0 text-sm font-bold text-blush">₹3,100</p>
+                        </div>
+                        <div class="mt-3 flex items-center justify-between border-t border-white/10 pt-3">
+                            <div class="flex text-primary">
+                                <span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span>
+                            </div>
+                            <span class="text-[9px] font-bold uppercase tracking-[0.14em] text-white/35">Free shipping</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card group relative" data-price="2750" data-name="Midnight Wide-Leg Jeans"
+                    data-series="Denim Edit" data-tags="wide dark">
+                    <div class="product-media relative aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-4 border border-white/10">
+                        <img src="assets/fashion/jean-women-369c625f8739.jpg"
+                            alt="Midnight dark-wash wide-leg jeans" class="h-full w-full object-cover" />
+                        <div class="absolute left-3 top-3 z-10">
+                            <span class="rounded-full bg-primary px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[0.12em] text-[#25101c]">New</span>
+                        </div>
+                        <button type="button" aria-label="Add Midnight Wide-Leg Jeans to wishlist"
+                            class="absolute right-3 top-3 z-10 h-9 w-9 rounded-full glass-panel flex items-center justify-center hover:bg-primary hover:text-[#25101c] transition-colors">
+                            <span class="material-symbols-outlined text-[18px]">favorite</span>
+                        </button>
+                        <div class="quick-view absolute inset-x-3 bottom-3 z-10 flex flex-col gap-2">
+                            <button type="button"
+                                class="w-full rounded-full bg-white/95 py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#25101c] hover:bg-white transition-colors">Quick view</button>
+                            <button type="button"
+                                class="w-full rounded-full bg-primary py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#25101c] hover:bg-blush transition-colors flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-[16px]">shopping_bag</span>Add to cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="px-1">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <p class="text-[9px] font-bold uppercase tracking-[0.22em] text-primary/80">Women · Wide-leg</p>
+                                <h3 class="mt-1.5 text-[13px] font-bold uppercase tracking-wide text-white/90">Midnight Wide-Leg</h3>
+                            </div>
+                            <p class="shrink-0 text-sm font-bold text-blush">₹2,750</p>
+                        </div>
+                        <div class="mt-3 flex items-center justify-between border-t border-white/10 pt-3">
+                            <div class="flex text-primary">
+                                <span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px]">star</span>
+                            </div>
+                            <span class="text-[9px] font-bold uppercase tracking-[0.14em] text-white/35">Free shipping</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card group relative" data-price="3300" data-name="Oat Milk Wide-Leg Jeans"
+                    data-series="Denim Edit" data-tags="wide cream">
+                    <div class="product-media relative aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-4 border border-white/10">
+                        <img src="assets/fashion/jean-women-ae5ac93bbca9.jpg"
+                            alt="Oat Milk cream wide-leg jeans" class="h-full w-full object-cover" />
+                        <div class="absolute left-3 top-3 z-10 flex flex-wrap gap-2">
+                            <span class="rounded-full bg-primary px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[0.12em] text-[#25101c]">New</span>
+                            <span class="rounded-full bg-[#1b0f19]/70 backdrop-blur px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[0.12em] text-blush border border-white/10">Cream crush</span>
+                        </div>
+                        <button type="button" aria-label="Add Oat Milk Wide-Leg Jeans to wishlist"
+                            class="absolute right-3 top-3 z-10 h-9 w-9 rounded-full glass-panel flex items-center justify-center hover:bg-primary hover:text-[#25101c] transition-colors">
+                            <span class="material-symbols-outlined text-[18px]">favorite</span>
+                        </button>
+                        <div class="quick-view absolute inset-x-3 bottom-3 z-10 flex flex-col gap-2">
+                            <button type="button"
+                                class="w-full rounded-full bg-white/95 py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#25101c] hover:bg-white transition-colors">Quick view</button>
+                            <button type="button"
+                                class="w-full rounded-full bg-primary py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#25101c] hover:bg-blush transition-colors flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-[16px]">shopping_bag</span>Add to cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="px-1">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <p class="text-[9px] font-bold uppercase tracking-[0.22em] text-primary/80">Women · Wide-leg</p>
+                                <h3 class="mt-1.5 text-[13px] font-bold uppercase tracking-wide text-white/90">Oat Milk Wide-Leg</h3>
+                            </div>
+                            <p class="shrink-0 text-sm font-bold text-blush">₹3,300</p>
+                        </div>
+                        <div class="mt-3 flex items-center justify-between border-t border-white/10 pt-3">
+                            <div class="flex text-primary">
+                                <span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span>
+                            </div>
+                            <span class="text-[9px] font-bold uppercase tracking-[0.14em] text-white/35">Free shipping</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card group relative" data-price="2950" data-name="Cream Dream Wide-Leg Jeans"
+                    data-series="Denim Edit" data-tags="wide cream">
+                    <div class="product-media relative aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-4 border border-white/10">
+                        <img src="assets/fashion/jean-women-172673208dc8.png"
+                            alt="Cream Dream off-white wide-leg jeans" class="h-full w-full object-cover" />
+                        <div class="absolute left-3 top-3 z-10">
+                            <span class="rounded-full bg-primary px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[0.12em] text-[#25101c]">New</span>
+                        </div>
+                        <button type="button" aria-label="Add Cream Dream Wide-Leg Jeans to wishlist"
+                            class="absolute right-3 top-3 z-10 h-9 w-9 rounded-full glass-panel flex items-center justify-center hover:bg-primary hover:text-[#25101c] transition-colors">
+                            <span class="material-symbols-outlined text-[18px]">favorite</span>
+                        </button>
+                        <div class="quick-view absolute inset-x-3 bottom-3 z-10 flex flex-col gap-2">
+                            <button type="button"
+                                class="w-full rounded-full bg-white/95 py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#25101c] hover:bg-white transition-colors">Quick view</button>
+                            <button type="button"
+                                class="w-full rounded-full bg-primary py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#25101c] hover:bg-blush transition-colors flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-[16px]">shopping_bag</span>Add to cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="px-1">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <p class="text-[9px] font-bold uppercase tracking-[0.22em] text-primary/80">Women · Wide-leg</p>
+                                <h3 class="mt-1.5 text-[13px] font-bold uppercase tracking-wide text-white/90">Cream Dream Wide-Leg</h3>
+                            </div>
+                            <p class="shrink-0 text-sm font-bold text-blush">₹2,950</p>
+                        </div>
+                        <div class="mt-3 flex items-center justify-between border-t border-white/10 pt-3">
+                            <div class="flex text-primary">
+                                <span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px]">star</span>
+                            </div>
+                            <span class="text-[9px] font-bold uppercase tracking-[0.14em] text-white/35">Free shipping</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="product-card group relative" data-price="3050" data-name="Seam Detail Wide-Leg Jeans"
+                    data-series="Denim Edit" data-tags="wide light">
+                    <div class="product-media relative aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-4 border border-white/10">
+                        <img src="assets/fashion/jean-women-1fe31edf149d.png"
+                            alt="Seam Detail light-wash wide-leg jeans with side buttons" class="h-full w-full object-cover" />
+                        <div class="absolute left-3 top-3 z-10 flex flex-wrap gap-2">
+                            <span class="rounded-full bg-primary px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[0.12em] text-[#25101c]">New</span>
+                            <span class="rounded-full bg-[#1b0f19]/70 backdrop-blur px-2.5 py-1 text-[9px] font-extrabold uppercase tracking-[0.12em] text-blush border border-white/10">Limited</span>
+                        </div>
+                        <button type="button" aria-label="Add Seam Detail Wide-Leg Jeans to wishlist"
+                            class="absolute right-3 top-3 z-10 h-9 w-9 rounded-full glass-panel flex items-center justify-center hover:bg-primary hover:text-[#25101c] transition-colors">
+                            <span class="material-symbols-outlined text-[18px]">favorite</span>
+                        </button>
+                        <div class="quick-view absolute inset-x-3 bottom-3 z-10 flex flex-col gap-2">
+                            <button type="button"
+                                class="w-full rounded-full bg-white/95 py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#25101c] hover:bg-white transition-colors">Quick view</button>
+                            <button type="button"
+                                class="w-full rounded-full bg-primary py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#25101c] hover:bg-blush transition-colors flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-[16px]">shopping_bag</span>Add to cart
+                            </button>
+                        </div>
+                    </div>
+                    <div class="px-1">
+                        <div class="flex items-start justify-between gap-3">
+                            <div>
+                                <p class="text-[9px] font-bold uppercase tracking-[0.22em] text-primary/80">Women · Wide-leg</p>
+                                <h3 class="mt-1.5 text-[13px] font-bold uppercase tracking-wide text-white/90">Seam Detail Wide-Leg</h3>
+                            </div>
+                            <p class="shrink-0 text-sm font-bold text-blush">₹3,050</p>
+                        </div>
+                        <div class="mt-3 flex items-center justify-between border-t border-white/10 pt-3">
+                            <div class="flex text-primary">
+                                <span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span><span class="material-symbols-outlined text-[13px] fill-1">star</span>
+                            </div>
+                            <span class="text-[9px] font-bold uppercase tracking-[0.14em] text-white/35">Free shipping</span>
+                        </div>
+                    </div>
+                </article>
+
+                <a href="#fit-notes" aria-label="Find your denim fit with the fit notes"
+                    class="group relative overflow-hidden rounded-[1.5rem] border border-primary/25 bg-gradient-to-br from-[#ff9ec4] via-[#f3a7cf] to-[#cdb4ff] p-6 sm:col-span-2 lg:col-span-2 xl:col-span-2 text-[#2b0d1e] flex flex-col justify-between min-h-[16rem]">
+                    <span class="material-symbols-outlined absolute -right-4 -top-6 text-[140px] text-white/25 rotate-12 pointer-events-none">local_florist</span>
+                    <span class="material-symbols-outlined absolute -bottom-8 left-1/3 text-[110px] text-[#7c3b6b]/10 pointer-events-none">favorite</span>
+                    <div class="relative">
+                        <p class="text-[10px] font-extrabold uppercase tracking-[0.26em] text-[#4a1733]/65">Fit quiz · 30 seconds</p>
+                        <h3 class="mt-3 font-syne text-2xl sm:text-3xl xl:text-4xl font-extrabold uppercase leading-[1.02] max-w-[24rem]">
+                            Not sure which pair is <span class="soft-serif normal-case">yours?</span>
+                        </h3>
+                        <p class="mt-4 max-w-[27rem] text-sm leading-relaxed text-[#4a1733]/70">
+                            Three quick questions about rise, wash and vibe. We'll match you to the pair you'll
+                            live in — no measuring tape required.
+                        </p>
+                        <ul class="mt-7 grid grid-cols-3 gap-3 max-w-[26rem] text-[8px] sm:text-[9px] font-extrabold uppercase tracking-[0.1em] text-[#4a1733]/60">
+                            <li class="border-t border-[#2b0d1e]/25 pt-2.5"><span class="block text-[#2b0d1e] mb-1">01</span>Pick a rise</li>
+                            <li class="border-t border-[#2b0d1e]/25 pt-2.5"><span class="block text-[#2b0d1e] mb-1">02</span>Choose a wash</li>
+                            <li class="border-t border-[#2b0d1e]/25 pt-2.5"><span class="block text-[#2b0d1e] mb-1">03</span>Meet your pair</li>
+                        </ul>
+                    </div>
+                    <div class="relative mt-6 flex flex-wrap items-end justify-between gap-4">
+                        <div class="flex flex-wrap gap-2">
+                            <span class="rounded-full bg-[#2b0d1e]/10 border border-[#2b0d1e]/15 px-3 py-1.5 text-[9px] font-extrabold uppercase tracking-[0.14em]">Wide-leg</span>
+                            <span class="rounded-full bg-[#2b0d1e]/10 border border-[#2b0d1e]/15 px-3 py-1.5 text-[9px] font-extrabold uppercase tracking-[0.14em]">Baggy</span>
+                            <span class="rounded-full bg-[#2b0d1e]/10 border border-[#2b0d1e]/15 px-3 py-1.5 text-[9px] font-extrabold uppercase tracking-[0.14em]">Flare</span>
+                        </div>
+                        <span class="inline-flex items-center gap-2 rounded-full bg-[#2b0d1e] px-5 py-3 text-[10px] font-extrabold uppercase tracking-[0.16em] text-cream group-hover:bg-[#45152f] transition-colors">
+                            Find your fit
+                            <span class="material-symbols-outlined text-[16px] group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+                        </span>
+                    </div>
+                </a>
+            </div>
+
+            <p class="mt-12 text-center text-[11px] leading-relaxed text-white/40">
+                Sizes S–XXL · Model is 5'7" wearing size M · Not sure? Free exchanges within 7 days.
+            </p>
+        </section>
+
+        <section id="fit-notes"
+            class="border-y border-primary/15 bg-[#1d101c]/65 scroll-mt-24">
+            <div class="max-w-[1440px] mx-auto px-5 md:px-8 py-16 md:py-20">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-9">
+                    <div>
+                        <p class="text-[10px] font-extrabold uppercase tracking-[0.28em] text-primary mb-3">The fit notes</p>
+                        <h2 class="font-syne text-3xl md:text-4xl font-extrabold uppercase leading-tight">
+                            Three fits. <span class="soft-serif normal-case text-lavender">Your rules.</span>
+                        </h2>
+                    </div>
+                    <p class="max-w-sm text-sm leading-relaxed text-white/55 md:text-right">
+                        Every pair is cut to sit exactly how you want it. Pick your energy — we'll handle the hem.
+                    </p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-5">
+                    <article class="glass-panel rounded-[1.5rem] p-6 md:p-7 relative overflow-hidden">
+                        <span class="absolute right-5 top-4 font-syne text-5xl font-extrabold text-primary/10">01</span>
+                        <span class="material-symbols-outlined text-primary text-[26px]">straighten</span>
+                        <h3 class="mt-5 font-syne text-lg font-bold uppercase">The wide-leg</h3>
+                        <p class="mt-2 text-sm leading-relaxed text-white/50">High rise, clean fall. Size down for a sharper line or stay true for the full floor-sweeping stack.</p>
+                    </article>
+                    <article class="glass-panel rounded-[1.5rem] p-6 md:p-7 relative overflow-hidden">
+                        <span class="absolute right-5 top-4 font-syne text-5xl font-extrabold text-lavender/10">02</span>
+                        <span class="material-symbols-outlined text-lavender text-[26px]">accessibility_new</span>
+                        <h3 class="mt-5 font-syne text-lg font-bold uppercase">The baggy</h3>
+                        <p class="mt-2 text-sm leading-relaxed text-white/50">Room through the thigh, stacked at the ankle. Pair with a baby tee, chunky sneakers and zero apologies.</p>
+                    </article>
+                    <article class="glass-panel rounded-[1.5rem] p-6 md:p-7 relative overflow-hidden">
+                        <span class="absolute right-5 top-4 font-syne text-5xl font-extrabold text-primary/10">03</span>
+                        <span class="material-symbols-outlined text-primary text-[26px]">flare</span>
+                        <h3 class="mt-5 font-syne text-lg font-bold uppercase">The flare</h3>
+                        <p class="mt-2 text-sm leading-relaxed text-white/50">Fitted through the knee, soft at the hem. Built for boots, heels and main-character exits.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-[1440px] mx-auto px-5 md:px-8 py-16 md:py-24">
+            <div
+                class="relative overflow-hidden rounded-[2rem] md:rounded-[2.5rem] bg-gradient-to-br from-primary via-[#f7abc9] to-lavender px-7 py-12 md:px-14 md:py-16 text-[#2b0d1e]">
+                <span class="material-symbols-outlined absolute -right-5 -top-7 text-[180px] text-white/20 rotate-12">local_florist</span>
+                <span class="material-symbols-outlined absolute -bottom-10 left-1/3 text-[130px] text-[#7c3b6b]/10">favorite</span>
+                <div class="relative max-w-2xl">
+                    <p class="text-[10px] font-extrabold uppercase tracking-[0.28em] text-[#4a1733]/70 mb-4">New season · new energy</p>
+                    <h2 class="font-syne text-4xl md:text-6xl font-extrabold uppercase leading-[0.95]">
+                        Your next favourite pair is
+                        <span class="soft-serif normal-case">waiting.</span>
+                    </h2>
+                    <p class="mt-4 max-w-lg text-sm md:text-[15px] leading-relaxed text-[#4a1733]/75">
+                        Ten new pairs, one soft-girl denim edit. Free shipping over ₹2,999 and easy exchanges — because the right fit should feel effortless.
+                    </p>
+                    <a href="#denim-grid"
+                        class="mt-7 inline-flex items-center gap-3 rounded-full bg-[#2b0d1e] px-7 py-4 text-[11px] font-extrabold uppercase tracking-[0.18em] text-cream hover:bg-[#45152f] transition-colors">
+                        Shop all denim
+                        <span class="material-symbols-outlined text-[18px]">arrow_outward</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-white/10 bg-[#120a12] pt-16 pb-10 mt-6">
+        <div class="max-w-[1440px] mx-auto px-5 md:px-8 grid grid-cols-1 md:grid-cols-4 gap-10 mb-14">
+            <div class="space-y-5">
+                <a href="index.html" class="inline-flex items-center gap-2 hover:opacity-80 transition-opacity">
+                    <span class="material-symbols-outlined text-primary text-3xl">token</span>
+                    <span class="font-syne text-2xl font-extrabold italic tracking-tighter uppercase">Kamiwear</span>
+                </a>
+                <p class="text-white/45 text-sm leading-relaxed max-w-[250px]">
+                    Anime streetwear with a soft edge. Premium fits for the girls writing their own storyline.
+                </p>
+                <div class="flex gap-3">
+                    <a class="h-9 w-9 rounded-full glass-panel flex items-center justify-center hover:bg-primary hover:text-[#25101c] transition-colors"
+                        href="#" aria-label="Website">
+                        <span class="material-symbols-outlined text-[18px]">public</span>
+                    </a>
+                    <a class="h-9 w-9 rounded-full glass-panel flex items-center justify-center hover:bg-primary hover:text-[#25101c] transition-colors"
+                        href="#" aria-label="Share">
+                        <span class="material-symbols-outlined text-[18px]">share</span>
+                    </a>
+                    <a class="h-9 w-9 rounded-full glass-panel flex items-center justify-center hover:bg-primary hover:text-[#25101c] transition-colors"
+                        href="#" aria-label="Instagram">
+                        <span class="material-symbols-outlined text-[18px]">camera</span>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h4 class="text-[10px] font-extrabold uppercase tracking-[0.22em] text-primary mb-5">Explore</h4>
+                <ul class="space-y-3.5 text-sm text-white/45">
+                    <li><a class="hover:text-primary transition-colors" href="women-denim.html">Denim edit</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="new-fashion.html">New arrivals</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="shop.html">Full shop</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="index.html#collections">Collections</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-[10px] font-extrabold uppercase tracking-[0.22em] text-primary mb-5">Support</h4>
+                <ul class="space-y-3.5 text-sm text-white/45">
+                    <li><a class="hover:text-primary transition-colors" href="#">Shipping &amp; returns</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="#">Size guide</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="#">Contact us</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="#">Track order</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-[10px] font-extrabold uppercase tracking-[0.22em] text-primary mb-5">Newsletter</h4>
+                <p class="text-sm text-white/45 mb-4 leading-relaxed">Early access to the softest drops. No spam, just denim.</p>
+                <div class="flex gap-2">
+                    <input
+                        class="bg-white/[0.04] border border-white/10 rounded-xl text-xs p-3 flex-1 focus:ring-primary focus:border-primary placeholder:text-white/30"
+                        placeholder="EMAIL ADDRESS" type="email" />
+                    <button type="button" aria-label="Subscribe"
+                        class="bg-primary text-[#25101c] p-3 rounded-xl flex items-center justify-center hover:bg-blush transition-colors">
+                        <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div
+            class="max-w-[1440px] mx-auto px-5 md:px-8 pt-7 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-[9px] text-white/30 font-bold tracking-[0.16em] uppercase">
+            <p>© 2026 Kamiwear Labs Inc. All rights reserved.</p>
+            <div class="flex gap-6">
+                <a class="hover:text-white/60 transition-colors" href="#">Privacy policy</a>
+                <a class="hover:text-white/60 transition-colors" href="#">Terms of service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        (function () {
+            const grid = document.getElementById('denim-grid');
+            if (!grid) return;
+            const cards = Array.from(grid.querySelectorAll('.product-card'));
+            const chips = Array.from(document.querySelectorAll('[data-denim-filter]'));
+            const count = document.getElementById('denim-count');
+
+            const applyFilter = filter => {
+                let shown = 0;
+                cards.forEach(card => {
+                    const tags = String(card.dataset.tags || '').split(/\s+/);
+                    const match = filter === 'all' || tags.includes(filter);
+                    card.style.display = match ? '' : 'none';
+                    if (match) {
+                        shown += 1;
+                        card.classList.remove('kw-card-in');
+                        void card.offsetWidth;
+                        card.classList.add('kw-card-in');
+                    }
+                });
+                if (count) count.textContent = `Showing ${shown} of ${cards.length}`;
+                chips.forEach(chip => {
+                    const active = chip.dataset.denimFilter === filter;
+                    chip.classList.toggle('is-active', active);
+                    chip.setAttribute('aria-pressed', String(active));
+                });
+            };
+
+            chips.forEach(chip => {
+                chip.addEventListener('click', () => applyFilter(chip.dataset.denimFilter));
+            });
+
+            applyFilter('all');
+        })();
+    </script>
+
+    <script src="js/core/assets.js?v=4"></script>
+    <script src="js/store/core.js?v=7"></script>
+    <script src="js/components/badge-manager.js?v=4"></script>
+    <script src="js/components/cart-drawer.js?v=4"></script>
+    <script src="js/components/profile-modal.js?v=7"></script>
+    <script src="js/components/search-overlay.js?v=5"></script>
+    <script src="js/core/app.js?v=4"></script>
+    <script src="js/core/enhance.js?v=8"></script>
+</body>
+
+</html>

@@ -9,6 +9,7 @@
     "build": "echo 'No build step required'",
     "vercel-build": "echo 'No build step required'",
     "db:indexes": "node scripts/ensure-indexes.js",
+    "catalog:build": "node scripts/build-product-catalog.js",
     "test": "node --check server.js && node --check controllers/authController.js && node --check controllers/orderController.js && node --check services/emailService.js"
   },
   "keywords": [

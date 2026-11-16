@@ -1,0 +1,2631 @@
+{
+  "generatedAt": "2026-11-16T09:27:38.462Z",
+  "count": 176,
+  "products": [
+    {
+      "id": "1988-neo-tokyo-cap",
+      "name": "1988 Neo-Tokyo Cap",
+      "price": 3200,
+      "image": "assets/cdn/index-12ffeb.png",
+      "category": "Neo Tokyo · Accessories",
+      "series": "Neo Tokyo",
+      "collections": [
+        "Neo Tokyo"
+      ],
+      "gender": "",
+      "type": "Accessories",
+      "search": "1988 neo-tokyo cap neo tokyo · accessories neo tokyo neo tokyo accessories"
+    },
+    {
+      "id": "acid-knit-cardigan-lime",
+      "name": "Acid Knit Cardigan Lime",
+      "price": 3200,
+      "image": "assets/newgen/knit-knit-cardigan-product-photo-42293e.jpg",
+      "category": "Women · Knitwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Neo Tokyo"
+      ],
+      "gender": "Women",
+      "type": "Outerwear",
+      "search": "acid knit cardigan lime women · knitwear new drop the archive new fashion 2026 neo tokyo women outerwear"
+    },
+    {
+      "id": "acid-wash-baggy-denim",
+      "name": "Acid Wash Baggy Denim",
+      "price": 3100,
+      "image": "assets/newgen/jeans-baggy-jeans-streetwear-product-photo-188953.png",
+      "category": "Men · Denim",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Men",
+      "type": "Apparel",
+      "search": "acid wash baggy denim men · denim new drop the archive new fashion 2026 men apparel"
+    },
+    {
+      "id": "arasaka-executive",
+      "name": "Arasaka Executive",
+      "price": 4800,
+      "image": "assets/cdn/cursed-energy-53e2ce.png",
+      "category": "Night City · Apparel",
+      "series": "Night City",
+      "collections": [
+        "Night City"
+      ],
+      "gender": "",
+      "type": "Apparel",
+      "search": "arasaka executive night city · apparel night city night city apparel"
+    },
+    {
+      "id": "asym-zip-top-charcoal",
+      "name": "Asym Zip Top Charcoal",
+      "price": 2600,
+      "image": "assets/newgen/tee-oversized-graphic-t-shirt-streetwear-pro-cc58ff.png",
+      "category": "Women · Tops",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Cursed Energy"
+      ],
+      "gender": "Women",
+      "type": "Tees",
+      "search": "asym zip top charcoal women · tops new drop the archive new fashion 2026 cursed energy women tees"
+    },
+    {
+      "id": "baggy-carpenter-denim",
+      "name": "Baggy Carpenter Denim",
+      "price": 3100,
+      "image": "assets/newgen/jeans-baggy-jeans-streetwear-product-photo-808977.jpg",
+      "category": "Men · Denim",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Neo Tokyo"
+      ],
+      "gender": "Men",
+      "type": "Apparel",
+      "search": "baggy carpenter denim men · denim new drop the archive new fashion 2026 neo tokyo men apparel"
+    },
+    {
+      "id": "baggy-jeans-wash-blue",
+      "name": "Baggy Jeans Wash Blue",
+      "price": 2900,
+      "image": "assets/newgen/jeans-baggy-jeans-streetwear-product-photo-b55f82.jpg",
+      "category": "Men · Denim",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Demon Slayer"
+      ],
+      "gender": "Men",
+      "type": "Bottoms",
+      "search": "baggy jeans wash blue men · denim new drop the archive new fashion 2026 demon slayer men bottoms"
+    },
+    {
+      "id": "baggy-sweatpants-fleece",
+      "name": "Baggy Sweatpants Fleece",
+      "price": 2600,
+      "image": "assets/newgen/pants-cargo-pants-streetwear-product-photo-566a02.webp",
+      "category": "Women · Pants",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Night City"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "baggy sweatpants fleece women · pants new drop the archive new fashion 2026 night city women bottoms"
+    },
+    {
+      "id": "boxy-graphic-tee-bone",
+      "name": "Boxy Graphic Tee Bone",
+      "price": 1600,
+      "image": "assets/newgen/tee-oversized-graphic-t-shirt-streetwear-pro-954d6c.jpg",
+      "category": "Unisex · Tees",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Unisex",
+      "type": "Tees",
+      "search": "boxy graphic tee bone unisex · tees new drop the archive new fashion 2026 unisex tees"
+    },
+    {
+      "id": "boxy-pocket-tee-white",
+      "name": "Boxy Pocket Tee White",
+      "price": 1600,
+      "image": "assets/newgen/tee-oversized-graphic-t-shirt-streetwear-pro-770af2.jpg",
+      "category": "Men · Tees",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Men",
+      "type": "Tees",
+      "search": "boxy pocket tee white men · tees new drop the archive new fashion 2026 men tees"
+    },
+    {
+      "id": "bucket-hat-washed-black",
+      "name": "Bucket Hat Washed Black",
+      "price": 1300,
+      "image": "assets/newgen/hat-bucket-hat-product-photo-d0f037.jpg",
+      "category": "Unisex · Headwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Night City"
+      ],
+      "gender": "Unisex",
+      "type": "Accessories",
+      "search": "bucket hat washed black unisex · headwear new drop the archive new fashion 2026 night city unisex accessories"
+    },
+    {
+      "id": "cable-knit-vest-cream",
+      "name": "Cable Knit Vest Cream",
+      "price": 2500,
+      "image": "assets/newgen/knit-knit-cardigan-product-photo-d2d9b4.jpg",
+      "category": "Women · Knitwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Women",
+      "type": "Outerwear",
+      "search": "cable knit vest cream women · knitwear new drop the archive new fashion 2026 women outerwear"
+    },
+    {
+      "id": "canvas-high-top-sneaker",
+      "name": "Canvas High Top Sneaker",
+      "price": 3400,
+      "image": "assets/newgen/shoe-sneakers-white-product-photo-cac0aa.jpg",
+      "category": "Women · Footwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Women",
+      "type": "Accessories",
+      "search": "canvas high top sneaker women · footwear new drop the archive new fashion 2026 women accessories"
+    },
+    {
+      "id": "cargo-shorts-khaki",
+      "name": "Cargo Shorts Khaki",
+      "price": 1900,
+      "image": "assets/newgen/pants-cargo-pants-streetwear-product-photo-495f95.png",
+      "category": "Men · Shorts",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Demon Slayer"
+      ],
+      "gender": "Men",
+      "type": "Bottoms",
+      "search": "cargo shorts khaki men · shorts new drop the archive new fashion 2026 demon slayer men bottoms"
+    },
+    {
+      "id": "carpenter-jeans-taupe",
+      "name": "Carpenter Jeans Taupe",
+      "price": 3000,
+      "image": "assets/newgen/jeans-baggy-jeans-streetwear-product-photo-508cb7.webp",
+      "category": "Men · Denim",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Men",
+      "type": "Bottoms",
+      "search": "carpenter jeans taupe men · denim new drop the archive new fashion 2026 men bottoms"
+    },
+    {
+      "id": "chunky-chain-necklace",
+      "name": "Chunky Chain Necklace",
+      "price": 1400,
+      "image": "assets/newgen/accessory-chain-necklace-product-photo-0616f8.jpg",
+      "category": "Unisex · Jewelry",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Cursed Energy"
+      ],
+      "gender": "Unisex",
+      "type": "Accessories",
+      "search": "chunky chain necklace unisex · jewelry new drop the archive new fashion 2026 cursed energy unisex accessories"
+    },
+    {
+      "id": "corduroy-overshirt-rust",
+      "name": "Corduroy Overshirt Rust",
+      "price": 3100,
+      "image": "assets/newgen/shirt-flannel-shirt-product-photo-728d43.jpg",
+      "category": "Men · Shirts",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Men",
+      "type": "Tees",
+      "search": "corduroy overshirt rust men · shirts new drop the archive new fashion 2026 men tees"
+    },
+    {
+      "id": "cream-dream-wide-leg-jeans",
+      "name": "Cream Dream Wide-Leg Jeans",
+      "price": 2950,
+      "image": "assets/fashion/jean-women-172673208dc8.png",
+      "category": "Women · Wide-leg",
+      "series": "Denim Edit",
+      "collections": [
+        "Denim Edit"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "cream dream wide-leg jeans women · wide-leg denim edit denim edit women bottoms"
+    },
+    {
+      "id": "crop-top-tee-sunrise",
+      "name": "Crop Top Tee Sunrise",
+      "price": 1300,
+      "image": "assets/newgen/tee-oversized-graphic-t-shirt-streetwear-pro-9a0e22.jpg",
+      "category": "Women · Tees",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Demon Slayer"
+      ],
+      "gender": "Women",
+      "type": "Tees",
+      "search": "crop top tee sunrise women · tees new drop the archive new fashion 2026 demon slayer women tees"
+    },
+    {
+      "id": "cropped-hoodie-cream",
+      "name": "Cropped Hoodie Cream",
+      "price": 2500,
+      "image": "assets/newgen/hoodie-oversized-hoodie-streetwear-product-phot-ccea39.jpg",
+      "category": "Women · Hoodies",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Women",
+      "type": "Outerwear",
+      "search": "cropped hoodie cream women · hoodies new drop the archive new fashion 2026 women outerwear"
+    },
+    {
+      "id": "cropped-hoodie-graphite",
+      "name": "Cropped Hoodie Graphite",
+      "price": 2700,
+      "image": "assets/newgen/hoodie-oversized-hoodie-streetwear-product-phot-05e2a5.jpg",
+      "category": "Women · Hoodies",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Night City"
+      ],
+      "gender": "Women",
+      "type": "Outerwear",
+      "search": "cropped hoodie graphite women · hoodies new drop the archive new fashion 2026 night city women outerwear"
+    },
+    {
+      "id": "cropped-knit-top-black",
+      "name": "Cropped Knit Top Black",
+      "price": 1800,
+      "image": "assets/newgen/knit-knit-cardigan-product-photo-f6812c.jpg",
+      "category": "Women · Knitwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Cursed Energy"
+      ],
+      "gender": "Women",
+      "type": "Tees",
+      "search": "cropped knit top black women · knitwear new drop the archive new fashion 2026 cursed energy women tees"
+    },
+    {
+      "id": "cropped-puffer-vest-black",
+      "name": "Cropped Puffer Vest Black",
+      "price": 3100,
+      "image": "assets/newgen/jacket-bomber-jacket-streetwear-product-photo-d433d1.jpg",
+      "category": "Women · Outerwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Women",
+      "type": "Outerwear",
+      "search": "cropped puffer vest black women · outerwear new drop the archive new fashion 2026 women outerwear"
+    },
+    {
+      "id": "cropped-sweatshirt-pink",
+      "name": "Cropped Sweatshirt Pink",
+      "price": 2400,
+      "image": "assets/newgen/hoodie-oversized-hoodie-streetwear-product-phot-7762e1.png",
+      "category": "Women · Fleece",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Neo Tokyo"
+      ],
+      "gender": "Women",
+      "type": "Tees",
+      "search": "cropped sweatshirt pink women · fleece new drop the archive new fashion 2026 neo tokyo women tees"
+    },
+    {
+      "id": "cropped-zip-hoodie-violet",
+      "name": "Cropped Zip Hoodie Violet",
+      "price": 2600,
+      "image": "assets/newgen/hoodie-oversized-hoodie-streetwear-product-phot-7abcf9.jpg",
+      "category": "Women · Hoodies",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Women",
+      "type": "Outerwear",
+      "search": "cropped zip hoodie violet women · hoodies new drop the archive new fashion 2026 women outerwear"
+    },
+    {
+      "id": "crossbody-sling-bag-black",
+      "name": "Crossbody Sling Bag Black",
+      "price": 2100,
+      "image": "assets/newgen/bag-crossbody-sling-bag-product-photo-2b66c9.jpg",
+      "category": "Unisex · Bags",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Unisex",
+      "type": "Accessories",
+      "search": "crossbody sling bag black unisex · bags new drop the archive new fashion 2026 unisex accessories"
+    },
+    {
+      "id": "cyber-joggers-2077-unisex",
+      "name": "Cyber Joggers 2077 Unisex",
+      "price": 7600,
+      "image": "assets/generated/night-city-cyber-joggers-1773032534008.png",
+      "category": "Unisex · Night City",
+      "series": "Cyberpunk 2077",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Unisex",
+      "type": "Bottoms",
+      "search": "cyber joggers 2077 unisex unisex · night city cyberpunk 2077 the archive unisex bottoms"
+    },
+    {
+      "id": "dad-cap-washed-black",
+      "name": "Dad Cap Washed Black",
+      "price": 1200,
+      "image": "assets/newgen/hat-bucket-hat-product-photo-0dae74.jpg",
+      "category": "Unisex · Headwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Unisex",
+      "type": "Accessories",
+      "search": "dad cap washed black unisex · headwear new drop the archive new fashion 2026 unisex accessories"
+    },
+    {
+      "id": "daydream-baggy-jeans",
+      "name": "Daydream Baggy Jeans",
+      "price": 3400,
+      "image": "assets/fashion/jean-women-14dcfe6cf9d8.jpg",
+      "category": "Women · Baggy",
+      "series": "Denim Edit",
+      "collections": [
+        "Denim Edit"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "daydream baggy jeans women · baggy denim edit denim edit women bottoms"
+    },
+    {
+      "id": "denim-overshirt-stone",
+      "name": "Denim Overshirt Stone",
+      "price": 2800,
+      "image": "assets/newgen/shirt-flannel-shirt-product-photo-aa88d8.jpg",
+      "category": "Men · Shirts",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Men",
+      "type": "Tees",
+      "search": "denim overshirt stone men · shirts new drop the archive new fashion 2026 men tees"
+    },
+    {
+      "id": "denim-shirt-jacket-blue",
+      "name": "Denim Shirt Jacket Blue",
+      "price": 3400,
+      "image": "assets/newgen/shirt-flannel-shirt-product-photo-ba1ae4.jpg",
+      "category": "Women · Shirts",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Neo Tokyo"
+      ],
+      "gender": "Women",
+      "type": "Tees",
+      "search": "denim shirt jacket blue women · shirts new drop the archive new fashion 2026 neo tokyo women tees"
+    },
+    {
+      "id": "denim-trucker-jacket-indigo",
+      "name": "Denim Trucker Jacket Indigo",
+      "price": 3600,
+      "image": "assets/newgen/jacket-bomber-jacket-streetwear-product-photo-91894c.jpg",
+      "category": "Men · Outerwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Demon Slayer"
+      ],
+      "gender": "Men",
+      "type": "Outerwear",
+      "search": "denim trucker jacket indigo men · outerwear new drop the archive new fashion 2026 demon slayer men outerwear"
+    },
+    {
+      "id": "distressed-wide-jeans-blue",
+      "name": "Distressed Wide Jeans Blue",
+      "price": 3200,
+      "image": "assets/newgen/jeans-baggy-jeans-streetwear-product-photo-cf83ff.jpg",
+      "category": "Women · Denim",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "distressed wide jeans blue women · denim new drop the archive new fashion 2026 women bottoms"
+    },
+    {
+      "id": "domain-expansion-knit-unisex",
+      "name": "Domain Expansion Knit Unisex",
+      "price": 9600,
+      "image": "assets/newgen/knit-knit-cardigan-product-photo-0b0e83.jpg",
+      "category": "Unisex · Jujutsu Kaisen",
+      "series": "Jujutsu Kaisen",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Unisex",
+      "type": "Outerwear",
+      "search": "domain expansion knit unisex unisex · jujutsu kaisen jujutsu kaisen the archive unisex outerwear"
+    },
+    {
+      "id": "double-knee-work-pants",
+      "name": "Double Knee Work Pants",
+      "price": 2700,
+      "image": "assets/newgen/pants-cargo-pants-streetwear-product-photo-da61d0.jpg",
+      "category": "Men · Pants",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Men",
+      "type": "Bottoms",
+      "search": "double knee work pants men · pants new drop the archive new fashion 2026 men bottoms"
+    },
+    {
+      "id": "edgerunner-jacket",
+      "name": "Edgerunner Jacket",
+      "price": 11600,
+      "image": "assets/generated/night-city-cover-perfect-v2-1773032380473.png",
+      "category": "Night City · Accessories",
+      "series": "Night City",
+      "collections": [
+        "Night City"
+      ],
+      "gender": "",
+      "type": "Accessories",
+      "search": "edgerunner jacket night city · accessories night city night city accessories"
+    },
+    {
+      "id": "edgerunners-cargo-jacket-unisex",
+      "name": "Edgerunners Cargo Jacket Unisex",
+      "price": 16800,
+      "image": "assets/newgen/jacket-bomber-jacket-streetwear-product-photo-7f12ed.jpg",
+      "category": "Unisex · Cyberpunk",
+      "series": "Cyberpunk 2077",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Unisex",
+      "type": "Accessories",
+      "search": "edgerunners cargo jacket unisex unisex · cyberpunk cyberpunk 2077 the archive unisex accessories"
+    },
+    {
+      "id": "electric-flare-jeans",
+      "name": "Electric Flare Jeans",
+      "price": 3100,
+      "image": "assets/fashion/jean-women-483e7b05d793.png",
+      "category": "Women · Flare",
+      "series": "Denim Edit",
+      "collections": [
+        "Denim Edit"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "electric flare jeans women · flare denim edit denim edit women bottoms"
+    },
+    {
+      "id": "esper-power-tee",
+      "name": "ESPer Power Tee",
+      "price": 4400,
+      "image": "assets/generated/gojo-infinite-tee-1774247527626.png",
+      "category": "Neo Tokyo · Tees",
+      "series": "Neo Tokyo",
+      "collections": [
+        "Neo Tokyo"
+      ],
+      "gender": "",
+      "type": "Tees",
+      "search": "esper power tee neo tokyo · tees neo tokyo neo tokyo tees"
+    },
+    {
+      "id": "eva-01-tech-hoodie-unisex",
+      "name": "EVA-01 Tech Hoodie Unisex",
+      "price": 14400,
+      "image": "assets/newgen/hoodie-oversized-hoodie-streetwear-product-phot-387180.jpg",
+      "category": "Unisex · Neon Genesis",
+      "series": "Neon Genesis",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Unisex",
+      "type": "Outerwear",
+      "search": "eva-01 tech hoodie unisex unisex · neon genesis neon genesis the archive unisex outerwear"
+    },
+    {
+      "id": "flame-orange-bomber-jacket",
+      "name": "Flame Orange Bomber Jacket",
+      "price": 4700,
+      "image": "assets/newgen/jacket-bomber-jacket-streetwear-product-photo-4010f4.jpg",
+      "category": "Men · Outerwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Demon Slayer"
+      ],
+      "gender": "Men",
+      "type": "Outerwear",
+      "search": "flame orange bomber jacket men · outerwear new drop the archive new fashion 2026 demon slayer men outerwear"
+    },
+    {
+      "id": "flare-denim-wash-blue",
+      "name": "Flare Denim Wash Blue",
+      "price": 3000,
+      "image": "assets/newgen/jeans-baggy-jeans-streetwear-product-photo-b8d199.webp",
+      "category": "Women · Denim",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Night City"
+      ],
+      "gender": "Women",
+      "type": "Apparel",
+      "search": "flare denim wash blue women · denim new drop the archive new fashion 2026 night city women apparel"
+    },
+    {
+      "id": "fleece-crewneck-sand",
+      "name": "Fleece Crewneck Sand",
+      "price": 2400,
+      "image": "assets/newgen/hoodie-oversized-hoodie-streetwear-product-phot-b710aa.jpg",
+      "category": "Women · Fleece",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Women",
+      "type": "Outerwear",
+      "search": "fleece crewneck sand women · fleece new drop the archive new fashion 2026 women outerwear"
+    },
+    {
+      "id": "fleece-half-zip-sand",
+      "name": "Fleece Half Zip Sand",
+      "price": 2900,
+      "image": "assets/newgen/hoodie-oversized-hoodie-streetwear-product-phot-9b9061.jpg",
+      "category": "Men · Fleece",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Cursed Energy"
+      ],
+      "gender": "Men",
+      "type": "Apparel",
+      "search": "fleece half zip sand men · fleece new drop the archive new fashion 2026 cursed energy men apparel"
+    },
+    {
+      "id": "fleece-joggers-forest",
+      "name": "Fleece Joggers Forest",
+      "price": 2400,
+      "image": "assets/newgen/pants-cargo-pants-streetwear-product-photo-d6e025.jpg",
+      "category": "Men · Joggers",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Demon Slayer"
+      ],
+      "gender": "Men",
+      "type": "Bottoms",
+      "search": "fleece joggers forest men · joggers new drop the archive new fashion 2026 demon slayer men bottoms"
+    },
+    {
+      "id": "frosted-blue-wide-leg-jeans",
+      "name": "Frosted Blue Wide-Leg Jeans",
+      "price": 2600,
+      "image": "assets/fashion/jean-women-b33a17686afa.jpg",
+      "category": "Women · Wide-leg",
+      "series": "Denim Edit",
+      "collections": [
+        "Denim Edit"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "frosted blue wide-leg jeans women · wide-leg denim edit denim edit women bottoms"
+    },
+    {
+      "id": "giyu-water-hashira",
+      "name": "Giyu Water Hashira",
+      "price": 7200,
+      "image": "assets/hoodies/akatsuki-cloud-hoodie-main.jpeg",
+      "category": "Demon Slayer · Apparel",
+      "series": "Demon Slayer",
+      "collections": [
+        "Demon Slayer"
+      ],
+      "gender": "",
+      "type": "Apparel",
+      "search": "giyu water hashira demon slayer · apparel demon slayer demon slayer apparel"
+    },
+    {
+      "id": "gojo-infinite-tee",
+      "name": "Gojo Infinite Tee",
+      "price": 4400,
+      "image": "assets/generated/gojo-infinite-tee-1774247527626.png",
+      "category": "Cursed Energy · Tees",
+      "series": "Cursed Energy",
+      "collections": [
+        "Cursed Energy"
+      ],
+      "gender": "",
+      "type": "Tees",
+      "search": "gojo infinite tee cursed energy · tees cursed energy cursed energy tees"
+    },
+    {
+      "id": "gorpcore-shell-jacket",
+      "name": "Gorpcore Shell Jacket",
+      "price": 5400,
+      "image": "assets/newgen/jacket-bomber-jacket-streetwear-product-photo-1d5a49.webp",
+      "category": "Men · Outerwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Night City"
+      ],
+      "gender": "Men",
+      "type": "Outerwear",
+      "search": "gorpcore shell jacket men · outerwear new drop the archive new fashion 2026 night city men outerwear"
+    },
+    {
+      "id": "graphic-bucket-hat",
+      "name": "Graphic Bucket Hat",
+      "price": 1400,
+      "image": "assets/newgen/hat-bucket-hat-product-photo-cf147b.png",
+      "category": "Unisex · Headwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Neo Tokyo"
+      ],
+      "gender": "Unisex",
+      "type": "Accessories",
+      "search": "graphic bucket hat unisex · headwear new drop the archive new fashion 2026 neo tokyo unisex accessories"
+    },
+    {
+      "id": "graphic-hoodie-crimson",
+      "name": "Graphic Hoodie Crimson",
+      "price": 3500,
+      "image": "assets/newgen/hoodie-oversized-hoodie-streetwear-product-phot-f94f1f.png",
+      "category": "Unisex · Hoodies",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Demon Slayer"
+      ],
+      "gender": "Unisex",
+      "type": "Outerwear",
+      "search": "graphic hoodie crimson unisex · hoodies new drop the archive new fashion 2026 demon slayer unisex outerwear"
+    },
+    {
+      "id": "graphic-joggers",
+      "name": "Graphic Joggers",
+      "price": 2900,
+      "image": "assets/cdn/anime-graphic-joggers-ac17a0.png",
+      "category": "Women · Pants",
+      "series": "Featured",
+      "collections": [
+        "Featured"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "graphic joggers women · pants featured featured women bottoms"
+    },
+    {
+      "id": "graphic-long-sleeve-tee",
+      "name": "Graphic Long Sleeve Tee",
+      "price": 2000,
+      "image": "assets/newgen/tee-oversized-graphic-t-shirt-streetwear-pro-d00c89.jpg",
+      "category": "Women · Tees",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Night City"
+      ],
+      "gender": "Women",
+      "type": "Tees",
+      "search": "graphic long sleeve tee women · tees new drop the archive new fashion 2026 night city women tees"
+    },
+    {
+      "id": "graphic-sweatshirt-cloud",
+      "name": "Graphic Sweatshirt Cloud",
+      "price": 2700,
+      "image": "assets/newgen/hoodie-oversized-hoodie-streetwear-product-phot-fa8304.jpg",
+      "category": "Women · Fleece",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Women",
+      "type": "Tees",
+      "search": "graphic sweatshirt cloud women · fleece new drop the archive new fashion 2026 women tees"
+    },
+    {
+      "id": "graphic-tee-red-cloud",
+      "name": "Graphic Tee Red Cloud",
+      "price": 2600,
+      "image": "assets/cdn/white-t-shirt-with-red-cloud-logo-3663c1.png",
+      "category": "Unisex · Tees",
+      "series": "Featured",
+      "collections": [
+        "Featured"
+      ],
+      "gender": "Unisex",
+      "type": "Tees",
+      "search": "graphic tee red cloud unisex · tees featured featured unisex tees"
+    },
+    {
+      "id": "hero-oversized-street-jacket",
+      "name": "Hero Oversized Street Jacket",
+      "price": 4200,
+      "image": "assets/fashion/hero-oversized-jacket.jpg",
+      "category": "Unisex · Outerwear",
+      "series": "Featured",
+      "collections": [
+        "Featured",
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Unisex",
+      "type": "Outerwear",
+      "search": "hero oversized street jacket unisex · outerwear featured featured the archive new fashion 2026 unisex outerwear"
+    },
+    {
+      "id": "high-top-sneaker-jet",
+      "name": "High Top Sneaker Jet",
+      "price": 4200,
+      "image": "assets/newgen/shoe-sneakers-white-product-photo-531fac.jpg",
+      "category": "Unisex · Footwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Cursed Energy"
+      ],
+      "gender": "Unisex",
+      "type": "Accessories",
+      "search": "high top sneaker jet unisex · footwear new drop the archive new fashion 2026 cursed energy unisex accessories"
+    },
+    {
+      "id": "hooded-flannel-charcoal",
+      "name": "Hooded Flannel Charcoal",
+      "price": 2900,
+      "image": "assets/newgen/shirt-flannel-shirt-product-photo-d515d9.jpg",
+      "category": "Men · Shirts",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Men",
+      "type": "Apparel",
+      "search": "hooded flannel charcoal men · shirts new drop the archive new fashion 2026 men apparel"
+    },
+    {
+      "id": "indigo-muse-wide-leg-jeans",
+      "name": "Indigo Muse Wide-Leg Jeans",
+      "price": 3200,
+      "image": "assets/fashion/jean-women-5ec93480f187.jpg",
+      "category": "Women · Wide-leg",
+      "series": "Denim Edit",
+      "collections": [
+        "Denim Edit"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "indigo muse wide-leg jeans women · wide-leg denim edit denim edit women bottoms"
+    },
+    {
+      "id": "ink-wash-baggy-jeans",
+      "name": "Ink Wash Baggy Jeans",
+      "price": 2800,
+      "image": "assets/fashion/jean-women-48c39f8f8ffd.jpg",
+      "category": "Women · Baggy",
+      "series": "Denim Edit",
+      "collections": [
+        "Denim Edit"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "ink wash baggy jeans women · baggy denim edit denim edit women bottoms"
+    },
+    {
+      "id": "inosuke-graphic",
+      "name": "Inosuke Graphic",
+      "price": 3600,
+      "image": "assets/cdn/zenitsu-oversized-a04b3a.png",
+      "category": "Demon Slayer · Apparel",
+      "series": "Demon Slayer",
+      "collections": [
+        "Demon Slayer"
+      ],
+      "gender": "",
+      "type": "Apparel",
+      "search": "inosuke graphic demon slayer · apparel demon slayer demon slayer apparel"
+    },
+    {
+      "id": "kami-o1-tech-hoodie",
+      "name": "KAMI-O1 TECH HOODIE",
+      "price": 10000,
+      "image": "assets/cdn/neo-tokyo-c3e3e2.png",
+      "category": "Featured · Outerwear",
+      "series": "Featured",
+      "collections": [
+        "Featured"
+      ],
+      "gender": "",
+      "type": "Outerwear",
+      "search": "kami-o1 tech hoodie featured · outerwear featured featured outerwear"
+    },
+    {
+      "id": "kaneda-pill-vest",
+      "name": "Kaneda Pill Vest",
+      "price": 13200,
+      "image": "assets/generated/neo-tokyo-product-akira-vest-1773032421281.png",
+      "category": "Neo Tokyo · Outerwear",
+      "series": "Neo Tokyo",
+      "collections": [
+        "Neo Tokyo"
+      ],
+      "gender": "",
+      "type": "Outerwear",
+      "search": "kaneda pill vest neo tokyo · outerwear neo tokyo neo tokyo outerwear"
+    },
+    {
+      "id": "knit-beanie-rib-sand",
+      "name": "Knit Beanie Rib Sand",
+      "price": 1100,
+      "image": "assets/newgen/hat-bucket-hat-product-photo-056121.jpg",
+      "category": "Unisex · Headwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Demon Slayer"
+      ],
+      "gender": "Unisex",
+      "type": "Outerwear",
+      "search": "knit beanie rib sand unisex · headwear new drop the archive new fashion 2026 demon slayer unisex outerwear"
+    },
+    {
+      "id": "leather-biker-jacket-jet",
+      "name": "Leather Biker Jacket Jet",
+      "price": 5900,
+      "image": "assets/newgen/jacket-bomber-jacket-streetwear-product-photo-431f69.jpg",
+      "category": "Unisex · Outerwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Cursed Energy"
+      ],
+      "gender": "Unisex",
+      "type": "Outerwear",
+      "search": "leather biker jacket jet unisex · outerwear new drop the archive new fashion 2026 cursed energy unisex outerwear"
+    },
+    {
+      "id": "long-sleeve-top-mesh",
+      "name": "Long Sleeve Top Mesh",
+      "price": 1700,
+      "image": "assets/newgen/tee-oversized-graphic-t-shirt-streetwear-pro-99acf6.png",
+      "category": "Women · Tops",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Cursed Energy"
+      ],
+      "gender": "Women",
+      "type": "Tees",
+      "search": "long sleeve top mesh women · tops new drop the archive new fashion 2026 cursed energy women tees"
+    },
+    {
+      "id": "longline-tee-charcoal",
+      "name": "Longline Tee Charcoal",
+      "price": 1700,
+      "image": "assets/newgen/tee-oversized-graphic-t-shirt-streetwear-pro-334c57.png",
+      "category": "Men · Tees",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Men",
+      "type": "Tees",
+      "search": "longline tee charcoal men · tees new drop the archive new fashion 2026 men tees"
+    },
+    {
+      "id": "low-top-leather-sneaker",
+      "name": "Low Top Leather Sneaker",
+      "price": 3900,
+      "image": "assets/newgen/shoe-sneakers-white-product-photo-fb95e8.jpg",
+      "category": "Unisex · Footwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Unisex",
+      "type": "Accessories",
+      "search": "low top leather sneaker unisex · footwear new drop the archive new fashion 2026 unisex accessories"
+    },
+    {
+      "id": "megumi-shadow-wolf",
+      "name": "Megumi Shadow Wolf",
+      "price": 3600,
+      "image": "assets/generated/megumi-shadow-wolf-hoodie-1774247632786.png",
+      "category": "Cursed Energy · Apparel",
+      "series": "Cursed Energy",
+      "collections": [
+        "Cursed Energy"
+      ],
+      "gender": "",
+      "type": "Apparel",
+      "search": "megumi shadow wolf cursed energy · apparel cursed energy cursed energy apparel"
+    },
+    {
+      "id": "men-cargo-shirt-techwear",
+      "name": "Men Cargo Shirt Techwear",
+      "price": 3200,
+      "image": "assets/generated/night-city-cover-perfect-v2-1773032380473.png",
+      "category": "Men · Shirts",
+      "series": "Ghost in the Shell",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Men",
+      "type": "Bottoms",
+      "search": "men cargo shirt techwear men · shirts ghost in the shell the archive men bottoms"
+    },
+    {
+      "id": "men-cargo-wide-leg-jean",
+      "name": "Men Cargo Wide-Leg Jean",
+      "price": 3500,
+      "image": "assets/fashion/photo-1604176354204-9268737828e4.jpg",
+      "category": "Men · Jeans",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Men",
+      "type": "Bottoms",
+      "search": "men cargo wide-leg jean men · jeans streetwear the archive men bottoms"
+    },
+    {
+      "id": "men-denim-jacket-embroidered",
+      "name": "Men Denim Jacket Embroidered",
+      "price": 2800,
+      "image": "assets/cdn/denim-jacket-with-embroidery-87f061.png",
+      "category": "Men · Outerwear",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Men",
+      "type": "Outerwear",
+      "search": "men denim jacket embroidered men · outerwear streetwear the archive men outerwear"
+    },
+    {
+      "id": "men-graphic-tee-anime",
+      "name": "Men Graphic Tee Anime",
+      "price": 2800,
+      "image": "assets/generated/cursed-energy-product-sukuna-1773032399164.png",
+      "category": "Men · Shirts",
+      "series": "Jujutsu Kaisen",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Men",
+      "type": "Tees",
+      "search": "men graphic tee anime men · shirts jujutsu kaisen the archive men tees"
+    },
+    {
+      "id": "men-heavy-zip-hoodie-oversized",
+      "name": "Men Heavy Zip Hoodie Oversized",
+      "price": 5600,
+      "image": "assets/generated/gojo-infinite-tee-1774247527626.png",
+      "category": "Men · Hoodies",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Men",
+      "type": "Outerwear",
+      "search": "men heavy zip hoodie oversized men · hoodies streetwear the archive men outerwear"
+    },
+    {
+      "id": "men-neo-tokyo-oversized-tee",
+      "name": "Men Neo-Tokyo Oversized Tee",
+      "price": 2600,
+      "image": "assets/generated/neo-tokyo-product-akira-vest-1773032421281.png",
+      "category": "Men · Shirts",
+      "series": "Akira",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Men",
+      "type": "Tees",
+      "search": "men neo-tokyo oversized tee men · shirts akira the archive men tees"
+    },
+    {
+      "id": "men-oversized-tee-cyber",
+      "name": "Men Oversized Tee Cyber",
+      "price": 2400,
+      "image": "assets/cdn/nobara-resonance-c48588.png",
+      "category": "Men · Shirts",
+      "series": "Cyberpunk 2077",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Men",
+      "type": "Tees",
+      "search": "men oversized tee cyber men · shirts cyberpunk 2077 the archive men tees"
+    },
+    {
+      "id": "men-street-zip-hoodie",
+      "name": "Men Street Zip Hoodie",
+      "price": 4400,
+      "image": "assets/cdn/domain-expansion-knit-e90538.png",
+      "category": "Men · Hoodies",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Men",
+      "type": "Outerwear",
+      "search": "men street zip hoodie men · hoodies streetwear the archive men outerwear"
+    },
+    {
+      "id": "men-wide-leg-jean-baggy-black",
+      "name": "Men Wide-Leg Jean Baggy Black",
+      "price": 3200,
+      "image": "assets/fashion/jean-women-48c39f8f8ffd.jpg",
+      "category": "Men · Jeans",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Men",
+      "type": "Bottoms",
+      "search": "men wide-leg jean baggy black men · jeans streetwear the archive men bottoms"
+    },
+    {
+      "id": "men-wide-leg-jean-blue-wash",
+      "name": "Men Wide-Leg Jean Blue Wash",
+      "price": 2900,
+      "image": "assets/fashion/photo-1542272604-787c3835535d.jpg",
+      "category": "Men · Jeans",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Men",
+      "type": "Bottoms",
+      "search": "men wide-leg jean blue wash men · jeans streetwear the archive men bottoms"
+    },
+    {
+      "id": "men-zip-hoodie-cyber-grey",
+      "name": "Men Zip Hoodie Cyber Grey",
+      "price": 4800,
+      "image": "assets/generated/demon-slayer-kokushibo-hoodie-1773032491748.png",
+      "category": "Men · Hoodies",
+      "series": "Cyberpunk 2077",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Men",
+      "type": "Outerwear",
+      "search": "men zip hoodie cyber grey men · hoodies cyberpunk 2077 the archive men outerwear"
+    },
+    {
+      "id": "men-zipper-hoodie-black-tech",
+      "name": "Men Zipper Hoodie Black Tech",
+      "price": 5200,
+      "image": "assets/cdn/shop-4d6939.png",
+      "category": "Men · Hoodies",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Men",
+      "type": "Outerwear",
+      "search": "men zipper hoodie black tech men · hoodies streetwear the archive men outerwear"
+    },
+    {
+      "id": "mesh-long-sleeve-top",
+      "name": "Mesh Long Sleeve Top",
+      "price": 1700,
+      "image": "assets/newgen/tee-oversized-graphic-t-shirt-streetwear-pro-587c1d.webp",
+      "category": "Women · Tops",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Women",
+      "type": "Tees",
+      "search": "mesh long sleeve top women · tops new drop the archive new fashion 2026 women tees"
+    },
+    {
+      "id": "midnight-wide-leg-jeans",
+      "name": "Midnight Wide-Leg Jeans",
+      "price": 2750,
+      "image": "assets/fashion/jean-women-369c625f8739.jpg",
+      "category": "Women · Wide-leg",
+      "series": "Denim Edit",
+      "collections": [
+        "Denim Edit"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "midnight wide-leg jeans women · wide-leg denim edit denim edit women bottoms"
+    },
+    {
+      "id": "mini-crossbody-bag-silver",
+      "name": "Mini Crossbody Bag Silver",
+      "price": 2200,
+      "image": "assets/newgen/bag-crossbody-sling-bag-product-photo-a1533b.jpg",
+      "category": "Women · Bags",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Neo Tokyo"
+      ],
+      "gender": "Women",
+      "type": "Accessories",
+      "search": "mini crossbody bag silver women · bags new drop the archive new fashion 2026 neo tokyo women accessories"
+    },
+    {
+      "id": "moonlit-kokushibo",
+      "name": "Moonlit Kokushibo",
+      "price": 9600,
+      "image": "assets/generated/demon-slayer-kokushibo-hoodie-1773032491748.png",
+      "category": "Demon Slayer · Apparel",
+      "series": "Demon Slayer",
+      "collections": [
+        "Demon Slayer"
+      ],
+      "gender": "",
+      "type": "Apparel",
+      "search": "moonlit kokushibo demon slayer · apparel demon slayer demon slayer apparel"
+    },
+    {
+      "id": "motocross-tee-black",
+      "name": "Motocross Tee Black",
+      "price": 1900,
+      "image": "assets/newgen/tee-oversized-graphic-t-shirt-streetwear-pro-9dc5c8.jpg",
+      "category": "Men · Tees",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Cursed Energy"
+      ],
+      "gender": "Men",
+      "type": "Tees",
+      "search": "motocross tee black men · tees new drop the archive new fashion 2026 cursed energy men tees"
+    },
+    {
+      "id": "neon-panel-windbreaker",
+      "name": "Neon Panel Windbreaker",
+      "price": 4300,
+      "image": "assets/newgen/jacket-bomber-jacket-streetwear-product-photo-63a0c1.jpg",
+      "category": "Unisex · Outerwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Night City"
+      ],
+      "gender": "Unisex",
+      "type": "Apparel",
+      "search": "neon panel windbreaker unisex · outerwear new drop the archive new fashion 2026 night city unisex apparel"
+    },
+    {
+      "id": "oat-milk-wide-leg-jeans",
+      "name": "Oat Milk Wide-Leg Jeans",
+      "price": 3300,
+      "image": "assets/fashion/jean-women-ae5ac93bbca9.jpg",
+      "category": "Women · Wide-leg",
+      "series": "Denim Edit",
+      "collections": [
+        "Denim Edit"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "oat milk wide-leg jeans women · wide-leg denim edit denim edit women bottoms"
+    },
+    {
+      "id": "oversized-band-tee-black",
+      "name": "Oversized Band Tee Black",
+      "price": 1800,
+      "image": "assets/newgen/tee-oversized-graphic-t-shirt-streetwear-pro-3f923c.jpg",
+      "category": "Men · Tees",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Men",
+      "type": "Tees",
+      "search": "oversized band tee black men · tees new drop the archive new fashion 2026 men tees"
+    },
+    {
+      "id": "oversized-hoodie-sky",
+      "name": "Oversized Hoodie Sky",
+      "price": 3300,
+      "image": "assets/newgen/hoodie-oversized-hoodie-streetwear-product-phot-fd3b28.jpg",
+      "category": "Unisex · Hoodies",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Neo Tokyo"
+      ],
+      "gender": "Unisex",
+      "type": "Outerwear",
+      "search": "oversized hoodie sky unisex · hoodies new drop the archive new fashion 2026 neo tokyo unisex outerwear"
+    },
+    {
+      "id": "oversized-hoodie-smoke",
+      "name": "Oversized Hoodie Smoke",
+      "price": 3400,
+      "image": "assets/newgen/hoodie-oversized-hoodie-streetwear-product-phot-b5748a.jpg",
+      "category": "Men · Hoodies",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Cursed Energy"
+      ],
+      "gender": "Men",
+      "type": "Outerwear",
+      "search": "oversized hoodie smoke men · hoodies new drop the archive new fashion 2026 cursed energy men outerwear"
+    },
+    {
+      "id": "oversized-tee-storm-grey",
+      "name": "Oversized Tee Storm Grey",
+      "price": 1700,
+      "image": "assets/newgen/tee-oversized-graphic-t-shirt-streetwear-pro-43f7c5.jpg",
+      "category": "Men · Tees",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Demon Slayer"
+      ],
+      "gender": "Men",
+      "type": "Tees",
+      "search": "oversized tee storm grey men · tees new drop the archive new fashion 2026 demon slayer men tees"
+    },
+    {
+      "id": "oxford-shirt-sky-blue",
+      "name": "Oxford Shirt Sky Blue",
+      "price": 2200,
+      "image": "assets/newgen/shirt-flannel-shirt-product-photo-478a67.jpg",
+      "category": "Men · Shirts",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Demon Slayer"
+      ],
+      "gender": "Men",
+      "type": "Tees",
+      "search": "oxford shirt sky blue men · shirts new drop the archive new fashion 2026 demon slayer men tees"
+    },
+    {
+      "id": "panel-ski-jacket-volt",
+      "name": "Panel Ski Jacket Volt",
+      "price": 5600,
+      "image": "assets/newgen/jacket-bomber-jacket-streetwear-product-photo-bdee85.jpg",
+      "category": "Unisex · Outerwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Night City"
+      ],
+      "gender": "Unisex",
+      "type": "Outerwear",
+      "search": "panel ski jacket volt unisex · outerwear new drop the archive new fashion 2026 night city unisex outerwear"
+    },
+    {
+      "id": "panel-track-jacket-olive",
+      "name": "Panel Track Jacket Olive",
+      "price": 3400,
+      "image": "assets/newgen/jacket-bomber-jacket-streetwear-product-photo-41c0d3.jpg",
+      "category": "Men · Outerwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Men",
+      "type": "Outerwear",
+      "search": "panel track jacket olive men · outerwear new drop the archive new fashion 2026 men outerwear"
+    },
+    {
+      "id": "parachute-pants-black",
+      "name": "Parachute Pants Black",
+      "price": 2600,
+      "image": "assets/newgen/pants-cargo-pants-streetwear-product-photo-9694c6.jpg",
+      "category": "Women · Pants",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "parachute pants black women · pants new drop the archive new fashion 2026 women bottoms"
+    },
+    {
+      "id": "pilot-01-tech-sneakers-unisex",
+      "name": "Pilot-01 Tech Sneakers Unisex",
+      "price": 23600,
+      "image": "assets/cdn/section-9-cargo-runners-c1122f.png",
+      "category": "Unisex · Neon Genesis",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Unisex",
+      "type": "Accessories",
+      "search": "pilot-01 tech sneakers unisex unisex · neon genesis streetwear the archive unisex accessories"
+    },
+    {
+      "id": "pinstripe-wide-jeans",
+      "name": "Pinstripe Wide Jeans",
+      "price": 3100,
+      "image": "assets/newgen/jeans-baggy-jeans-streetwear-product-photo-c4f9d5.jpg",
+      "category": "Women · Denim",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Demon Slayer"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "pinstripe wide jeans women · denim new drop the archive new fashion 2026 demon slayer women bottoms"
+    },
+    {
+      "id": "platform-skate-shoe",
+      "name": "Platform Skate Shoe",
+      "price": 3800,
+      "image": "assets/newgen/shoe-sneakers-white-product-photo-6f68b1.jpg",
+      "category": "Women · Footwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Neo Tokyo"
+      ],
+      "gender": "Women",
+      "type": "Accessories",
+      "search": "platform skate shoe women · footwear new drop the archive new fashion 2026 neo tokyo women accessories"
+    },
+    {
+      "id": "printed-tote-bag-canvas",
+      "name": "Printed Tote Bag Canvas",
+      "price": 1500,
+      "image": "assets/newgen/bag-crossbody-sling-bag-product-photo-63d3b9.jpg",
+      "category": "Women · Bags",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Demon Slayer"
+      ],
+      "gender": "Women",
+      "type": "Accessories",
+      "search": "printed tote bag canvas women · bags new drop the archive new fashion 2026 demon slayer women accessories"
+    },
+    {
+      "id": "psychic-awakening",
+      "name": "Psychic Awakening",
+      "price": 8800,
+      "image": "assets/generated/nobara-resonance-jacket-1774247650512.png",
+      "category": "Neo Tokyo · Apparel",
+      "series": "Neo Tokyo",
+      "collections": [
+        "Neo Tokyo"
+      ],
+      "gender": "",
+      "type": "Apparel",
+      "search": "psychic awakening neo tokyo · apparel neo tokyo neo tokyo apparel"
+    },
+    {
+      "id": "psychic-heavy-hoodie",
+      "name": "Psychic Heavy Hoodie",
+      "price": 9600,
+      "image": "assets/hoodies/akatsuki-cloud-hoodie-main.jpeg",
+      "category": "Neo Tokyo · Outerwear",
+      "series": "Neo Tokyo",
+      "collections": [
+        "Neo Tokyo"
+      ],
+      "gender": "",
+      "type": "Outerwear",
+      "search": "psychic heavy hoodie neo tokyo · outerwear neo tokyo neo tokyo outerwear"
+    },
+    {
+      "id": "puff-print-hoodie-ink-black",
+      "name": "Puff Print Hoodie Ink Black",
+      "price": 3200,
+      "image": "assets/newgen/hoodie-oversized-hoodie-streetwear-product-phot-93a4ec.jpg",
+      "category": "Unisex · Hoodies",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Unisex",
+      "type": "Outerwear",
+      "search": "puff print hoodie ink black unisex · hoodies new drop the archive new fashion 2026 unisex outerwear"
+    },
+    {
+      "id": "purple-wash-baggy-jeans",
+      "name": "Purple Wash Baggy Jeans",
+      "price": 3000,
+      "image": "assets/newgen/jeans-baggy-jeans-streetwear-product-photo-b957b3.jpg",
+      "category": "Women · Denim",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Cursed Energy"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "purple wash baggy jeans women · denim new drop the archive new fashion 2026 cursed energy women bottoms"
+    },
+    {
+      "id": "quilted-liner-jacket-sand",
+      "name": "Quilted Liner Jacket Sand",
+      "price": 4100,
+      "image": "assets/newgen/jacket-bomber-jacket-streetwear-product-photo-c6e51b.jpg",
+      "category": "Women · Outerwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Women",
+      "type": "Outerwear",
+      "search": "quilted liner jacket sand women · outerwear new drop the archive new fashion 2026 women outerwear"
+    },
+    {
+      "id": "racing-striped-jacket",
+      "name": "Racing Striped Jacket",
+      "price": 3900,
+      "image": "assets/newgen/jacket-bomber-jacket-streetwear-product-photo-37860c.jpg",
+      "category": "Men · Outerwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Neo Tokyo"
+      ],
+      "gender": "Men",
+      "type": "Outerwear",
+      "search": "racing striped jacket men · outerwear new drop the archive new fashion 2026 neo tokyo men outerwear"
+    },
+    {
+      "id": "reflective-tee-silver",
+      "name": "Reflective Tee Silver",
+      "price": 2100,
+      "image": "assets/newgen/tee-oversized-graphic-t-shirt-streetwear-pro-385407.jpg",
+      "category": "Men · Tees",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Night City"
+      ],
+      "gender": "Men",
+      "type": "Tees",
+      "search": "reflective tee silver men · tees new drop the archive new fashion 2026 night city men tees"
+    },
+    {
+      "id": "rengoku-flame",
+      "name": "Rengoku Flame",
+      "price": 8800,
+      "image": "assets/t-shirts/hinokami-kagura-back.png",
+      "category": "Demon Slayer · Apparel",
+      "series": "Demon Slayer",
+      "collections": [
+        "Demon Slayer"
+      ],
+      "gender": "",
+      "type": "Apparel",
+      "search": "rengoku flame demon slayer · apparel demon slayer demon slayer apparel"
+    },
+    {
+      "id": "ribbed-knit-cardigan-charcoal",
+      "name": "Ribbed Knit Cardigan Charcoal",
+      "price": 3300,
+      "image": "assets/newgen/knit-knit-cardigan-product-photo-c0d31a.jpg",
+      "category": "Women · Knitwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Women",
+      "type": "Outerwear",
+      "search": "ribbed knit cardigan charcoal women · knitwear new drop the archive new fashion 2026 women outerwear"
+    },
+    {
+      "id": "ribbed-tank-top-sand",
+      "name": "Ribbed Tank Top Sand",
+      "price": 1300,
+      "image": "assets/newgen/tee-oversized-graphic-t-shirt-streetwear-pro-85836c.jpg",
+      "category": "Women · Tops",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Neo Tokyo"
+      ],
+      "gender": "Women",
+      "type": "Tees",
+      "search": "ribbed tank top sand women · tops new drop the archive new fashion 2026 neo tokyo women tees"
+    },
+    {
+      "id": "ringer-tee-acid-green",
+      "name": "Ringer Tee Acid Green",
+      "price": 1500,
+      "image": "assets/newgen/tee-oversized-graphic-t-shirt-streetwear-pro-064f3e.jpg",
+      "category": "Women · Tees",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Women",
+      "type": "Tees",
+      "search": "ringer tee acid green women · tees new drop the archive new fashion 2026 women tees"
+    },
+    {
+      "id": "ripstop-cargo-pants",
+      "name": "Ripstop Cargo Pants",
+      "price": 3000,
+      "image": "assets/newgen/pants-cargo-pants-streetwear-product-photo-40c191.jpg",
+      "category": "Men · Cargo",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Men",
+      "type": "Bottoms",
+      "search": "ripstop cargo pants men · cargo new drop the archive new fashion 2026 men bottoms"
+    },
+    {
+      "id": "runner-sneaker-volt",
+      "name": "Runner Sneaker Volt",
+      "price": 4400,
+      "image": "assets/newgen/shoe-sneakers-white-product-photo-21f51f.png",
+      "category": "Unisex · Footwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Night City"
+      ],
+      "gender": "Unisex",
+      "type": "Accessories",
+      "search": "runner sneaker volt unisex · footwear new drop the archive new fashion 2026 night city unisex accessories"
+    },
+    {
+      "id": "seam-detail-wide-leg-jeans",
+      "name": "Seam Detail Wide-Leg Jeans",
+      "price": 3050,
+      "image": "assets/fashion/jean-women-1fe31edf149d.png",
+      "category": "Women · Wide-leg",
+      "series": "Denim Edit",
+      "collections": [
+        "Denim Edit"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "seam detail wide-leg jeans women · wide-leg denim edit denim edit women bottoms"
+    },
+    {
+      "id": "section-9-cargo-runners-unisex",
+      "name": "Section 9 Cargo Runners Unisex",
+      "price": 12400,
+      "image": "assets/newgen/jacket-bomber-jacket-streetwear-product-photo-e7efc0.jpg",
+      "category": "Unisex · Ghost in the Shell",
+      "series": "Ghost in the Shell",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Unisex",
+      "type": "Accessories",
+      "search": "section 9 cargo runners unisex unisex · ghost in the shell ghost in the shell the archive unisex accessories"
+    },
+    {
+      "id": "sherpa-denim-jacket",
+      "name": "Sherpa Denim Jacket",
+      "price": 3900,
+      "image": "assets/newgen/jacket-bomber-jacket-streetwear-product-photo-c6673b.jpg",
+      "category": "Men · Outerwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Men",
+      "type": "Outerwear",
+      "search": "sherpa denim jacket men · outerwear new drop the archive new fashion 2026 men outerwear"
+    },
+    {
+      "id": "shinobi-street-kimono",
+      "name": "SHINOBI STREET KIMONO",
+      "price": 14800,
+      "image": "assets/generated/gojo-infinite-tee-1774247527626.png",
+      "category": "Featured · Outerwear",
+      "series": "Featured",
+      "collections": [
+        "Featured"
+      ],
+      "gender": "",
+      "type": "Outerwear",
+      "search": "shinobi street kimono featured · outerwear featured featured outerwear"
+    },
+    {
+      "id": "shinobu-butterfly",
+      "name": "Shinobu Butterfly",
+      "price": 3840,
+      "image": "assets/cdn/rengoku-flame-d1f032.png",
+      "category": "Demon Slayer · Apparel",
+      "series": "Demon Slayer",
+      "collections": [
+        "Demon Slayer"
+      ],
+      "gender": "",
+      "type": "Apparel",
+      "search": "shinobu butterfly demon slayer · apparel demon slayer demon slayer apparel"
+    },
+    {
+      "id": "skate-sneaker-white",
+      "name": "Skate Sneaker White",
+      "price": 3600,
+      "image": "assets/newgen/shoe-sneakers-white-product-photo-757cfd.jpg",
+      "category": "Unisex · Footwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Demon Slayer"
+      ],
+      "gender": "Unisex",
+      "type": "Accessories",
+      "search": "skate sneaker white unisex · footwear new drop the archive new fashion 2026 demon slayer unisex accessories"
+    },
+    {
+      "id": "slim-jean-wash-black",
+      "name": "Slim Jean Wash Black",
+      "price": 2800,
+      "image": "assets/newgen/jeans-baggy-jeans-streetwear-product-photo-051323.jpg",
+      "category": "Men · Denim",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Night City"
+      ],
+      "gender": "Men",
+      "type": "Bottoms",
+      "search": "slim jean wash black men · denim new drop the archive new fashion 2026 night city men bottoms"
+    },
+    {
+      "id": "sling-pack-black",
+      "name": "Sling Pack Black",
+      "price": 1900,
+      "image": "assets/newgen/bag-crossbody-sling-bag-product-photo-312047.jpg",
+      "category": "Unisex · Bags",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Night City"
+      ],
+      "gender": "Unisex",
+      "type": "Apparel",
+      "search": "sling pack black unisex · bags new drop the archive new fashion 2026 night city unisex apparel"
+    },
+    {
+      "id": "slogan-tee-oversized",
+      "name": "Slogan Tee Oversized",
+      "price": 1600,
+      "image": "assets/newgen/tee-oversized-graphic-t-shirt-streetwear-pro-add3f8.jpg",
+      "category": "Men · Tees",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Neo Tokyo"
+      ],
+      "gender": "Men",
+      "type": "Tees",
+      "search": "slogan tee oversized men · tees new drop the archive new fashion 2026 neo tokyo men tees"
+    },
+    {
+      "id": "studded-belt-black",
+      "name": "Studded Belt Black",
+      "price": 1300,
+      "image": "assets/newgen/accessory-chain-necklace-product-photo-f4f4a8.jpg",
+      "category": "Unisex · Belts",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Cursed Energy"
+      ],
+      "gender": "Unisex",
+      "type": "Accessories",
+      "search": "studded belt black unisex · belts new drop the archive new fashion 2026 cursed energy unisex accessories"
+    },
+    {
+      "id": "suede-bomber-jacket-brown",
+      "name": "Suede Bomber Jacket Brown",
+      "price": 5200,
+      "image": "assets/newgen/jacket-bomber-jacket-streetwear-product-photo-c4b59c.webp",
+      "category": "Men · Outerwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Men",
+      "type": "Outerwear",
+      "search": "suede bomber jacket brown men · outerwear new drop the archive new fashion 2026 men outerwear"
+    },
+    {
+      "id": "sukuna-cursed-royale",
+      "name": "Sukuna Cursed Royale",
+      "price": 9200,
+      "image": "assets/generated/cursed-energy-product-sukuna-1773032399164.png",
+      "category": "Cursed Energy · Apparel",
+      "series": "Cursed Energy",
+      "collections": [
+        "Cursed Energy"
+      ],
+      "gender": "",
+      "type": "Apparel",
+      "search": "sukuna cursed royale cursed energy · apparel cursed energy cursed energy apparel"
+    },
+    {
+      "id": "sukuna-cursed-seal-tee-unisex",
+      "name": "Sukuna Cursed Seal Tee Unisex",
+      "price": 4400,
+      "image": "assets/newgen/tee-oversized-graphic-t-shirt-streetwear-pro-71f0db.jpg",
+      "category": "Unisex · Jujutsu Kaisen",
+      "series": "Jujutsu Kaisen",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Unisex",
+      "type": "Tees",
+      "search": "sukuna cursed seal tee unisex unisex · jujutsu kaisen jujutsu kaisen the archive unisex tees"
+    },
+    {
+      "id": "sunday-wide-leg-jeans",
+      "name": "Sunday Wide-Leg Jeans",
+      "price": 2900,
+      "image": "assets/fashion/jean-women-4c08d816d0d8.jpg",
+      "category": "Women · Wide-leg",
+      "series": "Denim Edit",
+      "collections": [
+        "Denim Edit"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "sunday wide-leg jeans women · wide-leg denim edit denim edit women bottoms"
+    },
+    {
+      "id": "sweat-shorts-acid-green",
+      "name": "Sweat Shorts Acid Green",
+      "price": 1800,
+      "image": "assets/newgen/pants-cargo-pants-streetwear-product-photo-237c6c.jpg",
+      "category": "Men · Shorts",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Neo Tokyo"
+      ],
+      "gender": "Men",
+      "type": "Bottoms",
+      "search": "sweat shorts acid green men · shorts new drop the archive new fashion 2026 neo tokyo men bottoms"
+    },
+    {
+      "id": "sweat-shorts-grey",
+      "name": "Sweat Shorts Grey",
+      "price": 1900,
+      "image": "assets/newgen/pants-cargo-pants-streetwear-product-photo-ea0774.jpg",
+      "category": "Men · Shorts",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Men",
+      "type": "Bottoms",
+      "search": "sweat shorts grey men · shorts new drop the archive new fashion 2026 men bottoms"
+    },
+    {
+      "id": "tactical-shinobi-belt-unisex",
+      "name": "Tactical Shinobi Belt Unisex",
+      "price": 2800,
+      "image": "assets/cdn/sukuna-cursed-seal-tee-677a45.png",
+      "category": "Unisex · Accessories",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Unisex",
+      "type": "Accessories",
+      "search": "tactical shinobi belt unisex unisex · accessories streetwear the archive unisex accessories"
+    },
+    {
+      "id": "tanjiro-hoodie",
+      "name": "Tanjiro Hoodie",
+      "price": 6800,
+      "image": "assets/t-shirts/hinokami-kagura-main.png",
+      "category": "Demon Slayer · Outerwear",
+      "series": "Demon Slayer",
+      "collections": [
+        "Demon Slayer"
+      ],
+      "gender": "",
+      "type": "Outerwear",
+      "search": "tanjiro hoodie demon slayer · outerwear demon slayer demon slayer outerwear"
+    },
+    {
+      "id": "tapered-cargo-grey",
+      "name": "Tapered Cargo Grey",
+      "price": 3100,
+      "image": "assets/newgen/pants-cargo-pants-streetwear-product-photo-be5e9e.jpg",
+      "category": "Men · Cargo",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Cursed Energy"
+      ],
+      "gender": "Men",
+      "type": "Bottoms",
+      "search": "tapered cargo grey men · cargo new drop the archive new fashion 2026 cursed energy men bottoms"
+    },
+    {
+      "id": "tapered-track-jacket",
+      "name": "Tapered Track Jacket",
+      "price": 3100,
+      "image": "assets/newgen/jacket-bomber-jacket-streetwear-product-photo-cb9873.jpg",
+      "category": "Women · Outerwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Night City"
+      ],
+      "gender": "Women",
+      "type": "Outerwear",
+      "search": "tapered track jacket women · outerwear new drop the archive new fashion 2026 night city women outerwear"
+    },
+    {
+      "id": "tapered-track-pants-grey",
+      "name": "Tapered Track Pants Grey",
+      "price": 2300,
+      "image": "assets/newgen/pants-cargo-pants-streetwear-product-photo-7066ed.png",
+      "category": "Men · Pants",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Men",
+      "type": "Bottoms",
+      "search": "tapered track pants grey men · pants new drop the archive new fashion 2026 men bottoms"
+    },
+    {
+      "id": "tech-cargo-pants-black",
+      "name": "Tech Cargo Pants Black",
+      "price": 3300,
+      "image": "assets/newgen/pants-cargo-pants-streetwear-product-photo-a085b8.jpg",
+      "category": "Men · Cargo",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Night City"
+      ],
+      "gender": "Men",
+      "type": "Bottoms",
+      "search": "tech cargo pants black men · cargo new drop the archive new fashion 2026 night city men bottoms"
+    },
+    {
+      "id": "titan-ii-bomber",
+      "name": "TITAN-II BOMBER",
+      "price": 12800,
+      "image": "assets/t-shirts/nine-tails-unleashed-main.png",
+      "category": "Featured · Outerwear",
+      "series": "Featured",
+      "collections": [
+        "Featured"
+      ],
+      "gender": "",
+      "type": "Outerwear",
+      "search": "titan-ii bomber featured · outerwear featured featured outerwear"
+    },
+    {
+      "id": "tokyo-oversized-tee-white",
+      "name": "Tokyo Oversized Tee White",
+      "price": 1800,
+      "image": "assets/newgen/tee-oversized-graphic-t-shirt-streetwear-pro-1891ec.webp",
+      "category": "Unisex · Tees",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Neo Tokyo"
+      ],
+      "gender": "Unisex",
+      "type": "Tees",
+      "search": "tokyo oversized tee white unisex · tees new drop the archive new fashion 2026 neo tokyo unisex tees"
+    },
+    {
+      "id": "track-jacket-retro-blue",
+      "name": "Track Jacket Retro Blue",
+      "price": 3200,
+      "image": "assets/newgen/jacket-bomber-jacket-streetwear-product-photo-a61d7b.webp",
+      "category": "Women · Outerwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Demon Slayer"
+      ],
+      "gender": "Women",
+      "type": "Outerwear",
+      "search": "track jacket retro blue women · outerwear new drop the archive new fashion 2026 demon slayer women outerwear"
+    },
+    {
+      "id": "two-tone-track-top",
+      "name": "Two Tone Track Top",
+      "price": 3300,
+      "image": "assets/newgen/jacket-bomber-jacket-streetwear-product-photo-3fca41.jpg",
+      "category": "Men · Outerwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Neo Tokyo"
+      ],
+      "gender": "Men",
+      "type": "Tees",
+      "search": "two tone track top men · outerwear new drop the archive new fashion 2026 neo tokyo men tees"
+    },
+    {
+      "id": "utility-vest-black",
+      "name": "Utility Vest Black",
+      "price": 2800,
+      "image": "assets/newgen/jacket-bomber-jacket-streetwear-product-photo-edd742.jpg",
+      "category": "Women · Outerwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Cursed Energy"
+      ],
+      "gender": "Women",
+      "type": "Outerwear",
+      "search": "utility vest black women · outerwear new drop the archive new fashion 2026 cursed energy women outerwear"
+    },
+    {
+      "id": "varsity-bomber-navy",
+      "name": "Varsity Bomber Navy",
+      "price": 4600,
+      "image": "assets/newgen/jacket-bomber-jacket-streetwear-product-photo-93964c.jpg",
+      "category": "Men · Outerwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Men",
+      "type": "Outerwear",
+      "search": "varsity bomber navy men · outerwear new drop the archive new fashion 2026 men outerwear"
+    },
+    {
+      "id": "void-black-zip-hoodie",
+      "name": "Void Black Zip Hoodie",
+      "price": 3600,
+      "image": "assets/newgen/hoodie-oversized-hoodie-streetwear-product-phot-e755f5.jpg",
+      "category": "Men · Hoodies",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Cursed Energy"
+      ],
+      "gender": "Men",
+      "type": "Outerwear",
+      "search": "void black zip hoodie men · hoodies new drop the archive new fashion 2026 cursed energy men outerwear"
+    },
+    {
+      "id": "void-striker-cargos",
+      "name": "VOID-STRIKER CARGOS",
+      "price": 11200,
+      "image": "assets/generated/night-city-cyber-joggers-1773032534008.png",
+      "category": "Featured · Bottoms",
+      "series": "Featured",
+      "collections": [
+        "Featured"
+      ],
+      "gender": "",
+      "type": "Bottoms",
+      "search": "void-striker cargos featured · bottoms featured featured bottoms"
+    },
+    {
+      "id": "waffle-knit-crew-sand",
+      "name": "Waffle Knit Crew Sand",
+      "price": 2400,
+      "image": "assets/newgen/knit-knit-cardigan-product-photo-efdc3b.jpg",
+      "category": "Men · Knitwear",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Night City"
+      ],
+      "gender": "Men",
+      "type": "Outerwear",
+      "search": "waffle knit crew sand men · knitwear new drop the archive new fashion 2026 night city men outerwear"
+    },
+    {
+      "id": "washed-baggy-jeans-cream",
+      "name": "Washed Baggy Jeans Cream",
+      "price": 2800,
+      "image": "assets/newgen/jeans-baggy-jeans-streetwear-product-photo-b3bc76.jpg",
+      "category": "Women · Denim",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "washed baggy jeans cream women · denim new drop the archive new fashion 2026 women bottoms"
+    },
+    {
+      "id": "water-breathing-hoodie",
+      "name": "Water Breathing Hoodie",
+      "price": 6000,
+      "image": "assets/hoodies/water-breathing-hoodie-main.jpeg",
+      "category": "Demon Slayer · Outerwear",
+      "series": "Demon Slayer",
+      "collections": [
+        "Demon Slayer"
+      ],
+      "gender": "",
+      "type": "Outerwear",
+      "search": "water breathing hoodie demon slayer · outerwear demon slayer demon slayer outerwear"
+    },
+    {
+      "id": "water-wash-hoodie-sky",
+      "name": "Water Wash Hoodie Sky",
+      "price": 3300,
+      "image": "assets/newgen/hoodie-oversized-hoodie-streetwear-product-phot-9da31c.jpg",
+      "category": "Men · Hoodies",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Demon Slayer"
+      ],
+      "gender": "Men",
+      "type": "Outerwear",
+      "search": "water wash hoodie sky men · hoodies new drop the archive new fashion 2026 demon slayer men outerwear"
+    },
+    {
+      "id": "wide-cord-pants-olive",
+      "name": "Wide Cord Pants Olive",
+      "price": 2800,
+      "image": "assets/newgen/pants-cargo-pants-streetwear-product-photo-b935c0.jpg",
+      "category": "Women · Pants",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "wide cord pants olive women · pants new drop the archive new fashion 2026 women bottoms"
+    },
+    {
+      "id": "wide-jeans-acid-wash",
+      "name": "Wide Jeans Acid Wash",
+      "price": 3200,
+      "image": "assets/newgen/jeans-baggy-jeans-streetwear-product-photo-13f190.jpg",
+      "category": "Women · Denim",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Neo Tokyo"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "wide jeans acid wash women · denim new drop the archive new fashion 2026 neo tokyo women bottoms"
+    },
+    {
+      "id": "wide-leg-denim-indigo",
+      "name": "Wide Leg Denim Indigo",
+      "price": 2900,
+      "image": "assets/newgen/jeans-baggy-jeans-streetwear-product-photo-8f2eb7.jpg",
+      "category": "Women · Denim",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Women",
+      "type": "Apparel",
+      "search": "wide leg denim indigo women · denim new drop the archive new fashion 2026 women apparel"
+    },
+    {
+      "id": "wide-leg-trousers-ink",
+      "name": "Wide Leg Trousers Ink",
+      "price": 2700,
+      "image": "assets/newgen/pants-cargo-pants-streetwear-product-photo-41a2cc.jpg",
+      "category": "Women · Trousers",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026",
+        "Cursed Energy"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "wide leg trousers ink women · trousers new drop the archive new fashion 2026 cursed energy women bottoms"
+    },
+    {
+      "id": "women-cargo-shorts-black",
+      "name": "Women Cargo Shorts Black",
+      "price": 1900,
+      "image": "assets/cdn/black-cargo-shorts-with-many-straps-27d7ee.png",
+      "category": "Women · Bottoms",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "women cargo shorts black women · bottoms streetwear the archive women bottoms"
+    },
+    {
+      "id": "women-crew-sweatshirt-white",
+      "name": "Women Crew Sweatshirt White",
+      "price": 4200,
+      "image": "assets/fashion/photo-1620799140408-edc6dcb6d633.jpg",
+      "category": "Women · Sweatshirts",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Women",
+      "type": "Tees",
+      "search": "women crew sweatshirt white women · sweatshirts streetwear the archive women tees"
+    },
+    {
+      "id": "women-graphic-hoodie-black",
+      "name": "Women Graphic Hoodie Black",
+      "price": 4500,
+      "image": "assets/cdn/black-graphic-hoodie-with-white-logo-2cdc74.png",
+      "category": "Women · Hoodies",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Women",
+      "type": "Outerwear",
+      "search": "women graphic hoodie black women · hoodies streetwear the archive women outerwear"
+    },
+    {
+      "id": "women-graphic-joggers",
+      "name": "Women Graphic Joggers",
+      "price": 2900,
+      "image": "assets/cdn/anime-graphic-joggers-ac17a0.png",
+      "category": "Women · Pants",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "women graphic joggers women · pants streetwear the archive women bottoms"
+    },
+    {
+      "id": "women-graphic-tee-red-cloud",
+      "name": "Women Graphic Tee Red Cloud",
+      "price": 2600,
+      "image": "assets/cdn/white-t-shirt-with-red-cloud-logo-3663c1.png",
+      "category": "Women · Shirts",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Women",
+      "type": "Tees",
+      "search": "women graphic tee red cloud women · shirts streetwear the archive women tees"
+    },
+    {
+      "id": "women-long-sleeve-tee",
+      "name": "Women Long-Sleeve Tee",
+      "price": 1900,
+      "image": "assets/cdn/minimalist-long-sleeve-t-shirt-with-ja-e27d0e.png",
+      "category": "Women · Shirts",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Women",
+      "type": "Tees",
+      "search": "women long-sleeve tee women · shirts streetwear the archive women tees"
+    },
+    {
+      "id": "women-oversized-black-tee",
+      "name": "Women Oversized Black Tee",
+      "price": 2400,
+      "image": "assets/cdn/black-minimalist-anime-t-shirt-1c0599.png",
+      "category": "Women · Shirts",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Women",
+      "type": "Tees",
+      "search": "women oversized black tee women · shirts streetwear the archive women tees"
+    },
+    {
+      "id": "women-oversized-hoodie",
+      "name": "Women Oversized Hoodie",
+      "price": 3900,
+      "image": "assets/cdn/black-anime-hoodie-with-flame-graphics-59266a.png",
+      "category": "Women · Hoodies",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Women",
+      "type": "Outerwear",
+      "search": "women oversized hoodie women · hoodies streetwear the archive women outerwear"
+    },
+    {
+      "id": "women-oversized-white-tee",
+      "name": "Women Oversized White Tee",
+      "price": 2200,
+      "image": "assets/cdn/oversized-white-anime-graphic-t-shirt-71804a.png",
+      "category": "Women · Shirts",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Women",
+      "type": "Tees",
+      "search": "women oversized white tee women · shirts streetwear the archive women tees"
+    },
+    {
+      "id": "women-relaxed-sweatpants-grey",
+      "name": "Women Relaxed Sweatpants Grey",
+      "price": 2600,
+      "image": "assets/fashion/photo-1588117305388-c2631a279f82.jpg",
+      "category": "Women · Pants",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "women relaxed sweatpants grey women · pants streetwear the archive women bottoms"
+    },
+    {
+      "id": "women-wide-leg-jean-style-1",
+      "name": "Women Wide-Leg Jean Style 1",
+      "price": 2800,
+      "image": "assets/fashion/photo-1598554747436-c9293d6a588f.jpg",
+      "category": "Women · Jeans",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "women wide-leg jean style 1 women · jeans streetwear the archive women bottoms"
+    },
+    {
+      "id": "women-wide-leg-jean-style-10",
+      "name": "Women Wide-Leg Jean Style 10",
+      "price": 3050,
+      "image": "assets/fashion/jean-women-1fe31edf149d.png",
+      "category": "Women · Jeans",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "women wide-leg jean style 10 women · jeans streetwear the archive women bottoms"
+    },
+    {
+      "id": "women-wide-leg-jean-style-2",
+      "name": "Women Wide-Leg Jean Style 2",
+      "price": 3200,
+      "image": "assets/fashion/jean-women-5ec93480f187.jpg",
+      "category": "Women · Jeans",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "women wide-leg jean style 2 women · jeans streetwear the archive women bottoms"
+    },
+    {
+      "id": "women-wide-leg-jean-style-3",
+      "name": "Women Wide-Leg Jean Style 3",
+      "price": 2600,
+      "image": "assets/fashion/jean-women-b33a17686afa.jpg",
+      "category": "Women · Jeans",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "women wide-leg jean style 3 women · jeans streetwear the archive women bottoms"
+    },
+    {
+      "id": "women-wide-leg-jean-style-4",
+      "name": "Women Wide-Leg Jean Style 4",
+      "price": 3400,
+      "image": "assets/fashion/jean-women-14dcfe6cf9d8.jpg",
+      "category": "Women · Jeans",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "women wide-leg jean style 4 women · jeans streetwear the archive women bottoms"
+    },
+    {
+      "id": "women-wide-leg-jean-style-5",
+      "name": "Women Wide-Leg Jean Style 5",
+      "price": 2900,
+      "image": "assets/fashion/jean-women-4c08d816d0d8.jpg",
+      "category": "Women · Jeans",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "women wide-leg jean style 5 women · jeans streetwear the archive women bottoms"
+    },
+    {
+      "id": "women-wide-leg-jean-style-6",
+      "name": "Women Wide-Leg Jean Style 6",
+      "price": 3100,
+      "image": "assets/fashion/jean-women-483e7b05d793.png",
+      "category": "Women · Jeans",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "women wide-leg jean style 6 women · jeans streetwear the archive women bottoms"
+    },
+    {
+      "id": "women-wide-leg-jean-style-7",
+      "name": "Women Wide-Leg Jean Style 7",
+      "price": 2750,
+      "image": "assets/fashion/jean-women-369c625f8739.jpg",
+      "category": "Women · Jeans",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "women wide-leg jean style 7 women · jeans streetwear the archive women bottoms"
+    },
+    {
+      "id": "women-wide-leg-jean-style-8",
+      "name": "Women Wide-Leg Jean Style 8",
+      "price": 3300,
+      "image": "assets/fashion/jean-women-ae5ac93bbca9.jpg",
+      "category": "Women · Jeans",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "women wide-leg jean style 8 women · jeans streetwear the archive women bottoms"
+    },
+    {
+      "id": "women-wide-leg-jean-style-9",
+      "name": "Women Wide-Leg Jean Style 9",
+      "price": 2950,
+      "image": "assets/fashion/jean-women-172673208dc8.png",
+      "category": "Women · Jeans",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "women wide-leg jean style 9 women · jeans streetwear the archive women bottoms"
+    },
+    {
+      "id": "women-wide-leg-jeans-blue",
+      "name": "Women Wide-Leg Jeans Blue",
+      "price": 2800,
+      "image": "assets/fashion/photo-1598554747436-c9293d6a588f.jpg",
+      "category": "Women · Denim",
+      "series": "Featured",
+      "collections": [
+        "Featured"
+      ],
+      "gender": "Women",
+      "type": "Bottoms",
+      "search": "women wide-leg jeans blue women · denim featured featured women bottoms"
+    },
+    {
+      "id": "women-zip-hoodie-set-yellow",
+      "name": "Women Zip Hoodie Set Yellow",
+      "price": 4800,
+      "image": "assets/fashion/photo-1515886657613-9f3515b0c78f.jpg",
+      "category": "Women · Hoodies",
+      "series": "Streetwear",
+      "collections": [
+        "The Archive"
+      ],
+      "gender": "Women",
+      "type": "Outerwear",
+      "search": "women zip hoodie set yellow women · hoodies streetwear the archive women outerwear"
+    },
+    {
+      "id": "y2k-baby-tee-lime",
+      "name": "Y2K Baby Tee Lime",
+      "price": 1400,
+      "image": "assets/newgen/tee-oversized-graphic-t-shirt-streetwear-pro-3a09cd.jpg",
+      "category": "Women · Tees",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Women",
+      "type": "Tees",
+      "search": "y2k baby tee lime women · tees new drop the archive new fashion 2026 women tees"
+    },
+    {
+      "id": "zenitsu-oversized",
+      "name": "Zenitsu Oversized",
+      "price": 7600,
+      "image": "assets/cdn/water-breathing-hoodie-1b6ba7.png",
+      "category": "Demon Slayer · Apparel",
+      "series": "Demon Slayer",
+      "collections": [
+        "Demon Slayer"
+      ],
+      "gender": "",
+      "type": "Apparel",
+      "search": "zenitsu oversized demon slayer · apparel demon slayer demon slayer apparel"
+    },
+    {
+      "id": "zip-through-hoodie-jet",
+      "name": "Zip Through Hoodie Jet",
+      "price": 3400,
+      "image": "assets/newgen/hoodie-oversized-hoodie-streetwear-product-phot-4188d8.jpg",
+      "category": "Men · Hoodies",
+      "series": "New Drop",
+      "collections": [
+        "The Archive",
+        "New Fashion 2026"
+      ],
+      "gender": "Men",
+      "type": "Outerwear",
+      "search": "zip through hoodie jet men · hoodies new drop the archive new fashion 2026 men outerwear"
+    }
+  ]
+}

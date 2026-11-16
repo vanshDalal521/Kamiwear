@@ -174,7 +174,7 @@
     function classifyProduct(name) {
         const value = String(name || '').toUpperCase();
         if (/SNEAKER|RUNNER|SHOE|BOOT/.test(value)) return 'ACCESSORIES';
-        if (/BELT|BAG|TOTE|CAP|HAT|MASK|PENDANT|SOCKS|ACCESSOR/.test(value)) return 'ACCESSORIES';
+        if (/\b(BELT|BAG|TOTE|CAP|HAT|MASK|PENDANT|SOCKS)\b|ACCESSOR/.test(value)) return 'ACCESSORIES';
         if (/JOGGER|CARGO|PANT|SHORT|JEAN|TROUSER/.test(value)) return 'BOTTOMS';
         if (/TEE|T-SHIRT|SHIRT|TOP|LONG SLEEVE/.test(value)) return 'TEES';
         if (/HOODIE|JACKET|VEST|KNIT|BOMBER|SWEATSHIRT|COAT|KIMONO/.test(value)) return 'OUTERWEAR';

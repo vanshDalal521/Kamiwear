@@ -84,7 +84,7 @@
                 <a class="text-sm font-medium hover:text-primary transition-colors"
                     href="index.html#collections">COLLECTIONS</a>
                 <a class="text-sm font-medium hover:text-primary transition-colors" href="new-fashion.html">NEW ARRIVALS</a>
-                <a class="text-sm font-medium hover:text-primary transition-colors" href="#">LOOKBOOK</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="lookbook.html">LOOKBOOK</a>
             </div>
         </div>
         <div class="flex items-center gap-6">
@@ -935,7 +935,7 @@
                         </div>
                     </div>
                     <!-- NEWGEN:SHOP:women:END -->
-                    <h3 class="font-syne text-xl font-bold tracking-widest uppercase mb-4 flex items-center gap-3">
+                    <h3 id="women-jeans" class="font-syne text-xl font-bold tracking-widest uppercase mb-4 flex items-center gap-3 scroll-mt-24">
                         <span class="h-px flex-1 bg-white/10"></span>
                         <span class="text-pink-400">Wide-Leg Jeans</span>
                         <span class="h-px flex-1 bg-white/10"></span>
@@ -2966,6 +2966,32 @@
                         // Initialize: show all
                         filterGender('all');
                     })();
+
+                    // Deep link for the shop's wide-leg denim row:
+                    // filter to women's jeans, reveal the row, then jump to it.
+                    (function () {
+                        const jumpToDenim = () => {
+                            if (location.hash !== '#women-jeans') return;
+                            const heading = document.getElementById('women-jeans');
+                            if (!heading || typeof window.revealMoreProducts !== 'function') return;
+                            if (typeof window.filterGender === 'function') window.filterGender('women');
+                            const jeansChip = Array.from(document.querySelectorAll('aside button'))
+                                .find(chip => chip.textContent.trim().toUpperCase() === 'JEANS');
+                            if (jeansChip) jeansChip.click();
+                            const grid = heading.nextElementSibling;
+                            const jeans = grid ? Array.from(grid.querySelectorAll('.product-card')) : [];
+                            let guard = 0;
+                            while ((getComputedStyle(heading).display === 'none'
+                                || jeans.some(card => card.style.display === 'none')) && guard < 8) {
+                                window.revealMoreProducts();
+                                guard += 1;
+                            }
+                            if (getComputedStyle(heading).display !== 'none') {
+                                heading.scrollIntoView({ block: 'start' });
+                            }
+                        };
+                        window.addEventListener('load', () => setTimeout(jumpToDenim, 120));
+                    })();
                 </script>
                 <!-- Load More -->
                 <div class="mt-16 flex justify-center">
@@ -3041,13 +3067,13 @@
         </div>
     </footer>
         <script src="js/core/assets.js?v=4"></script>
-<script src="js/store/core.js?v=6"></script>
+<script src="js/store/core.js?v=7"></script>
     <script src="js/components/badge-manager.js?v=4"></script>
     <script src="js/components/cart-drawer.js?v=4"></script>
-    <script src="js/components/profile-modal.js?v=6"></script>
-    <script src="js/components/search-overlay.js?v=4"></script>
+    <script src="js/components/profile-modal.js?v=7"></script>
+    <script src="js/components/search-overlay.js?v=5"></script>
     <script src="js/core/app.js?v=4"></script>
-    <script src="js/core/enhance.js?v=7"></script>
+    <script src="js/core/enhance.js?v=8"></script>
 </body>
 
 </html>
