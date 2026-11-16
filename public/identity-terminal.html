@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kamiwear | Identity Terminal</title>
+    <meta name="description" content="The Kamiwear Identity Terminal: one account for orders, wishlist, KamiKoins and a secure 7-day session." />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Orbitron:wght@500;700&amp;family=Syne:wght@600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f9f906",
+                        "accent-purple": "#6366f1",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#0A0812",
+                        "glass": "rgba(255, 255, 255, 0.03)",
+                        "glass-border": "rgba(255, 255, 255, 0.1)"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "syne": ["Syne", "sans-serif"],
+                        "orbitron": ["Orbitron", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --ink: #08070d;
+            --paper: #f4f1e8;
+            --acid: #f9f906;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--ink);
+            color: #f8fafc;
+            font-family: Inter, system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+        }
+
+        .eyebrow {
+            font-family: Orbitron, sans-serif;
+            font-size: 10px;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--acid);
+        }
+
+        .page-title {
+            font-family: Syne, sans-serif;
+            font-weight: 800;
+            font-size: clamp(1.25rem, 7.6vw, 7rem);
+            line-height: 0.9;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+        }
+
+        .legal-prose h2 {
+            font-family: Syne, sans-serif;
+            font-size: clamp(1.6rem, 3vw, 2.35rem);
+            line-height: 1;
+            letter-spacing: -0.035em;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .legal-prose h3 {
+            font-family: Inter, sans-serif;
+            font-size: 0.82rem;
+            line-height: 1.5;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .legal-prose p,
+        .legal-prose li {
+            font-size: 0.92rem;
+            line-height: 1.85;
+            color: rgba(203, 213, 225, 0.82);
+        }
+
+        .legal-prose ul,
+        .legal-prose ol {
+            display: grid;
+            gap: 0.55rem;
+            padding-left: 1.15rem;
+        }
+
+        .legal-prose ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .legal-prose ul li {
+            position: relative;
+            padding-left: 1.1rem;
+        }
+
+        .legal-prose ul li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.75rem;
+            width: 5px;
+            height: 5px;
+            border-radius: 999px;
+            background: var(--acid);
+            opacity: 0.75;
+        }
+
+        .legal-prose ol {
+            list-style: decimal;
+        }
+
+        .legal-prose ol li::marker {
+            color: var(--acid);
+            font-family: Orbitron, sans-serif;
+            font-size: 0.7rem;
+        }
+
+        .legal-prose a {
+            color: var(--acid);
+            text-decoration: underline;
+            text-decoration-color: rgba(249, 249, 6, 0.35);
+            text-underline-offset: 3px;
+        }
+
+        .legal-prose strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .legal-prose section {
+            scroll-margin-top: 120px;
+        }
+
+        .legal-prose section + section {
+            padding-top: 2.4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .fact-row {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 1.5rem;
+            padding: 0.85rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .fact-row:last-child {
+            border-bottom: 0;
+        }
+
+        .fact-row dt {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.42);
+        }
+
+        .fact-row dd {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.85);
+            text-align: right;
+        }
+
+        .toc-link {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+            transition: color 0.2s ease;
+        }
+
+        .toc-link::before {
+            content: "";
+            width: 14px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+            transition: background 0.2s ease, width 0.2s ease;
+        }
+
+        .toc-link:hover {
+            color: var(--acid);
+        }
+
+        .toc-link:hover::before {
+            width: 22px;
+            background: var(--acid);
+        }
+
+        .doc-card {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.025);
+            transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+        }
+
+        .doc-card:hover {
+            border-color: rgba(249, 249, 6, 0.4);
+            background: rgba(249, 249, 6, 0.045);
+            transform: translateY(-2px);
+        }
+
+        .faq-item {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.025);
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-item summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            cursor: pointer;
+            padding: 1rem 1.15rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            color: rgba(255, 255, 255, 0.9);
+            list-style: none;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item .faq-plus {
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            width: 22px;
+            height: 22px;
+            border: 1px solid rgba(249, 249, 6, 0.35);
+            border-radius: 999px;
+            color: var(--acid);
+            font-size: 15px;
+            line-height: 1;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .faq-item[open] .faq-plus {
+            transform: rotate(45deg);
+            background: rgba(249, 249, 6, 0.1);
+        }
+
+        .faq-item .faq-answer {
+            padding: 0 1.15rem 1.1rem;
+            font-size: 0.86rem;
+            line-height: 1.8;
+            color: rgba(203, 213, 225, 0.78);
+        }
+
+        .legal-prose table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.78rem;
+        }
+
+        .legal-prose th,
+        .legal-prose td {
+            padding: 0.8rem 0.7rem;
+            text-align: left;
+            vertical-align: top;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+        }
+
+        .legal-prose th {
+            font-family: Orbitron, sans-serif;
+            font-size: 8px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        .legal-prose td {
+            color: rgba(203, 213, 225, 0.8);
+        }
+
+        .legal-prose code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.78em;
+            color: var(--acid);
+            background: rgba(249, 249, 6, 0.08);
+            border: 1px solid rgba(249, 249, 6, 0.16);
+            border-radius: 4px;
+            padding: 0.1em 0.35em;
+            white-space: nowrap;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            .doc-card {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-background-dark font-display text-slate-100 selection:bg-primary selection:text-black">
+
+    <div class="relative z-20 border-b border-white/10 bg-primary text-[#17140a]">
+        <div
+            class="mx-auto flex max-w-[1440px] items-center justify-center gap-2 px-5 py-2 text-center text-[9px] font-bold uppercase tracking-[0.22em] md:px-8">
+            <span class="material-symbols-outlined text-[14px]">verified_user</span>
+            <span>Kamiwear Systems · Transparent policies · Updated 16 November 2026</span>
+        </div>
+    </div>
+
+    <nav class="sticky top-0 z-50 border-b border-white/10 glass-panel">
+        <div class="mx-auto flex h-20 max-w-[1440px] items-center justify-between gap-5 px-5 md:px-8">
+            <a href="index.html" class="flex shrink-0 items-center gap-2.5 transition-opacity hover:opacity-80">
+                <span class="material-symbols-outlined text-2xl text-primary sm:text-3xl">token</span>
+                <span class="font-syne text-lg font-extrabold uppercase italic tracking-tighter sm:text-2xl">Kamiwear</span>
+            </a>
+            <div class="hidden items-center gap-7 lg:flex xl:gap-9">
+                <a class="text-[11px] font-bold uppercase tracking-[0.16em] text-white/70 transition-colors hover:text-primary"
+                    href="shop.html">Shop</a>
+                <a class="text-[11px] font-bold uppercase tracking-[0.16em] text-white/70 transition-colors hover:text-primary"
+                    href="index.html#collections">Collections</a>
+                <a class="text-[11px] font-bold uppercase tracking-[0.16em] text-white/70 transition-colors hover:text-primary"
+                    href="new-fashion.html">New Arrivals</a>
+                <a class="text-[11px] font-bold uppercase tracking-[0.16em] text-white/70 transition-colors hover:text-primary"
+                    href="women-denim.html">Denim Edit</a>
+                <a class="text-[11px] font-bold uppercase tracking-[0.16em] text-white/70 transition-colors hover:text-primary"
+                    href="lookbook.html">Lookbook</a>
+                <a class="border-b border-primary pb-1 text-[11px] font-bold uppercase tracking-[0.16em] text-primary"
+                    href="faq.html" aria-current="page">Support</a>
+            </div>
+            <div class="flex items-center gap-0.5 sm:gap-2">
+                <button type="button" aria-label="Search" data-kw-search
+                    class="hidden h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-white/10 sm:flex">
+                    <span class="material-symbols-outlined text-[22px]">search</span>
+                </button>
+                <a href="wishlist.html" aria-label="Wishlist"
+                    class="flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-white/10 sm:h-10 sm:w-10">
+                    <span class="material-symbols-outlined text-[21px] sm:text-[22px]">favorite</span>
+                </a>
+                <button type="button" aria-label="Open cart" onclick="if (window.toggleCart) window.toggleCart(true)"
+                    class="relative flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-white/10 sm:h-10 sm:w-10">
+                    <span class="material-symbols-outlined text-[21px] sm:text-[22px]">shopping_bag</span>
+                    <span id="cart-count-badge"
+                        class="absolute right-0.5 top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[9px] font-bold text-black">0</span>
+                </button>
+                <button id="profile-btn-trigger" type="button" aria-label="Profile"
+                    class="flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-white/10 sm:h-10 sm:w-10">
+                    <span class="material-symbols-outlined text-[21px] sm:text-[22px]">person</span>
+                </button>
+            </div>
+        </div>
+        <div class="overflow-x-auto border-t border-white/5 lg:hidden">
+            <div class="flex min-w-max items-center gap-6 px-5 py-3 text-[9px] font-bold uppercase tracking-[0.18em] text-white/60">
+                <a href="shop.html" class="hover:text-primary">Shop</a>
+                <a href="new-fashion.html" class="hover:text-primary">New</a>
+                <a href="women-denim.html" class="hover:text-primary">Denim</a>
+                <a href="index.html#collections" class="hover:text-primary">Collections</a>
+                <a href="lookbook.html" class="hover:text-primary">Lookbook</a>
+                <a href="faq.html" class="text-primary">Support</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative z-10">
+        <section class="mx-auto max-w-[1440px] px-5 pb-12 pt-14 md:px-8 md:pb-16 md:pt-20">
+            <div class="mb-7 flex flex-wrap items-center gap-4">
+                <span class="eyebrow">Account / Identity</span>
+                <span class="h-px w-16 bg-primary/50"></span>
+                <span class="font-orbitron text-[9px] uppercase tracking-[0.24em] text-white/40">Doc 03 / 06</span>
+                <span class="rounded-full border border-white/10 px-3 py-1 font-orbitron text-[8px] uppercase tracking-[0.16em] text-white/40">Updated 16 November 2026</span>
+            </div>
+            <h1 class="page-title">Identity<br /><span class="text-primary">Terminal</span></h1>
+            <div class="mt-8 grid items-start gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)] lg:gap-14">
+                <div>
+                    <p class="max-w-2xl text-sm leading-7 text-slate-400 md:text-base">One identity for your orders, wishlist, KamiKoins and the entire Kamiwear archive. The terminal is the front door; your dashboard lives inside.</p>
+                    <div class="mt-7 flex flex-wrap gap-2">
+                        <span class="rounded-full border border-white/10 px-3 py-1.5 text-[8px] font-bold uppercase tracking-[0.16em] text-white/55">Orders</span><span class="rounded-full border border-white/10 px-3 py-1.5 text-[8px] font-bold uppercase tracking-[0.16em] text-white/55">Wishlist</span><span class="rounded-full border border-white/10 px-3 py-1.5 text-[8px] font-bold uppercase tracking-[0.16em] text-white/55">KamiKoins</span><span class="rounded-full border border-white/10 px-3 py-1.5 text-[8px] font-bold uppercase tracking-[0.16em] text-white/55">Secure session</span><span class="rounded-full border border-white/10 px-3 py-1.5 text-[8px] font-bold uppercase tracking-[0.16em] text-white/55">Guest-friendly</span>
+                    </div>
+                </div>
+                <aside class="glass-panel rounded-[1.75rem] p-6 md:p-7">
+                    <p class="eyebrow">Quick read</p>
+                    <dl class="mt-4">
+                        <div class="fact-row">
+                            <dt>Sign-in</dt>
+                            <dd>Email + password</dd>
+                        </div><div class="fact-row">
+                            <dt>Optional</dt>
+                            <dd>Google Identity</dd>
+                        </div><div class="fact-row">
+                            <dt>Session</dt>
+                            <dd>Up to 7 days</dd>
+                        </div><div class="fact-row">
+                            <dt>Cookie</dt>
+                            <dd>httpOnly, SameSite=Lax</dd>
+                        </div><div class="fact-row">
+                            <dt>Guest cart</dt>
+                            <dd>Kept locally</dd>
+                        </div>
+                    </dl>
+                    <a href="mailto:support@kamiwear.com"
+                        class="mt-5 inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.14em] text-primary transition-colors hover:text-white">
+                        Talk to support
+                        <span class="material-symbols-outlined text-sm">arrow_outward</span>
+                    </a>
+                </aside>
+            </div>
+        </section>
+
+        <section class="mx-auto max-w-[1440px] px-5 pb-20 md:px-8 md:pb-28">
+            <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_290px] lg:gap-14">
+                <article class="legal-prose space-y-10">
+                    
+        <section id="what">
+            <p class="eyebrow">01 / Overview</p>
+            <h2 class="mt-3">What the Identity Terminal is</h2>
+            <p class="mt-4">The Identity Terminal is Kamiwear's account system. It links your orders, wishlist,
+                KamiKoins and profile to one email address, without turning your session into a localStorage
+                free-for-all.</p>
+            <p>You can browse, add to cart and build a wishlist as a guest. When you are ready, sign in or create an
+                identity to keep the archive connected across visits.</p>
+        </section>
+
+        <section id="access">
+            <p class="eyebrow">02 / Access</p>
+            <h2 class="mt-3">Access your identity</h2>
+            <div class="glass-panel mt-5 rounded-2xl p-5">
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                    <div>
+                        <p id="terminal-status" class="font-orbitron text-[9px] uppercase tracking-[0.2em] text-primary">Checking terminal…</p>
+                        <p id="terminal-copy" class="mt-2 text-xs leading-6 text-slate-400">Reading your local session.</p>
+                    </div>
+                    <a id="terminal-cta" href="register.html"
+                        class="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-[9px] font-extrabold uppercase tracking-[0.16em] text-black transition-colors hover:bg-white">
+                        Create an identity
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-5 grid gap-3 sm:grid-cols-2">
+                <div class="glass-panel rounded-2xl p-5">
+                    <span class="material-symbols-outlined text-2xl text-primary">person_add</span>
+                    <h3 class="mt-3">Create an identity</h3>
+                    <p class="mt-2">Register with a name, email and password. The first 1,000 XP starts your Genin
+                        tier.</p>
+                    <a href="register.html" class="mt-4 inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.14em] text-primary">Open registration <span class="material-symbols-outlined text-sm">arrow_outward</span></a>
+                </div>
+                <div class="glass-panel rounded-2xl p-5">
+                    <span class="material-symbols-outlined text-2xl text-primary">login</span>
+                    <h3 class="mt-3">Sign in</h3>
+                    <p class="mt-2">Already have an identity? Use the email and password you registered with. The
+                        profile modal works on every page.</p>
+                    <a href="register.html" class="mt-4 inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.14em] text-primary">Open sign-in <span class="material-symbols-outlined text-sm">arrow_outward</span></a>
+                </div>
+            </div>
+        </section>
+
+        <section id="capabilities">
+            <p class="eyebrow">03 / Capabilities</p>
+            <h2 class="mt-3">What you can do</h2>
+            <ul class="mt-4">
+                <li><strong>Open your dashboard.</strong> See your profile, tier and KamiKoin balance at
+                    <a href="profile.html">profile.html</a>.</li>
+                <li><strong>Track orders.</strong> Order history and status are tied to your identity, not a browser
+                    cache.</li>
+                <li><strong>Keep a wishlist.</strong> Save pieces from any product card and return to them from the
+                    <a href="wishlist.html">wishlist page</a>.</li>
+                <li><strong>Earn KamiKoins.</strong> Your XP balance appears in the terminal and grows with activity.</li>
+                <li><strong>Move between devices.</strong> Sign in with the same email to recover your profile and
+                    order history. Guest cart and wishlist items live in the browser, so they do not travel
+                    automatically.</li>
+            </ul>
+        </section>
+
+        <section id="security">
+            <p class="eyebrow">04 / Security</p>
+            <h2 class="mt-3">How the session works</h2>
+            <p class="mt-4">Kamiwear keeps authentication deliberately boring:</p>
+            <ul>
+                <li>The server issues an <strong>httpOnly session cookie</strong> named <code>kw_session</code>. It
+                    cannot be read by JavaScript.</li>
+                <li>The cookie is <strong>SameSite=Lax</strong>, scoped to the site path, and marked
+                    <strong>Secure</strong> in production.</li>
+                <li>Sessions last up to <strong>7 days</strong>. Logging out clears the cookie and the local profile
+                    cache.</li>
+                <li>Only the public profile is cached in localStorage for fast UI. The JWT is never stored there.</li>
+                <li>The server applies rate limiting, request sanitisation and CSRF protection to state-changing
+                    requests.</li>
+                <li>Passwords are hashed; Kamiwear never stores plaintext passwords.</li>
+            </ul>
+        </section>
+
+        <section id="troubleshooting">
+            <p class="eyebrow">05 / Troubleshooting</p>
+            <h2 class="mt-3">Common fixes</h2>
+            <div class="mt-5 grid gap-3">
+                <details class="faq-item" open>
+                    <summary>I logged out and the sign-in form disappeared.<span class="faq-plus">+</span></summary>
+                    <div class="faq-answer">Logout returns you to the same page with <code>?auth=true</code> and opens
+                        the sign-in view. If you closed it, click the profile icon in the navigation or visit
+                        <a href="register.html">register.html</a> and choose Sign In. Your last email is prefilled.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>My session ended unexpectedly.<span class="faq-plus">+</span></summary>
+                    <div class="faq-answer">Sessions expire after 7 days, after a server-side session revocation, or
+                        when the cookie is cleared. Sign in again with your email and password. If it keeps happening,
+                        check that your browser is not blocking cookies for this site.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>I forgot my password.<span class="faq-plus">+</span></summary>
+                    <div class="faq-answer">Self-serve reset is not live yet. Email
+                        <a href="mailto:support@kamiwear.com">support@kamiwear.com</a> from the address on the account and support will help.
+                        Never send your password in an email.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>My cart or wishlist vanished.<span class="faq-plus">+</span></summary>
+                    <div class="faq-answer">Guest cart and wishlist data are stored in this browser's local storage.
+                        Clearing site data, using private mode, or switching devices will make them appear empty.
+                        Signed-in order history is stored server-side and is not affected.</div>
+                </details>
+                <details class="faq-item">
+                    <summary>Why is Google Sign-In not visible?<span class="faq-plus">+</span></summary>
+                    <div class="faq-answer">It appears only when a Google client ID is configured for the deployment.
+                        When it is absent, use email and password. Both routes resolve to the same Kamiwear
+                        identity.</div>
+                </details>
+            </div>
+        </section>
+
+        <section id="data">
+            <p class="eyebrow">06 / Data</p>
+            <h2 class="mt-3">Your data, on the record</h2>
+            <p class="mt-4">The <a href="privacy.html">Privacy Policy</a> explains what Kamiwear collects and how long
+                it is kept. The <a href="cookie-policy.html">Cookie Policy</a> lists the exact cookie and storage keys
+                used by the terminal. The <a href="terms.html">Terms</a> cover acceptable use and account
+                responsibilities.</p>
+        </section>
+
+        <section id="contact">
+            <p class="eyebrow">07 / Contact</p>
+            <h2 class="mt-3">Open a support channel</h2>
+            <p class="mt-4">For account recovery, order issues or data requests, email
+                <a href="mailto:support@kamiwear.com">support@kamiwear.com</a>. Include the email address on the account and your order ID if
+                relevant. Support replies within one business day, Monday to Saturday.</p>
+        </section>
+                </article>
+                <aside class="hidden lg:block">
+                    <div class="sticky top-28 space-y-6">
+                        <div class="glass-panel rounded-2xl p-5">
+                            <p class="eyebrow">On this page</p>
+                            <nav aria-label="On this page" class="mt-4 grid gap-2.5">
+                                <a class="toc-link" href="#what">What it is</a><a class="toc-link" href="#access">Access your identity</a><a class="toc-link" href="#capabilities">What you can do</a><a class="toc-link" href="#security">Security model</a><a class="toc-link" href="#troubleshooting">Troubleshooting</a><a class="toc-link" href="#data">Data &amp; policies</a><a class="toc-link" href="#contact">Contact</a>
+                            </nav>
+                        </div>
+                        <div class="glass-panel rounded-2xl p-5">
+                            <p class="eyebrow">Need a human?</p>
+                            <p class="mt-3 text-xs leading-6 text-slate-500">Support replies within one business day,
+                                Monday to Saturday.</p>
+                            <a href="mailto:support@kamiwear.com"
+                                class="mt-4 inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2.5 text-[9px] font-extrabold uppercase tracking-[0.14em] text-black transition-colors hover:bg-white">
+                                Email support
+                                <span class="material-symbols-outlined text-sm">mail</span>
+                            </a>
+                            <a href="faq.html"
+                                class="mt-3 flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.14em] text-white/40 transition-colors hover:text-primary">
+                                Browse the FAQ
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="border-y border-white/10 bg-white/[0.02] py-14">
+            <div class="mx-auto max-w-[1440px] px-5 md:px-8">
+                <div class="flex flex-wrap items-end justify-between gap-4">
+                    <div>
+                        <p class="eyebrow">Related files</p>
+                        <h2 class="font-syne mt-3 text-2xl font-extrabold uppercase tracking-tight md:text-3xl">More from the terminal</h2>
+                    </div>
+                    <a href="faq.html"
+                        class="text-[9px] font-bold uppercase tracking-[0.16em] text-white/40 transition-colors hover:text-primary">Open
+                        support index →</a>
+                </div>
+                <div class="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    <a href="exchanges.html" class="doc-card group rounded-2xl p-5">
+                        <p class="font-orbitron text-[8px] uppercase tracking-[0.18em] text-primary/80">Exchanges</p>
+                        <p class="mt-2 text-xs leading-6 text-slate-500">7-day window, free size swaps, refunds.</p>
+                        <span class="mt-3 inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-[0.14em] text-white/40 transition-colors group-hover:text-primary">Open file
+                            <span class="material-symbols-outlined text-sm">arrow_outward</span></span>
+                    </a><a href="faq.html" class="doc-card group rounded-2xl p-5">
+                        <p class="font-orbitron text-[8px] uppercase tracking-[0.18em] text-primary/80">FAQ</p>
+                        <p class="mt-2 text-xs leading-6 text-slate-500">Orders, shipping, sizing, accounts.</p>
+                        <span class="mt-3 inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-[0.14em] text-white/40 transition-colors group-hover:text-primary">Open file
+                            <span class="material-symbols-outlined text-sm">arrow_outward</span></span>
+                    </a><a href="terms.html" class="doc-card group rounded-2xl p-5">
+                        <p class="font-orbitron text-[8px] uppercase tracking-[0.18em] text-primary/80">Terms</p>
+                        <p class="mt-2 text-xs leading-6 text-slate-500">The rules for using Kamiwear.</p>
+                        <span class="mt-3 inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-[0.14em] text-white/40 transition-colors group-hover:text-primary">Open file
+                            <span class="material-symbols-outlined text-sm">arrow_outward</span></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <footer class="relative z-10 border-t border-white/10 bg-[#07060b] pb-10 pt-16">
+        <div class="mx-auto grid max-w-[1440px] grid-cols-1 gap-10 px-5 sm:grid-cols-2 md:px-8 lg:grid-cols-4">
+            <div class="space-y-5">
+                <a href="index.html" class="inline-flex items-center gap-2.5 hover:opacity-80">
+                    <span class="material-symbols-outlined text-2xl text-primary">token</span>
+                    <span class="font-syne text-xl font-extrabold uppercase italic tracking-tighter">Kamiwear</span>
+                </a>
+                <p class="max-w-[260px] text-xs leading-6 text-slate-500">Blending Silicon Valley minimalism with
+                    high-octane anime culture. Premium streetwear for the digital vanguard.</p>
+                <p class="font-orbitron text-[8px] uppercase tracking-[0.2em] text-white/30">Policy version 1.0 · 16 November 2026</p>
+            </div>
+            <div>
+                <h4 class="mb-5 text-[10px] font-bold uppercase tracking-[0.2em] text-white">Explore</h4>
+                <ul class="space-y-3 text-xs text-slate-500">
+                    <li><a class="transition-colors hover:text-primary" href="shop.html">Catalog</a></li>
+                    <li><a class="transition-colors hover:text-primary" href="new-fashion.html">New Fashion</a></li>
+                    <li><a class="transition-colors hover:text-primary" href="women-denim.html">Denim Edit</a></li>
+                    <li><a class="transition-colors hover:text-primary" href="lookbook.html">Lookbook</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mb-5 text-[10px] font-bold uppercase tracking-[0.2em] text-white">Support</h4>
+                <ul class="space-y-3 text-xs text-slate-500">
+                    <li><a class="transition-colors hover:text-primary" href="exchanges.html">Exchanges</a></li>
+                    <li><a class="transition-colors hover:text-primary" href="faq.html">FAQ</a></li>
+                    <li><a class="transition-colors hover:text-primary" href="identity-terminal.html">Identity Terminal</a></li>
+                    <li><a class="transition-colors hover:text-primary" href="mailto:support@kamiwear.com">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mb-5 text-[10px] font-bold uppercase tracking-[0.2em] text-white">Legal</h4>
+                <ul class="space-y-3 text-xs text-slate-500">
+                    <li><a class="transition-colors hover:text-primary" href="terms.html">Terms</a></li>
+                    <li><a class="transition-colors hover:text-primary" href="cookie-policy.html">Cookie Policy</a></li>
+                    <li><a class="transition-colors hover:text-primary" href="privacy.html">Privacy</a></li>
+                    <li><a class="transition-colors hover:text-primary" href="mailto:support@kamiwear.com">support@kamiwear.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div
+            class="mx-auto mt-12 flex max-w-[1440px] flex-col gap-3 border-t border-white/10 px-5 pt-7 text-[9px] font-bold uppercase tracking-[0.18em] text-slate-600 sm:flex-row sm:items-center sm:justify-between md:px-8">
+            <p>© 2026 Kamiwear Labs Inc. All rights reserved.</p>
+            <p>Built for the digital vanguard.</p>
+        </div>
+    </footer>
+
+    <script src="js/core/assets.js?v=4"></script>
+    <script src="js/store/core.js?v=7"></script>
+    <script src="js/components/badge-manager.js?v=4"></script>
+    <script src="js/components/cart-drawer.js?v=4"></script>
+    <script src="js/components/profile-modal.js?v=7"></script>
+    <script src="js/components/search-overlay.js?v=5"></script>
+    <script src="js/core/app.js?v=4"></script>
+    <script src="js/core/enhance.js?v=8"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = window.Store && typeof window.Store.getUser === 'function' ? window.Store.getUser() : null;
+            const status = document.getElementById('terminal-status');
+            const copy = document.getElementById('terminal-copy');
+            const cta = document.getElementById('terminal-cta');
+            if (!status || !copy || !cta) return;
+
+            if (user && user.email) {
+                status.textContent = 'IDENTITY VERIFIED';
+                copy.textContent = 'Signed in as ' + (user.name || user.email) + '. Your dashboard is ready.';
+                cta.textContent = 'Open your terminal';
+                cta.href = 'profile.html';
+            } else {
+                status.textContent = 'GUEST ACCESS';
+                copy.textContent = 'No active identity on this browser. Sign in or create one to open your dashboard.';
+                cta.textContent = 'Create an identity';
+                cta.href = 'register.html';
+            }
+        });
+    </script>
+</body>
+
+</html>

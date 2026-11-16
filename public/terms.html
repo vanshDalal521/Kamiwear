@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kamiwear | Terms of Service</title>
+    <meta name="description" content="The terms that govern your use of the Kamiwear storefront, account, orders, payments, shipping and exchanges." />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Orbitron:wght@500;700&amp;family=Syne:wght@600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f9f906",
+                        "accent-purple": "#6366f1",
+                        "background-light": "#f8f8f5",
+                        "background-dark": "#0A0812",
+                        "glass": "rgba(255, 255, 255, 0.03)",
+                        "glass-border": "rgba(255, 255, 255, 0.1)"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "syne": ["Syne", "sans-serif"],
+                        "orbitron": ["Orbitron", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --ink: #08070d;
+            --paper: #f4f1e8;
+            --acid: #f9f906;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--ink);
+            color: #f8fafc;
+            font-family: Inter, system-ui, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(255, 255, 255, 0.09);
+        }
+
+        .eyebrow {
+            font-family: Orbitron, sans-serif;
+            font-size: 10px;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: var(--acid);
+        }
+
+        .page-title {
+            font-family: Syne, sans-serif;
+            font-weight: 800;
+            font-size: clamp(1.25rem, 7.6vw, 7rem);
+            line-height: 0.9;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+        }
+
+        .legal-prose h2 {
+            font-family: Syne, sans-serif;
+            font-size: clamp(1.6rem, 3vw, 2.35rem);
+            line-height: 1;
+            letter-spacing: -0.035em;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .legal-prose h3 {
+            font-family: Inter, sans-serif;
+            font-size: 0.82rem;
+            line-height: 1.5;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .legal-prose p,
+        .legal-prose li {
+            font-size: 0.92rem;
+            line-height: 1.85;
+            color: rgba(203, 213, 225, 0.82);
+        }
+
+        .legal-prose ul,
+        .legal-prose ol {
+            display: grid;
+            gap: 0.55rem;
+            padding-left: 1.15rem;
+        }
+
+        .legal-prose ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .legal-prose ul li {
+            position: relative;
+            padding-left: 1.1rem;
+        }
+
+        .legal-prose ul li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.75rem;
+            width: 5px;
+            height: 5px;
+            border-radius: 999px;
+            background: var(--acid);
+            opacity: 0.75;
+        }
+
+        .legal-prose ol {
+            list-style: decimal;
+        }
+
+        .legal-prose ol li::marker {
+            color: var(--acid);
+            font-family: Orbitron, sans-serif;
+            font-size: 0.7rem;
+        }
+
+        .legal-prose a {
+            color: var(--acid);
+            text-decoration: underline;
+            text-decoration-color: rgba(249, 249, 6, 0.35);
+            text-underline-offset: 3px;
+        }
+
+        .legal-prose strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .legal-prose section {
+            scroll-margin-top: 120px;
+        }
+
+        .legal-prose section + section {
+            padding-top: 2.4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .fact-row {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 1.5rem;
+            padding: 0.85rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .fact-row:last-child {
+            border-bottom: 0;
+        }
+
+        .fact-row dt {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.42);
+        }
+
+        .fact-row dd {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.85);
+            text-align: right;
+        }
+
+        .toc-link {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.5);
+            transition: color 0.2s ease;
+        }
+
+        .toc-link::before {
+            content: "";
+            width: 14px;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.2);
+            transition: background 0.2s ease, width 0.2s ease;
+        }
+
+        .toc-link:hover {
+            color: var(--acid);
+        }
+
+        .toc-link:hover::before {
+            width: 22px;
+            background: var(--acid);
+        }
+
+        .doc-card {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.025);
+            transition: border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+        }
+
+        .doc-card:hover {
+            border-color: rgba(249, 249, 6, 0.4);
+            background: rgba(249, 249, 6, 0.045);
+            transform: translateY(-2px);
+        }
+
+        .faq-item {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.025);
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-item summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            cursor: pointer;
+            padding: 1rem 1.15rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            color: rgba(255, 255, 255, 0.9);
+            list-style: none;
+        }
+
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-item .faq-plus {
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            width: 22px;
+            height: 22px;
+            border: 1px solid rgba(249, 249, 6, 0.35);
+            border-radius: 999px;
+            color: var(--acid);
+            font-size: 15px;
+            line-height: 1;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
+
+        .faq-item[open] .faq-plus {
+            transform: rotate(45deg);
+            background: rgba(249, 249, 6, 0.1);
+        }
+
+        .faq-item .faq-answer {
+            padding: 0 1.15rem 1.1rem;
+            font-size: 0.86rem;
+            line-height: 1.8;
+            color: rgba(203, 213, 225, 0.78);
+        }
+
+        .legal-prose table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.78rem;
+        }
+
+        .legal-prose th,
+        .legal-prose td {
+            padding: 0.8rem 0.7rem;
+            text-align: left;
+            vertical-align: top;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+        }
+
+        .legal-prose th {
+            font-family: Orbitron, sans-serif;
+            font-size: 8px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        .legal-prose td {
+            color: rgba(203, 213, 225, 0.8);
+        }
+
+        .legal-prose code {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 0.78em;
+            color: var(--acid);
+            background: rgba(249, 249, 6, 0.08);
+            border: 1px solid rgba(249, 249, 6, 0.16);
+            border-radius: 4px;
+            padding: 0.1em 0.35em;
+            white-space: nowrap;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            .doc-card {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-background-dark font-display text-slate-100 selection:bg-primary selection:text-black">
+
+    <div class="relative z-20 border-b border-white/10 bg-primary text-[#17140a]">
+        <div
+            class="mx-auto flex max-w-[1440px] items-center justify-center gap-2 px-5 py-2 text-center text-[9px] font-bold uppercase tracking-[0.22em] md:px-8">
+            <span class="material-symbols-outlined text-[14px]">verified_user</span>
+            <span>Kamiwear Systems · Transparent policies · Updated 16 November 2026</span>
+        </div>
+    </div>
+
+    <nav class="sticky top-0 z-50 border-b border-white/10 glass-panel">
+        <div class="mx-auto flex h-20 max-w-[1440px] items-center justify-between gap-5 px-5 md:px-8">
+            <a href="index.html" class="flex shrink-0 items-center gap-2.5 transition-opacity hover:opacity-80">
+                <span class="material-symbols-outlined text-2xl text-primary sm:text-3xl">token</span>
+                <span class="font-syne text-lg font-extrabold uppercase italic tracking-tighter sm:text-2xl">Kamiwear</span>
+            </a>
+            <div class="hidden items-center gap-7 lg:flex xl:gap-9">
+                <a class="text-[11px] font-bold uppercase tracking-[0.16em] text-white/70 transition-colors hover:text-primary"
+                    href="shop.html">Shop</a>
+                <a class="text-[11px] font-bold uppercase tracking-[0.16em] text-white/70 transition-colors hover:text-primary"
+                    href="index.html#collections">Collections</a>
+                <a class="text-[11px] font-bold uppercase tracking-[0.16em] text-white/70 transition-colors hover:text-primary"
+                    href="new-fashion.html">New Arrivals</a>
+                <a class="text-[11px] font-bold uppercase tracking-[0.16em] text-white/70 transition-colors hover:text-primary"
+                    href="women-denim.html">Denim Edit</a>
+                <a class="text-[11px] font-bold uppercase tracking-[0.16em] text-white/70 transition-colors hover:text-primary"
+                    href="lookbook.html">Lookbook</a>
+                <a class="border-b border-primary pb-1 text-[11px] font-bold uppercase tracking-[0.16em] text-primary"
+                    href="faq.html" aria-current="page">Support</a>
+            </div>
+            <div class="flex items-center gap-0.5 sm:gap-2">
+                <button type="button" aria-label="Search" data-kw-search
+                    class="hidden h-10 w-10 items-center justify-center rounded-full transition-colors hover:bg-white/10 sm:flex">
+                    <span class="material-symbols-outlined text-[22px]">search</span>
+                </button>
+                <a href="wishlist.html" aria-label="Wishlist"
+                    class="flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-white/10 sm:h-10 sm:w-10">
+                    <span class="material-symbols-outlined text-[21px] sm:text-[22px]">favorite</span>
+                </a>
+                <button type="button" aria-label="Open cart" onclick="if (window.toggleCart) window.toggleCart(true)"
+                    class="relative flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-white/10 sm:h-10 sm:w-10">
+                    <span class="material-symbols-outlined text-[21px] sm:text-[22px]">shopping_bag</span>
+                    <span id="cart-count-badge"
+                        class="absolute right-0.5 top-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-primary text-[9px] font-bold text-black">0</span>
+                </button>
+                <button id="profile-btn-trigger" type="button" aria-label="Profile"
+                    class="flex h-9 w-9 items-center justify-center rounded-full transition-colors hover:bg-white/10 sm:h-10 sm:w-10">
+                    <span class="material-symbols-outlined text-[21px] sm:text-[22px]">person</span>
+                </button>
+            </div>
+        </div>
+        <div class="overflow-x-auto border-t border-white/5 lg:hidden">
+            <div class="flex min-w-max items-center gap-6 px-5 py-3 text-[9px] font-bold uppercase tracking-[0.18em] text-white/60">
+                <a href="shop.html" class="hover:text-primary">Shop</a>
+                <a href="new-fashion.html" class="hover:text-primary">New</a>
+                <a href="women-denim.html" class="hover:text-primary">Denim</a>
+                <a href="index.html#collections" class="hover:text-primary">Collections</a>
+                <a href="lookbook.html" class="hover:text-primary">Lookbook</a>
+                <a href="faq.html" class="text-primary">Support</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="relative z-10">
+        <section class="mx-auto max-w-[1440px] px-5 pb-12 pt-14 md:px-8 md:pb-16 md:pt-20">
+            <div class="mb-7 flex flex-wrap items-center gap-4">
+                <span class="eyebrow">Legal / Terms</span>
+                <span class="h-px w-16 bg-primary/50"></span>
+                <span class="font-orbitron text-[9px] uppercase tracking-[0.24em] text-white/40">Doc 04 / 06</span>
+                <span class="rounded-full border border-white/10 px-3 py-1 font-orbitron text-[8px] uppercase tracking-[0.16em] text-white/40">Updated 16 November 2026</span>
+            </div>
+            <h1 class="page-title">Terms of<br /><span class="text-primary">Service</span></h1>
+            <div class="mt-8 grid items-start gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)] lg:gap-14">
+                <div>
+                    <p class="max-w-2xl text-sm leading-7 text-slate-400 md:text-base">The rules for using Kamiwear: accounts, orders, payments, delivery, exchanges, intellectual property and the limits of our responsibility.</p>
+                    <div class="mt-7 flex flex-wrap gap-2">
+                        <span class="rounded-full border border-white/10 px-3 py-1.5 text-[8px] font-bold uppercase tracking-[0.16em] text-white/55">Effective 16 Nov 2026</span><span class="rounded-full border border-white/10 px-3 py-1.5 text-[8px] font-bold uppercase tracking-[0.16em] text-white/55">India governing law</span><span class="rounded-full border border-white/10 px-3 py-1.5 text-[8px] font-bold uppercase tracking-[0.16em] text-white/55">18+ or guardian consent</span>
+                    </div>
+                </div>
+                <aside class="glass-panel rounded-[1.75rem] p-6 md:p-7">
+                    <p class="eyebrow">Quick read</p>
+                    <dl class="mt-4">
+                        <div class="fact-row">
+                            <dt>Version</dt>
+                            <dd>1.0</dd>
+                        </div><div class="fact-row">
+                            <dt>Effective</dt>
+                            <dd>16 November 2026</dd>
+                        </div><div class="fact-row">
+                            <dt>Currency</dt>
+                            <dd>INR</dd>
+                        </div><div class="fact-row">
+                            <dt>Governing law</dt>
+                            <dd>India</dd>
+                        </div><div class="fact-row">
+                            <dt>Contact</dt>
+                            <dd>support@kamiwear.com</dd>
+                        </div>
+                    </dl>
+                    <a href="mailto:support@kamiwear.com"
+                        class="mt-5 inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.14em] text-primary transition-colors hover:text-white">
+                        Talk to support
+                        <span class="material-symbols-outlined text-sm">arrow_outward</span>
+                    </a>
+                </aside>
+            </div>
+        </section>
+
+        <section class="mx-auto max-w-[1440px] px-5 pb-20 md:px-8 md:pb-28">
+            <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_290px] lg:gap-14">
+                <article class="legal-prose space-y-10">
+                    
+        <section id="acceptance">
+            <p class="eyebrow">01 / Acceptance</p>
+            <h2 class="mt-3">Acceptance of these terms</h2>
+            <p class="mt-4">These Terms of Service govern your access to and use of the Kamiwear website, storefront,
+                checkout, Identity Terminal and related services. By browsing, creating an account or placing an
+                order, you agree to these terms and to our <a href="privacy.html">Privacy Policy</a> and
+                <a href="cookie-policy.html">Cookie Policy</a>.</p>
+            <p>If you do not agree, do not use the storefront or place an order. If you are under 18, you may use
+                Kamiwear only with the involvement of a parent or legal guardian.</p>
+        </section>
+
+        <section id="accounts">
+            <p class="eyebrow">02 / Accounts</p>
+            <h2 class="mt-3">Your identity</h2>
+            <ul class="mt-4">
+                <li>You must provide accurate, current information when creating an identity.</li>
+                <li>You are responsible for keeping your password confidential and for activity under your account.</li>
+                <li>Do not share, sell or transfer your account to another person.</li>
+                <li>Tell us immediately if you suspect unauthorised access at <a href="mailto:support@kamiwear.com">support@kamiwear.com</a>.</li>
+                <li>We may suspend or close an account that violates these terms, commits fraud or abuses the
+                    storefront.</li>
+            </ul>
+        </section>
+
+        <section id="orders">
+            <p class="eyebrow">03 / Orders</p>
+            <h2 class="mt-3">Orders, availability and pricing</h2>
+            <p class="mt-4">All prices are displayed in Indian Rupees (INR) unless stated otherwise. Prices, drops and
+                availability can change without notice. Adding an item to your cart does not reserve it.</p>
+            <p>We may refuse or cancel an order if the item is unavailable, the price was listed incorrectly, the
+                order appears fraudulent, or the delivery address cannot be verified. If we cancel after payment, we
+                refund the amount paid for that order.</p>
+            <p>Product photography, washes and colours are indicative. Small variations are normal for garment-dyed,
+                small-batch and hand-finished pieces.</p>
+        </section>
+
+        <section id="payments">
+            <p class="eyebrow">04 / Payments</p>
+            <h2 class="mt-3">Payment terms</h2>
+            <p class="mt-4">Available payment methods are shown at checkout and may include UPI, Cash on Delivery and
+                card payments where enabled. By submitting payment, you confirm that you are authorised to use the
+                selected method.</p>
+            <p>Kamiwear does not store full card numbers or card security codes. Payment processing is handled by
+                third-party providers, and their terms may also apply. Cash-on-delivery orders may be subject to
+                order-value limits or address verification.</p>
+        </section>
+
+        <section id="shipping">
+            <p class="eyebrow">05 / Shipping</p>
+            <h2 class="mt-3">Delivery</h2>
+            <p class="mt-4">Orders are dispatched within 1–2 business days after payment confirmation. India delivery
+                usually takes 3–7 business days; international delivery usually takes 7–14 business days. These
+                windows are estimates, not guarantees.</p>
+            <p>Risk passes to you on delivery. If a parcel is lost or damaged in transit, contact us within 48 hours
+                of the delivery scan so we can open a carrier investigation. Duties, taxes and customs fees on
+                international orders are the recipient's responsibility unless stated otherwise.</p>
+        </section>
+
+        <section id="exchanges">
+            <p class="eyebrow">06 / Exchanges</p>
+            <h2 class="mt-3">Exchanges and returns</h2>
+            <p class="mt-4">The exchange policy is set out on the <a href="exchanges.html">Exchanges &amp; Returns</a>
+                page and forms part of these terms. The standard window is 7 days from delivery, and items must be
+                unworn, unwashed and have their original tags attached. Exclusions include innerwear, earrings, masks,
+                personalised pieces and final-sale items.</p>
+        </section>
+
+        <section id="intellectual-property">
+            <p class="eyebrow">07 / Intellectual property</p>
+            <h2 class="mt-3">Ownership</h2>
+            <p class="mt-4">The Kamiwear name, logo, storefront design, photography, graphics, copy and product
+                artwork are owned by Kamiwear Labs Inc. or its licensors and are protected by applicable intellectual
+                property laws.</p>
+            <p>You may view and share links to the storefront for personal, non-commercial use. You may not copy,
+                scrape, resell, reproduce or create derivative works from our content without written permission.
+                Anime and third-party properties referenced in capsule collections remain the property of their
+                respective owners.</p>
+        </section>
+
+        <section id="acceptable-use">
+            <p class="eyebrow">08 / Acceptable use</p>
+            <h2 class="mt-3">What you may not do</h2>
+            <ul class="mt-4">
+                <li>Use the storefront for unlawful, fraudulent or abusive activity.</li>
+                <li>Attempt to access another person's account or bypass authentication.</li>
+                <li>Scrape, crawl or automate requests in a way that degrades the service.</li>
+                <li>Upload malware, spam or misleading content.</li>
+                <li>Interfere with checkout, payment, security or rate-limiting systems.</li>
+                <li>Resell Kamiwear products as official merchandise without authorisation.</li>
+            </ul>
+        </section>
+
+        <section id="third-party">
+            <p class="eyebrow">09 / Third parties</p>
+            <h2 class="mt-3">Third-party services</h2>
+            <p class="mt-4">Kamiwear uses third-party services for hosting, payments, delivery, fonts, analytics (if
+                enabled) and optional Google Sign-In. Links to Discord, Instagram, TikTok, Twitter and other sites are
+                provided for convenience. We do not control those services and are not responsible for their content
+                or privacy practices.</p>
+        </section>
+
+        <section id="disclaimers">
+            <p class="eyebrow">10 / Disclaimers</p>
+            <h2 class="mt-3">Availability and accuracy</h2>
+            <p class="mt-4">The storefront is provided on an "as available" basis. We work to keep product information,
+                stock and pricing accurate, but errors can happen. We do not warrant that the site will be
+                uninterrupted, error-free or free of harmful components.</p>
+            <p>Nothing on the storefront is medical, legal or financial advice. Product care instructions are
+                guidance; always check the label on the garment.</p>
+        </section>
+
+        <section id="liability">
+            <p class="eyebrow">11 / Liability</p>
+            <h2 class="mt-3">Limits of responsibility</h2>
+            <p class="mt-4">To the maximum extent permitted by law, Kamiwear is not liable for indirect, incidental,
+                special, consequential or punitive damages, or for lost profits, data or goodwill arising from your
+                use of the storefront.</p>
+            <p>Our total liability for any claim relating to an order will not exceed the amount you paid for that
+                order. Nothing in these terms excludes liability that cannot lawfully be excluded.</p>
+        </section>
+
+        <section id="indemnity">
+            <p class="eyebrow">12 / Indemnity</p>
+            <h2 class="mt-3">Indemnity</h2>
+            <p class="mt-4">You agree to indemnify and hold harmless Kamiwear Labs Inc., its officers, employees and
+                partners from claims, losses, liabilities and expenses arising from your breach of these terms, your
+                misuse of the storefront, or your violation of another person's rights.</p>
+        </section>
+
+        <section id="governing-law">
+            <p class="eyebrow">13 / Governing law</p>
+            <h2 class="mt-3">Governing law and disputes</h2>
+            <p class="mt-4">These terms are governed by the laws of India. Disputes are subject to the exclusive
+                jurisdiction of the competent courts in India. Before starting formal proceedings, please contact us
+                so we can try to resolve the issue directly.</p>
+        </section>
+
+        <section id="changes">
+            <p class="eyebrow">14 / Changes</p>
+            <h2 class="mt-3">Updates to these terms</h2>
+            <p class="mt-4">We may update these terms as the storefront evolves. The effective date at the top of the
+                page will change, and material updates may be announced on the site or by email. Continued use after
+                an update means you accept the revised terms.</p>
+        </section>
+
+        <section id="contact">
+            <p class="eyebrow">15 / Contact</p>
+            <h2 class="mt-3">Questions about these terms</h2>
+            <p class="mt-4">Email <a href="mailto:support@kamiwear.com">support@kamiwear.com</a> with the subject <strong>Terms
+                    question</strong>. Support replies within one business day, Monday to Saturday.</p>
+        </section>
+                </article>
+                <aside class="hidden lg:block">
+                    <div class="sticky top-28 space-y-6">
+                        <div class="glass-panel rounded-2xl p-5">
+                            <p class="eyebrow">On this page</p>
+                            <nav aria-label="On this page" class="mt-4 grid gap-2.5">
+                                <a class="toc-link" href="#acceptance">Acceptance</a><a class="toc-link" href="#accounts">Accounts</a><a class="toc-link" href="#orders">Orders &amp; pricing</a><a class="toc-link" href="#payments">Payments</a><a class="toc-link" href="#shipping">Shipping</a><a class="toc-link" href="#exchanges">Exchanges</a><a class="toc-link" href="#intellectual-property">Intellectual property</a><a class="toc-link" href="#acceptable-use">Acceptable use</a><a class="toc-link" href="#third-party">Third-party services</a><a class="toc-link" href="#disclaimers">Disclaimers</a><a class="toc-link" href="#liability">Liability</a><a class="toc-link" href="#indemnity">Indemnity</a><a class="toc-link" href="#governing-law">Governing law</a><a class="toc-link" href="#changes">Changes</a><a class="toc-link" href="#contact">Contact</a>
+                            </nav>
+                        </div>
+                        <div class="glass-panel rounded-2xl p-5">
+                            <p class="eyebrow">Need a human?</p>
+                            <p class="mt-3 text-xs leading-6 text-slate-500">Support replies within one business day,
+                                Monday to Saturday.</p>
+                            <a href="mailto:support@kamiwear.com"
+                                class="mt-4 inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2.5 text-[9px] font-extrabold uppercase tracking-[0.14em] text-black transition-colors hover:bg-white">
+                                Email support
+                                <span class="material-symbols-outlined text-sm">mail</span>
+                            </a>
+                            <a href="faq.html"
+                                class="mt-3 flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.14em] text-white/40 transition-colors hover:text-primary">
+                                Browse the FAQ
+                                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                            </a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="border-y border-white/10 bg-white/[0.02] py-14">
+            <div class="mx-auto max-w-[1440px] px-5 md:px-8">
+                <div class="flex flex-wrap items-end justify-between gap-4">
+                    <div>
+                        <p class="eyebrow">Related files</p>
+                        <h2 class="font-syne mt-3 text-2xl font-extrabold uppercase tracking-tight md:text-3xl">More from the terminal</h2>
+                    </div>
+                    <a href="faq.html"
+                        class="text-[9px] font-bold uppercase tracking-[0.16em] text-white/40 transition-colors hover:text-primary">Open
+                        support index →</a>
+                </div>
+                <div class="mt-7 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                    <a href="exchanges.html" class="doc-card group rounded-2xl p-5">
+                        <p class="font-orbitron text-[8px] uppercase tracking-[0.18em] text-primary/80">Exchanges</p>
+                        <p class="mt-2 text-xs leading-6 text-slate-500">7-day window, free size swaps, refunds.</p>
+                        <span class="mt-3 inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-[0.14em] text-white/40 transition-colors group-hover:text-primary">Open file
+                            <span class="material-symbols-outlined text-sm">arrow_outward</span></span>
+                    </a><a href="faq.html" class="doc-card group rounded-2xl p-5">
+                        <p class="font-orbitron text-[8px] uppercase tracking-[0.18em] text-primary/80">FAQ</p>
+                        <p class="mt-2 text-xs leading-6 text-slate-500">Orders, shipping, sizing, accounts.</p>
+                        <span class="mt-3 inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-[0.14em] text-white/40 transition-colors group-hover:text-primary">Open file
+                            <span class="material-symbols-outlined text-sm">arrow_outward</span></span>
+                    </a><a href="identity-terminal.html" class="doc-card group rounded-2xl p-5">
+                        <p class="font-orbitron text-[8px] uppercase tracking-[0.18em] text-primary/80">Identity Terminal</p>
+                        <p class="mt-2 text-xs leading-6 text-slate-500">Your account, orders and KamiKoins.</p>
+                        <span class="mt-3 inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-[0.14em] text-white/40 transition-colors group-hover:text-primary">Open file
+                            <span class="material-symbols-outlined text-sm">arrow_outward</span></span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+
+    <footer class="relative z-10 border-t border-white/10 bg-[#07060b] pb-10 pt-16">
+        <div class="mx-auto grid max-w-[1440px] grid-cols-1 gap-10 px-5 sm:grid-cols-2 md:px-8 lg:grid-cols-4">
+            <div class="space-y-5">
+                <a href="index.html" class="inline-flex items-center gap-2.5 hover:opacity-80">
+                    <span class="material-symbols-outlined text-2xl text-primary">token</span>
+                    <span class="font-syne text-xl font-extrabold uppercase italic tracking-tighter">Kamiwear</span>
+                </a>
+                <p class="max-w-[260px] text-xs leading-6 text-slate-500">Blending Silicon Valley minimalism with
+                    high-octane anime culture. Premium streetwear for the digital vanguard.</p>
+                <p class="font-orbitron text-[8px] uppercase tracking-[0.2em] text-white/30">Policy version 1.0 · 16 November 2026</p>
+            </div>
+            <div>
+                <h4 class="mb-5 text-[10px] font-bold uppercase tracking-[0.2em] text-white">Explore</h4>
+                <ul class="space-y-3 text-xs text-slate-500">
+                    <li><a class="transition-colors hover:text-primary" href="shop.html">Catalog</a></li>
+                    <li><a class="transition-colors hover:text-primary" href="new-fashion.html">New Fashion</a></li>
+                    <li><a class="transition-colors hover:text-primary" href="women-denim.html">Denim Edit</a></li>
+                    <li><a class="transition-colors hover:text-primary" href="lookbook.html">Lookbook</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mb-5 text-[10px] font-bold uppercase tracking-[0.2em] text-white">Support</h4>
+                <ul class="space-y-3 text-xs text-slate-500">
+                    <li><a class="transition-colors hover:text-primary" href="exchanges.html">Exchanges</a></li>
+                    <li><a class="transition-colors hover:text-primary" href="faq.html">FAQ</a></li>
+                    <li><a class="transition-colors hover:text-primary" href="identity-terminal.html">Identity Terminal</a></li>
+                    <li><a class="transition-colors hover:text-primary" href="mailto:support@kamiwear.com">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mb-5 text-[10px] font-bold uppercase tracking-[0.2em] text-white">Legal</h4>
+                <ul class="space-y-3 text-xs text-slate-500">
+                    <li><a class="transition-colors hover:text-primary" href="terms.html">Terms</a></li>
+                    <li><a class="transition-colors hover:text-primary" href="cookie-policy.html">Cookie Policy</a></li>
+                    <li><a class="transition-colors hover:text-primary" href="privacy.html">Privacy</a></li>
+                    <li><a class="transition-colors hover:text-primary" href="mailto:support@kamiwear.com">support@kamiwear.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div
+            class="mx-auto mt-12 flex max-w-[1440px] flex-col gap-3 border-t border-white/10 px-5 pt-7 text-[9px] font-bold uppercase tracking-[0.18em] text-slate-600 sm:flex-row sm:items-center sm:justify-between md:px-8">
+            <p>© 2026 Kamiwear Labs Inc. All rights reserved.</p>
+            <p>Built for the digital vanguard.</p>
+        </div>
+    </footer>
+
+    <script src="js/core/assets.js?v=4"></script>
+    <script src="js/store/core.js?v=7"></script>
+    <script src="js/components/badge-manager.js?v=4"></script>
+    <script src="js/components/cart-drawer.js?v=4"></script>
+    <script src="js/components/profile-modal.js?v=7"></script>
+    <script src="js/components/search-overlay.js?v=5"></script>
+    <script src="js/core/app.js?v=4"></script>
+    <script src="js/core/enhance.js?v=8"></script>
+
+</body>
+
+</html>

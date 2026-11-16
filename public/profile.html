@@ -215,6 +215,7 @@
 
                 <!-- Order History / Transmissions Section -->
                 <section id="transmissions-section" class="tab-content hidden">
+                    <span id="orders" class="block scroll-mt-28" aria-hidden="true"></span>
                     <div class="flex items-center justify-between mb-8">
                         <h4 class="font-syne text-xl uppercase italic font-bold tracking-tight flex items-center gap-3">
                             <span class="w-2 h-2 bg-primary rounded-full animate-pulse"></span>
@@ -425,6 +426,14 @@
             document.getElementById('show-transmissions').addEventListener('click', () => switchTab('transmissions'));
             document.getElementById('show-wish-archives').addEventListener('click', () => switchTab('wish-archives'));
 
+            // Open the order history when linked from cart, checkout or confirmation.
+            if (window.location.hash === '#orders') {
+                switchTab('transmissions');
+                window.requestAnimationFrame(() => {
+                    document.getElementById('orders')?.scrollIntoView({ block: 'start' });
+                });
+            }
+
             // Pre-fill Edit Profile Form
             document.getElementById('edit-name').value = user.name || '';
             document.getElementById('edit-bio').value = user.bio || '';
@@ -494,6 +503,7 @@
       updateUserStats();
       setInterval(updateUserStats, 30000);
     </script>
-  </body>
+      <script src="js/components/legal-footer.js?v=1"></script>
+</body>
 
 </html>
